@@ -79,7 +79,7 @@
       "populateJsonWithId": true
     },
     {
-      "tableName": "vendor",
+      "tableName": "organization",
       "generateId": true,
       "fromModuleVersion": 1.0,
       "withMetadata": true,
@@ -98,13 +98,6 @@
           "removeAccents": true
         }
       ]
-    },
-    {
-      "tableName": "vendor_type",
-      "generateId": true,
-      "fromModuleVersion": 1.0,
-      "withMetadata": true,
-      "populateJsonWithId": true
     }
   ]
 }

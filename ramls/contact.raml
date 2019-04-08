@@ -1,6 +1,6 @@
 #%RAML 1.0
-title: "Vendors"
-baseUri: https://github.com/folio-org/mod-vendors
+title: "Organizations"
+baseUri: https://github.com/folio-org/mod-organizations-storage
 version: v2.0
 
 documentation:
@@ -8,8 +8,8 @@ documentation:
     content: <b>CRUD APIs used to manage contacts.</b>
 
 types:
-    contact: !include acq-models/mod-vendors/schemas/contact.json
-    contact_collection: !include acq-models/mod-vendors/schemas/contact_collection.json
+    contact: !include acq-models/mod-orgs/schemas/contact.json
+    contact_collection: !include acq-models/mod-orgs/schemas/contact_collection.json
     UUID:
       type: string
       pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
@@ -25,11 +25,11 @@ resourceTypes:
     collection-item: !include raml-util/rtypes/item-collection.raml
 
 
-/vendor-storage/contacts:
+/organization-storage/contacts:
   type:
     collection:
-      exampleCollection: !include acq-models/mod-vendors/examples/contact_collection.sample
-      exampleItem: !include acq-models/mod-vendors/examples/contact_post.sample
+      exampleCollection: !include acq-models/mod-orgs/examples/contact_collection.sample
+      exampleItem: !include acq-models/mod-orgs/examples/contact_post.sample
       schemaCollection: contact_collection
       schemaItem: contact
   get:
@@ -45,5 +45,5 @@ resourceTypes:
         type: UUID
     type:
       collection-item:
-        exampleItem: !include acq-models/mod-vendors/examples/contact_get.sample
+        exampleItem: !include acq-models/mod-orgs/examples/contact_get.sample
         schema: contact

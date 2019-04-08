@@ -6,7 +6,7 @@ import io.vertx.core.logging.LoggerFactory;
 import org.folio.rest.RestVerticle;
 import org.folio.rest.jaxrs.model.Alias;
 import org.folio.rest.jaxrs.model.AliasCollection;
-import org.folio.rest.jaxrs.resource.VendorStorageAliases;
+import org.folio.rest.jaxrs.resource.OrganizationStorageAliases;
 import org.folio.rest.persist.Criteria.Limit;
 import org.folio.rest.persist.Criteria.Offset;
 import org.folio.rest.persist.PostgresClient;
@@ -22,7 +22,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Map;
 
-public class AliasesAPI implements VendorStorageAliases {
+public class AliasesAPI implements OrganizationStorageAliases {
   private static final String ALIAS_TABLE = "alias";
 
   private static final Logger log = LoggerFactory.getLogger(AliasesAPI.class);
@@ -35,7 +35,7 @@ public class AliasesAPI implements VendorStorageAliases {
 
 
   @Override
-  public void getVendorStorageAliases(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+  public void getOrganizationStorageAliases(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       try {
         String tenantId = TenantTool.calculateTenantId( okapiHeaders.get(RestVerticle.OKAPI_HEADER_TENANT) );
@@ -64,17 +64,17 @@ public class AliasesAPI implements VendorStorageAliases {
                 }
                 collection.setFirst(first);
                 collection.setLast(last);
-                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(VendorStorageAliases.GetVendorStorageAliasesResponse
+                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageAliases.GetOrganizationStorageAliasesResponse
                   .respond200WithApplicationJson(collection)));
               }
               else{
                 log.error(reply.cause().getMessage(), reply.cause());
-                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(VendorStorageAliases.GetVendorStorageAliasesResponse
+                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageAliases.GetOrganizationStorageAliasesResponse
                   .respond400WithTextPlain(reply.cause().getMessage())));
               }
             } catch (Exception e) {
               log.error(e.getMessage(), e);
-              asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(VendorStorageAliases.GetVendorStorageAliasesResponse
+              asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageAliases.GetOrganizationStorageAliasesResponse
                 .respond500WithTextPlain(messages.getMessage(lang, MessageConsts.InternalServerError))));
             }
           });
@@ -84,7 +84,7 @@ public class AliasesAPI implements VendorStorageAliases {
         if(e.getCause() != null && e.getCause().getClass().getSimpleName().endsWith("CQLParseException")){
           message = " CQL parse error " + e.getLocalizedMessage();
         }
-        asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(VendorStorageAliases.GetVendorStorageAliasesResponse
+        asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageAliases.GetOrganizationStorageAliasesResponse
           .respond500WithTextPlain(message)));
       }
     });
@@ -92,29 +92,29 @@ public class AliasesAPI implements VendorStorageAliases {
 
   @Override
   @Validate
-  public void postVendorStorageAliases(String lang, org.folio.rest.jaxrs.model.Alias entity,
+  public void postOrganizationStorageAliases(String lang, org.folio.rest.jaxrs.model.Alias entity,
                                           Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.post(ALIAS_TABLE, entity, okapiHeaders, vertxContext, PostVendorStorageAliasesResponse.class, asyncResultHandler);
+    PgUtil.post(ALIAS_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationStorageAliasesResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void getVendorStorageAliasesById(String id, String lang, Map<String, String> okapiHeaders,
+  public void getOrganizationStorageAliasesById(String id, String lang, Map<String, String> okapiHeaders,
                                              Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.getById(ALIAS_TABLE, Alias.class, id, okapiHeaders,vertxContext, GetVendorStorageAliasesByIdResponse.class, asyncResultHandler);
+    PgUtil.getById(ALIAS_TABLE, Alias.class, id, okapiHeaders,vertxContext, GetOrganizationStorageAliasesByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void deleteVendorStorageAliasesById(String id, String lang, Map<String, String> okapiHeaders,
+  public void deleteOrganizationStorageAliasesById(String id, String lang, Map<String, String> okapiHeaders,
                                                 Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.deleteById(ALIAS_TABLE, id, okapiHeaders, vertxContext, DeleteVendorStorageAliasesByIdResponse.class, asyncResultHandler);
+    PgUtil.deleteById(ALIAS_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationStorageAliasesByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void putVendorStorageAliasesById(String id, String lang, org.folio.rest.jaxrs.model.Alias entity,
+  public void putOrganizationStorageAliasesById(String id, String lang, org.folio.rest.jaxrs.model.Alias entity,
                                              Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.put(ALIAS_TABLE, entity, id, okapiHeaders, vertxContext, PutVendorStorageAliasesByIdResponse.class, asyncResultHandler);
+    PgUtil.put(ALIAS_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationStorageAliasesByIdResponse.class, asyncResultHandler);
   }
 }

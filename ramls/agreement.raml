@@ -1,6 +1,6 @@
 #%RAML 1.0
-title: "Vendors"
-baseUri: https://github.com/folio-org/mod-vendors
+title: "Organizations"
+baseUri: https://github.com/folio-org/mod-organizations-storage
 version: v2.0
 
 documentation:
@@ -8,8 +8,8 @@ documentation:
     content: <b>CRUD APIs used to manage alerts.</b>
 
 types:
-    agreement: !include acq-models/mod-vendors/schemas/agreement.json
-    agreement_collection: !include acq-models/mod-vendors/schemas/agreement_collection.json
+    agreement: !include acq-models/mod-orgs/schemas/agreement.json
+    agreement_collection: !include acq-models/mod-orgs/schemas/agreement_collection.json
     UUID:
       type: string
       pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
@@ -25,11 +25,11 @@ resourceTypes:
     collection-item: !include raml-util/rtypes/item-collection.raml
 
 
-/vendor-storage/agreements:
+/organization-storage/agreements:
   type:
     collection:
-      exampleCollection: !include acq-models/mod-vendors/examples/agreement_collection.sample
-      exampleItem: !include acq-models/mod-vendors/examples/agreement_post.sample
+      exampleCollection: !include acq-models/mod-orgs/examples/agreement_collection.sample
+      exampleItem: !include acq-models/mod-orgs/examples/agreement_post.sample
       schemaCollection: agreement_collection
       schemaItem: agreement
   get:
@@ -45,5 +45,5 @@ resourceTypes:
         type: UUID
     type:
       collection-item:
-        exampleItem: !include acq-models/mod-vendors/examples/agreement_get.sample
+        exampleItem: !include acq-models/mod-orgs/examples/agreement_get.sample
         schema: agreement

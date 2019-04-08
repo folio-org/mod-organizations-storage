@@ -6,7 +6,7 @@ import io.vertx.core.logging.LoggerFactory;
 import org.folio.rest.RestVerticle;
 import org.folio.rest.jaxrs.model.Category;
 import org.folio.rest.jaxrs.model.CategoryCollection;
-import org.folio.rest.jaxrs.resource.VendorStorageCategories;
+import org.folio.rest.jaxrs.resource.OrganizationStorageCategories;
 import org.folio.rest.persist.Criteria.Limit;
 import org.folio.rest.persist.Criteria.Offset;
 import org.folio.rest.persist.PostgresClient;
@@ -22,7 +22,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Map;
 
-public class CategoriesAPI implements VendorStorageCategories {
+public class CategoriesAPI implements OrganizationStorageCategories {
   private static final String CATEGORY_TABLE = "category";
 
   private static final Logger log = LoggerFactory.getLogger(CategoriesAPI.class);
@@ -35,7 +35,7 @@ public class CategoriesAPI implements VendorStorageCategories {
 
 
   @Override
-  public void getVendorStorageCategories(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+  public void getOrganizationStorageCategories(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       try {
         String tenantId = TenantTool.calculateTenantId( okapiHeaders.get(RestVerticle.OKAPI_HEADER_TENANT) );
@@ -63,17 +63,17 @@ public class CategoriesAPI implements VendorStorageCategories {
                 }
                 collection.setFirst(first);
                 collection.setLast(last);
-                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(VendorStorageCategories.GetVendorStorageCategoriesResponse
+                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageCategories.GetOrganizationStorageCategoriesResponse
                   .respond200WithApplicationJson(collection)));
               }
               else{
                 log.error(reply.cause().getMessage(), reply.cause());
-                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(VendorStorageCategories.GetVendorStorageCategoriesResponse
+                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageCategories.GetOrganizationStorageCategoriesResponse
                   .respond400WithTextPlain(reply.cause().getMessage())));
               }
             } catch (Exception e) {
               log.error(e.getMessage(), e);
-              asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(VendorStorageCategories.GetVendorStorageCategoriesResponse
+              asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageCategories.GetOrganizationStorageCategoriesResponse
                 .respond500WithTextPlain(messages.getMessage(lang, MessageConsts.InternalServerError))));
             }
           });
@@ -83,7 +83,7 @@ public class CategoriesAPI implements VendorStorageCategories {
         if(e.getCause() != null && e.getCause().getClass().getSimpleName().endsWith("CQLParseException")){
           message = " CQL parse error " + e.getLocalizedMessage();
         }
-        asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(VendorStorageCategories.GetVendorStorageCategoriesResponse
+        asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageCategories.GetOrganizationStorageCategoriesResponse
           .respond500WithTextPlain(message)));
       }
     });
@@ -91,29 +91,29 @@ public class CategoriesAPI implements VendorStorageCategories {
 
   @Override
   @Validate
-  public void postVendorStorageCategories(String lang, org.folio.rest.jaxrs.model.Category entity,
+  public void postOrganizationStorageCategories(String lang, org.folio.rest.jaxrs.model.Category entity,
                                        Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.post(CATEGORY_TABLE, entity, okapiHeaders, vertxContext, PostVendorStorageCategoriesResponse.class, asyncResultHandler);
+    PgUtil.post(CATEGORY_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationStorageCategoriesResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void getVendorStorageCategoriesById(String id, String lang, Map<String, String> okapiHeaders,
+  public void getOrganizationStorageCategoriesById(String id, String lang, Map<String, String> okapiHeaders,
                                           Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.getById(CATEGORY_TABLE, Category.class, id, okapiHeaders,vertxContext, GetVendorStorageCategoriesByIdResponse.class, asyncResultHandler);
+    PgUtil.getById(CATEGORY_TABLE, Category.class, id, okapiHeaders,vertxContext, GetOrganizationStorageCategoriesByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void deleteVendorStorageCategoriesById(String id, String lang, Map<String, String> okapiHeaders,
+  public void deleteOrganizationStorageCategoriesById(String id, String lang, Map<String, String> okapiHeaders,
                                              Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.deleteById(CATEGORY_TABLE, id, okapiHeaders, vertxContext, DeleteVendorStorageCategoriesByIdResponse.class, asyncResultHandler);
+    PgUtil.deleteById(CATEGORY_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationStorageCategoriesByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void putVendorStorageCategoriesById(String id, String lang, org.folio.rest.jaxrs.model.Category entity,
+  public void putOrganizationStorageCategoriesById(String id, String lang, org.folio.rest.jaxrs.model.Category entity,
                                           Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.put(CATEGORY_TABLE, entity, id, okapiHeaders, vertxContext, PutVendorStorageCategoriesByIdResponse.class, asyncResultHandler);
+    PgUtil.put(CATEGORY_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationStorageCategoriesByIdResponse.class, asyncResultHandler);
   }
 }
