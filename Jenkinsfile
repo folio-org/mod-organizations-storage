@@ -1,14 +1,14 @@
 
 buildMvn {
-  publishModDescriptor = 'yes'
-  publishAPI = 'yes'
-  mvnDeploy = 'yes'
-  runLintRamlCop = 'yes'
+  publishModDescriptor = false
+  publishAPI = false
+  mvnDeploy = false
+  runLintRamlCop = false
 
   doDocker = {
     buildJavaDocker {
-      publishMaster = 'yes'
-      healthChk = 'yes'
+      publishMaster = false
+      healthChk = false
       healthChkCmd = 'curl -sS --fail -o /dev/null  http://localhost:8081/apidocs/ || exit 1'
     }
   }
