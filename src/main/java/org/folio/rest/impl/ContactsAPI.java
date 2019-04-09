@@ -6,7 +6,7 @@ import io.vertx.core.logging.LoggerFactory;
 import org.folio.rest.RestVerticle;
 import org.folio.rest.jaxrs.model.Contact;
 import org.folio.rest.jaxrs.model.ContactCollection;
-import org.folio.rest.jaxrs.resource.VendorStorageContacts;
+import org.folio.rest.jaxrs.resource.OrganizationStorageContacts;
 import org.folio.rest.persist.Criteria.Limit;
 import org.folio.rest.persist.Criteria.Offset;
 import org.folio.rest.persist.PostgresClient;
@@ -22,7 +22,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Map;
 
-public class ContactsAPI implements VendorStorageContacts {
+public class ContactsAPI implements OrganizationStorageContacts {
   private static final String CONTACT_TABLE = "contact";
 
   private static final Logger log = LoggerFactory.getLogger(ContactsAPI.class);
@@ -35,7 +35,7 @@ public class ContactsAPI implements VendorStorageContacts {
 
 
   @Override
-  public void getVendorStorageContacts(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+  public void getOrganizationStorageContacts(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       try {
         String tenantId = TenantTool.calculateTenantId( okapiHeaders.get(RestVerticle.OKAPI_HEADER_TENANT) );
@@ -64,17 +64,17 @@ public class ContactsAPI implements VendorStorageContacts {
                 }
                 collection.setFirst(first);
                 collection.setLast(last);
-                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(VendorStorageContacts.GetVendorStorageContactsResponse
+                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageContacts.GetOrganizationStorageContactsResponse
                   .respond200WithApplicationJson(collection)));
               }
               else{
                 log.error(reply.cause().getMessage(), reply.cause());
-                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(VendorStorageContacts.GetVendorStorageContactsResponse
+                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageContacts.GetOrganizationStorageContactsResponse
                   .respond400WithTextPlain(reply.cause().getMessage())));
               }
             } catch (Exception e) {
               log.error(e.getMessage(), e);
-              asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(VendorStorageContacts.GetVendorStorageContactsResponse
+              asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageContacts.GetOrganizationStorageContactsResponse
                 .respond500WithTextPlain(messages.getMessage(lang, MessageConsts.InternalServerError))));
             }
           });
@@ -84,7 +84,7 @@ public class ContactsAPI implements VendorStorageContacts {
         if(e.getCause() != null && e.getCause().getClass().getSimpleName().endsWith("CQLParseException")){
           message = " CQL parse error " + e.getLocalizedMessage();
         }
-        asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(VendorStorageContacts.GetVendorStorageContactsResponse
+        asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageContacts.GetOrganizationStorageContactsResponse
           .respond500WithTextPlain(message)));
       }
     });
@@ -92,29 +92,29 @@ public class ContactsAPI implements VendorStorageContacts {
 
   @Override
   @Validate
-  public void postVendorStorageContacts(String lang, org.folio.rest.jaxrs.model.Contact entity,
+  public void postOrganizationStorageContacts(String lang, org.folio.rest.jaxrs.model.Contact entity,
                                           Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.post(CONTACT_TABLE, entity, okapiHeaders, vertxContext, PostVendorStorageContactsResponse.class, asyncResultHandler);
+    PgUtil.post(CONTACT_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationStorageContactsResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void getVendorStorageContactsById(String id, String lang, Map<String, String> okapiHeaders,
+  public void getOrganizationStorageContactsById(String id, String lang, Map<String, String> okapiHeaders,
                                              Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.getById(CONTACT_TABLE, Contact.class, id, okapiHeaders,vertxContext, GetVendorStorageContactsByIdResponse.class, asyncResultHandler);
+    PgUtil.getById(CONTACT_TABLE, Contact.class, id, okapiHeaders,vertxContext, GetOrganizationStorageContactsByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void deleteVendorStorageContactsById(String id, String lang, Map<String, String> okapiHeaders,
+  public void deleteOrganizationStorageContactsById(String id, String lang, Map<String, String> okapiHeaders,
                                                 Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.deleteById(CONTACT_TABLE, id, okapiHeaders, vertxContext, DeleteVendorStorageContactsByIdResponse.class, asyncResultHandler);
+    PgUtil.deleteById(CONTACT_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationStorageContactsByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void putVendorStorageContactsById(String id, String lang, org.folio.rest.jaxrs.model.Contact entity,
+  public void putOrganizationStorageContactsById(String id, String lang, org.folio.rest.jaxrs.model.Contact entity,
                                              Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.put(CONTACT_TABLE, entity, id, okapiHeaders, vertxContext, PutVendorStorageContactsByIdResponse.class, asyncResultHandler);
+    PgUtil.put(CONTACT_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationStorageContactsByIdResponse.class, asyncResultHandler);
   }
 }

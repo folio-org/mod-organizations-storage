@@ -1,15 +1,15 @@
 #%RAML 1.0
-title: "Vendors"
-baseUri: https://github.com/folio-org/mod-vendors
-version: v2.0
+title: "Organizations"
+baseUri: https://github.com/folio-org/mod-organizations-storage
+version: v1.0
 
 documentation:
   - title: Interfaces
     content: <b>CRUD APIs used to manage interfaces.</b>
 
 types:
-    interface: !include acq-models/mod-vendors/schemas/interface.json
-    interface_collection: !include acq-models/mod-vendors/schemas/interface_collection.json
+    interface: !include acq-models/mod-orgs/schemas/interface.json
+    interface_collection: !include acq-models/mod-orgs/schemas/interface_collection.json
     UUID:
       type: string
       pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
@@ -25,11 +25,11 @@ resourceTypes:
     collection-item: !include raml-util/rtypes/item-collection.raml
 
 
-/vendor-storage/interfaces:
+/organization-storage/interfaces:
   type:
     collection:
-      exampleCollection: !include acq-models/mod-vendors/examples/interface_collection.sample
-      exampleItem: !include acq-models/mod-vendors/examples/interface_post.sample
+      exampleCollection: !include acq-models/mod-orgs/examples/interface_collection.sample
+      exampleItem: !include acq-models/mod-orgs/examples/interface_post.sample
       schemaCollection: interface_collection
       schemaItem: interface
   get:
@@ -45,5 +45,5 @@ resourceTypes:
         type: UUID
     type:
       collection-item:
-        exampleItem: !include acq-models/mod-vendors/examples/interface_get.sample
+        exampleItem: !include acq-models/mod-orgs/examples/interface_get.sample
         schema: interface

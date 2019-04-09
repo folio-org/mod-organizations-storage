@@ -6,7 +6,7 @@ import io.vertx.core.logging.LoggerFactory;
 import org.folio.rest.RestVerticle;
 import org.folio.rest.jaxrs.model.Address;
 import org.folio.rest.jaxrs.model.AddressCollection;
-import org.folio.rest.jaxrs.resource.VendorStorageAddresses;
+import org.folio.rest.jaxrs.resource.OrganizationStorageAddresses;
 import org.folio.rest.persist.Criteria.Limit;
 import org.folio.rest.persist.Criteria.Offset;
 import org.folio.rest.persist.PostgresClient;
@@ -22,7 +22,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Map;
 
-public class AddressesAPI implements VendorStorageAddresses {
+public class AddressesAPI implements OrganizationStorageAddresses {
   private static final String ADDRESS_TABLE = "address";
 
   private static final Logger log = LoggerFactory.getLogger(AddressesAPI.class);
@@ -35,7 +35,7 @@ public class AddressesAPI implements VendorStorageAddresses {
 
 
   @Override
-  public void getVendorStorageAddresses(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+  public void getOrganizationStorageAddresses(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       try {
         String tenantId = TenantTool.calculateTenantId( okapiHeaders.get(RestVerticle.OKAPI_HEADER_TENANT) );
@@ -64,17 +64,17 @@ public class AddressesAPI implements VendorStorageAddresses {
                 }
                 collection.setFirst(first);
                 collection.setLast(last);
-                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(GetVendorStorageAddressesResponse
+                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(GetOrganizationStorageAddressesResponse
                   .respond200WithApplicationJson(collection)));
               }
               else{
                 log.error(reply.cause().getMessage(), reply.cause());
-                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(GetVendorStorageAddressesResponse
+                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(GetOrganizationStorageAddressesResponse
                   .respond400WithTextPlain(reply.cause().getMessage())));
               }
             } catch (Exception e) {
               log.error(e.getMessage(), e);
-              asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(GetVendorStorageAddressesResponse
+              asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(GetOrganizationStorageAddressesResponse
                 .respond500WithTextPlain(messages.getMessage(lang, MessageConsts.InternalServerError))));
             }
           });
@@ -84,7 +84,7 @@ public class AddressesAPI implements VendorStorageAddresses {
         if(e.getCause() != null && e.getCause().getClass().getSimpleName().endsWith("CQLParseException")){
           message = " CQL parse error " + e.getLocalizedMessage();
         }
-        asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(GetVendorStorageAddressesResponse
+        asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(GetOrganizationStorageAddressesResponse
           .respond500WithTextPlain(message)));
       }
     });
@@ -92,29 +92,29 @@ public class AddressesAPI implements VendorStorageAddresses {
 
   @Override
   @Validate
-  public void postVendorStorageAddresses(String lang, org.folio.rest.jaxrs.model.Address entity,
+  public void postOrganizationStorageAddresses(String lang, org.folio.rest.jaxrs.model.Address entity,
                                         Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.post(ADDRESS_TABLE, entity, okapiHeaders, vertxContext, PostVendorStorageAddressesResponse.class, asyncResultHandler);
+    PgUtil.post(ADDRESS_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationStorageAddressesResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void getVendorStorageAddressesById(String id, String lang, Map<String, String> okapiHeaders,
+  public void getOrganizationStorageAddressesById(String id, String lang, Map<String, String> okapiHeaders,
                                            Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.getById(ADDRESS_TABLE, Address.class, id, okapiHeaders,vertxContext, GetVendorStorageAddressesByIdResponse.class, asyncResultHandler);
+    PgUtil.getById(ADDRESS_TABLE, Address.class, id, okapiHeaders,vertxContext, GetOrganizationStorageAddressesByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void deleteVendorStorageAddressesById(String id, String lang, Map<String, String> okapiHeaders,
+  public void deleteOrganizationStorageAddressesById(String id, String lang, Map<String, String> okapiHeaders,
                                               Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.deleteById(ADDRESS_TABLE, id, okapiHeaders, vertxContext, DeleteVendorStorageAddressesByIdResponse.class, asyncResultHandler);
+    PgUtil.deleteById(ADDRESS_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationStorageAddressesByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void putVendorStorageAddressesById(String id, String lang, org.folio.rest.jaxrs.model.Address entity,
+  public void putOrganizationStorageAddressesById(String id, String lang, org.folio.rest.jaxrs.model.Address entity,
                                            Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.put(ADDRESS_TABLE, entity, id, okapiHeaders, vertxContext, PutVendorStorageAddressesByIdResponse.class, asyncResultHandler);
+    PgUtil.put(ADDRESS_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationStorageAddressesByIdResponse.class, asyncResultHandler);
   }
 }

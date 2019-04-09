@@ -1,42 +1,42 @@
 {
-  "id": "15fb695a-cdf1-11e8-a8d5-f2801f1b9fd1",
-  "name": "Susan Bach Books (Brazil)",
-  "code": "ZSUSANBA$*",
-  "description": "Print monographs in Spanish, books from Brazil",
-  "vendor_status": "Active",
-  "language": "Portuguese/Spanish",
-  "san_code": "",
+  "id": "e0fb5df2-cdf1-11e8-a8d5-f2801f1b9fd1",
+  "name": "Amazon.com",
+  "code": "AMAZ",
+  "description": "Use for rush orders, replacement requests, and second hand market",
+  "status": "Active",
+  "language": "en-us",
+  "san_code": "1234567",
   "aliases": [
     {
-      "value": "Susan Bach Books from Brazil",
+      "value": "Amazon",
       "description": ""
     }
   ],
   "addresses": [
     {
-      "addressLine1": "RUA VISCONDE DE CARAVELAS, Nº 17",
-      "addressLine2": "BOTAFOGO",
-      "city": "RIO DE JANEIRO",
-      "stateRegion": "",
-      "zipCode": "22271-021",
-      "country": "Brazil",
+      "addressLine1": "1 Centerpiece Blvd.",
+      "addressLine2": "P.O. Box 15550",
+      "city": "New Castle",
+      "stateRegion": "DE",
+      "zipCode": "19720-5550",
+      "country": "USA",
       "categories": [],
-      "language": "Portuguese",
+      "language": "English",
       "isPrimary": true
     }
   ],
   "phone_numbers": [
     {
-      "phone_number": "55-55-21-2539-3590",
+      "phone_number": "1-888-238-22090",
       "categories": [],
-      "language": "Portuguese",
+      "language": "English",
       "isPrimary": true
     }
   ],
   "emails": [
     {
-      "value": "sbach@sbachbooks.com.br",
-      "description": "Customer Service",
+      "value": "cust.service03@amazon.com",
+      "description": "customer service",
       "categories": [],
       "language": "English",
       "isPrimary": true
@@ -44,16 +44,16 @@
   ],
   "urls": [
     {
-      "value": "http://www.sbachbooks.com.br/",
+      "value": "https://www.amazon.com",
       "description": "main website",
-      "language": "English/Portuguese",
+      "language": "en-us",
       "categories": [],
       "notes": "",
       "isPrimary": true
     }
   ],
   "contacts": [
-    "15fb695a-cdf1-11e8-a8d5-f2801f1b9fd1"
+    "e0fb5df2-cdf1-11e8-a8d5-f2801f1b9fd1"
   ],
   "agreements": [
     {
@@ -63,8 +63,8 @@
       "notes": ""
     }
   ],
-  "erp_code": "G64758-74827",
-  "payment_method": "EFT",
+  "erp_code": "G64758-74834",
+  "payment_method": "credit card",
   "access_provider": false,
   "governmental": false,
   "licensor": false,
@@ -72,8 +72,8 @@
   "vendor_currencies": [
     "USD"
   ],
-  "claiming_interval": 60,
-  "discount_percent": 20,
+  "claiming_interval": 45,
+  "discount_percent": 0,
   "expected_activation_interval": 0,
   "expected_invoice_interval": 0,
   "renewal_activation_interval": 0,
@@ -84,29 +84,29 @@
   "tax_percentage": 0,
   "interfaces": [
     {
-      "name": "",
-      "uri": "",
-      "username": "",
-      "password": "",
+      "name": "Amazon",
+      "uri": "www.amazon.com",
+      "username": "****",
+      "password": "****",
       "notes": "",
       "available": false,
       "delivery_method": "",
       "statistics_format": "",
-      "locally_stored": "",
+      "locally_stored": false,
       "online_location": "",
       "statistics_notes": ""
     }
   ],
   "accounts": [
     {
-      "name": "Monograph",
-      "account_no": "852-987",
-      "description": "one time monographs",
+      "name": "Monographic ordering unit account",
+      "account_no": "1234",
+      "description": "Monographic ordering unit account",
       "app_system_no": "",
-      "payment_method": "EFT/Procard",
+      "payment_method": "credit card",
       "account_status": "Active",
-      "contact_info": "service@naxosusa.com",
-      "library_code": "pfirm",
+      "contact_info": "cust.service03@amazon.com",
+      "library_code": "COB",
       "library_edi_code": "765987610",
       "notes": ""
     }

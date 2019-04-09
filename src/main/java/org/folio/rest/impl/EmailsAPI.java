@@ -6,7 +6,7 @@ import io.vertx.core.logging.LoggerFactory;
 import org.folio.rest.RestVerticle;
 import org.folio.rest.jaxrs.model.Email;
 import org.folio.rest.jaxrs.model.EmailCollection;
-import org.folio.rest.jaxrs.resource.VendorStorageEmails;
+import org.folio.rest.jaxrs.resource.OrganizationStorageEmails;
 import org.folio.rest.persist.Criteria.Limit;
 import org.folio.rest.persist.Criteria.Offset;
 import org.folio.rest.persist.PostgresClient;
@@ -22,7 +22,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Map;
 
-public class EmailsAPI implements VendorStorageEmails {
+public class EmailsAPI implements OrganizationStorageEmails {
   private static final String EMAIL_TABLE = "email";
 
   private static final Logger log = LoggerFactory.getLogger(EmailsAPI.class);
@@ -35,7 +35,7 @@ public class EmailsAPI implements VendorStorageEmails {
 
 
   @Override
-  public void getVendorStorageEmails(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+  public void getOrganizationStorageEmails(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       try {
         String tenantId = TenantTool.calculateTenantId( okapiHeaders.get(RestVerticle.OKAPI_HEADER_TENANT) );
@@ -63,17 +63,17 @@ public class EmailsAPI implements VendorStorageEmails {
                 }
                 collection.setFirst(first);
                 collection.setLast(last);
-                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(VendorStorageEmails.GetVendorStorageEmailsResponse
+                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageEmails.GetOrganizationStorageEmailsResponse
                   .respond200WithApplicationJson(collection)));
               }
               else{
                 log.error(reply.cause().getMessage(), reply.cause());
-                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(VendorStorageEmails.GetVendorStorageEmailsResponse
+                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageEmails.GetOrganizationStorageEmailsResponse
                   .respond400WithTextPlain(reply.cause().getMessage())));
               }
             } catch (Exception e) {
               log.error(e.getMessage(), e);
-              asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(VendorStorageEmails.GetVendorStorageEmailsResponse
+              asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageEmails.GetOrganizationStorageEmailsResponse
                 .respond500WithTextPlain(messages.getMessage(lang, MessageConsts.InternalServerError))));
             }
           });
@@ -83,7 +83,7 @@ public class EmailsAPI implements VendorStorageEmails {
         if(e.getCause() != null && e.getCause().getClass().getSimpleName().endsWith("CQLParseException")){
           message = " CQL parse error " + e.getLocalizedMessage();
         }
-        asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(VendorStorageEmails.GetVendorStorageEmailsResponse
+        asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageEmails.GetOrganizationStorageEmailsResponse
           .respond500WithTextPlain(message)));
       }
     });
@@ -91,29 +91,29 @@ public class EmailsAPI implements VendorStorageEmails {
 
   @Override
   @Validate
-  public void postVendorStorageEmails(String lang, org.folio.rest.jaxrs.model.Email entity,
+  public void postOrganizationStorageEmails(String lang, org.folio.rest.jaxrs.model.Email entity,
                                         Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.post(EMAIL_TABLE, entity, okapiHeaders, vertxContext, PostVendorStorageEmailsResponse.class, asyncResultHandler);
+    PgUtil.post(EMAIL_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationStorageEmailsResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void getVendorStorageEmailsById(String id, String lang, Map<String, String> okapiHeaders,
+  public void getOrganizationStorageEmailsById(String id, String lang, Map<String, String> okapiHeaders,
                                            Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.getById(EMAIL_TABLE, Email.class, id, okapiHeaders,vertxContext, GetVendorStorageEmailsByIdResponse.class, asyncResultHandler);
+    PgUtil.getById(EMAIL_TABLE, Email.class, id, okapiHeaders,vertxContext, GetOrganizationStorageEmailsByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void deleteVendorStorageEmailsById(String id, String lang, Map<String, String> okapiHeaders,
+  public void deleteOrganizationStorageEmailsById(String id, String lang, Map<String, String> okapiHeaders,
                                               Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.deleteById(EMAIL_TABLE, id, okapiHeaders, vertxContext, DeleteVendorStorageEmailsByIdResponse.class, asyncResultHandler);
+    PgUtil.deleteById(EMAIL_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationStorageEmailsByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void putVendorStorageEmailsById(String id, String lang, org.folio.rest.jaxrs.model.Email entity,
+  public void putOrganizationStorageEmailsById(String id, String lang, org.folio.rest.jaxrs.model.Email entity,
                                            Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.put(EMAIL_TABLE, entity, id, okapiHeaders, vertxContext, PutVendorStorageEmailsByIdResponse.class, asyncResultHandler);
+    PgUtil.put(EMAIL_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationStorageEmailsByIdResponse.class, asyncResultHandler);
   }
 }

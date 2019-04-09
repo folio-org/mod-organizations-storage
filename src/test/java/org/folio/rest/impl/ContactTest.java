@@ -45,7 +45,7 @@ public class ContactTest {
 
   @Before
   public void before(TestContext context) {
-    logger.info("--- mod-vendors-test: START ");
+    logger.info("--- mod-organizations-test: START ");
     vertx = Vertx.vertx();
 
     moduleName = PomReader.INSTANCE.getModuleName();
@@ -90,7 +90,7 @@ public class ContactTest {
     vertx.close(res -> {   // This logs a stack trace, ignore it.
       PostgresClient.stopEmbeddedPostgres();
       async.complete();
-      logger.info("--- mod-vendors-test: END ");
+      logger.info("--- mod-organizations-test: END ");
     });
   }
 
@@ -98,7 +98,7 @@ public class ContactTest {
   private void verifyCollection() {
 
     // Verify that there are no existing po_line records
-    getData("/vendor-storage/contacts").then()
+    getData("/organization-storage/contacts").then()
       .log().all()
       .statusCode(200)
       .body("total_records", equalTo(0));
@@ -110,50 +110,50 @@ public class ContactTest {
     try {
 
       // IMPORTANT: Call the tenant interface to initialize the tenant-schema
-      logger.info("--- mod-vendors-test: Preparing test tenant");
+      logger.info("--- mod-organizations-test: Preparing test tenant");
       prepareTenant();
 
-      logger.info("--- mod-vendors-test: Verifying database's initial state ... ");
+      logger.info("--- mod-organizations-test: Verifying database's initial state ... ");
       verifyCollection();
 
-      logger.info("--- mod-vendors-test: Creating contact ... ");
+      logger.info("--- mod-organizations-test: Creating contact ... ");
       String dataSample = getFile("contact.sample");
-      Response response = postData("/vendor-storage/contacts", dataSample);
+      Response response = postData("/organization-storage/contacts", dataSample);
       response.then().log().ifValidationFails()
         .statusCode(201)
         .body("prefix", equalTo("Director"));
       String dataSampleId = response.then().extract().path("id");
 
-      logger.info("--- mod-vendors-test: Verifying only 1 contact was created ... ");
-      getData("/vendor-storage/contacts").then().log().ifValidationFails()
+      logger.info("--- mod-organizations-test: Verifying only 1 contact was created ... ");
+      getData("/organization-storage/contacts").then().log().ifValidationFails()
         .statusCode(200)
         .body("total_records", equalTo(1));
 
-      logger.info("--- mod-vendors-test: Fetching contact with ID: "+ dataSampleId);
-      getDataById("/vendor-storage/contacts", dataSampleId).then().log().ifValidationFails()
+      logger.info("--- mod-organizations-test: Fetching contact with ID: "+ dataSampleId);
+      getDataById("/organization-storage/contacts", dataSampleId).then().log().ifValidationFails()
         .statusCode(200)
         .body("id", equalTo(dataSampleId));
 
-      logger.info("--- mod-vendors-test: Editing contact with ID: "+ dataSampleId);
+      logger.info("--- mod-organizations-test: Editing contact with ID: "+ dataSampleId);
       JSONObject catJSON = new JSONObject(dataSample);
       catJSON.put("id", dataSampleId);
       catJSON.put("prefix", "Gift");
-      response = putData("/vendor-storage/contacts", dataSampleId, catJSON.toString());
+      response = putData("/organization-storage/contacts", dataSampleId, catJSON.toString());
       response.then().log().ifValidationFails()
         .statusCode(204);
 
-      logger.info("--- mod-vendors-test: Fetching contact with ID: "+ dataSampleId);
-      getDataById("/vendor-storage/contacts", dataSampleId).then()
+      logger.info("--- mod-organizations-test: Fetching contact with ID: "+ dataSampleId);
+      getDataById("/organization-storage/contacts", dataSampleId).then()
         .statusCode(200).log().ifValidationFails()
         .body("prefix", equalTo("Gift"));
 
-      logger.info("--- mod-vendors-test: Deleting contact_person with ID ... ");
-      deleteData("/vendor-storage/contacts", dataSampleId).then().log().ifValidationFails()
+      logger.info("--- mod-organizations-test: Deleting contact_person with ID ... ");
+      deleteData("/organization-storage/contacts", dataSampleId).then().log().ifValidationFails()
         .statusCode(204);
 
     }
     catch (Exception e) {
-      context.fail("--- mod-vendors-test: ERROR: " + e.getMessage());
+      context.fail("--- mod-organizations-test: ERROR: " + e.getMessage());
     }
     async.complete();
   }

@@ -1,25 +1,25 @@
 {
-  "id": "f0fb6130-cdf1-11e8-a8d5-f2801f1b9fd1",
-  "name": "Magnolia Press",
-  "code": "MGNP",
-  "description": "Serials-Foreign",
-  "vendor_status": "Active",
+  "id": "11fb627a-cdf1-11e8-a8d5-f2801f1b9fd1",
+  "name": "Alexander Street Press",
+  "code": "ALEXS",
+  "description": "AV streaming services",
+  "status": "Active",
   "language": "en-us",
-  "san_code": "",
+  "san_code": "1234567",
   "aliases": [
     {
-      "value": "Mangolia Press NZ",
+      "value": "Alexander Street",
       "description": ""
     }
   ],
   "addresses": [
     {
-      "addressLine1": "Saint Lukes",
-      "addressLine2": "P.O. Box 41383",
-      "city": "Auckland",
-      "stateRegion": "",
-      "zipCode": "1346",
-      "country": "New Zealand",
+      "addressLine1": "3212 Duke Street",
+      "addressLine2": "",
+      "city": "Alexandria",
+      "stateRegion": "VA",
+      "zipCode": "22314",
+      "country": "USA",
       "categories": [],
       "language": "English",
       "isPrimary": true
@@ -27,7 +27,7 @@
   ],
   "phone_numbers": [
     {
-      "phone_number": "64-95-783-996",
+      "phone_number": "1-800-889-5937",
       "categories": [],
       "language": "English",
       "isPrimary": true
@@ -35,8 +35,8 @@
   ],
   "emails": [
     {
-      "value": "magnolia@mapress.com",
-      "description": "Customer Service",
+      "value": "customerservice@alexanderstreet.com",
+      "description": "main customer service email",
       "categories": [],
       "language": "English",
       "isPrimary": true
@@ -44,7 +44,7 @@
   ],
   "urls": [
     {
-      "value": "http://www.mapress.com/j/",
+      "value": "https://alexanderstreet.com/",
       "description": "main website",
       "language": "en-us",
       "categories": [],
@@ -53,41 +53,41 @@
     }
   ],
   "contacts": [
-    "f0fb6130-cdf1-11e8-a8d5-f2801f1b9fd1"
+    "11fb627a-cdf1-11e8-a8d5-f2801f1b9fd1"
   ],
   "agreements": [
     {
-      "name": "Zootaxa ",
-      "discount": 10,
-      "reference_url": "F:\\Serials\\Licensing\\License and Renewal Agreements\\Content Providers\\Magnolia Press",
-      "notes": "Acquisition of 2008-2010 Journal Archives"
+      "name": "library access",
+      "discount": 0,
+      "reference_url": "",
+      "notes": ""
     }
   ],
-  "erp_code": "G64758-74829",
-  "payment_method": "EFT",
+  "erp_code": "G64758-74828",
+  "payment_method": "check",
   "access_provider": true,
   "governmental": false,
   "licensor": true,
   "material_supplier": true,
   "vendor_currencies": [
-    "NZD"
+    "USD"
   ],
   "claiming_interval": 0,
   "discount_percent": 0,
-  "expected_activation_interval": 30,
+  "expected_activation_interval": 1,
   "expected_invoice_interval": 30,
   "renewal_activation_interval": 365,
   "subscription_interval": 365,
   "expected_receipt_interval": 30,
   "liable_for_vat": false,
-  "tax_id": "1819468",
-  "tax_percentage": 5,
+  "tax_id": "",
+  "tax_percentage": 0,
   "interfaces": [
     {
-      "name": "Mapress",
-      "uri": "http://www.mapress.com/j/",
-      "username": "",
-      "password": "",
+      "name": "Academic Video Online",
+      "uri": "https://search.alexanderstreet.com/avon",
+      "username": "****",
+      "password": "****",
       "notes": "",
       "available": false,
       "delivery_method": "",
@@ -99,13 +99,13 @@
   ],
   "accounts": [
     {
-      "name": "Serials",
-      "account_no": "xxxx7859",
-      "description": "Libraries",
+      "name": "Library account",
+      "account_no": "1234",
+      "description": "Main library account",
       "app_system_no": "",
-      "payment_method": "EFT",
+      "payment_method": "check",
       "account_status": "Active",
-      "contact_info": "magnolia@mapress.com",
+      "contact_info": "customerservice@alexanderstreet.com",
       "library_code": "COB",
       "library_edi_code": "765987610",
       "notes": ""

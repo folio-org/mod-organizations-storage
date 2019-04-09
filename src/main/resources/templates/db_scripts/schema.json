@@ -1,28 +1,7 @@
 {
   "tables": [
     {
-      "tableName": "account",
-      "generateId": true,
-      "fromModuleVersion": 1.0,
-      "withMetadata": true,
-      "populateJsonWithId": true
-    },
-    {
       "tableName": "address",
-      "generateId": true,
-      "fromModuleVersion": 1.0,
-      "withMetadata": true,
-      "populateJsonWithId": true
-    },
-    {
-      "tableName": "agreement",
-      "generateId": true,
-      "fromModuleVersion": 1.0,
-      "withMetadata": true,
-      "populateJsonWithId": true
-    },
-    {
-      "tableName": "alias",
       "generateId": true,
       "fromModuleVersion": 1.0,
       "withMetadata": true,
@@ -79,7 +58,7 @@
       "populateJsonWithId": true
     },
     {
-      "tableName": "vendor",
+      "tableName": "organization",
       "generateId": true,
       "fromModuleVersion": 1.0,
       "withMetadata": true,
@@ -98,13 +77,6 @@
           "removeAccents": true
         }
       ]
-    },
-    {
-      "tableName": "vendor_type",
-      "generateId": true,
-      "fromModuleVersion": 1.0,
-      "withMetadata": true,
-      "populateJsonWithId": true
     }
   ]
 }

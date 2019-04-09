@@ -1,15 +1,15 @@
 #%RAML 1.0
-title: "Vendors"
-baseUri: https://github.com/folio-org/mod-vendors
-version: v2.0
+title: "Organizations"
+baseUri: https://github.com/folio-org/mod-organizations-storage
+version: v1.0
 
 documentation:
   - title: Categories
     content: <b>CRUD APIs used to manage cateogries.</b>
 
 types:
-    category: !include acq-models/mod-vendors/schemas/category.json
-    category_collection: !include acq-models/mod-vendors/schemas/category_collection.json
+    category: !include acq-models/mod-orgs/schemas/category.json
+    category_collection: !include acq-models/mod-orgs/schemas/category_collection.json
     UUID:
       type: string
       pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
@@ -25,11 +25,11 @@ resourceTypes:
     collection-item: !include raml-util/rtypes/item-collection.raml
 
 
-/vendor-storage/categories:
+/organization-storage/categories:
   type:
     collection:
-      exampleCollection: !include acq-models/mod-vendors/examples/category_collection.sample
-      exampleItem: !include acq-models/mod-vendors/examples/category_post.sample
+      exampleCollection: !include acq-models/mod-orgs/examples/category_collection.sample
+      exampleItem: !include acq-models/mod-orgs/examples/category_post.sample
       schemaCollection: category_collection
       schemaItem: category
   get:
@@ -45,5 +45,5 @@ resourceTypes:
         type: UUID
     type:
       collection-item:
-        exampleItem: !include acq-models/mod-vendors/examples/category_get.sample
+        exampleItem: !include acq-models/mod-orgs/examples/category_get.sample
         schema: category

@@ -1,25 +1,25 @@
 {
-  "id": "80fb5168-cdf1-11e8-a8d5-f2801f1b9fd1",
-  "name": "American Chemical Society",
-  "code": "ACSO",
-  "description": "Serials - Domestic",
-  "vendor_status": "Active",
+  "id": "f0fb6130-cdf1-11e8-a8d5-f2801f1b9fd1",
+  "name": "Magnolia Press",
+  "code": "MGNP",
+  "description": "Serials-Foreign",
+  "status": "Active",
   "language": "en-us",
-  "san_code": "1234567",
+  "san_code": "",
   "aliases": [
     {
-      "value": "ACS",
+      "value": "Mangolia Press NZ",
       "description": ""
     }
   ],
   "addresses": [
     {
-      "addressLine1": "1155 Sixteenth Street, NW",
-      "addressLine2": "",
-      "city": "Washington",
-      "stateRegion": "DC",
-      "zipCode": "20036",
-      "country": "USA",
+      "addressLine1": "Saint Lukes",
+      "addressLine2": "P.O. Box 41383",
+      "city": "Auckland",
+      "stateRegion": "",
+      "zipCode": "1346",
+      "country": "New Zealand",
       "categories": [],
       "language": "English",
       "isPrimary": true
@@ -27,7 +27,7 @@
   ],
   "phone_numbers": [
     {
-      "phone_number": "1-800-333-9511",
+      "phone_number": "64-95-783-996",
       "categories": [],
       "language": "English",
       "isPrimary": true
@@ -35,7 +35,7 @@
   ],
   "emails": [
     {
-      "value": "service@acs.org",
+      "value": "magnolia@mapress.com",
       "description": "Customer Service",
       "categories": [],
       "language": "English",
@@ -44,8 +44,8 @@
   ],
   "urls": [
     {
-      "value": "https://www.acs.org/content/acs/en.html",
-      "description": "main English language website",
+      "value": "http://www.mapress.com/j/",
+      "description": "main website",
       "language": "en-us",
       "categories": [],
       "notes": "",
@@ -53,24 +53,24 @@
     }
   ],
   "contacts": [
-    "80fb5168-cdf1-11e8-a8d5-f2801f1b9fd1"
+    "f0fb6130-cdf1-11e8-a8d5-f2801f1b9fd1"
   ],
   "agreements": [
     {
-      "name": "ACS Web Editions",
-      "discount": 0,
-      "reference_url": "F:\\Sample\\Licensing\\License and Renewal Agreements\\Content Providers\\American Chemical Society",
-      "notes": "Multiyear agreement (2018-2020)"
+      "name": "Zootaxa ",
+      "discount": 10,
+      "reference_url": "F:\\Serials\\Licensing\\License and Renewal Agreements\\Content Providers\\Magnolia Press",
+      "notes": "Acquisition of 2008-2010 Journal Archives"
     }
   ],
-  "erp_code": "G64758-74831",
+  "erp_code": "G64758-74829",
   "payment_method": "EFT",
   "access_provider": true,
   "governmental": false,
   "licensor": true,
   "material_supplier": true,
   "vendor_currencies": [
-    "USD"
+    "NZD"
   ],
   "claiming_interval": 0,
   "discount_percent": 0,
@@ -80,32 +80,32 @@
   "subscription_interval": 365,
   "expected_receipt_interval": 30,
   "liable_for_vat": false,
-  "tax_id": "",
-  "tax_percentage": 0,
+  "tax_id": "1819468",
+  "tax_percentage": 5,
   "interfaces": [
     {
-      "name": "American Chemical Society Web Editions",
-      "uri": "https://pubs.acs.org/",
+      "name": "Mapress",
+      "uri": "http://www.mapress.com/j/",
       "username": "",
       "password": "",
       "notes": "",
-      "available": true,
-      "delivery_method": "online",
-      "statistics_format": "COUNTER",
-      "locally_stored": "https://www.lib.sample.edu/staff/collectiondevelopment/",
-      "online_location": "http://www.acs.org/content/acs/en.html",
+      "available": false,
+      "delivery_method": "",
+      "statistics_format": "",
+      "locally_stored": "",
+      "online_location": "",
       "statistics_notes": ""
     }
   ],
   "accounts": [
     {
-      "name": "Serialst",
-      "account_no": "xxxx2149",
+      "name": "Serials",
+      "account_no": "xxxx7859",
       "description": "Libraries",
       "app_system_no": "",
       "payment_method": "EFT",
       "account_status": "Active",
-      "contact_info": "liblink@acs.org",
+      "contact_info": "magnolia@mapress.com",
       "library_code": "COB",
       "library_edi_code": "765987610",
       "notes": ""

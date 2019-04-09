@@ -1,11 +1,11 @@
 package org.folio.rest.utils;
 
 import org.folio.rest.jaxrs.model.Contact;
-import org.folio.rest.jaxrs.model.Vendor;
+import org.folio.rest.jaxrs.model.Organization;
 
 public enum TestEntities {
-  CONTACT("/vendor-storage/contacts", Contact.class, "contact.sample",  "notes", "ABC123", 13),
-  VENDOR("/vendor-storage/vendors", Vendor.class, "vendor.sample",  "code", "ABC123", 13);
+  CONTACT("/organization-storage/contacts", Contact.class, "contact.sample",  "notes", "ABC123", 13),
+  ORGANIZATION("/organization-storage/organizations", Organization.class, "organization.sample",  "code", "ABC123", 13);
 
 
   TestEntities(String endpoint, Class<?> clazz, String sampleFileName, String updatedFieldName, String updatedFieldValue, int initialQuantity) {

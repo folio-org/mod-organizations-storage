@@ -5,8 +5,8 @@ import io.restassured.http.Header;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
-import org.folio.rest.jaxrs.model.Vendor;
-import org.folio.rest.jaxrs.model.VendorCollection;
+import org.folio.rest.jaxrs.model.Organization;
+import org.folio.rest.jaxrs.model.OrganizationCollection;
 import org.folio.rest.utils.TenantApiTestUtil;
 import org.folio.rest.utils.TestEntities;
 import org.junit.Test;
@@ -20,7 +20,7 @@ import static org.folio.rest.utils.TenantApiTestUtil.TENANT_ENDPOINT;
 import static org.folio.rest.utils.TenantApiTestUtil.deleteTenant;
 import static org.folio.rest.utils.TenantApiTestUtil.postToTenant;
 import static org.folio.rest.utils.TenantApiTestUtil.prepareTenant;
-import static org.folio.rest.utils.TestEntities.VENDOR;
+import static org.folio.rest.utils.TestEntities.ORGANIZATION;
 
 
 public class TenantSampleDataTest extends TestBase{
@@ -96,14 +96,14 @@ public class TenantSampleDataTest extends TestBase{
       postToTenant(PARTIAL_TENANT_HEADER, jsonBody)
         .assertThat()
         .statusCode(201);
-      VendorCollection vendorCollection = getData(VENDOR.getEndpoint(), PARTIAL_TENANT_HEADER)
+      OrganizationCollection organizationCollection = getData(ORGANIZATION.getEndpoint(), PARTIAL_TENANT_HEADER)
         .then()
         .extract()
         .response()
-        .as(VendorCollection.class);
+        .as(OrganizationCollection.class);
 
-      for (Vendor vendor : vendorCollection.getVendors()) {
-        deleteData(VENDOR.getEndpointWithId(), vendor.getId(), PARTIAL_TENANT_HEADER);
+      for (Organization organization : organizationCollection.getOrganizations()) {
+        deleteData(ORGANIZATION.getEndpointWithId(), organization.getId(), PARTIAL_TENANT_HEADER);
       }
 
       jsonBody = TenantApiTestUtil.prepareTenantBody(true, true);

@@ -1,42 +1,42 @@
 {
-  "id": "13fb64dc-cdf1-11e8-a8d5-f2801f1b9fd1",
-  "name": "United States Geological Survey",
-  "code": "USGS",
-  "description": "Maps and materials from the USGS",
-  "vendor_status": "Active",
-  "language": "en-us",
+  "id": "15fb695a-cdf1-11e8-a8d5-f2801f1b9fd1",
+  "name": "Susan Bach Books (Brazil)",
+  "code": "ZSUSANBA$*",
+  "description": "Print monographs in Spanish, books from Brazil",
+  "status": "Active",
+  "language": "Portuguese/Spanish",
   "san_code": "",
   "aliases": [
     {
-      "value": "USGS",
+      "value": "Susan Bach Books from Brazil",
       "description": ""
     }
   ],
   "addresses": [
     {
-      "addressLine1": "12201 Sunrise Valley Drive",
-      "addressLine2": "P.O. Box 15550",
-      "city": "Reston",
-      "stateRegion": "VA",
-      "zipCode": "20192",
-      "country": "USA",
+      "addressLine1": "RUA VISCONDE DE CARAVELAS, Nº 17",
+      "addressLine2": "BOTAFOGO",
+      "city": "RIO DE JANEIRO",
+      "stateRegion": "",
+      "zipCode": "22271-021",
+      "country": "Brazil",
       "categories": [],
-      "language": "English",
+      "language": "Portuguese",
       "isPrimary": true
     }
   ],
   "phone_numbers": [
     {
-      "phone_number": "1-888-ASK-USGS",
+      "phone_number": "55-55-21-2539-3590",
       "categories": [],
-      "language": "English",
+      "language": "Portuguese",
       "isPrimary": true
     }
   ],
   "emails": [
     {
-      "value": "usgsstore@usgs.gov",
-      "description": "main customer service email",
+      "value": "sbach@sbachbooks.com.br",
+      "description": "Customer Service",
       "categories": [],
       "language": "English",
       "isPrimary": true
@@ -44,16 +44,16 @@
   ],
   "urls": [
     {
-      "value": "https://www.usgs.gov/",
+      "value": "http://www.sbachbooks.com.br/",
       "description": "main website",
-      "language": "en-us",
+      "language": "English/Portuguese",
       "categories": [],
       "notes": "",
       "isPrimary": true
     }
   ],
   "contacts": [
-    "13fb64dc-cdf1-11e8-a8d5-f2801f1b9fd1"
+    "15fb695a-cdf1-11e8-a8d5-f2801f1b9fd1"
   ],
   "agreements": [
     {
@@ -63,17 +63,17 @@
       "notes": ""
     }
   ],
-  "erp_code": "G64758-74833",
-  "payment_method": "credit card",
+  "erp_code": "G64758-74827",
+  "payment_method": "EFT",
   "access_provider": false,
-  "governmental": true,
+  "governmental": false,
   "licensor": false,
   "material_supplier": true,
   "vendor_currencies": [
     "USD"
   ],
-  "claiming_interval": 45,
-  "discount_percent": 0,
+  "claiming_interval": 60,
+  "discount_percent": 20,
   "expected_activation_interval": 0,
   "expected_invoice_interval": 0,
   "renewal_activation_interval": 0,
@@ -84,29 +84,29 @@
   "tax_percentage": 0,
   "interfaces": [
     {
-      "name": "USGS Store",
-      "uri": "https://store.usgs.gov/",
-      "username": "****",
-      "password": "****",
+      "name": "",
+      "uri": "",
+      "username": "",
+      "password": "",
       "notes": "",
       "available": false,
       "delivery_method": "",
       "statistics_format": "",
-      "locally_stored": false,
+      "locally_stored": "",
       "online_location": "",
       "statistics_notes": ""
     }
   ],
   "accounts": [
     {
-      "name": "Cartographic account",
-      "account_no": "1234",
-      "description": "Monographic ordering unit accountt",
+      "name": "Monograph",
+      "account_no": "852-987",
+      "description": "one time monographs",
       "app_system_no": "",
-      "payment_method": "credit card",
+      "payment_method": "EFT/Procard",
       "account_status": "Active",
-      "contact_info": "usgsstore@usgs.gov",
-      "library_code": "COB",
+      "contact_info": "service@naxosusa.com",
+      "library_code": "pfirm",
       "library_edi_code": "765987610",
       "notes": ""
     }

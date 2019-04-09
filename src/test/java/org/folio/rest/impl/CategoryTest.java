@@ -38,14 +38,14 @@ public class CategoryTest {
   private final String TENANT_NAME = "diku";
   private final Header TENANT_HEADER = new Header("X-Okapi-Tenant", TENANT_NAME);
 
-  private String moduleName;      // "mod-vendors";
+  private String moduleName;      // "mod-organizations";
   private String moduleVersion;   // "2.0.0"
-  private String moduleId;        // "mod-vendors-2.0.0"
+  private String moduleId;        // "mod-organizations-2.0.0"
 
 
   @Before
   public void before(TestContext context) {
-    logger.info("--- mod-vendors-test: START ");
+    logger.info("--- mod-organizations-test: START ");
     vertx = Vertx.vertx();
 
     moduleName = PomReader.INSTANCE.getModuleName();
@@ -89,14 +89,14 @@ public class CategoryTest {
     vertx.close(res -> {   // This logs a stack trace, ignore it.
       PostgresClient.stopEmbeddedPostgres();
       async.complete();
-      logger.info("--- mod-vendors-test: END ");
+      logger.info("--- mod-organizations-test: END ");
     });
   }
 
   private void verifyCollection() {
 
     // Verify that there are no existing records
-    getData("/vendor-storage/categories").then()
+    getData("/organization-storage/categories").then()
       .log().all()
       .statusCode(200)
       .body("total_records", equalTo(0));
@@ -108,50 +108,50 @@ public class CategoryTest {
     try {
 
       // IMPORTANT: Call the tenant interface to initialize the tenant-schema
-      logger.info("--- mod-vendors-test: Preparing test tenant");
+      logger.info("--- mod-organizations-test: Preparing test tenant");
       prepareTenant();
 
-      logger.info("--- mod-vendors-test: Verifying database's initial state ... ");
+      logger.info("--- mod-organizations-test: Verifying database's initial state ... ");
       verifyCollection();
 
-      logger.info("--- mod-vendors-test: Creating category ... ");
+      logger.info("--- mod-organizations-test: Creating category ... ");
       String dataSample = getFile("category.sample");
-      Response response = postData("/vendor-storage/categories", dataSample);
+      Response response = postData("/organization-storage/categories", dataSample);
       response.then().log().ifValidationFails()
         .statusCode(201)
         .body("value", equalTo("Accounting"));
       String dataSampleId = response.then().extract().path("id");
 
-      logger.info("--- mod-vendors-test: Verifying only 1 category was created ... ");
-      getData("/vendor-storage/categories").then().log().ifValidationFails()
+      logger.info("--- mod-organizations-test: Verifying only 1 category was created ... ");
+      getData("/organization-storage/categories").then().log().ifValidationFails()
         .statusCode(200)
         .body("total_records", equalTo(1));
 
-      logger.info("--- mod-vendors-test: Fetching category with ID: "+ dataSampleId);
-      getDataById("/vendor-storage/categories", dataSampleId).then().log().ifValidationFails()
+      logger.info("--- mod-organizations-test: Fetching category with ID: "+ dataSampleId);
+      getDataById("/organization-storage/categories", dataSampleId).then().log().ifValidationFails()
         .statusCode(200)
         .body("id", equalTo(dataSampleId));
 
-      logger.info("--- mod-vendors-test: Editing category with ID: "+ dataSampleId);
+      logger.info("--- mod-organizations-test: Editing category with ID: "+ dataSampleId);
       JSONObject catJSON = new JSONObject(dataSample);
       catJSON.put("id", dataSampleId);
       catJSON.put("value", "Gift");
-      response = putData("/vendor-storage/categories", dataSampleId, catJSON.toString());
+      response = putData("/organization-storage/categories", dataSampleId, catJSON.toString());
       response.then().log().ifValidationFails()
         .statusCode(204);
 
-      logger.info("--- mod-vendors-test: Fetching category with ID: "+ dataSampleId);
-      getDataById("/vendor-storage/categories", dataSampleId).then()
+      logger.info("--- mod-organizations-test: Fetching category with ID: "+ dataSampleId);
+      getDataById("/organization-storage/categories", dataSampleId).then()
         .statusCode(200).log().ifValidationFails()
         .body("value", equalTo("Gift"));
 
-      logger.info("--- mod-vendors-test: Deleting category with ID ... ");
-      deleteData("/vendor-storage/categories", dataSampleId).then().log().ifValidationFails()
+      logger.info("--- mod-organizations-test: Deleting category with ID ... ");
+      deleteData("/organization-storage/categories", dataSampleId).then().log().ifValidationFails()
         .statusCode(204);
 
     }
     catch (Exception e) {
-      context.fail("--- mod-vendors-test: ERROR: " + e.getMessage());
+      context.fail("--- mod-organizations-test: ERROR: " + e.getMessage());
     }
     async.complete();
   }

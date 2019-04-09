@@ -6,7 +6,7 @@ import io.vertx.core.logging.LoggerFactory;
 import org.folio.rest.RestVerticle;
 import org.folio.rest.jaxrs.model.Url;
 import org.folio.rest.jaxrs.model.UrlCollection;
-import org.folio.rest.jaxrs.resource.VendorStorageUrls;
+import org.folio.rest.jaxrs.resource.OrganizationStorageUrls;
 import org.folio.rest.persist.Criteria.Limit;
 import org.folio.rest.persist.Criteria.Offset;
 import org.folio.rest.persist.PostgresClient;
@@ -22,7 +22,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Map;
 
-public class UrlsAPI implements VendorStorageUrls {
+public class UrlsAPI implements OrganizationStorageUrls {
   private static final String URL_TABLE = "url";
 
   private static final Logger log = LoggerFactory.getLogger(UrlsAPI.class);
@@ -35,7 +35,7 @@ public class UrlsAPI implements VendorStorageUrls {
 
 
   @Override
-  public void getVendorStorageUrls(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+  public void getOrganizationStorageUrls(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       try {
         String tenantId = TenantTool.calculateTenantId( okapiHeaders.get(RestVerticle.OKAPI_HEADER_TENANT) );
@@ -63,17 +63,17 @@ public class UrlsAPI implements VendorStorageUrls {
                 }
                 collection.setFirst(first);
                 collection.setLast(last);
-                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(VendorStorageUrls.GetVendorStorageUrlsResponse
+                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageUrls.GetOrganizationStorageUrlsResponse
                   .respond200WithApplicationJson(collection)));
               }
               else{
                 log.error(reply.cause().getMessage(), reply.cause());
-                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(VendorStorageUrls.GetVendorStorageUrlsResponse
+                asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageUrls.GetOrganizationStorageUrlsResponse
                   .respond400WithTextPlain(reply.cause().getMessage())));
               }
             } catch (Exception e) {
               log.error(e.getMessage(), e);
-              asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(VendorStorageUrls.GetVendorStorageUrlsResponse
+              asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageUrls.GetOrganizationStorageUrlsResponse
                 .respond500WithTextPlain(messages.getMessage(lang, MessageConsts.InternalServerError))));
             }
           });
@@ -83,7 +83,7 @@ public class UrlsAPI implements VendorStorageUrls {
         if(e.getCause() != null && e.getCause().getClass().getSimpleName().endsWith("CQLParseException")){
           message = " CQL parse error " + e.getLocalizedMessage();
         }
-        asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(VendorStorageUrls.GetVendorStorageUrlsResponse
+        asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageUrls.GetOrganizationStorageUrlsResponse
           .respond500WithTextPlain(message)));
       }
     });
@@ -91,29 +91,29 @@ public class UrlsAPI implements VendorStorageUrls {
 
   @Override
   @Validate
-  public void postVendorStorageUrls(String lang, org.folio.rest.jaxrs.model.Url entity,
+  public void postOrganizationStorageUrls(String lang, org.folio.rest.jaxrs.model.Url entity,
                                         Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.post(URL_TABLE, entity, okapiHeaders, vertxContext, PostVendorStorageUrlsResponse.class, asyncResultHandler);
+    PgUtil.post(URL_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationStorageUrlsResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void getVendorStorageUrlsById(String id, String lang, Map<String, String> okapiHeaders,
+  public void getOrganizationStorageUrlsById(String id, String lang, Map<String, String> okapiHeaders,
                                            Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.getById(URL_TABLE, Url.class, id, okapiHeaders,vertxContext, GetVendorStorageUrlsByIdResponse.class, asyncResultHandler);
+    PgUtil.getById(URL_TABLE, Url.class, id, okapiHeaders,vertxContext, GetOrganizationStorageUrlsByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void deleteVendorStorageUrlsById(String id, String lang, Map<String, String> okapiHeaders,
+  public void deleteOrganizationStorageUrlsById(String id, String lang, Map<String, String> okapiHeaders,
                                               Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.deleteById(URL_TABLE, id, okapiHeaders, vertxContext, DeleteVendorStorageUrlsByIdResponse.class, asyncResultHandler);
+    PgUtil.deleteById(URL_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationStorageUrlsByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void putVendorStorageUrlsById(String id, String lang, org.folio.rest.jaxrs.model.Url entity,
+  public void putOrganizationStorageUrlsById(String id, String lang, org.folio.rest.jaxrs.model.Url entity,
                                            Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.put(URL_TABLE, entity, id, okapiHeaders, vertxContext, PutVendorStorageUrlsByIdResponse.class, asyncResultHandler);
+    PgUtil.put(URL_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationStorageUrlsByIdResponse.class, asyncResultHandler);
   }
 }
