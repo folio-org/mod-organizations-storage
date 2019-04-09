@@ -3,250 +3,250 @@
   "name": "Organizations CRUD module",
   "provides": [
     {
-      "id": "organization-storage.addresses",
+      "id": "organizations-storage.addresses",
       "version": "1.0",
       "handlers": [
         {
           "methods": ["GET"],
           "pathPattern": "/organization-storage/addresses",
-          "permissionsRequired": ["organization-storage.addresses.collection.get"]
+          "permissionsRequired": ["organizations-storage.addresses.collection.get"]
         },
         {
           "methods": ["POST"],
           "pathPattern": "/organization-storage/addresses",
-          "permissionsRequired": ["organization-storage.addresses.item.post"]
+          "permissionsRequired": ["organizations-storage.addresses.item.post"]
         },
         {
           "methods": ["GET"],
           "pathPattern": "/organization-storage/addresses/{id}",
-          "permissionsRequired": ["organization-storage.addresses.item.get"]
+          "permissionsRequired": ["organizations-storage.addresses.item.get"]
         },
         {
           "methods": ["PUT"],
           "pathPattern": "/organization-storage/addresses/{id}",
-          "permissionsRequired": ["organization-storage.addresses.item.put"]
+          "permissionsRequired": ["organizations-storage.addresses.item.put"]
         },
         {
           "methods": ["DELETE"],
           "pathPattern": "/organization-storage/addresses/{id}",
-          "permissionsRequired": ["organization-storage.addresses.item.delete"]
+          "permissionsRequired": ["organizations-storage.addresses.item.delete"]
         }
       ]
     },
     {
-      "id": "organization-storage.categories",
+      "id": "organizations-storage.categories",
       "version": "1.0",
       "handlers": [
         {
           "methods": ["GET"],
           "pathPattern": "/organization-storage/categories",
-          "permissionsRequired": ["organization-storage.categories.collection.get"]
+          "permissionsRequired": ["organizations-storage.categories.collection.get"]
         },
         {
           "methods": ["POST"],
           "pathPattern": "/organization-storage/categories",
-          "permissionsRequired": ["organization-storage.categories.item.post"]
+          "permissionsRequired": ["organizations-storage.categories.item.post"]
         },
         {
           "methods": ["GET"],
           "pathPattern": "/organization-storage/categories/{id}",
-          "permissionsRequired": ["organization-storage.categories.item.get"]
+          "permissionsRequired": ["organizations-storage.categories.item.get"]
         },
         {
           "methods": ["PUT"],
           "pathPattern": "/organization-storage/categories/{id}",
-          "permissionsRequired": ["organization-storage.categories.item.put"]
+          "permissionsRequired": ["organizations-storage.categories.item.put"]
         },
         {
           "methods": ["DELETE"],
           "pathPattern": "/organization-storage/categories/{id}",
-          "permissionsRequired": ["organization-storage.categories.item.delete"]
+          "permissionsRequired": ["organizations-storage.categories.item.delete"]
         }
       ]
     },
     {
-      "id": "organization-storage.contacts",
+      "id": "organizations-storage.contacts",
       "version": "1.0",
       "handlers": [
         {
           "methods": ["GET"],
           "pathPattern": "/organization-storage/contacts",
-          "permissionsRequired": ["organization-storage.contacts.collection.get"]
+          "permissionsRequired": ["organizations-storage.contacts.collection.get"]
         },
         {
           "methods": ["POST"],
           "pathPattern": "/organization-storage/contacts",
-          "permissionsRequired": ["organization-storage.contacts.item.post"]
+          "permissionsRequired": ["organizations-storage.contacts.item.post"]
         },
         {
           "methods": ["GET"],
           "pathPattern": "/organization-storage/contacts/{id}",
-          "permissionsRequired": ["organization-storage.contacts.item.get"]
+          "permissionsRequired": ["organizations-storage.contacts.item.get"]
         },
         {
           "methods": ["PUT"],
           "pathPattern": "/organization-storage/contacts/{id}",
-          "permissionsRequired": ["organization-storage.contacts.item.put"]
+          "permissionsRequired": ["organizations-storage.contacts.item.put"]
         },
         {
           "methods": ["DELETE"],
           "pathPattern": "/organization-storage/contacts/{id}",
-          "permissionsRequired": ["organization-storage.contacts.item.delete"]
+          "permissionsRequired": ["organizations-storage.contacts.item.delete"]
         }
       ]
     },
     {
-      "id": "organization-storage.emails",
+      "id": "organizations-storage.emails",
       "version": "1.0",
       "handlers": [
         {
           "methods": ["GET"],
           "pathPattern": "/organization-storage/emails",
-          "permissionsRequired": ["organization-storage.emails.collection.get"]
+          "permissionsRequired": ["organizations-storage.emails.collection.get"]
         },
         {
           "methods": ["POST"],
           "pathPattern": "/organization-storage/emails",
-          "permissionsRequired": ["organization-storage.emails.item.post"]
+          "permissionsRequired": ["organizations-storage.emails.item.post"]
         },
         {
           "methods": ["GET"],
           "pathPattern": "/organization-storage/emails/{id}",
-          "permissionsRequired": ["organization-storage.emails.item.get"]
+          "permissionsRequired": ["organizations-storage.emails.item.get"]
         },
         {
           "methods": ["PUT"],
           "pathPattern": "/organization-storage/emails/{id}",
-          "permissionsRequired": ["organization-storage.emails.item.put"]
+          "permissionsRequired": ["organizations-storage.emails.item.put"]
         },
         {
           "methods": ["DELETE"],
           "pathPattern": "/organization-storage/emails/{id}",
-          "permissionsRequired": ["organization-storage.emails.item.delete"]
+          "permissionsRequired": ["organizations-storage.emails.item.delete"]
         }
       ]
     },
     {
-      "id": "organization-storage.interfaces",
+      "id": "organizations-storage.interfaces",
       "version": "1.0",
       "handlers": [
         {
           "methods": ["GET"],
           "pathPattern": "/organization-storage/interfaces",
-          "permissionsRequired": ["organization-storage.interfaces.collection.get"]
+          "permissionsRequired": ["organizations-storage.interfaces.collection.get"]
         },
         {
           "methods": ["POST"],
           "pathPattern": "/organization-storage/interfaces",
-          "permissionsRequired": ["organization-storage.interfaces.item.post"]
+          "permissionsRequired": ["organizations-storage.interfaces.item.post"]
         },
         {
           "methods": ["GET"],
           "pathPattern": "/organization-storage/interfaces/{id}",
-          "permissionsRequired": ["organization-storage.interfaces.item.get"]
+          "permissionsRequired": ["organizations-storage.interfaces.item.get"]
         },
         {
           "methods": ["PUT"],
           "pathPattern": "/organization-storage/interfaces/{id}",
-          "permissionsRequired": ["organization-storage.interfaces.item.put"]
+          "permissionsRequired": ["organizations-storage.interfaces.item.put"]
         },
         {
           "methods": ["DELETE"],
           "pathPattern": "/organization-storage/interfaces/{id}",
-          "permissionsRequired": ["organization-storage.interfaces.item.delete"]
+          "permissionsRequired": ["organizations-storage.interfaces.item.delete"]
         }
       ]
     },
     {
-      "id": "organization-storage.phone-numbers",
+      "id": "organizations-storage.phone-numbers",
       "version": "1.0",
       "handlers": [
         {
           "methods": ["GET"],
           "pathPattern": "/organization-storage/phone-numbers",
-          "permissionsRequired": ["organization-storage.phone-numbers.collection.get"]
+          "permissionsRequired": ["organizations-storage.phone-numbers.collection.get"]
         },
         {
           "methods": ["POST"],
           "pathPattern": "/organization-storage/phone-numbers",
-          "permissionsRequired": ["organization-storage.phone-numbers.item.post"]
+          "permissionsRequired": ["organizations-storage.phone-numbers.item.post"]
         },
         {
           "methods": ["GET"],
           "pathPattern": "/organization-storage/phone-numbers/{id}",
-          "permissionsRequired": ["organization-storage.phone-numbers.item.get"]
+          "permissionsRequired": ["organizations-storage.phone-numbers.item.get"]
         },
         {
           "methods": ["PUT"],
           "pathPattern": "/organization-storage/phone-numbers/{id}",
-          "permissionsRequired": ["organization-storage.phone-numbers.item.put"]
+          "permissionsRequired": ["organizations-storage.phone-numbers.item.put"]
         },
         {
           "methods": ["DELETE"],
           "pathPattern": "/organization-storage/phone-numbers/{id}",
-          "permissionsRequired": ["organization-storage.phone-numbers.item.delete"]
+          "permissionsRequired": ["organizations-storage.phone-numbers.item.delete"]
         }
       ]
     },
     {
-      "id": "organization-storage.url",
+      "id": "organizations-storage.url",
       "version": "1.0",
       "handlers": [
         {
           "methods": ["GET"],
           "pathPattern": "/organization-storage/urls",
-          "permissionsRequired": ["organization-storage.urls.collection.get"]
+          "permissionsRequired": ["organizations-storage.urls.collection.get"]
         },
         {
           "methods": ["POST"],
           "pathPattern": "/organization-storage/urls",
-          "permissionsRequired": ["organization-storage.urls.item.post"]
+          "permissionsRequired": ["organizations-storage.urls.item.post"]
         },
         {
           "methods": ["GET"],
           "pathPattern": "/organization-storage/urls/{id}",
-          "permissionsRequired": ["organization-storage.urls.item.get"]
+          "permissionsRequired": ["organizations-storage.urls.item.get"]
         },
         {
           "methods": ["PUT"],
           "pathPattern": "/organization-storage/urls/{id}",
-          "permissionsRequired": ["organization-storage.urls.item.put"]
+          "permissionsRequired": ["organizations-storage.urls.item.put"]
         },
         {
           "methods": ["DELETE"],
           "pathPattern": "/organization-storage/urls/{id}",
-          "permissionsRequired": ["organization-storage.urls.item.delete"]
+          "permissionsRequired": ["organizations-storage.urls.item.delete"]
         }
       ]
     },
     {
-      "id": "organization-storage.organizations",
+      "id": "organizations-storage.organizations",
       "version": "1.0",
       "handlers": [
         {
           "methods": ["GET"],
           "pathPattern": "/organization-storage/organizations",
-          "permissionsRequired": ["organization-storage.organizations.collection.get"]
+          "permissionsRequired": ["organizations-storage.organizations.collection.get"]
         },
         {
           "methods": ["POST"],
           "pathPattern": "/organization-storage/organizations",
-          "permissionsRequired": ["organization-storage.organizations.item.post"]
+          "permissionsRequired": ["organizations-storage.organizations.item.post"]
         },
         {
           "methods": ["GET"],
           "pathPattern": "/organization-storage/organizations/{organizations_id}",
-          "permissionsRequired": ["organization-storage.organizations.item.get"]
+          "permissionsRequired": ["organizations-storage.organizations.item.get"]
         },
         {
           "methods": ["PUT"],
           "pathPattern": "/organization-storage/organizations/{organizations_id}",
-          "permissionsRequired": ["organization-storage.organizations.item.put"]
+          "permissionsRequired": ["organizations-storage.organizations.item.put"]
         },
         {
           "methods": ["DELETE"],
           "pathPattern": "/organization-storage/organizations/{organizations_id}",
-          "permissionsRequired": ["organization-storage.organizations.item.delete"]
+          "permissionsRequired": ["organizations-storage.organizations.item.delete"]
         }
       ]
     },
@@ -264,388 +264,314 @@
   ],
   "permissionSets" : [
     {
-      "permissionName" : "organization-storage.accounts.collection.get",
-      "displayName" : "account collection get",
-      "description" : "Get a collection of accounts"
-    },
-    {
-      "permissionName" : "organization-storage.accounts.item.post",
-      "displayName" : "account post",
-      "description" : "Create a new account"
-    },
-    {
-      "permissionName" : "organization-storage.accounts.item.get",
-      "displayName" : "account get",
-      "description" : "Fetch an account"
-    },
-    {
-      "permissionName" : "organization-storage.accounts.item.put",
-      "displayName" : "account put",
-      "description" : "Update an account"
-    },
-    {
-      "permissionName" : "organization-storage.accounts.item.delete",
-      "displayName" : "account delete",
-      "description" : "Delete a account"
-    },
-    {
-      "permissionName" : "organization-storage.accounts.all",
-      "displayName" : "account all",
-      "description" : "All permissions for account",
-      "subPermissions" : [
-        "organization-storage.accounts.collection.get",
-        "organization-storage.accounts.item.post",
-        "organization-storage.accounts.item.get",
-        "organization-storage.accounts.item.put",
-        "organization-storage.accounts.item.delete"
-      ]
-    },
-    {
-      "permissionName" : "organization-storage.addresses.collection.get",
+      "permissionName" : "organizations-storage.addresses.collection.get",
       "displayName" : "address collection get",
       "description" : "Get a collection of addresses"
     },
     {
-      "permissionName" : "organization-storage.addresses.item.post",
+      "permissionName" : "organizations-storage.addresses.item.post",
       "displayName" : "address post",
       "description" : "Create a new address"
     },
     {
-      "permissionName" : "organization-storage.addresses.item.get",
+      "permissionName" : "organizations-storage.addresses.item.get",
       "displayName" : "address get",
       "description" : "Fetch a address"
     },
     {
-      "permissionName" : "organization-storage.addresses.item.put",
+      "permissionName" : "organizations-storage.addresses.item.put",
       "displayName" : "address put",
       "description" : "Update a address"
     },
     {
-      "permissionName" : "organization-storage.addresses.item.delete",
+      "permissionName" : "organizations-storage.addresses.item.delete",
       "displayName" : "address delete",
       "description" : "Delete a address"
     },
     {
-      "permissionName" : "organization-storage.addresses.all",
+      "permissionName" : "organizations-storage.addresses.all",
       "displayName" : "address all",
       "description" : "All permissions for address",
       "subPermissions" : [
-        "organization-storage.addresses.collection.get",
-        "organization-storage.addresses.item.post",
-        "organization-storage.addresses.item.get",
-        "organization-storage.addresses.item.put",
-        "organization-storage.addresses.item.delete"
+        "organizations-storage.addresses.collection.get",
+        "organizations-storage.addresses.item.post",
+        "organizations-storage.addresses.item.get",
+        "organizations-storage.addresses.item.put",
+        "organizations-storage.addresses.item.delete"
       ]
     },
     {
-      "permissionName" : "organization-storage.aliases.collection.get",
-      "displayName" : "alias collection get",
-      "description" : "Get a collection of aliases"
-    },
-    {
-      "permissionName" : "organization-storage.aliases.item.post",
-      "displayName" : "alias post",
-      "description" : "Create a new alias"
-    },
-    {
-      "permissionName" : "organization-storage.aliases.item.get",
-      "displayName" : "alias get",
-      "description" : "Fetch a alias"
-    },
-    {
-      "permissionName" : "organization-storage.aliases.item.put",
-      "displayName" : "alias put",
-      "description" : "Update a alias"
-    },
-    {
-      "permissionName" : "organization-storage.aliases.item.delete",
-      "displayName" : "alias delete",
-      "description" : "Delete a alias"
-    },
-    {
-      "permissionName" : "organization-storage.aliases.all",
-      "displayName" : "alias all",
-      "description" : "All permissions for alias",
-      "subPermissions" : [
-        "organization-storage.aliases.collection.get",
-        "organization-storage.aliases.item.post",
-        "organization-storage.aliases.item.get",
-        "organization-storage.aliases.item.put",
-        "organization-storage.aliases.item.delete"
-      ]
-    },
-    {
-      "permissionName" : "organization-storage.categories.collection.get",
+      "permissionName" : "organizations-storage.categories.collection.get",
       "displayName" : "category collection get",
       "description" : "Get a collection of categories"
     },
     {
-      "permissionName" : "organization-storage.categories.item.post",
+      "permissionName" : "organizations-storage.categories.item.post",
       "displayName" : "category post",
       "description" : "Create a new category"
     },
     {
-      "permissionName" : "organization-storage.categories.item.get",
+      "permissionName" : "organizations-storage.categories.item.get",
       "displayName" : "category get",
       "description" : "Fetch a category"
     },
     {
-      "permissionName" : "organization-storage.categories.item.put",
+      "permissionName" : "organizations-storage.categories.item.put",
       "displayName" : "category put",
       "description" : "Update a category"
     },
     {
-      "permissionName" : "organization-storage.categories.item.delete",
+      "permissionName" : "organizations-storage.categories.item.delete",
       "displayName" : "category delete",
       "description" : "Delete a category"
     },
     {
-      "permissionName" : "organization-storage.categories.all",
+      "permissionName" : "organizations-storage.categories.all",
       "displayName" : "category all",
       "description" : "All permissions for category",
       "subPermissions" : [
-        "organization-storage.categories.collection.get",
-        "organization-storage.categories.item.post",
-        "organization-storage.categories.item.get",
-        "organization-storage.categories.item.put",
-        "organization-storage.categories.item.delete"
+        "organizations-storage.categories.collection.get",
+        "organizations-storage.categories.item.post",
+        "organizations-storage.categories.item.get",
+        "organizations-storage.categories.item.put",
+        "organizations-storage.categories.item.delete"
       ]
     },
     {
-      "permissionName" : "organization-storage.contacts.collection.get",
+      "permissionName" : "organizations-storage.contacts.collection.get",
       "displayName" : "contact collection get",
       "description" : "Get a collection of contacts"
     },
     {
-      "permissionName" : "organization-storage.contacts.item.post",
+      "permissionName" : "organizations-storage.contacts.item.post",
       "displayName" : "contact post",
       "description" : "Create a new contact"
     },
     {
-      "permissionName" : "organization-storage.contacts.item.get",
+      "permissionName" : "organizations-storage.contacts.item.get",
       "displayName" : "contact get",
       "description" : "Fetch a contact"
     },
     {
-      "permissionName" : "organization-storage.contacts.item.put",
+      "permissionName" : "organizations-storage.contacts.item.put",
       "displayName" : "contact put",
       "description" : "Update a contact"
     },
     {
-      "permissionName" : "organization-storage.contacts.item.delete",
+      "permissionName" : "organizations-storage.contacts.item.delete",
       "displayName" : "contact delete",
       "description" : "Delete a contact"
     },
     {
-      "permissionName" : "organization-storage.contacts.all",
+      "permissionName" : "organizations-storage.contacts.all",
       "displayName" : "contact all",
       "description" : "All permissions for contact",
       "subPermissions" : [
-        "organization-storage.contacts.collection.get",
-        "organization-storage.contacts.item.post",
-        "organization-storage.contacts.item.get",
-        "organization-storage.contacts.item.put",
-        "organization-storage.contacts.item.delete"
+        "organizations-storage.contacts.collection.get",
+        "organizations-storage.contacts.item.post",
+        "organizations-storage.contacts.item.get",
+        "organizations-storage.contacts.item.put",
+        "organizations-storage.contacts.item.delete"
       ]
     },
     {
-      "permissionName" : "organization-storage.emails.collection.get",
+      "permissionName" : "organizations-storage.emails.collection.get",
       "displayName" : "email collection get",
       "description" : "Get a collection of emails"
     },
     {
-      "permissionName" : "organization-storage.emails.item.post",
+      "permissionName" : "organizations-storage.emails.item.post",
       "displayName" : "email post",
       "description" : "Create a new email"
     },
     {
-      "permissionName" : "organization-storage.emails.item.get",
+      "permissionName" : "organizations-storage.emails.item.get",
       "displayName" : "email get",
       "description" : "Fetch a email"
     },
     {
-      "permissionName" : "organization-storage.emails.item.put",
+      "permissionName" : "organizations-storage.emails.item.put",
       "displayName" : "email put",
       "description" : "Update a email"
     },
     {
-      "permissionName" : "organization-storage.emails.item.delete",
+      "permissionName" : "organizations-storage.emails.item.delete",
       "displayName" : "email delete",
       "description" : "Delete a email"
     },
     {
-      "permissionName" : "organization-storage.emails.all",
+      "permissionName" : "organizations-storage.emails.all",
       "displayName" : "email all",
       "description" : "All permissions for email",
       "subPermissions" : [
-        "organization-storage.emails.collection.get",
-        "organization-storage.emails.item.post",
-        "organization-storage.emails.item.get",
-        "organization-storage.emails.item.put",
-        "organization-storage.emails.item.delete"
+        "organizations-storage.emails.collection.get",
+        "organizations-storage.emails.item.post",
+        "organizations-storage.emails.item.get",
+        "organizations-storage.emails.item.put",
+        "organizations-storage.emails.item.delete"
       ]
     },
     {
-      "permissionName" : "organization-storage.interfaces.collection.get",
+      "permissionName" : "organizations-storage.interfaces.collection.get",
       "displayName" : "interface collection get",
       "description" : "Get a collection of interface"
     },
     {
-      "permissionName" : "organization-storage.interfaces.item.post",
+      "permissionName" : "organizations-storage.interfaces.item.post",
       "displayName" : "interface post",
       "description" : "Create a new interface"
     },
     {
-      "permissionName" : "organization-storage.interfaces.item.get",
+      "permissionName" : "organizations-storage.interfaces.item.get",
       "displayName" : "interface get",
       "description" : "Fetch a interface"
     },
     {
-      "permissionName" : "organization-storage.interfaces.item.put",
+      "permissionName" : "organizations-storage.interfaces.item.put",
       "displayName" : "interface put",
       "description" : "Update a interface"
     },
     {
-      "permissionName" : "organization-storage.interfaces.item.delete",
+      "permissionName" : "organizations-storage.interfaces.item.delete",
       "displayName" : "interface delete",
       "description" : "Delete a interface"
     },
     {
-      "permissionName" : "organization-storage.interfaces.all",
+      "permissionName" : "organizations-storage.interfaces.all",
       "displayName" : "interface all",
       "description" : "All permissions for interface",
       "subPermissions" : [
-        "organization-storage.interfaces.collection.get",
-        "organization-storage.interfaces.item.post",
-        "organization-storage.interfaces.item.get",
-        "organization-storage.interfaces.item.put",
-        "organization-storage.interfaces.item.delete"
+        "organizations-storage.interfaces.collection.get",
+        "organizations-storage.interfaces.item.post",
+        "organizations-storage.interfaces.item.get",
+        "organizations-storage.interfaces.item.put",
+        "organizations-storage.interfaces.item.delete"
       ]
     },
     {
-      "permissionName" : "organization-storage.phone-numbers.collection.get",
+      "permissionName" : "organizations-storage.phone-numbers.collection.get",
       "displayName" : "phone_number collection get",
       "description" : "Get a collection of phone_numbers"
     },
     {
-      "permissionName" : "organization-storage.phone-numbers.item.post",
+      "permissionName" : "organizations-storage.phone-numbers.item.post",
       "displayName" : "phone_number post",
       "description" : "Create a new phone_number"
     },
     {
-      "permissionName" : "organization-storage.phone-numbers.item.get",
+      "permissionName" : "organizations-storage.phone-numbers.item.get",
       "displayName" : "phone_number get",
       "description" : "Fetch a phone_number"
     },
     {
-      "permissionName" : "organization-storage.phone-numbers.item.put",
+      "permissionName" : "organizations-storage.phone-numbers.item.put",
       "displayName" : "phone_number put",
       "description" : "Update a phone_number"
     },
     {
-      "permissionName" : "organization-storage.phone-numbers.item.delete",
+      "permissionName" : "organizations-storage.phone-numbers.item.delete",
       "displayName" : "phone_number delete",
       "description" : "Delete a phone_number"
     },
     {
-      "permissionName" : "organization-storage.phone-numbers.all",
+      "permissionName" : "organizations-storage.phone-numbers.all",
       "displayName" : "phone_number all",
       "description" : "All permissions for phone_number",
       "subPermissions" : [
-        "organization-storage.phone-numbers.collection.get",
-        "organization-storage.phone-numbers.item.post",
-        "organization-storage.phone-numbers.item.get",
-        "organization-storage.phone-numbers.item.put",
-        "organization-storage.phone-numbers.item.delete"
+        "organizations-storage.phone-numbers.collection.get",
+        "organizations-storage.phone-numbers.item.post",
+        "organizations-storage.phone-numbers.item.get",
+        "organizations-storage.phone-numbers.item.put",
+        "organizations-storage.phone-numbers.item.delete"
       ]
     },
     {
-      "permissionName" : "organization-storage.urls.collection.get",
+      "permissionName" : "organizations-storage.urls.collection.get",
       "displayName" : "url collection get",
       "description" : "Get a collection of urls"
     },
     {
-      "permissionName" : "organization-storage.urls.item.post",
+      "permissionName" : "organizations-storage.urls.item.post",
       "displayName" : "url post",
       "description" : "Create a new url"
     },
     {
-      "permissionName" : "organization-storage.urls.item.get",
+      "permissionName" : "organizations-storage.urls.item.get",
       "displayName" : "url get",
       "description" : "Fetch a url"
     },
     {
-      "permissionName" : "organization-storage.urls.item.put",
+      "permissionName" : "organizations-storage.urls.item.put",
       "displayName" : "url put",
       "description" : "Update a url"
     },
     {
-      "permissionName" : "organization-storage.urls.item.delete",
+      "permissionName" : "organizations-storage.urls.item.delete",
       "displayName" : "url delete",
       "description" : "Delete a url"
     },
     {
-      "permissionName" : "organization-storage.urls.all",
+      "permissionName" : "organizations-storage.urls.all",
       "displayName" : "url all",
       "description" : "All permissions for url",
       "subPermissions" : [
-        "organization-storage.urls.collection.get",
-        "organization-storage.urls.item.post",
-        "organization-storage.urls.item.get",
-        "organization-storage.urls.item.put",
-        "organization-storage.urls.item.delete"
+        "organizations-storage.urls.collection.get",
+        "organizations-storage.urls.item.post",
+        "organizations-storage.urls.item.get",
+        "organizations-storage.urls.item.put",
+        "organizations-storage.urls.item.delete"
       ]
     },
     {
-      "permissionName" : "organization-storage.organizations.collection.get",
+      "permissionName" : "organizations-storage.organizations.collection.get",
       "displayName" : "organizations collection get",
       "description" : "Get a collection of organizations"
     },
     {
-      "permissionName" : "organization-storage.organizations.item.post",
+      "permissionName" : "organizations-storage.organizations.item.post",
       "displayName" : "organizations post",
       "description" : "Create a new organizations"
     },
     {
-      "permissionName" : "organization-storage.organizations.item.get",
+      "permissionName" : "organizations-storage.organizations.item.get",
       "displayName" : "organizations get",
       "description" : "Fetch a organizations"
     },
     {
-      "permissionName" : "organization-storage.organizations.item.put",
+      "permissionName" : "organizations-storage.organizations.item.put",
       "displayName" : "organizations put",
       "description" : "Update a organizations"
     },
     {
-      "permissionName" : "organization-storage.organizations.item.delete",
+      "permissionName" : "organizations-storage.organizations.item.delete",
       "displayName" : "organizations delete",
       "description" : "Delete a organizations"
     },
     {
-      "permissionName" : "organization-storage.organizations.all",
+      "permissionName" : "organizations-storage.organizations.all",
       "displayName" : "organizations all",
       "description" : "All permissions for organizations",
       "subPermissions" : [
-        "organization-storage.organizations.collection.get",
-        "organization-storage.organizations.item.post",
-        "organization-storage.organizations.item.get",
-        "organization-storage.organizations.item.put",
-        "organization-storage.organizations.item.delete"
+        "organizations-storage.organizations.collection.get",
+        "organizations-storage.organizations.item.post",
+        "organizations-storage.organizations.item.get",
+        "organizations-storage.organizations.item.put",
+        "organizations-storage.organizations.item.delete"
       ]
     },
     {
-      "permissionName" : "organization-storage.module.all",
-      "displayName" : "organization-storage-module all",
+      "permissionName" : "organizations-storage.module.all",
+      "displayName" : "organizations-storage-module all",
       "description" : "All permissions for the organizations module",
       "subPermissions" : [
-        "organization-storage.addresses.all",
-        "organization-storage.categories.all",
-        "organization-storage.contacts.all",
-        "organization-storage.emails.all",
-        "organization-storage.interfaces.all",
-        "organization-storage.phone-numbers.all",
-        "organization-storage.urls.all",
-        "organization-storage.organizations.all"
+        "organizations-storage.addresses.all",
+        "organizations-storage.categories.all",
+        "organizations-storage.contacts.all",
+        "organizations-storage.emails.all",
+        "organizations-storage.interfaces.all",
+        "organizations-storage.phone-numbers.all",
+        "organizations-storage.urls.all",
+        "organizations-storage.organizations.all"
       ]
     }
   ],
