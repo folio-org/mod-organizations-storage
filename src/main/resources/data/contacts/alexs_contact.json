@@ -2,12 +2,12 @@
   "id": "11fb627a-cdf1-11e8-a8d5-f2801f1b9fd1",
   "language": "English",
   "prefix": "Mr.",
-  "first_name": "David",
-  "last_name": "Grohl",
+  "firstName": "David",
+  "lastName": "Grohl",
   "notes": "",
-  "phone_numbers": [
+  "phoneNumbers": [
     {
-      "phone_number": "1-800-889-5937",
+      "phoneNumber": "1-800-889-5937",
       "categories": [],
       "language": "English",
       "isPrimary": true

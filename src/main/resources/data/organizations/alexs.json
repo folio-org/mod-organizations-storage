@@ -5,7 +5,7 @@
   "description": "AV streaming services",
   "status": "Active",
   "language": "en-us",
-  "san_code": "1234567",
+  "sanCode": "1234567",
   "aliases": [
     {
       "value": "Alexander Street",
@@ -25,9 +25,9 @@
       "isPrimary": true
     }
   ],
-  "phone_numbers": [
+  "phoneNumbers": [
     {
-      "phone_number": "1-800-889-5937",
+      "phoneNumber": "1-800-889-5937",
       "categories": [],
       "language": "English",
       "isPrimary": true
@@ -59,29 +59,29 @@
     {
       "name": "library access",
       "discount": 0,
-      "reference_url": "",
+      "referenceUrl": "",
       "notes": ""
     }
   ],
-  "erp_code": "G64758-74828",
-  "payment_method": "check",
-  "access_provider": true,
+  "erpCode": "G64758-74828",
+  "paymentMethod": "Physical Check",
+  "accessProvider": true,
   "governmental": false,
   "licensor": true,
-  "material_supplier": true,
-  "vendor_currencies": [
+  "materialSupplier": true,
+  "vendorCurrencies": [
     "USD"
   ],
-  "claiming_interval": 0,
-  "discount_percent": 0,
-  "expected_activation_interval": 1,
-  "expected_invoice_interval": 30,
-  "renewal_activation_interval": 365,
-  "subscription_interval": 365,
-  "expected_receipt_interval": 30,
-  "liable_for_vat": false,
-  "tax_id": "",
-  "tax_percentage": 0,
+  "claimingInterval": 0,
+  "discountPercent": 0,
+  "expectedActivationInterval": 1,
+  "expectedInvoiceInterval": 30,
+  "renewalActivationInterval": 365,
+  "subscriptionInterval": 365,
+  "expectedReceiptInterval": 30,
+  "liableForVat": false,
+  "taxId": "",
+  "taxPercentage": 0,
   "interfaces": [
     {
       "name": "Academic Video Online",
@@ -90,24 +90,24 @@
       "password": "****",
       "notes": "",
       "available": false,
-      "delivery_method": "",
-      "statistics_format": "",
-      "locally_stored": "",
-      "online_location": "",
-      "statistics_notes": ""
+      "deliveryMethod": "Other",
+      "statisticsFormat": "",
+      "locallyStored": "",
+      "onlineLocation": "",
+      "statisticsNotes": ""
     }
   ],
   "accounts": [
     {
       "name": "Library account",
-      "account_no": "1234",
+      "accountNo": "1234",
       "description": "Main library account",
-      "app_system_no": "",
-      "payment_method": "check",
-      "account_status": "Active",
-      "contact_info": "customerservice@alexanderstreet.com",
-      "library_code": "COB",
-      "library_edi_code": "765987610",
+      "appSystemNo": "",
+      "paymentMethod": "Physical Check",
+      "accountStatus": "Active",
+      "contactInfo": "customerservice@alexanderstreet.com",
+      "libraryCode": "COB",
+      "libraryEdiCode": "765987610",
       "notes": ""
     }
   ],

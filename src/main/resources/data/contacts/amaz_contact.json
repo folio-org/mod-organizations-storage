@@ -2,12 +2,12 @@
   "id": "e0fb5df2-cdf1-11e8-a8d5-f2801f1b9fd1",
   "language": "English",
   "prefix": "Ms.",
-  "first_name": "Carrie",
-  "last_name": "Brownstein",
+  "firstName": "Carrie",
+  "lastName": "Brownstein",
   "notes": "",
-  "phone_numbers": [
+  "phoneNumbers": [
     {
-      "phone_number": "1-888-238-22090",
+      "phoneNumber": "1-888-238-22090",
       "categories": [],
       "language": "English",
       "isPrimary": true

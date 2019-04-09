@@ -2,12 +2,12 @@
   "id": "50fb6ae0-cdf1-11e8-a8d5-f2801f1b9fd1",
   "language": "en-us",
   "prefix": "",
-  "first_name": "Josh",
-  "last_name": "Beck",
+  "firstName": "Josh",
+  "lastName": "Beck",
   "notes": "",
-  "phone_numbers": [
+  "phoneNumbers": [
     {
-      "phone_number": "1-800-653-2726",
+      "phoneNumber": "1-800-653-2726",
       "categories": [],
       "language": "en-us",
       "isPrimary": true
