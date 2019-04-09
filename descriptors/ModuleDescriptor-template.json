@@ -3,37 +3,6 @@
   "name": "Organizations CRUD module",
   "provides": [
     {
-      "id": "organization-storage.accounts",
-      "version": "1.0",
-      "handlers": [
-        {
-          "methods": ["GET"],
-          "pathPattern": "/organization-storage/accounts",
-          "permissionsRequired": ["organization-storage.accounts.collection.get"]
-        },
-        {
-          "methods": ["POST"],
-          "pathPattern": "/organization-storage/accounts",
-          "permissionsRequired": ["organization-storage.accounts.item.post"]
-        },
-        {
-          "methods": ["GET"],
-          "pathPattern": "/organization-storage/accounts/{id}",
-          "permissionsRequired": ["organization-storage.accounts.item.get"]
-        },
-        {
-          "methods": ["PUT"],
-          "pathPattern": "/organization-storage/accounts/{id}",
-          "permissionsRequired": ["organization-storage.accounts.item.put"]
-        },
-        {
-          "methods": ["DELETE"],
-          "pathPattern": "/organization-storage/accounts/{id}",
-          "permissionsRequired": ["organization-storage.accounts.item.delete"]
-        }
-      ]
-    },
-    {
       "id": "organization-storage.addresses",
       "version": "1.0",
       "handlers": [
@@ -92,37 +61,6 @@
           "methods": ["DELETE"],
           "pathPattern": "/organization-storage/agreements/{id}",
           "permissionsRequired": ["organization-storage.agreements.item.delete"]
-        }
-      ]
-    },
-    {
-      "id": "organization-storage.aliases",
-      "version": "1.0",
-      "handlers": [
-        {
-          "methods": ["GET"],
-          "pathPattern": "/organization-storage/aliases",
-          "permissionsRequired": ["organization-storage.aliases.collection.get"]
-        },
-        {
-          "methods": ["POST"],
-          "pathPattern": "/organization-storage/aliases",
-          "permissionsRequired": ["organization-storage.aliases.item.post"]
-        },
-        {
-          "methods": ["GET"],
-          "pathPattern": "/organization-storage/aliases/{id}",
-          "permissionsRequired": ["organization-storage.aliases.item.get"]
-        },
-        {
-          "methods": ["PUT"],
-          "pathPattern": "/organization-storage/aliases/{id}",
-          "permissionsRequired": ["organization-storage.aliases.item.put"]
-        },
-        {
-          "methods": ["DELETE"],
-          "pathPattern": "/organization-storage/aliases/{id}",
-          "permissionsRequired": ["organization-storage.alias.item.delete"]
         }
       ]
     },
@@ -431,43 +369,6 @@
       ]
     },
     {
-      "permissionName" : "organization-storage.agreements.collection.get",
-      "displayName" : "agreement collection get",
-      "description" : "Get a collection of agreements"
-    },
-    {
-      "permissionName" : "organization-storage.agreements.item.post",
-      "displayName" : "agreement post",
-      "description" : "Create a new agreement"
-    },
-    {
-      "permissionName" : "organization-storage.agreements.item.get",
-      "displayName" : "agreement get",
-      "description" : "Fetch a agreement"
-    },
-    {
-      "permissionName" : "organization-storage.agreements.item.put",
-      "displayName" : "agreement put",
-      "description" : "Update a agreement"
-    },
-    {
-      "permissionName" : "organization-storage.agreements.item.delete",
-      "displayName" : "agreement delete",
-      "description" : "Delete a agreement"
-    },
-    {
-      "permissionName" : "organization-storage.agreements.all",
-      "displayName" : "agreement all",
-      "description" : "All permissions for agreement",
-      "subPermissions" : [
-        "organization-storage.agreements.collection.get",
-        "organization-storage.agreements.item.post",
-        "organization-storage.agreements.item.get",
-        "organization-storage.agreements.item.put",
-        "organization-storage.agreements.item.delete"
-      ]
-    },
-    {
       "permissionName" : "organization-storage.aliases.collection.get",
       "displayName" : "alias collection get",
       "description" : "Get a collection of aliases"
@@ -768,10 +669,7 @@
       "displayName" : "organization-storage-module all",
       "description" : "All permissions for the organizations module",
       "subPermissions" : [
-        "organization-storage.accounts.all",
         "organization-storage.addresses.all",
-        "organization-storage.agreements.all",
-        "organization-storage.aliases.all",
         "organization-storage.categories.all",
         "organization-storage.contacts.all",
         "organization-storage.emails.all",

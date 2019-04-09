@@ -52,7 +52,7 @@ public class PhoneNumbersAPI implements OrganizationStoragePhoneNumbers {
               if(reply.succeeded()){
                 PhoneNumberCollection collection = new PhoneNumberCollection();
                 @SuppressWarnings("unchecked")
-                List<PhoneNumber> results = (List<PhoneNumber>)reply.result().getResults();
+                List<PhoneNumber> results = reply.result().getResults();
                 collection.setPhoneNumbers(results);
                 Integer totalRecords = reply.result().getResultInfo().getTotalRecords();
                 collection.setTotalRecords(totalRecords);

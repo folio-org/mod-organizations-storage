@@ -45,7 +45,7 @@ public class UrlTest {
 
   @Before
   public void before(TestContext context) {
-    logger.info("--- mod-vendors-test: START ");
+    logger.info("--- mod-organizations-test: START ");
     vertx = Vertx.vertx();
 
     moduleName = PomReader.INSTANCE.getModuleName();
@@ -90,7 +90,7 @@ public class UrlTest {
     vertx.close(res -> {   // This logs a stack trace, ignore it.
       PostgresClient.stopEmbeddedPostgres();
       async.complete();
-      logger.info("--- mod-vendors-test: END ");
+      logger.info("--- mod-organizations-test: END ");
     });
   }
 
@@ -98,7 +98,7 @@ public class UrlTest {
   private void verifyCollection() {
 
     // Verify that there are no existing po_line records
-    getData("/vendor-storage/urls").then()
+    getData("/organization-storage/urls").then()
       .log().all()
       .statusCode(200)
       .body("total_records", equalTo(0));
@@ -110,50 +110,50 @@ public class UrlTest {
     try {
 
       // IMPORTANT: Call the tenant interface to initialize the tenant-schema
-      logger.info("--- mod-vendors-test: Preparing test tenant");
+      logger.info("--- mod-organizations-test: Preparing test tenant");
       prepareTenant();
 
-      logger.info("--- mod-vendors-test: Verifying database's initial state ... ");
+      logger.info("--- mod-organizations-test: Verifying database's initial state ... ");
       verifyCollection();
 
-      logger.info("--- mod-vendors-test: Creating url ... ");
+      logger.info("--- mod-organizations-test: Creating url ... ");
       String dataSample = getFile("url.sample");
-      Response response = postData("/vendor-storage/urls", dataSample);
+      Response response = postData("/organization-storage/urls", dataSample);
       response.then().log().ifValidationFails()
         .statusCode(201)
         .body("description", equalTo("test"));
       String dataSampleId = response.then().extract().path("id");
 
-      logger.info("--- mod-vendors-test: Verifying only 1 url was created ... ");
-      getData("/vendor-storage/urls").then().log().ifValidationFails()
+      logger.info("--- mod-organizations-test: Verifying only 1 url was created ... ");
+      getData("/organization-storage/urls").then().log().ifValidationFails()
         .statusCode(200)
         .body("total_records", equalTo(1));
 
-      logger.info("--- mod-vendors-test: Fetching url with ID: "+ dataSampleId);
-      getDataById("/vendor-storage/urls", dataSampleId).then().log().ifValidationFails()
+      logger.info("--- mod-organizations-test: Fetching url with ID: "+ dataSampleId);
+      getDataById("/organization-storage/urls", dataSampleId).then().log().ifValidationFails()
         .statusCode(200)
         .body("id", equalTo(dataSampleId));
 
-      logger.info("--- mod-vendors-test: Editing url with ID: "+ dataSampleId);
+      logger.info("--- mod-organizations-test: Editing url with ID: "+ dataSampleId);
       JSONObject catJSON = new JSONObject(dataSample);
       catJSON.put("id", dataSampleId);
       catJSON.put("description", "Gift");
-      response = putData("/vendor-storage/urls", dataSampleId, catJSON.toString());
+      response = putData("/organization-storage/urls", dataSampleId, catJSON.toString());
       response.then().log().ifValidationFails()
         .statusCode(204);
 
-      logger.info("--- mod-vendors-test: Fetching url with ID: "+ dataSampleId);
-      getDataById("/vendor-storage/urls", dataSampleId).then()
+      logger.info("--- mod-organizations-test: Fetching url with ID: "+ dataSampleId);
+      getDataById("/organization-storage/urls", dataSampleId).then()
         .statusCode(200).log().ifValidationFails()
         .body("description", equalTo("Gift"));
 
-      logger.info("--- mod-vendors-test: Deleting url with ID ... ");
-      deleteData("/vendor-storage/urls", dataSampleId).then().log().ifValidationFails()
+      logger.info("--- mod-organizations-test: Deleting url with ID ... ");
+      deleteData("/organization-storage/urls", dataSampleId).then().log().ifValidationFails()
         .statusCode(204);
 
     }
     catch (Exception e) {
-      context.fail("--- mod-vendors-test: ERROR: " + e.getMessage());
+      context.fail("--- mod-organizations-test: ERROR: " + e.getMessage());
     }
     async.complete();
   }

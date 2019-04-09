@@ -45,7 +45,7 @@ public class EmailTest {
 
   @Before
   public void before(TestContext context) {
-    logger.info("--- mod-vendors-test: START ");
+    logger.info("--- mod-organizations-test: START ");
     vertx = Vertx.vertx();
 
     moduleName = PomReader.INSTANCE.getModuleName();
@@ -90,7 +90,7 @@ public class EmailTest {
     vertx.close(res -> {   // This logs a stack trace, ignore it.
       PostgresClient.stopEmbeddedPostgres();
       async.complete();
-      logger.info("--- mod-vendors-test: END ");
+      logger.info("--- mod-organizations-test: END ");
     });
   }
 
@@ -98,7 +98,7 @@ public class EmailTest {
   private void verifyCollection() {
 
     // Verify that there are no existing po_line records
-    getData("/vendor-storage/emails").then()
+    getData("/organization-storage/emails").then()
       .log().all()
       .statusCode(200)
       .body("total_records", equalTo(0));
@@ -110,50 +110,50 @@ public class EmailTest {
     try {
 
       // IMPORTANT: Call the tenant interface to initialize the tenant-schema
-      logger.info("--- mod-vendors-test: Preparing test tenant");
+      logger.info("--- mod-organizations-test: Preparing test tenant");
       prepareTenant();
 
-      logger.info("--- mod-vendors-test: Verifying database's initial state ... ");
+      logger.info("--- mod-organizations-test: Verifying database's initial state ... ");
       verifyCollection();
 
-      logger.info("--- mod-vendors-test: Creating email ... ");
+      logger.info("--- mod-organizations-test: Creating email ... ");
       String dataSample = getFile("email.sample");
-      Response response = postData("/vendor-storage/emails", dataSample);
+      Response response = postData("/organization-storage/emails", dataSample);
       response.then().log().ifValidationFails()
         .statusCode(201)
         .body("description", equalTo("Main"));
       String dataSampleId = response.then().extract().path("id");
 
-      logger.info("--- mod-vendors-test: Verifying only 1 email was created ... ");
-      getData("/vendor-storage/emails").then().log().ifValidationFails()
+      logger.info("--- mod-organizations-test: Verifying only 1 email was created ... ");
+      getData("/organization-storage/emails").then().log().ifValidationFails()
         .statusCode(200)
         .body("total_records", equalTo(1));
 
-      logger.info("--- mod-vendors-test: Fetching email with ID: "+ dataSampleId);
-      getDataById("/vendor-storage/emails", dataSampleId).then().log().ifValidationFails()
+      logger.info("--- mod-organizations-test: Fetching email with ID: "+ dataSampleId);
+      getDataById("/organization-storage/emails", dataSampleId).then().log().ifValidationFails()
         .statusCode(200)
         .body("id", equalTo(dataSampleId));
 
-      logger.info("--- mod-vendors-test: Editing email with ID: "+ dataSampleId);
+      logger.info("--- mod-organizations-test: Editing email with ID: "+ dataSampleId);
       JSONObject catJSON = new JSONObject(dataSample);
       catJSON.put("id", dataSampleId);
       catJSON.put("description", "Gift");
-      response = putData("/vendor-storage/emails", dataSampleId, catJSON.toString());
+      response = putData("/organization-storage/emails", dataSampleId, catJSON.toString());
       response.then().log().ifValidationFails()
         .statusCode(204);
 
-      logger.info("--- mod-vendors-test: Fetching email with ID: "+ dataSampleId);
-      getDataById("/vendor-storage/emails", dataSampleId).then()
+      logger.info("--- mod-organizations-test: Fetching email with ID: "+ dataSampleId);
+      getDataById("/organization-storage/emails", dataSampleId).then()
         .statusCode(200).log().ifValidationFails()
         .body("description", equalTo("Gift"));
 
-      logger.info("--- mod-vendors-test: Deleting email with ID ... ");
-      deleteData("/vendor-storage/emails", dataSampleId).then().log().ifValidationFails()
+      logger.info("--- mod-organizations-test: Deleting email with ID ... ");
+      deleteData("/organization-storage/emails", dataSampleId).then().log().ifValidationFails()
         .statusCode(204);
 
     }
     catch (Exception e) {
-      context.fail("--- mod-vendors-test: ERROR: " + e.getMessage());
+      context.fail("--- mod-organizations-test: ERROR: " + e.getMessage());
     }
     async.complete();
   }

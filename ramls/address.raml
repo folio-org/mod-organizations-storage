@@ -1,11 +1,13 @@
 #%RAML 1.0
 title: "Organizations"
 baseUri: https://github.com/folio-org/mod-organizations-storage
-version: v2.0
+version: v1.0
 
 documentation:
-  - title: Addresses
-    content: <b>CRUD APIs used to manage addresses.</b>
+  - title: <b>Deprecated.</b> Addresses
+    content: |
+      CRUD APIs used to manage addresses.
+      <b>These APIs are not currently in use and may at some point be removed or resurrected</b>
 
 types:
     address: !include acq-models/mod-orgs/schemas/address.json
