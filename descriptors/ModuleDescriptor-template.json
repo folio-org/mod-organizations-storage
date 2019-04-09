@@ -34,37 +34,6 @@
       ]
     },
     {
-      "id": "organization-storage.agreements",
-      "version": "1.0",
-      "handlers": [
-        {
-          "methods": ["GET"],
-          "pathPattern": "/organization-storage/agreements",
-          "permissionsRequired": ["organization-storage.agreements.collection.get"]
-        },
-        {
-          "methods": ["POST"],
-          "pathPattern": "/organization-storage/agreements",
-          "permissionsRequired": ["organization-storage.agreements.item.post"]
-        },
-        {
-          "methods": ["GET"],
-          "pathPattern": "/organization-storage/agreements/{id}",
-          "permissionsRequired": ["organization-storage.agreements.item.get"]
-        },
-        {
-          "methods": ["PUT"],
-          "pathPattern": "/organization-storage/agreements/{id}",
-          "permissionsRequired": ["organization-storage.agreements.item.put"]
-        },
-        {
-          "methods": ["DELETE"],
-          "pathPattern": "/organization-storage/agreements/{id}",
-          "permissionsRequired": ["organization-storage.agreements.item.delete"]
-        }
-      ]
-    },
-    {
       "id": "organization-storage.categories",
       "version": "1.0",
       "handlers": [
@@ -407,7 +376,7 @@
     },
     {
       "permissionName" : "organization-storage.categories.collection.get",
-      "displayName" : "ccategory collection get",
+      "displayName" : "category collection get",
       "description" : "Get a collection of categories"
     },
     {
