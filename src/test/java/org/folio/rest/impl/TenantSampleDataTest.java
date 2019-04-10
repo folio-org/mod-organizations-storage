@@ -45,21 +45,21 @@ public class TenantSampleDataTest extends TestBase{
   public void sampleDataTests() throws MalformedURLException {
     try {
       logger.info("-- create a tenant with no sample data --");
-      prepareTenant(ANOTHER_TENANT_HEADER, false);
-      logger.info("-- upgrade the tenant with sample data, so that it will be inserted now --");
-      upgradeTenantWithSampleDataLoad();
-      logger.info("-- upgrade the tenant again with no sample data, so the previously inserted data stays in tact --");
-      upgradeTenantWithNoSampleDataLoad();
+      prepareTenant(ANOTHER_TENANT_HEADER, false, false);
+      logger.info("-- upgrade the tenant with sample & reference data, so that it will be inserted now --");
+      upgradeTenantWithDataLoad();
+      logger.info(
+          "-- upgrade the tenant again with no sample/reference data, so the previously inserted data stays in tact --");
+      upgradeTenantWithNoDataLoad();
       upgradeNonExistentTenant();
-    }
-    finally {
+    } finally {
       deleteTenant(ANOTHER_TENANT_HEADER);
     }
   }
 
   @Test
   public void failIfNoUrlToHeader() throws MalformedURLException {
-    JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(true, false);
+    JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(true, true, false);
     given()
         .header(new Header(OKAPI_HEADER_TENANT, "noURL"))
         .contentType(ContentType.JSON)
@@ -71,10 +71,10 @@ public class TenantSampleDataTest extends TestBase{
   }
 
   @Test
-  public void testLoadSampleDataWithoutUpgrade() throws MalformedURLException {
+  public void testLoadDataWithoutUpgrade() throws MalformedURLException {
     logger.info("load sample data");
     try{
-      JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(true, false);
+      JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(true, true, false);
       postToTenant(ANOTHER_TENANT_HEADER_WITHOUT_UPGRADE, jsonBody)
         .assertThat()
         .statusCode(201);
@@ -92,7 +92,7 @@ public class TenantSampleDataTest extends TestBase{
     logger.info("load sample date");
 
     try{
-      JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(true, false);
+      JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(true, false, false);
       postToTenant(PARTIAL_TENANT_HEADER, jsonBody)
         .assertThat()
         .statusCode(201);
@@ -106,7 +106,7 @@ public class TenantSampleDataTest extends TestBase{
         deleteData(ORGANIZATION.getEndpointWithId(), organization.getId(), PARTIAL_TENANT_HEADER);
       }
 
-      jsonBody = TenantApiTestUtil.prepareTenantBody(true, true);
+      jsonBody = TenantApiTestUtil.prepareTenantBody(true, true, true);
       postToTenant(PARTIAL_TENANT_HEADER, jsonBody)
         .assertThat()
         .statusCode(201);
@@ -121,10 +121,28 @@ public class TenantSampleDataTest extends TestBase{
   }
 
 
-  private void upgradeTenantWithSampleDataLoad() throws MalformedURLException {
+  @Test
+  public void testLoadReferenceData() throws MalformedURLException {
+    logger.info("load only Reference Data");
+    try {
+      JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(false, true, false);
+      postToTenant(ANOTHER_TENANT_HEADER_WITHOUT_UPGRADE, jsonBody)
+        .assertThat()
+        .statusCode(201);
+      verifyCollectionQuantity("/organization-storage/categories", 4, ANOTHER_TENANT_HEADER_WITHOUT_UPGRADE);
+      for (TestEntities entity : TestEntities.values()) {
+        logger.info("Test sample data not loaded for " + entity.name());
+        verifyCollectionQuantity(entity.getEndpoint(), 0, ANOTHER_TENANT_HEADER_WITHOUT_UPGRADE);
+      }
+    } finally {
+      deleteTenant(ANOTHER_TENANT_HEADER_WITHOUT_UPGRADE);
+    }
+  }
 
-    logger.info("upgrading Module with sample");
-    JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(true, true);
+  private void upgradeTenantWithDataLoad() throws MalformedURLException {
+
+    logger.info("upgrading Module with sample and reference data");
+    JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(true, true, true);
     postToTenant(ANOTHER_TENANT_HEADER, jsonBody)
       .assertThat()
       .statusCode(201);
@@ -134,11 +152,11 @@ public class TenantSampleDataTest extends TestBase{
     }
   }
 
-  private void upgradeTenantWithNoSampleDataLoad() throws MalformedURLException {
+  private void upgradeTenantWithNoDataLoad() throws MalformedURLException {
 
     logger.info("upgrading Module without sample data");
 
-    JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(false, true);
+    JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(false, false, true);
     postToTenant(ANOTHER_TENANT_HEADER, jsonBody)
       .assertThat()
       .statusCode(200);
@@ -149,7 +167,7 @@ public class TenantSampleDataTest extends TestBase{
 
     logger.info("upgrading Module for non existed tenant");
 
-    JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(false, true);
+    JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(false, false, true);
     postToTenant(NONEXISTENT_TENANT_HEADER, jsonBody)
       .assertThat()
       .statusCode(400);
