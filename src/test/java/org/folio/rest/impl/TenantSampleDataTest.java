@@ -120,7 +120,6 @@ public class TenantSampleDataTest extends TestBase{
     }
   }
 
-
   private void upgradeTenantWithSampleDataLoad() throws MalformedURLException {
 
     logger.info("upgrading Module with sample");
@@ -143,7 +142,6 @@ public class TenantSampleDataTest extends TestBase{
       .assertThat()
       .statusCode(200);
   }
-
 
   private void upgradeNonExistentTenant() throws MalformedURLException {
 
