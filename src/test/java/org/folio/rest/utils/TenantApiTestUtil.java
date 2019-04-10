@@ -23,7 +23,7 @@ public class TenantApiTestUtil {
 
   }
 
-  public static JsonObject prepareTenantBody(boolean isLoadSampleData, boolean isUpgrade) {
+  public static JsonObject prepareTenantBody(boolean isLoadSampleData, boolean isLoadReferenceData,  boolean isUpgrade) {
     Parameter param = new Parameter().withKey("loadSample").withValue(String.valueOf(isLoadSampleData));
     TenantAttributes attributes = new TenantAttributes();
     attributes.getParameters().add(param);
@@ -34,8 +34,9 @@ public class TenantApiTestUtil {
     return JsonObject.mapFrom(attributes);
   }
 
-  public static void prepareTenant(Header tenantHeader, boolean isLoadSampleData) throws MalformedURLException {
-    JsonObject jsonBody = prepareTenantBody(isLoadSampleData, false);
+  public static void prepareTenant(Header tenantHeader, boolean isLoadSampleData, boolean isLoadReferenceData)
+      throws MalformedURLException {
+    JsonObject jsonBody = prepareTenantBody(isLoadSampleData, isLoadReferenceData, false);
     postToTenant(tenantHeader, jsonBody).statusCode(201);
   }
 
