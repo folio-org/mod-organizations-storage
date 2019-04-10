@@ -29,7 +29,7 @@ import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 @RunWith(VertxUnitRunner.class)
-public class AccountTest {
+public class OrganizationTest {
   private Vertx vertx;
   private Async async;
   private final Logger logger = LoggerFactory.getLogger("okapi");
@@ -38,14 +38,14 @@ public class AccountTest {
   private final String TENANT_NAME = "diku";
   private final Header TENANT_HEADER = new Header("X-Okapi-Tenant", TENANT_NAME);
 
-  private String moduleName;      // "mod_vendors";
+  private String moduleName;      // "mod_orders_storage";
   private String moduleVersion;   // "1.0.0"
-  private String moduleId;        // "mod-vendors-1.1.0-SNAPSHOT"
+  private String moduleId;        // "mod-orders-storage-1.0.0"
 
 
   @Before
   public void before(TestContext context) {
-    logger.info("--- mod-vendors-test: START ");
+    logger.info("--- mod-organizations-test: START ");
     vertx = Vertx.vertx();
 
     moduleName = PomReader.INSTANCE.getModuleName();
@@ -90,7 +90,7 @@ public class AccountTest {
     vertx.close(res -> {   // This logs a stack trace, ignore it.
       PostgresClient.stopEmbeddedPostgres();
       async.complete();
-      logger.info("--- mod-vendors-test: END ");
+      logger.info("--- mod-organizations-test: END ");
     });
   }
 
@@ -98,7 +98,7 @@ public class AccountTest {
   private void verifyCollection() {
 
     // Verify that there are no existing po_line records
-    getData("/vendor-storage/accounts").then()
+    getData("/organization-storage/organizations").then()
       .log().all()
       .statusCode(200)
       .body("total_records", equalTo(0));
@@ -110,50 +110,50 @@ public class AccountTest {
     try {
 
       // IMPORTANT: Call the tenant interface to initialize the tenant-schema
-      logger.info("--- mod-vendors-test: Preparing test tenant");
+      logger.info("--- mod-organizations-test: Preparing test tenant");
       prepareTenant();
 
-      logger.info("--- mod-vendors-test: Verifying database's initial state ... ");
+      logger.info("--- mod-organizations-test: Verifying database's initial state ... ");
       verifyCollection();
 
-      logger.info("--- mod-vendors-test: Creating account ... ");
-      String accountSample = getFile("account.sample");
-      Response response = postData("/vendor-storage/accounts", accountSample);
+      logger.info("--- mod-organizations-test: Creating organization ... ");
+      String dataSample = getFile("organization.sample");
+      Response response = postData("/organization-storage/organizations", dataSample);
       response.then().log().ifValidationFails()
         .statusCode(201)
-        .body("description", equalTo("This is my account description."));
-      String accountSampleId = response.then().extract().path("id");
+        .body("name", equalTo("GOBI"));
+      String dataSampleId = response.then().extract().path("id");
 
-      logger.info("--- mod-vendors-test: Verifying only 1 account was created ... ");
-      getData("/vendor-storage/accounts").then().log().ifValidationFails()
+      logger.info("--- mod-organizations-test: Verifying only 1 organization was created ... ");
+      getData("/organization-storage/organizations").then().log().ifValidationFails()
         .statusCode(200)
         .body("total_records", equalTo(1));
 
-      logger.info("--- mod-vendors-test: Fetching account with ID: "+ accountSampleId);
-      getDataById("/vendor-storage/accounts", accountSampleId).then().log().ifValidationFails()
+      logger.info("--- mod-organizations-test: Fetching organization with ID: "+ dataSampleId);
+      getDataById("/organization-storage/organizations", dataSampleId).then().log().ifValidationFails()
         .statusCode(200)
-        .body("id", equalTo(accountSampleId));
+        .body("id", equalTo(dataSampleId));
 
-      logger.info("--- mod-vendors-test: Editing account with ID: "+ accountSampleId);
-      JSONObject catJSON = new JSONObject(accountSample);
-      catJSON.put("id", accountSampleId);
-      catJSON.put("description", "Gift");
-      response = putData("/vendor-storage/accounts", accountSampleId, catJSON.toString());
+      logger.info("--- mod-organizations-test: Editing organization with ID: "+ dataSampleId);
+      JSONObject catJSON = new JSONObject(dataSample);
+      catJSON.put("id", dataSampleId);
+      catJSON.put("name", "Gift");
+      response = putData("/organization-storage/organizations", dataSampleId, catJSON.toString());
       response.then().log().ifValidationFails()
         .statusCode(204);
 
-      logger.info("--- mod-vendors-test: Fetching account with ID: "+ accountSampleId);
-      getDataById("/vendor-storage/accounts", accountSampleId).then()
+      logger.info("--- mod-organizations-test: Fetching organization with ID: "+ dataSampleId);
+      getDataById("/organization-storage/organizations", dataSampleId).then()
         .statusCode(200).log().ifValidationFails()
-        .body("description", equalTo("Gift"));
+        .body("name", equalTo("Gift"));
 
-      logger.info("--- mod-vendors-test: Deleting account with ID ... ");
-      deleteData("/vendor-storage/accounts", accountSampleId).then().log().ifValidationFails()
+      logger.info("--- mod-organizations-test: Deleting organization with ID ... ");
+      deleteData("/organization-storage/organizations", dataSampleId).then().log().ifValidationFails()
         .statusCode(204);
 
     }
     catch (Exception e) {
-      context.fail("--- mod-vendors-test: ERROR: " + e.getMessage());
+      context.fail("--- mod-organizations-test: ERROR: " + e.getMessage());
     }
     async.complete();
   }

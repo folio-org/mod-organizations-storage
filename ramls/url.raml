@@ -1,15 +1,17 @@
 #%RAML 1.0
-title: "Vendors"
-baseUri: https://github.com/folio-org/mod-vendors
-version: v2.0
+title: "Organizations"
+baseUri: https://github.com/folio-org/mod-organizations-storage
+version: v1.0
 
 documentation:
-  - title: URLs
-    content: <b>CRUD APIs used to manage URLs.</b>
+  - title: <b>Deprecated.</b> URLs
+    content: |
+      CRUD APIs used to manage URLs.
+      <b>These APIs are not currently in use and may at some point be removed or resurrected</b>
 
 types:
-    url: !include acq-models/mod-vendors/schemas/url.json
-    url_collection: !include acq-models/mod-vendors/schemas/url_collection.json
+    url: !include acq-models/mod-orgs/schemas/url.json
+    url_collection: !include acq-models/mod-orgs/schemas/url_collection.json
     UUID:
       type: string
       pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
@@ -25,11 +27,11 @@ resourceTypes:
     collection-item: !include raml-util/rtypes/item-collection.raml
 
 
-/vendor-storage/urls:
+/organization-storage/urls:
   type:
     collection:
-      exampleCollection: !include acq-models/mod-vendors/examples/url_collection.sample
-      exampleItem: !include acq-models/mod-vendors/examples/url_post.sample
+      exampleCollection: !include acq-models/mod-orgs/examples/url_collection.sample
+      exampleItem: !include acq-models/mod-orgs/examples/url_post.sample
       schemaCollection: url_collection
       schemaItem: url
   get:
@@ -45,5 +47,5 @@ resourceTypes:
         type: UUID
     type:
       collection-item:
-        exampleItem: !include acq-models/mod-vendors/examples/url_get.sample
+        exampleItem: !include acq-models/mod-orgs/examples/url_get.sample
         schema: url

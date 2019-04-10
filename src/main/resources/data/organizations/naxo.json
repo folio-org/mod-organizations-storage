@@ -1,0 +1,120 @@
+{
+  "id": "70fb4e66-cdf1-11e8-a8d5-f2801f1b9fd1",
+  "name": "Naxos of America, Inc.",
+  "code": "NAXO",
+  "description": "AV streaming services, other onilne content",
+  "status": "Active",
+  "language": "en-us",
+  "san_code": "",
+  "aliases": [
+    {
+      "value": "Naxos",
+      "description": ""
+    }
+  ],
+  "addresses": [
+    {
+      "addressLine1": "416 Mary Lindsay Polk Dr.",
+      "addressLine2": "",
+      "city": "Franklin",
+      "stateRegion": "TN",
+      "zipCode": "37067",
+      "country": "USA",
+      "categories": [],
+      "language": "English",
+      "isPrimary": true
+    }
+  ],
+  "phone_numbers": [
+    {
+      "phone_number": "1-615-771-9393",
+      "categories": [],
+      "language": "English",
+      "isPrimary": true
+    }
+  ],
+  "emails": [
+    {
+      "value": "service@naxosusa.com",
+      "description": "Customer Service",
+      "categories": [],
+      "language": "English",
+      "isPrimary": true
+    }
+  ],
+  "urls": [
+    {
+      "value": "https://www.naxos.com/",
+      "description": "main website",
+      "language": "en-us",
+      "categories": [],
+      "notes": "",
+      "isPrimary": true
+    }
+  ],
+  "contacts": [
+    "70fb4e66-cdf1-11e8-a8d5-f2801f1b9fd1"
+  ],
+  "agreements": [
+    {
+      "name": "Naxos Music Library, Naxos Video Library",
+      "discount": 0,
+      "reference_url": "F:\\Serials\\Licensing\\License and Renewal Agreements\\Content Providers\\NAXOS",
+      "notes": ""
+    }
+  ],
+  "erp_code": "G64758-74827",
+  "payment_method": "EFT",
+  "access_provider": true,
+  "governmental": false,
+  "licensor": true,
+  "material_supplier": true,
+  "vendor_currencies": [
+    "USD"
+  ],
+  "claiming_interval": 0,
+  "discount_percent": 0,
+  "expected_activation_interval": 30,
+  "expected_invoice_interval": 30,
+  "renewal_activation_interval": 365,
+  "subscription_interval": 365,
+  "expected_receipt_interval": 30,
+  "liable_for_vat": false,
+  "tax_id": "",
+  "tax_percentage": 0,
+  "interfaces": [
+    {
+      "name": "Naxos Digital Services, U.S.",
+      "uri": "https://www.naxosmusiclibrary.com",
+      "username": "",
+      "password": "",
+      "notes": "See also http://sample.naxosvideolibrary.com/ for Naxos Video Library",
+      "available": true,
+      "delivery_method": "online",
+      "statistics_format": "Non-COUNTER",
+      "locally_stored": "https://www.lib.sample.edu/staff/collectiondevelopment/",
+      "online_location": "http://www.naxosmusiclibrary.com/",
+      "statistics_notes": "Login on interface used to access content."
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Serials",
+      "account_no": "xxxx4367",
+      "description": "Libraries",
+      "app_system_no": "",
+      "payment_method": "EFT",
+      "account_status": "Active",
+      "contact_info": "service@naxosusa.com",
+      "library_code": "COB",
+      "library_edi_code": "765987610",
+      "notes": ""
+    }
+  ],
+  "changelogs": [
+    {
+      "description": "This is a sample note.",
+      "timestamp": "2008-05-15T03:53:00-07:00"
+    }
+  ]
+}

@@ -38,14 +38,14 @@ public class AddressTest {
   private final String TENANT_NAME = "diku";
   private final Header TENANT_HEADER = new Header("X-Okapi-Tenant", TENANT_NAME);
 
-  private String moduleName;      // "mod_vendors";
+  private String moduleName;      // "mod_organizations";
   private String moduleVersion;   // "1.0.0"
-  private String moduleId;        // "mod-vendors-1.0.0"
+  private String moduleId;        // "mod-organizations-1.0.0"
 
 
   @Before
   public void before(TestContext context) {
-    logger.info("--- mod-vendors-test: START ");
+    logger.info("--- mod-organizations-test: START ");
     vertx = Vertx.vertx();
 
     moduleName = PomReader.INSTANCE.getModuleName();
@@ -90,7 +90,7 @@ public class AddressTest {
     vertx.close(res -> {   // This logs a stack trace, ignore it.
       PostgresClient.stopEmbeddedPostgres();
       async.complete();
-      logger.info("--- mod-vendors-test: END ");
+      logger.info("--- mod-organizations-test: END ");
     });
   }
 
@@ -98,7 +98,7 @@ public class AddressTest {
   private void verifyCollection() {
 
     // Verify that there are no existing po_line records
-    getData("/vendor-storage/addresses").then()
+    getData("/organization-storage/addresses").then()
       .log().all()
       .statusCode(200)
       .body("total_records", equalTo(0));
@@ -110,50 +110,50 @@ public class AddressTest {
     try {
 
       // IMPORTANT: Call the tenant interface to initialize the tenant-schema
-      logger.info("--- mod-vendors-test: Preparing test tenant");
+      logger.info("--- mod-organizations-test: Preparing test tenant");
       prepareTenant();
 
-      logger.info("--- mod-vendors-test: Verifying database's initial state ... ");
+      logger.info("--- mod-organizations-test: Verifying database's initial state ... ");
       verifyCollection();
 
-      logger.info("--- mod-vendors-test: Creating address ... ");
+      logger.info("--- mod-organizations-test: Creating address ... ");
       String dataSample = getFile("address.sample");
-      Response response = postData("/vendor-storage/addresses", dataSample);
+      Response response = postData("/organization-storage/addresses", dataSample);
       response.then().log().ifValidationFails()
         .statusCode(201)
         .body("city", equalTo("Ipswich"));
       String dataSampleId = response.then().extract().path("id");
 
-      logger.info("--- mod-vendors-test: Verifying only 1 address was created ... ");
-      getData("/vendor-storage/addresses").then().log().ifValidationFails()
+      logger.info("--- mod-organizations-test: Verifying only 1 address was created ... ");
+      getData("/organization-storage/addresses").then().log().ifValidationFails()
         .statusCode(200)
         .body("total_records", equalTo(1));
 
-      logger.info("--- mod-vendors-test: Fetching address with ID: "+ dataSampleId);
-      getDataById("/vendor-storage/addresses", dataSampleId).then().log().ifValidationFails()
+      logger.info("--- mod-organizations-test: Fetching address with ID: "+ dataSampleId);
+      getDataById("/organization-storage/addresses", dataSampleId).then().log().ifValidationFails()
         .statusCode(200)
         .body("id", equalTo(dataSampleId));
 
-      logger.info("--- mod-vendors-test: Editing address with ID: "+ dataSampleId);
+      logger.info("--- mod-organizations-test: Editing address with ID: "+ dataSampleId);
       JSONObject catJSON = new JSONObject(dataSample);
       catJSON.put("id", dataSampleId);
       catJSON.put("city", "Gift");
-      response = putData("/vendor-storage/addresses", dataSampleId, catJSON.toString());
+      response = putData("/organization-storage/addresses", dataSampleId, catJSON.toString());
       response.then().log().ifValidationFails()
         .statusCode(204);
 
-      logger.info("--- mod-vendors-test: Fetching address with ID: "+ dataSampleId);
-      getDataById("/vendor-storage/addresses", dataSampleId).then()
+      logger.info("--- mod-organizations-test: Fetching address with ID: "+ dataSampleId);
+      getDataById("/organization-storage/addresses", dataSampleId).then()
         .statusCode(200).log().ifValidationFails()
         .body("city", equalTo("Gift"));
 
-      logger.info("--- mod-vendors-test: Deleting address with ID ... ");
-      deleteData("/vendor-storage/addresses", dataSampleId).then().log().ifValidationFails()
+      logger.info("--- mod-organizations-test: Deleting address with ID ... ");
+      deleteData("/organization-storage/addresses", dataSampleId).then().log().ifValidationFails()
         .statusCode(204);
 
     }
     catch (Exception e) {
-      context.fail("--- mod-vendors-test: ERROR: " + e.getMessage());
+      context.fail("--- mod-organizations-test: ERROR: " + e.getMessage());
     }
     async.complete();
   }
