@@ -21,9 +21,10 @@ public class TenantApiTestUtil {
 
   }
 
-  public static JsonObject prepareTenantBody(boolean isLoadSampleData, boolean isUpgrade) {
+  public static JsonObject prepareTenantBody(boolean isLoadSampleData, boolean isLoadReferenceData,  boolean isUpgrade) {
     JsonArray parameterArray = new JsonArray();
     parameterArray.add(new JsonObject().put("key", "loadSample").put("value", isLoadSampleData));
+    parameterArray.add(new JsonObject().put("key", "loadReference").put("value", isLoadReferenceData));
     JsonObject jsonBody = new JsonObject();
     jsonBody.put("module_to", "mod-organizations-storage-1.0.0");
     jsonBody.put("parameters", parameterArray);
@@ -32,8 +33,9 @@ public class TenantApiTestUtil {
     return jsonBody;
   }
 
-  public static void prepareTenant(Header tenantHeader, boolean isLoadSampleData) throws MalformedURLException {
-    JsonObject jsonBody = prepareTenantBody(isLoadSampleData, false);
+  public static void prepareTenant(Header tenantHeader, boolean isLoadSampleData, boolean isLoadReferenceData)
+      throws MalformedURLException {
+    JsonObject jsonBody = prepareTenantBody(isLoadSampleData, isLoadReferenceData, false);
     postToTenant(tenantHeader, jsonBody).statusCode(201);
   }
 
