@@ -31,7 +31,7 @@ public class OrganizationsAPI implements OrganizationStorageOrganizations {
   public void getOrganizationStorageOrganizations(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       EntitiesMetadataHolder<Organization, OrganizationCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Organization.class, OrganizationCollection.class, GetOrganizationStorageOrganizationsResponse.class);
-      QueryHolder cql = new QueryHolder(ORGANIZATION_TABLE, query, offset, limit, lang);
+      QueryHolder cql = new QueryHolder(ORGANIZATION_TABLE, query, offset, limit);
       getEntitiesCollection(entitiesMetadataHolder, cql, asyncResultHandler, vertxContext, okapiHeaders);
     });
   }

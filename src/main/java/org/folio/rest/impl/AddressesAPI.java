@@ -32,7 +32,7 @@ public class AddressesAPI implements OrganizationStorageAddresses {
   public void getOrganizationStorageAddresses(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       EntitiesMetadataHolder<Address, AddressCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Address.class, AddressCollection.class, GetOrganizationStorageAddressesResponse.class, "setAddresses");
-      QueryHolder cql = new QueryHolder(ADDRESS_TABLE, query, offset, limit, lang);
+      QueryHolder cql = new QueryHolder(ADDRESS_TABLE, query, offset, limit);
       getEntitiesCollection(entitiesMetadataHolder, cql, asyncResultHandler, vertxContext, okapiHeaders);
     });
   }

@@ -32,7 +32,7 @@ public class InterfacesAPI implements OrganizationStorageInterfaces {
   public void getOrganizationStorageInterfaces(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       EntitiesMetadataHolder<Interface, InterfaceCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Interface.class, InterfaceCollection.class, GetOrganizationStorageInterfacesResponse.class);
-      QueryHolder cql = new QueryHolder(INTERFACE_TABLE, query, offset, limit, lang);
+      QueryHolder cql = new QueryHolder(INTERFACE_TABLE, query, offset, limit);
       getEntitiesCollection(entitiesMetadataHolder, cql, asyncResultHandler, vertxContext, okapiHeaders);
     });
   }

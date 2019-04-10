@@ -32,7 +32,7 @@ public class CategoriesAPI implements OrganizationStorageCategories {
   public void getOrganizationStorageCategories(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       EntitiesMetadataHolder<Category, CategoryCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Category.class, CategoryCollection.class, GetOrganizationStorageCategoriesResponse.class, "setCategories");
-      QueryHolder cql = new QueryHolder(CATEGORY_TABLE, query, offset, limit, lang);
+      QueryHolder cql = new QueryHolder(CATEGORY_TABLE, query, offset, limit);
       getEntitiesCollection(entitiesMetadataHolder, cql, asyncResultHandler, vertxContext, okapiHeaders);
     });
   }

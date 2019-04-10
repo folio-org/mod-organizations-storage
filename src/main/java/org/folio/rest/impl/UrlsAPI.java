@@ -32,7 +32,7 @@ public class UrlsAPI implements OrganizationStorageUrls {
   public void getOrganizationStorageUrls(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       EntitiesMetadataHolder<Url, UrlCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Url.class, UrlCollection.class, GetOrganizationStorageUrlsResponse.class);
-      QueryHolder cql = new QueryHolder(URL_TABLE, query, offset, limit, lang);
+      QueryHolder cql = new QueryHolder(URL_TABLE, query, offset, limit);
       getEntitiesCollection(entitiesMetadataHolder, cql, asyncResultHandler, vertxContext, okapiHeaders);
     });
   }

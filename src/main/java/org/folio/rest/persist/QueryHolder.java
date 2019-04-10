@@ -12,36 +12,19 @@ public class QueryHolder {
   private String query;
   private int offset;
   private int limit;
-  private String lang;
 
-  public QueryHolder(String table, String query, int offset, int limit, String lang) {
+
+  public QueryHolder(String table, String query, int offset, int limit) {
     this.table = table;
     this.query = query;
     this.offset = offset;
     this.limit = limit;
-    this.lang = lang;
   }
 
   public String getTable() {
-
     return table;
   }
 
-  public String getQuery() {
-    return query;
-  }
-
-  public int getOffset() {
-    return offset;
-  }
-
-  public int getLimit() {
-    return limit;
-  }
-
-  public String getLang() {
-    return lang;
-  }
 
   public CQLWrapper buildCQLQuery() throws FieldException {
     CQL2PgJSON cql2PgJSON = new CQL2PgJSON(String.format("%s.jsonb", table));

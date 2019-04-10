@@ -32,7 +32,7 @@ public class EmailsAPI implements OrganizationStorageEmails {
   public void getOrganizationStorageEmails(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       EntitiesMetadataHolder<Email, EmailCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Email.class, EmailCollection.class, GetOrganizationStorageEmailsResponse.class);
-      QueryHolder cql = new QueryHolder(EMAIL_TABLE, query, offset, limit, lang);
+      QueryHolder cql = new QueryHolder(EMAIL_TABLE, query, offset, limit);
       getEntitiesCollection(entitiesMetadataHolder, cql, asyncResultHandler, vertxContext, okapiHeaders);
     });
   }

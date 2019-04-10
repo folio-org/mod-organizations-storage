@@ -32,7 +32,7 @@ public class ContactsAPI implements OrganizationStorageContacts {
   public void getOrganizationStorageContacts(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       EntitiesMetadataHolder<Contact, ContactCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Contact.class, ContactCollection.class, GetOrganizationStorageContactsResponse.class);
-      QueryHolder cql = new QueryHolder(CONTACT_TABLE, query, offset, limit, lang);
+      QueryHolder cql = new QueryHolder(CONTACT_TABLE, query, offset, limit);
       getEntitiesCollection(entitiesMetadataHolder, cql, asyncResultHandler, vertxContext, okapiHeaders);
     });
   }

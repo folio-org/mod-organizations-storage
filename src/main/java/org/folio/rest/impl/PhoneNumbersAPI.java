@@ -32,7 +32,7 @@ public class PhoneNumbersAPI implements OrganizationStoragePhoneNumbers {
   public void getOrganizationStoragePhoneNumbers(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       EntitiesMetadataHolder<PhoneNumber, PhoneNumberCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(PhoneNumber.class, PhoneNumberCollection.class, GetOrganizationStoragePhoneNumbersResponse.class);
-      QueryHolder cql = new QueryHolder(PHONE_NUMBER_TABLE, query, offset, limit, lang);
+      QueryHolder cql = new QueryHolder(PHONE_NUMBER_TABLE, query, offset, limit);
       getEntitiesCollection(entitiesMetadataHolder, cql, asyncResultHandler, vertxContext, okapiHeaders);
     });
   }
