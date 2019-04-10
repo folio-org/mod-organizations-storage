@@ -25,6 +25,7 @@ import static org.folio.rest.utils.TestEntities.ORGANIZATION;
 
 public class TenantSampleDataTest extends TestBase{
 
+  private static final String TEST_EXPECTED_QUANTITY_FOR_ENTRY = "Test expected {} quantity for {}";
   private final Logger logger = LoggerFactory.getLogger(TenantSampleDataTest.class);
 
   private static final Header NONEXISTENT_TENANT_HEADER = new Header(OKAPI_HEADER_TENANT, "no_tenant");
@@ -50,7 +51,8 @@ public class TenantSampleDataTest extends TestBase{
       upgradeTenantWithSampleDataLoad();
       logger.info("-- upgrade the tenant again with no sample data, so the previously inserted data stays in tact --");
       upgradeTenantWithNoSampleDataLoad();
-      upgradeNonExistentTenant();
+      logger.info("-- upgrade the tenant which had no DB schema before with no sample/reference data --");
+      upgradeTenantWithNonExistentDb();
     }
     finally {
       deleteTenant(ANOTHER_TENANT_HEADER);
@@ -79,7 +81,7 @@ public class TenantSampleDataTest extends TestBase{
         .assertThat()
         .statusCode(201);
       for (TestEntities entity : TestEntities.values()) {
-        logger.info("Test expected quantity for " + entity.name());
+        logger.info(TEST_EXPECTED_QUANTITY_FOR_ENTRY, entity.getInitialQuantity(), entity.name());
         verifyCollectionQuantity(entity.getEndpoint(), entity.getInitialQuantity(), ANOTHER_TENANT_HEADER_WITHOUT_UPGRADE);
       }
     } finally {
@@ -112,7 +114,7 @@ public class TenantSampleDataTest extends TestBase{
         .statusCode(201);
 
       for (TestEntities entity : TestEntities.values()) {
-        logger.info("Test expected quantity for " + entity.name());
+        logger.info(TEST_EXPECTED_QUANTITY_FOR_ENTRY, entity.getInitialQuantity(), entity.name());
         verifyCollectionQuantity(entity.getEndpoint(), entity.getInitialQuantity(), PARTIAL_TENANT_HEADER);
       }
     } finally {
@@ -129,7 +131,7 @@ public class TenantSampleDataTest extends TestBase{
       .assertThat()
       .statusCode(201);
     for (TestEntities entity : TestEntities.values()) {
-      logger.info("Test expected quantity for " + entity.name());
+      logger.info(TEST_EXPECTED_QUANTITY_FOR_ENTRY, entity.getInitialQuantity(), entity.name());
       verifyCollectionQuantity(entity.getEndpoint(), entity.getInitialQuantity(), ANOTHER_TENANT_HEADER);
     }
   }
@@ -145,14 +147,26 @@ public class TenantSampleDataTest extends TestBase{
   }
 
 
-  private void upgradeNonExistentTenant() throws MalformedURLException {
+  private void upgradeTenantWithNonExistentDb() throws MalformedURLException {
 
     logger.info("upgrading Module for non existed tenant");
 
     JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(false, true);
-    postToTenant(NONEXISTENT_TENANT_HEADER, jsonBody)
-      .assertThat()
-      .statusCode(400);
+    try {
+      // RMB-331 the case if older version has no db schema
+      postToTenant(NONEXISTENT_TENANT_HEADER, jsonBody)
+        .assertThat()
+        .statusCode(201);
+
+      // Check that no sample data loaded
+      for (TestEntities entity : TestEntities.values()) {
+        logger.info(TEST_EXPECTED_QUANTITY_FOR_ENTRY, 0, entity.name());
+        verifyCollectionQuantity(entity.getEndpoint(), 0, NONEXISTENT_TENANT_HEADER);
+      }
+    }
+    finally {
+      deleteTenant(NONEXISTENT_TENANT_HEADER);
+    }
   }
 
 }

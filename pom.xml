@@ -101,6 +101,12 @@
       <artifactId>JUnitParams</artifactId>
       <version>1.0.4</version>
     </dependency>
+    <!-- The RMB runtime defines usage of log4j2 for vert.x logging interface. Including Log4j 2 SLF4J Binding to allow SLF4J API to use Log4j 2 as the implementation. -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>2.11.1</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -433,6 +439,9 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.22.1</version>
         <configuration>
+          <systemPropertyVariables>
+            <vertx.logger-delegate-factory-class-name>io.vertx.core.logging.Log4j2LogDelegateFactory</vertx.logger-delegate-factory-class-name>
+          </systemPropertyVariables>
           <!-- TODO: update to version 3.0.0 and remove useSystemClassLoader
                https://issues.folio.org/browse/FOLIO-1609
                https://issues.apache.org/jira/browse/SUREFIRE-1588

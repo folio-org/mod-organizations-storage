@@ -3,7 +3,6 @@ package org.folio.rest.utils;
 import io.restassured.http.ContentType;
 import io.restassured.http.Header;
 import io.restassured.response.ValidatableResponse;
-import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
 import java.net.MalformedURLException;
@@ -11,6 +10,9 @@ import java.net.MalformedURLException;
 import static io.restassured.RestAssured.given;
 import static org.folio.rest.impl.StorageTestSuite.URL_TO_HEADER;
 import static org.folio.rest.impl.StorageTestSuite.storageUrl;
+
+import org.folio.rest.jaxrs.model.Parameter;
+import org.folio.rest.jaxrs.model.TenantAttributes;
 
 public class TenantApiTestUtil {
 
@@ -22,14 +24,14 @@ public class TenantApiTestUtil {
   }
 
   public static JsonObject prepareTenantBody(boolean isLoadSampleData, boolean isUpgrade) {
-    JsonArray parameterArray = new JsonArray();
-    parameterArray.add(new JsonObject().put("key", "loadSample").put("value", isLoadSampleData));
-    JsonObject jsonBody = new JsonObject();
-    jsonBody.put("module_to", "mod-organizations-storage-1.0.0");
-    jsonBody.put("parameters", parameterArray);
-    if(isUpgrade)
-      jsonBody.put("module_from", "mod-organizations-storage-1.0.0");
-    return jsonBody;
+    Parameter param = new Parameter().withKey("loadSample").withValue(String.valueOf(isLoadSampleData));
+    TenantAttributes attributes = new TenantAttributes();
+    attributes.getParameters().add(param);
+    attributes.setModuleTo("mod-organizations-storage-1.0.0");
+    if(isUpgrade) {
+      attributes.setModuleFrom("mod-organizations-storage-1.0.1");
+    }
+    return JsonObject.mapFrom(attributes);
   }
 
   public static void prepareTenant(Header tenantHeader, boolean isLoadSampleData) throws MalformedURLException {
