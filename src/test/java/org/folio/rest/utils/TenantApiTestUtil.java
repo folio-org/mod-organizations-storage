@@ -25,8 +25,10 @@ public class TenantApiTestUtil {
 
   public static JsonObject prepareTenantBody(boolean isLoadSampleData, boolean isLoadReferenceData,  boolean isUpgrade) {
     Parameter param = new Parameter().withKey("loadSample").withValue(String.valueOf(isLoadSampleData));
+    Parameter referenceParam = new Parameter().withKey("loadReference").withValue(String.valueOf(isLoadReferenceData));
     TenantAttributes attributes = new TenantAttributes();
     attributes.getParameters().add(param);
+    attributes.getParameters().add(referenceParam);
     attributes.setModuleTo("mod-organizations-storage-1.0.0");
     if(isUpgrade) {
       attributes.setModuleFrom("mod-organizations-storage-1.0.1");
