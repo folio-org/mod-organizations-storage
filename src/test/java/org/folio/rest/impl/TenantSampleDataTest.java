@@ -52,8 +52,6 @@ public class TenantSampleDataTest extends TestBase{
       logger.info(
           "-- upgrade the tenant again with no sample/reference data, so the previously inserted data stays in tact --");
       upgradeTenantWithNoDataLoad();
-      logger.info("-- upgrade the tenant which had no DB schema before with no sample/reference data --");
-      upgradeTenantWithNonExistentDb();
     }
     finally {
       deleteTenant(ANOTHER_TENANT_HEADER);
@@ -71,23 +69,6 @@ public class TenantSampleDataTest extends TestBase{
         .then()
         .assertThat()
         .statusCode(500);
-  }
-
-  @Test
-  public void testLoadDataWithoutUpgrade() throws MalformedURLException {
-    logger.info("load sample data");
-    try{
-      JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(true, true);
-      postToTenant(ANOTHER_TENANT_HEADER_WITHOUT_UPGRADE, jsonBody)
-        .assertThat()
-        .statusCode(201);
-      for (TestEntities entity : TestEntities.values()) {
-        logger.info(TEST_EXPECTED_QUANTITY_FOR_ENTRY, entity.getInitialQuantity(), entity.name());
-        verifyCollectionQuantity(entity.getEndpoint(), entity.getInitialQuantity(), ANOTHER_TENANT_HEADER_WITHOUT_UPGRADE);
-      }
-    } finally {
-      deleteTenant(ANOTHER_TENANT_HEADER_WITHOUT_UPGRADE);
-    }
   }
 
   @Test
@@ -158,17 +139,15 @@ public class TenantSampleDataTest extends TestBase{
   private void upgradeTenantWithNoDataLoad() throws MalformedURLException {
 
     logger.info("upgrading Module without sample data");
-
     JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(false, false);
     postToTenant(ANOTHER_TENANT_HEADER, jsonBody)
       .assertThat()
       .statusCode(200);
   }
 
-
-  private void upgradeTenantWithNonExistentDb() throws MalformedURLException {
-
-    logger.info("upgrading Module for non existed tenant");
+  @Test
+  public void upgradeTenantWithNonExistentDb() throws MalformedURLException {
+    logger.info("-- upgrade the tenant which had no DB schema before with no sample/reference data --");
 
     JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(false, false);
     try {
