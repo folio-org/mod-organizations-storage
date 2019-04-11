@@ -2,12 +2,12 @@
   "id": "15fb695a-cdf1-11e8-a8d5-f2801f1b9fd1",
   "language": "English",
   "prefix": "",
-  "first_name": "Susan",
-  "last_name": "Bach",
+  "firstName": "Susan",
+  "lastName": "Bach",
   "notes": "",
-  "phone_numbers": [
+  "phoneNumbers": [
     {
-      "phone_number": "55-55-21-2539-3590",
+      "phoneNumber": "55-55-21-2539-3590",
       "categories": [],
       "language": "Portuguese",
       "isPrimary": true

@@ -5,7 +5,7 @@
   "description": "Maps and materials from the USGS",
   "status": "Active",
   "language": "en-us",
-  "san_code": "",
+  "sanCode": "",
   "aliases": [
     {
       "value": "USGS",
@@ -25,9 +25,9 @@
       "isPrimary": true
     }
   ],
-  "phone_numbers": [
+  "phoneNumbers": [
     {
-      "phone_number": "1-888-ASK-USGS",
+      "phoneNumber": "1-888-ASK-USGS",
       "categories": [],
       "language": "English",
       "isPrimary": true
@@ -59,29 +59,29 @@
     {
       "name": "",
       "discount": 0,
-      "reference_url": "",
+      "referenceUrl": "",
       "notes": ""
     }
   ],
-  "erp_code": "G64758-74833",
-  "payment_method": "credit card",
-  "access_provider": false,
+  "erpCode": "G64758-74833",
+  "paymentMethod": "Credit Card",
+  "accessProvider": false,
   "governmental": true,
   "licensor": false,
-  "material_supplier": true,
-  "vendor_currencies": [
+  "materialSupplier": true,
+  "vendorCurrencies": [
     "USD"
   ],
-  "claiming_interval": 45,
-  "discount_percent": 0,
-  "expected_activation_interval": 0,
-  "expected_invoice_interval": 0,
-  "renewal_activation_interval": 0,
-  "subscription_interval": 0,
-  "expected_receipt_interval": 30,
-  "liable_for_vat": false,
-  "tax_id": "",
-  "tax_percentage": 0,
+  "claimingInterval": 45,
+  "discountPercent": 0,
+  "expectedActivationInterval": 0,
+  "expectedInvoiceInterval": 0,
+  "renewalActivationInterval": 0,
+  "subscriptionInterval": 0,
+  "expectedReceiptInterval": 30,
+  "liableForVat": false,
+  "taxId": "",
+  "taxPercentage": 0,
   "interfaces": [
     {
       "name": "USGS Store",
@@ -90,24 +90,24 @@
       "password": "****",
       "notes": "",
       "available": false,
-      "delivery_method": "",
-      "statistics_format": "",
-      "locally_stored": false,
-      "online_location": "",
-      "statistics_notes": ""
+      "deliveryMethod": "Other",
+      "statisticsFormat": "",
+      "locallyStored": false,
+      "onlineLocation": "",
+      "statisticsNotes": ""
     }
   ],
   "accounts": [
     {
       "name": "Cartographic account",
-      "account_no": "1234",
+      "accountNo": "1234",
       "description": "Monographic ordering unit accountt",
-      "app_system_no": "",
-      "payment_method": "credit card",
-      "account_status": "Active",
-      "contact_info": "usgsstore@usgs.gov",
-      "library_code": "COB",
-      "library_edi_code": "765987610",
+      "appSystemNo": "",
+      "paymentMethod": "Credit Card",
+      "accountStatus": "Active",
+      "contactInfo": "usgsstore@usgs.gov",
+      "libraryCode": "COB",
+      "libraryEdiCode": "765987610",
       "notes": ""
     }
   ],

@@ -5,7 +5,7 @@
   "description": "Serials-Foreign",
   "status": "Active",
   "language": "en-us",
-  "san_code": "",
+  "sanCode": "",
   "aliases": [
     {
       "value": "Mangolia Press NZ",
@@ -25,9 +25,9 @@
       "isPrimary": true
     }
   ],
-  "phone_numbers": [
+  "phoneNumbers": [
     {
-      "phone_number": "64-95-783-996",
+      "phoneNumber": "64-95-783-996",
       "categories": [],
       "language": "English",
       "isPrimary": true
@@ -59,29 +59,29 @@
     {
       "name": "Zootaxa ",
       "discount": 10,
-      "reference_url": "F:\\Serials\\Licensing\\License and Renewal Agreements\\Content Providers\\Magnolia Press",
+      "referenceUrl": "F:\\Serials\\Licensing\\License and Renewal Agreements\\Content Providers\\Magnolia Press",
       "notes": "Acquisition of 2008-2010 Journal Archives"
     }
   ],
-  "erp_code": "G64758-74829",
-  "payment_method": "EFT",
-  "access_provider": true,
+  "erpCode": "G64758-74829",
+  "paymentMethod": "EFT",
+  "accessProvider": true,
   "governmental": false,
   "licensor": true,
-  "material_supplier": true,
-  "vendor_currencies": [
+  "materialSupplier": true,
+  "vendorCurrencies": [
     "NZD"
   ],
-  "claiming_interval": 0,
-  "discount_percent": 0,
-  "expected_activation_interval": 30,
-  "expected_invoice_interval": 30,
-  "renewal_activation_interval": 365,
-  "subscription_interval": 365,
-  "expected_receipt_interval": 30,
-  "liable_for_vat": false,
-  "tax_id": "1819468",
-  "tax_percentage": 5,
+  "claimingInterval": 0,
+  "discountPercent": 0,
+  "expectedActivationInterval": 30,
+  "expectedInvoiceInterval": 30,
+  "renewalActivationInterval": 365,
+  "subscriptionInterval": 365,
+  "expectedReceiptInterval": 30,
+  "liableForVat": false,
+  "taxId": "1819468",
+  "taxPercentage": 5,
   "interfaces": [
     {
       "name": "Mapress",
@@ -90,24 +90,24 @@
       "password": "",
       "notes": "",
       "available": false,
-      "delivery_method": "",
-      "statistics_format": "",
-      "locally_stored": "",
-      "online_location": "",
-      "statistics_notes": ""
+      "deliveryMethod": "Other",
+      "statisticsFormat": "",
+      "locallyStored": "",
+      "onlineLocation": "",
+      "statisticsNotes": ""
     }
   ],
   "accounts": [
     {
       "name": "Serials",
-      "account_no": "xxxx7859",
+      "accountNo": "xxxx7859",
       "description": "Libraries",
-      "app_system_no": "",
-      "payment_method": "EFT",
-      "account_status": "Active",
-      "contact_info": "magnolia@mapress.com",
-      "library_code": "COB",
-      "library_edi_code": "765987610",
+      "appSystemNo": "",
+      "paymentMethod": "EFT",
+      "accountStatus": "Active",
+      "contactInfo": "magnolia@mapress.com",
+      "libraryCode": "COB",
+      "libraryEdiCode": "765987610",
       "notes": ""
     }
   ],

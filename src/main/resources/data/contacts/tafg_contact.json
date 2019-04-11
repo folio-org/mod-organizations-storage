@@ -2,12 +2,12 @@
   "id": "12fb63b0-cdf1-11e8-a8d5-f2801f1b9fd1",
   "language": "English",
   "prefix": "Mr.",
-  "first_name": "John-Joe",
-  "last_name": "Taylor",
+  "firstName": "John-Joe",
+  "lastName": "Taylor",
   "notes": "",
-  "phone_numbers": [
+  "phoneNumbers": [
     {
-      "phone_number": "1-800-634-7064",
+      "phoneNumber": "1-800-634-7064",
       "categories": [],
       "language": "English",
       "isPrimary": true

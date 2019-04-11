@@ -101,7 +101,7 @@ public class UrlTest {
     getData("/organization-storage/urls").then()
       .log().all()
       .statusCode(200)
-      .body("total_records", equalTo(0));
+      .body("totalRecords", equalTo(0));
   }
 
   @Test
@@ -127,7 +127,7 @@ public class UrlTest {
       logger.info("--- mod-organizations-test: Verifying only 1 url was created ... ");
       getData("/organization-storage/urls").then().log().ifValidationFails()
         .statusCode(200)
-        .body("total_records", equalTo(1));
+        .body("totalRecords", equalTo(1));
 
       logger.info("--- mod-organizations-test: Fetching url with ID: "+ dataSampleId);
       getDataById("/organization-storage/urls", dataSampleId).then().log().ifValidationFails()

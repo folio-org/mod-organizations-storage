@@ -99,7 +99,7 @@ public class CategoryTest {
     getData("/organization-storage/categories").then()
       .log().all()
       .statusCode(200)
-      .body("total_records", equalTo(0));
+      .body("totalRecords", equalTo(0));
   }
 
   @Test
@@ -125,7 +125,7 @@ public class CategoryTest {
       logger.info("--- mod-organizations-test: Verifying only 1 category was created ... ");
       getData("/organization-storage/categories").then().log().ifValidationFails()
         .statusCode(200)
-        .body("total_records", equalTo(1));
+        .body("totalRecords", equalTo(1));
 
       logger.info("--- mod-organizations-test: Fetching category with ID: "+ dataSampleId);
       getDataById("/organization-storage/categories", dataSampleId).then().log().ifValidationFails()

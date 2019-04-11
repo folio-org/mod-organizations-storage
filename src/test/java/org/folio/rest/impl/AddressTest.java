@@ -101,7 +101,7 @@ public class AddressTest {
     getData("/organization-storage/addresses").then()
       .log().all()
       .statusCode(200)
-      .body("total_records", equalTo(0));
+      .body("totalRecords", equalTo(0));
   }
 
   @Test
@@ -127,7 +127,7 @@ public class AddressTest {
       logger.info("--- mod-organizations-test: Verifying only 1 address was created ... ");
       getData("/organization-storage/addresses").then().log().ifValidationFails()
         .statusCode(200)
-        .body("total_records", equalTo(1));
+        .body("totalRecords", equalTo(1));
 
       logger.info("--- mod-organizations-test: Fetching address with ID: "+ dataSampleId);
       getDataById("/organization-storage/addresses", dataSampleId).then().log().ifValidationFails()
