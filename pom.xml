@@ -16,9 +16,10 @@
     <aspectj.version>1.8.9</aspectj.version>
     <module_name>mod-organizations-storage</module_name>
     <http.port>8081</http.port>
+    <jsonschema_paths>acq-models/mod-orgs/schemas</jsonschema_paths>
     <ramlfiles_path>${basedir}/ramls</ramlfiles_path>
     <ramlfiles_util_path>${basedir}/raml-util</ramlfiles_util_path>
-    <raml-module-builder.version>23.11.0</raml-module-builder.version>
+    <raml-module-builder.version>23.12.0</raml-module-builder.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <postgres.driver.version>9.4.1212</postgres.driver.version>
   </properties>
@@ -100,6 +101,12 @@
       <artifactId>JUnitParams</artifactId>
       <version>1.0.4</version>
     </dependency>
+    <!-- The RMB runtime defines usage of log4j2 for vert.x logging interface. Including Log4j 2 SLF4J Binding to allow SLF4J API to use Log4j 2 as the implementation. -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>2.11.1</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -163,6 +170,10 @@
                 <systemProperty>
                   <key>raml_files</key>
                   <value>${ramlfiles_path}</value>
+                </systemProperty>
+                <systemProperty>
+                  <key>schema_paths</key>
+                  <value>${jsonschema_paths}</value>
                 </systemProperty>
               </systemProperties>
             </configuration>
@@ -428,6 +439,9 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.22.1</version>
         <configuration>
+          <systemPropertyVariables>
+            <vertx.logger-delegate-factory-class-name>io.vertx.core.logging.Log4j2LogDelegateFactory</vertx.logger-delegate-factory-class-name>
+          </systemPropertyVariables>
           <!-- TODO: update to version 3.0.0 and remove useSystemClassLoader
                https://issues.folio.org/browse/FOLIO-1609
                https://issues.apache.org/jira/browse/SUREFIRE-1588
