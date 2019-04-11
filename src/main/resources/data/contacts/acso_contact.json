@@ -2,12 +2,12 @@
   "id": "80fb5168-cdf1-11e8-a8d5-f2801f1b9fd1",
   "language": "English",
   "prefix": "Dr.",
-  "first_name": "John",
-  "last_name": "Denver",
+  "firstName": "John",
+  "lastName": "Denver",
   "notes": "Postal code = 80303",
-  "phone_numbers": [
+  "phoneNumbers": [
     {
-      "phone_number": "1-800-333-9511",
+      "phoneNumber": "1-800-333-9511",
       "categories": [],
       "language": "English",
       "isPrimary": true

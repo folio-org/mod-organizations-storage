@@ -16,7 +16,7 @@ public enum TestEntities {
   EMAIL("/organization-storage/emails", Email.class, "email.sample", "value", "test@folio.org", 0),
   INTERFACE("/organization-storage/interfaces", Interface.class, "interface.sample", "name", "Test Portal", 0),
   ORGANIZATION("/organization-storage/organizations", Organization.class, "organization.sample",  "code", "ABC123", 13),
-  PHONE_NUMBER("/organization-storage/phone-numbers", PhoneNumber.class, "phoneNumber.sample", "phone_number", "9999999999", 0),
+  PHONE_NUMBER("/organization-storage/phone-numbers", PhoneNumber.class, "phoneNumber.sample", "phoneNumber", "9999999999", 0),
   URL("/organization-storage/urls", Url.class, "url.sample", "value", "http://test.org", 0);
 
 

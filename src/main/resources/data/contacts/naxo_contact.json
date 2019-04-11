@@ -2,12 +2,12 @@
   "id": "70fb4e66-cdf1-11e8-a8d5-f2801f1b9fd1",
   "language": "English",
   "prefix": "Prof.",
-  "first_name": "Marie",
-  "last_name": "Curie",
+  "firstName": "Marie",
+  "lastName": "Curie",
   "notes": "",
-  "phone_numbers": [
+  "phoneNumbers": [
     {
-      "phone_number": "1-615-771-9393",
+      "phoneNumber": "1-615-771-9393",
       "categories": [],
       "language": "English",
       "isPrimary": true

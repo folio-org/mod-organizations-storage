@@ -2,12 +2,12 @@
   "id": "60fb4bfa-cdf1-11e8-a8d5-f2801f1b9fd1",
   "language": "English",
   "prefix": "Sister",
-  "first_name": "Jean",
-  "last_name": "Simmons",
+  "firstName": "Jean",
+  "lastName": "Simmons",
   "notes": "",
-  "phone_numbers": [
+  "phoneNumbers": [
     {
-      "phone_number": "1-773-274-3000",
+      "phoneNumber": "1-773-274-3000",
       "categories": [],
       "language": "English",
       "isPrimary": true
