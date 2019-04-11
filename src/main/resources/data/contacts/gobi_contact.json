@@ -8,7 +8,9 @@
   "phoneNumbers": [
     {
       "phoneNumber": "1-800-258-3774",
-      "categories": ["Customer Service"],
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
       "language": "en-us",
       "isPrimary": true
     }
@@ -17,7 +19,9 @@
     {
       "value": "gobiserviceissue@ebsco.com",
       "description": "for general questions",
-      "categories": ["Customer Service"],
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
       "language": "en-us",
       "isPrimary": true
     }
@@ -30,7 +34,10 @@
       "stateRegion": "NH",
       "zipCode": "03229",
       "country": "USA",
-      "categories": ["Customer","Service","Shipments"],
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195",
+        "cbfaec07-5df1-4197-bfa5-1bc91f9073cf"
+      ],
       "language": "en",
       "isPrimary": true
     }
@@ -40,10 +47,15 @@
       "value": "https://gobi.ebsco.com/",
       "description": "main website",
       "language": "en-us",
-      "categories": [],
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
       "notes": "",
       "isPrimary": true
     }
   ],
-  "categories": []
+  "categories": [
+    "f52ceea4-8e35-404b-9ebd-5c7db6613195",
+    "cbfaec07-5df1-4197-bfa5-1bc91f9073cf"
+  ]
 }

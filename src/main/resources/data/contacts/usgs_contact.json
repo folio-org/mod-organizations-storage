@@ -8,7 +8,9 @@
   "phoneNumbers": [
     {
       "phoneNumber": "1-888-ASK-USGS",
-      "categories": [],
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
       "language": "English",
       "isPrimary": true
     }
@@ -17,7 +19,9 @@
     {
       "value": "usgsstore@usgs.gov",
       "description": "main customer service email",
-      "categories": [],
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
       "language": "English",
       "isPrimary": true
     }
@@ -30,7 +34,9 @@
       "stateRegion": "VA",
       "zipCode": "20192",
       "country": "USA",
-      "categories": [],
+      "categories": [
+        "cbfaec07-5df1-4197-bfa5-1bc91f9073cf"
+      ],
       "language": "English",
       "isPrimary": true
     }
@@ -40,10 +46,15 @@
       "value": "https://www.usgs.gov/",
       "description": "main website",
       "language": "en-us",
-      "categories": [],
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
       "notes": "",
       "isPrimary": true
     }
   ],
-  "categories": []
+  "categories": [
+    "f52ceea4-8e35-404b-9ebd-5c7db6613195",
+    "cbfaec07-5df1-4197-bfa5-1bc91f9073cf"
+  ]
 }

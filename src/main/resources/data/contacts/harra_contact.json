@@ -8,7 +8,12 @@
   "phoneNumbers": [
     {
       "phoneNumber": "49-611-530 ext. 0",
-      "categories": ["Customer Service","Payments","Returns","Shipments"],
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195",
+        "ab760714-4185-4859-b0dd-3e72f01c5c52",
+        "28f1af24-e88f-45c9-8b65-8091afe4e799",
+        "cbfaec07-5df1-4197-bfa5-1bc91f9073cf"
+      ],
       "language": "German",
       "isPrimary": true
     }
@@ -17,7 +22,9 @@
     {
       "value": "service@harrassowitz.de",
       "description": "customer service",
-      "categories": [],
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
       "language": "German and English",
       "isPrimary": true
     }
@@ -30,7 +37,12 @@
       "stateRegion": "",
       "zipCode": "65205",
       "country": "Germany",
-      "categories": ["Customer Service","Payments","Returns","Shipments"],
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195",
+        "ab760714-4185-4859-b0dd-3e72f01c5c52",
+        "28f1af24-e88f-45c9-8b65-8091afe4e799",
+        "cbfaec07-5df1-4197-bfa5-1bc91f9073cf"
+      ],
       "language": "German",
       "isPrimary": true
     }
@@ -40,10 +52,17 @@
       "value": "https://www.harrassowitz.de/",
       "description": "main website",
       "language": "en-us",
-      "categories": [],
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
       "notes": "",
       "isPrimary": true
     }
   ],
-  "categories": []
+  "categories": [
+    "f52ceea4-8e35-404b-9ebd-5c7db6613195",
+    "ab760714-4185-4859-b0dd-3e72f01c5c52",
+    "28f1af24-e88f-45c9-8b65-8091afe4e799",
+    "cbfaec07-5df1-4197-bfa5-1bc91f9073cf"
+  ]
 }
