@@ -2,12 +2,12 @@
   "id": "c0fb5956-cdf1-11e8-a8d5-f2801f1b9fd1",
   "language": "German and English",
   "prefix": "Frau",
-  "first_name": "Gabriele",
-  "last_name": "Kerner",
+  "firstName": "Gabriele",
+  "lastName": "Kerner",
   "notes": "",
-  "phone_numbers": [
+  "phoneNumbers": [
     {
-      "phone_number": "49-611-530 ext. 0",
+      "phoneNumber": "49-611-530 ext. 0",
       "categories": ["Customer Service","Payments","Returns","Shipments"],
       "language": "German",
       "isPrimary": true

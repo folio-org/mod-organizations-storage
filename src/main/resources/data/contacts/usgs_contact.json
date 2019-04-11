@@ -2,12 +2,12 @@
   "id": "13fb64dc-cdf1-11e8-a8d5-f2801f1b9fd1",
   "language": "English",
   "prefix": "Mr.",
-  "first_name": "Ryan",
-  "last_name": "Zinke",
+  "firstName": "Ryan",
+  "lastName": "Zinke",
   "notes": "",
-  "phone_numbers": [
+  "phoneNumbers": [
     {
-      "phone_number": "1-888-ASK-USGS",
+      "phoneNumber": "1-888-ASK-USGS",
       "categories": [],
       "language": "English",
       "isPrimary": true

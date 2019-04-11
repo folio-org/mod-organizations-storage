@@ -5,7 +5,7 @@
   "description": "Distributor of documentary films",
   "status": "Inactive",
   "language": "English",
-  "san_code": "",
+  "sanCode": "",
   "aliases": [
     {
       "value": "Ro*Co Films Educational",
@@ -25,9 +25,9 @@
       "isPrimary": true
     }
   ],
-  "phone_numbers": [
+  "phoneNumbers": [
     {
-      "phone_number": "1-415-332-6471",
+      "phoneNumber": "1-415-332-6471",
       "categories": [],
       "language": "English",
       "isPrimary": true
@@ -59,29 +59,29 @@
     {
       "name": "50% discount if buying DVD (PPR included) + streaming license",
       "discount": 50,
-      "reference_url": "",
+      "referenceUrl": "",
       "notes": ""
     }
   ],
-  "erp_code": "G64758-74825",
-  "payment_method": "EFT",
-  "access_provider": false,
+  "erpCode": "G64758-74825",
+  "paymentMethod": "EFT",
+  "accessProvider": false,
   "governmental": false,
   "licensor": true,
-  "material_supplier": true,
-  "vendor_currencies": [
+  "materialSupplier": true,
+  "vendorCurrencies": [
     "USD"
   ],
-  "claiming_interval": 30,
-  "discount_percent": 0,
-  "expected_activation_interval": 0,
-  "expected_invoice_interval": 30,
-  "renewal_activation_interval": 0,
-  "subscription_interval": 0,
-  "expected_receipt_interval": 30,
-  "liable_for_vat": false,
-  "tax_id": "",
-  "tax_percentage": 0,
+  "claimingInterval": 30,
+  "discountPercent": 0,
+  "expectedActivationInterval": 0,
+  "expectedInvoiceInterval": 30,
+  "renewalActivationInterval": 0,
+  "subscriptionInterval": 0,
+  "expectedReceiptInterval": 30,
+  "liableForVat": false,
+  "taxId": "",
+  "taxPercentage": 0,
   "interfaces": [
     {
       "name": "",
@@ -90,24 +90,24 @@
       "password": "",
       "notes": "",
       "available": false,
-      "delivery_method": "",
-      "statistics_format": "",
-      "locally_stored": "",
-      "online_location": "",
-      "statistics_notes": ""
+      "deliveryMethod": "Other",
+      "statisticsFormat": "",
+      "locallyStored": "",
+      "onlineLocation": "",
+      "statisticsNotes": ""
     }
   ],
   "accounts": [
     {
       "name": "library orders",
-      "account_no": "library orders 5000",
+      "accountNo": "library orders 5000",
       "description": "DVD/PPR/Streaming movies",
-      "app_system_no": "",
-      "payment_method": "EFT/Procard",
-      "account_status": "Active",
-      "contact_info": "dana@rocofilms.com",
-      "library_code": "pfirm",
-      "library_edi_code": "765987610",
+      "appSystemNo": "",
+      "paymentMethod": "EFT",
+      "accountStatus": "Active",
+      "contactInfo": "dana@rocofilms.com",
+      "libraryCode": "pfirm",
+      "libraryEdiCode": "765987610",
       "notes": ""
     }
   ],

@@ -101,7 +101,7 @@ public class ContactTest {
     getData("/organization-storage/contacts").then()
       .log().all()
       .statusCode(200)
-      .body("total_records", equalTo(0));
+      .body("totalRecords", equalTo(0));
   }
 
   @Test
@@ -127,7 +127,7 @@ public class ContactTest {
       logger.info("--- mod-organizations-test: Verifying only 1 contact was created ... ");
       getData("/organization-storage/contacts").then().log().ifValidationFails()
         .statusCode(200)
-        .body("total_records", equalTo(1));
+        .body("totalRecords", equalTo(1));
 
       logger.info("--- mod-organizations-test: Fetching contact with ID: "+ dataSampleId);
       getDataById("/organization-storage/contacts", dataSampleId).then().log().ifValidationFails()

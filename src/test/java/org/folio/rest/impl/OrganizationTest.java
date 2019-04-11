@@ -101,7 +101,7 @@ public class OrganizationTest {
     getData("/organization-storage/organizations").then()
       .log().all()
       .statusCode(200)
-      .body("total_records", equalTo(0));
+      .body("totalRecords", equalTo(0));
   }
 
   @Test
@@ -127,7 +127,7 @@ public class OrganizationTest {
       logger.info("--- mod-organizations-test: Verifying only 1 organization was created ... ");
       getData("/organization-storage/organizations").then().log().ifValidationFails()
         .statusCode(200)
-        .body("total_records", equalTo(1));
+        .body("totalRecords", equalTo(1));
 
       logger.info("--- mod-organizations-test: Fetching organization with ID: "+ dataSampleId);
       getDataById("/organization-storage/organizations", dataSampleId).then().log().ifValidationFails()

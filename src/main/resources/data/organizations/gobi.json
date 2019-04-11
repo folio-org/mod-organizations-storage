@@ -5,7 +5,7 @@
   "description": "Use for print and eBooks, approval plans, firm orders, standing orders, DDA",
   "status": "Active",
   "language": "en-us",
-  "san_code": "1234567",
+  "sanCode": "1234567",
   "aliases": [
     {
       "value": "YBP Library Services",
@@ -25,9 +25,9 @@
       "isPrimary": true
     }
   ],
-  "phone_numbers": [
+  "phoneNumbers": [
     {
-      "phone_number": "1-800-258-3774",
+      "phoneNumber": "1-800-258-3774",
       "categories": ["Customer Service"],
       "language": "en-us",
       "isPrimary": true
@@ -59,68 +59,68 @@
     {
       "name": "No formal agreement",
       "discount": 10,
-      "reference_url": "",
+      "referenceUrl": "",
       "notes": "Review SLAs & fulfillment stats 2 months before end of FY"
     }
   ],
-  "erp_code": "G64758-74836",
-  "payment_method": "EFT",
-  "access_provider": false,
+  "erpCode": "G64758-74836",
+  "paymentMethod": "EFT",
+  "accessProvider": false,
   "governmental": false,
   "licensor": false,
-  "material_supplier": true,
-  "vendor_currencies": [
+  "materialSupplier": true,
+  "vendorCurrencies": [
     "USD"
   ],
-  "claiming_interval": 45,
-  "discount_percent": 10,
-  "expected_activation_interval": 3,
-  "expected_invoice_interval": 30,
-  "renewal_activation_interval": 0,
-  "subscription_interval": 0,
-  "expected_receipt_interval": 30,
-  "liable_for_vat": false,
-  "tax_id": "888888888",
-  "tax_percentage": 0,
+  "claimingInterval": 45,
+  "discountPercent": 10,
+  "expectedActivationInterval": 3,
+  "expectedInvoiceInterval": 30,
+  "renewalActivationInterval": 0,
+  "subscriptionInterval": 0,
+  "expectedReceiptInterval": 30,
+  "liableForVat": false,
+  "taxId": "888888888",
+  "taxPercentage": 0,
   "edi": {
-    "vendor_edi_code": "1694510",
-    "vendor_edi_type": "31B/US-SAN",
-    "lib_edi_code": "7659876",
-    "lib_edi_type": "31B/US-SAN",
-    "prorate_tax": true,
-    "prorate_fees": false,
-    "edi_naming_convention": "*.edi",
-    "send_acct_num": true,
-    "support_order": true,
-    "support_invoice": true,
+    "vendorEdiCode": "1694510",
+    "vendorEdiType": "31B/US-SAN",
+    "libEdiCode": "7659876",
+    "libEdiType": "31B/US-SAN",
+    "prorateTax": true,
+    "prorateFees": false,
+    "ediNamingConvention": "*.edi",
+    "sendAcctNum": true,
+    "supportOrder": true,
+    "supportInvoice": true,
     "notes": "no EDI invoices for our tech services invoices",
-    "edi_ftp": {
-      "ftp_format": "SFTP",
-      "server_address": "ftps://ftp.ybp.com",
+    "ediFtp": {
+      "ftpFormat": "SFTP",
+      "serverAddress": "ftps://ftp.ybp.com",
       "username": "sample",
       "password": "password",
-      "ftp_mode": "Binary",
-      "ftp_conn_mode": "Passive",
-      "ftp_port": 22,
-      "order_directory": "/dropoff",
-      "invoice_directory": "/invoices",
+      "ftpMode": "Binary",
+      "ftpConnMode": "Passive",
+      "ftpPort": 22,
+      "orderDirectory": "/dropoff",
+      "invoiceDirectory": "/invoices",
       "notes": "separate directories for EOCRs and cat records"
     },
-    "edi_job": {
-      "schedule_edi": true,
-      "scheduling_date": null,
+    "ediJob": {
+      "scheduleEdi": true,
+      "schedulingDate": null,
       "time": null,
-      "is_monday": false,
-      "is_tuesday": false,
-      "is_wednesday": false,
-      "is_thursday": false,
-      "is_friday": false,
-      "is_saturday": false,
-      "is_sunday": false,
-      "send_to_emails": "bobbarker@priceisright.com",
-      "notify_all_edi": true,
-      "notify_invoice_only": false,
-      "notify_error_only": false
+      "isMonday": false,
+      "isTuesday": false,
+      "isWednesday": false,
+      "isThursday": false,
+      "isFriday": false,
+      "isSaturday": false,
+      "isSunday": false,
+      "sendToEmails": "bobbarker@priceisright.com",
+      "notifyAllEdi": true,
+      "notifyInvoiceOnly": false,
+      "notifyErrorOnly": false
     }
   },
   "interfaces": [
@@ -131,24 +131,24 @@
       "password": "",
       "notes": "all staff have different logons with different permissions",
       "available": false,
-      "delivery_method": "",
-      "statistics_format": "",
-      "locally_stored": false,
-      "online_location": "",
-      "statistics_notes": "get stats on demand from GOBI, or contact customers service"
+      "deliveryMethod": "Other",
+      "statisticsFormat": "",
+      "locallyStored": false,
+      "onlineLocation": "",
+      "statisticsNotes": "get stats on demand from GOBI, or contact customers service"
     }
   ],
   "accounts": [
     {
       "name": "US print orders",
-      "account_no": "99999-10",
+      "accountNo": "99999-10",
       "description": "Main library orders for print books, shipped from US office",
-      "app_system_no": "",
-      "payment_method": "EFT",
-      "account_status": "Active",
-      "contact_info": "jlegier@ebsco.com",
-      "library_code": "COB",
-      "library_edi_code": "765987610",
+      "appSystemNo": "",
+      "paymentMethod": "EFT",
+      "accountStatus": "Active",
+      "contactInfo": "jlegier@ebsco.com",
+      "libraryCode": "COB",
+      "libraryEdiCode": "765987610",
       "notes": "separate accounts for eBooks and UK orders"
     }
   ],

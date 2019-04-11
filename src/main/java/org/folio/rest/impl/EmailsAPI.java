@@ -55,14 +55,6 @@ public class EmailsAPI implements OrganizationStorageEmails {
                 collection.setEmails(results);
                 Integer totalRecords = reply.result().getResultInfo().getTotalRecords();
                 collection.setTotalRecords(totalRecords);
-                Integer first = 0;
-                Integer last = 0;
-                if (!results.isEmpty()) {
-                  first = offset + 1;
-                  last = offset + results.size();
-                }
-                collection.setFirst(first);
-                collection.setLast(last);
                 asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(OrganizationStorageEmails.GetOrganizationStorageEmailsResponse
                   .respond200WithApplicationJson(collection)));
               }

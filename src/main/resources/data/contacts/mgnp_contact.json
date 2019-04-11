@@ -2,12 +2,12 @@
   "id": "f0fb6130-cdf1-11e8-a8d5-f2801f1b9fd1",
   "language": "English",
   "prefix": "Mrs.",
-  "first_name": "Siouxsie",
-  "last_name": "Sioux ",
+  "firstName": "Siouxsie",
+  "lastName": "Sioux ",
   "notes": "",
-  "phone_numbers": [
+  "phoneNumbers": [
     {
-      "phone_number": "64-95-783-996",
+      "phoneNumber": "64-95-783-996",
       "categories": [],
       "language": "English",
       "isPrimary": true
