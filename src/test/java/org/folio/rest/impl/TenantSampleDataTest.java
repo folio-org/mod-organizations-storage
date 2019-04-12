@@ -122,7 +122,6 @@ public class TenantSampleDataTest extends TestBase{
     }
   }
 
-
   private void upgradeTenantWithSampleDataLoad() throws MalformedURLException {
 
     logger.info("upgrading Module with sample");
