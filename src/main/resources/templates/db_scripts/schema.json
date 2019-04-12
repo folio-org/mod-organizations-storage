@@ -1,21 +1,21 @@
 {
   "tables": [
     {
-      "tableName": "address",
+      "tableName": "addresses",
       "generateId": true,
       "fromModuleVersion": 1.0,
       "withMetadata": true,
       "populateJsonWithId": true
     },
     {
-      "tableName": "category",
+      "tableName": "categories",
       "generateId": true,
       "fromModuleVersion": 1.0,
       "withMetadata": true,
       "populateJsonWithId": true,
       "ginIndex": [
         {
-          "fieldName": "value",
+          "fieldName": "values",
           "tOps": "ADD",
           "caseSensitive": false,
           "removeAccents": true
@@ -23,42 +23,42 @@
       ]
     },
     {
-      "tableName": "contact",
+      "tableName": "contacts",
       "generateId": true,
       "fromModuleVersion": 1.0,
       "withMetadata": true,
       "populateJsonWithId": true
     },
     {
-      "tableName": "email",
+      "tableName": "emails",
       "generateId": true,
       "fromModuleVersion": 1.0,
       "withMetadata": true,
       "populateJsonWithId": true
     },
     {
-      "tableName": "interface",
+      "tableName": "interfaces",
       "generateId": true,
       "fromModuleVersion": 1.0,
       "withMetadata": true,
       "populateJsonWithId": true
     },
     {
-      "tableName": "phone_number",
+      "tableName": "phone_numbers",
       "generateId": true,
       "fromModuleVersion": 1.0,
       "withMetadata": true,
       "populateJsonWithId": true
     },
     {
-      "tableName": "url",
+      "tableName": "urls",
       "generateId": true,
       "fromModuleVersion": 1.0,
       "withMetadata": true,
       "populateJsonWithId": true
     },
     {
-      "tableName": "organization",
+      "tableName": "organizations",
       "generateId": true,
       "fromModuleVersion": 1.0,
       "withMetadata": true,

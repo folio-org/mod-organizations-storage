@@ -189,7 +189,7 @@
       ]
     },
     {
-      "id": "organizations-storage.url",
+      "id": "organizations-storage.urls",
       "version": "1.0",
       "handlers": [
         {
