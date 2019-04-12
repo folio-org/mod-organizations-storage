@@ -19,7 +19,7 @@ import java.util.Map;
 import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
 
 public class PhoneNumbersAPI implements OrganizationStoragePhoneNumbers {
-  private static final String PHONE_NUMBER_TABLE = "phone_number";
+  private static final String PHONE_NUMBER_TABLE = "phone_numbers";
 
   private String idFieldName = "id";
 

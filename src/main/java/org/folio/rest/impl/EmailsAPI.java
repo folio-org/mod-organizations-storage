@@ -19,7 +19,7 @@ import java.util.Map;
 import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
 
 public class EmailsAPI implements OrganizationStorageEmails {
-  private static final String EMAIL_TABLE = "email";
+  private static final String EMAIL_TABLE = "emails";
 
   private String idFieldName = "id";
 

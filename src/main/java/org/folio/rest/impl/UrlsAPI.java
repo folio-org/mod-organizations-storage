@@ -19,7 +19,7 @@ import java.util.Map;
 import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
 
 public class UrlsAPI implements OrganizationStorageUrls {
-  private static final String URL_TABLE = "url";
+  private static final String URL_TABLE = "urls";
 
   private String idFieldName = "id";
 

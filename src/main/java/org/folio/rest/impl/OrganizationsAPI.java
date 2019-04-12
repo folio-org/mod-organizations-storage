@@ -19,7 +19,7 @@ import java.util.Map;
 import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
 
 public class OrganizationsAPI implements OrganizationStorageOrganizations {
-  private static final String ORGANIZATION_TABLE = "organization";
+  private static final String ORGANIZATION_TABLE = "organizations";
 
   private String idFieldName = "id";
 

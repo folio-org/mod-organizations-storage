@@ -33,7 +33,7 @@ public enum TestEntities {
   private String endpoint;
   private String sampleFileName;
   private String updatedFieldName;
-  private String updatedFieldValue;
+  private Object updatedFieldValue;
   private Class<?> clazz;
 
   public String getEndpoint() {
@@ -52,7 +52,7 @@ public enum TestEntities {
     return updatedFieldName;
   }
 
-  public String getUpdatedFieldValue() {
+  public Object getUpdatedFieldValue() {
     return updatedFieldValue;
   }
 

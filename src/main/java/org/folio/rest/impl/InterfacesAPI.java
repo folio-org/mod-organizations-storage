@@ -19,7 +19,7 @@ import java.util.Map;
 import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
 
 public class InterfacesAPI implements OrganizationStorageInterfaces {
-  private static final String INTERFACE_TABLE = "interface";
+  private static final String INTERFACE_TABLE = "interfaces";
 
   private String idFieldName = "id";
 

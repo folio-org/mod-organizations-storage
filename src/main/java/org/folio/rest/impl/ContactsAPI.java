@@ -19,7 +19,7 @@ import java.util.Map;
 import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
 
 public class ContactsAPI implements OrganizationStorageContacts {
-  private static final String CONTACT_TABLE = "contact";
+  private static final String CONTACT_TABLE = "contacts";
 
   private String idFieldName = "id";
 

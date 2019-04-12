@@ -19,7 +19,7 @@ import java.util.Map;
 import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
 
 public class CategoriesAPI implements OrganizationStorageCategories {
-  private static final String CATEGORY_TABLE = "category";
+  private static final String CATEGORY_TABLE = "categories";
 
   private String idFieldName = "id";
 
