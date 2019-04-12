@@ -35,9 +35,9 @@ public class TenantReferenceAPI extends TenantAPI {
         TenantLoading tl = new TenantLoading();
         tl.withKey(PARAMETER_LOAD_SAMPLE)
           .withLead("data")
-          .add("organizations", "organization-storage/organizations")
-          .add("categories", "organization-storage/categories")
-          .add("contacts","organization-storage/contacts")
+          .add("organizations", "organizations-storage/organizations")
+          .add("categories", "organizations-storage/categories")
+          .add("contacts","organizations-storage/contacts")
           .perform(tenantAttributes, headers, vertx, res1 -> {
             if (res1.failed()) {
               hndlr.handle(io.vertx.core.Future.succeededFuture(PostTenantResponse
