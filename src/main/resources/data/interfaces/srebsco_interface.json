@@ -1,0 +1,12 @@
+{
+  "id": "ddfd8661-896d-4ffc-be57-d0f466cb790b",
+  "name": "EBSCONET",
+  "uri": "https://www.ebsconet.com/",
+  "username": "username",
+  "password": "password",
+  "notes": "all staff have different logins and permissions associated with them",
+  "available": true,
+  "deliveryMethod": "Email",
+  "statisticsFormat": "Excel",
+  "locallyStored": false
+}

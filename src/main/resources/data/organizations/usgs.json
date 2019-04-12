@@ -83,19 +83,7 @@
   "taxId": "",
   "taxPercentage": 0,
   "interfaces": [
-    {
-      "name": "USGS Store",
-      "uri": "https://store.usgs.gov/",
-      "username": "****",
-      "password": "****",
-      "notes": "",
-      "available": false,
-      "deliveryMethod": "Other",
-      "statisticsFormat": "",
-      "locallyStored": false,
-      "onlineLocation": "",
-      "statisticsNotes": ""
-    }
+    "766e42dc-386b-4710-897d-2ad226fa3679"
   ],
   "accounts": [
     {

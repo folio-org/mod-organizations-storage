@@ -83,19 +83,7 @@
   "taxId": "",
   "taxPercentage": 0,
   "interfaces": [
-    {
-      "name": "Academic Video Online",
-      "uri": "https://search.alexanderstreet.com/avon",
-      "username": "****",
-      "password": "****",
-      "notes": "",
-      "available": false,
-      "deliveryMethod": "Other",
-      "statisticsFormat": "",
-      "locallyStored": "",
-      "onlineLocation": "",
-      "statisticsNotes": ""
-    }
+    "14e81009-0f98-45a0-b8e6-e25547beb22f"
   ],
   "accounts": [
     {

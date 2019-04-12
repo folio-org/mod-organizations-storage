@@ -83,19 +83,7 @@
   "taxId": "1819468",
   "taxPercentage": 5,
   "interfaces": [
-    {
-      "name": "Mapress",
-      "uri": "http://www.mapress.com/j/",
-      "username": "",
-      "password": "",
-      "notes": "",
-      "available": false,
-      "deliveryMethod": "Other",
-      "statisticsFormat": "",
-      "locallyStored": "",
-      "onlineLocation": "",
-      "statisticsNotes": ""
-    }
+    "6c862414-a87c-4c19-b4dc-c9c2b68f296c"
   ],
   "accounts": [
     {
