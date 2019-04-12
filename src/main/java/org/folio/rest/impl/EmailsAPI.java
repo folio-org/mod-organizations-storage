@@ -7,7 +7,7 @@ import io.vertx.core.Vertx;
 import org.folio.rest.annotations.Validate;
 import org.folio.rest.jaxrs.model.Email;
 import org.folio.rest.jaxrs.model.EmailCollection;
-import org.folio.rest.jaxrs.resource.OrganizationStorageEmails;
+import org.folio.rest.jaxrs.resource.OrganizationsStorageEmails;
 import org.folio.rest.persist.EntitiesMetadataHolder;
 import org.folio.rest.persist.PgUtil;
 import org.folio.rest.persist.PostgresClient;
@@ -18,7 +18,7 @@ import java.util.Map;
 
 import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
 
-public class EmailsAPI implements OrganizationStorageEmails {
+public class EmailsAPI implements OrganizationsStorageEmails {
   private static final String EMAIL_TABLE = "emails";
 
   private String idFieldName = "id";
@@ -30,9 +30,9 @@ public class EmailsAPI implements OrganizationStorageEmails {
 
   @Override
   @Validate
-  public void getOrganizationStorageEmails(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+  public void getOrganizationsStorageEmails(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
-      EntitiesMetadataHolder<Email, EmailCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Email.class, EmailCollection.class, GetOrganizationStorageEmailsResponse.class);
+      EntitiesMetadataHolder<Email, EmailCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Email.class, EmailCollection.class, GetOrganizationsStorageEmailsResponse.class);
       QueryHolder cql = new QueryHolder(EMAIL_TABLE, query, offset, limit);
       getEntitiesCollection(entitiesMetadataHolder, cql, asyncResultHandler, vertxContext, okapiHeaders);
     });
@@ -40,29 +40,29 @@ public class EmailsAPI implements OrganizationStorageEmails {
 
   @Override
   @Validate
-  public void postOrganizationStorageEmails(String lang, org.folio.rest.jaxrs.model.Email entity,
+  public void postOrganizationsStorageEmails(String lang, org.folio.rest.jaxrs.model.Email entity,
                                         Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.post(EMAIL_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationStorageEmailsResponse.class, asyncResultHandler);
+    PgUtil.post(EMAIL_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationsStorageEmailsResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void getOrganizationStorageEmailsById(String id, String lang, Map<String, String> okapiHeaders,
+  public void getOrganizationsStorageEmailsById(String id, String lang, Map<String, String> okapiHeaders,
                                            Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.getById(EMAIL_TABLE, Email.class, id, okapiHeaders,vertxContext, GetOrganizationStorageEmailsByIdResponse.class, asyncResultHandler);
+    PgUtil.getById(EMAIL_TABLE, Email.class, id, okapiHeaders,vertxContext, GetOrganizationsStorageEmailsByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void deleteOrganizationStorageEmailsById(String id, String lang, Map<String, String> okapiHeaders,
+  public void deleteOrganizationsStorageEmailsById(String id, String lang, Map<String, String> okapiHeaders,
                                               Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.deleteById(EMAIL_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationStorageEmailsByIdResponse.class, asyncResultHandler);
+    PgUtil.deleteById(EMAIL_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationsStorageEmailsByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void putOrganizationStorageEmailsById(String id, String lang, org.folio.rest.jaxrs.model.Email entity,
+  public void putOrganizationsStorageEmailsById(String id, String lang, org.folio.rest.jaxrs.model.Email entity,
                                            Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.put(EMAIL_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationStorageEmailsByIdResponse.class, asyncResultHandler);
+    PgUtil.put(EMAIL_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationsStorageEmailsByIdResponse.class, asyncResultHandler);
   }
 }

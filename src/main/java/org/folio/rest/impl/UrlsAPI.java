@@ -7,7 +7,7 @@ import io.vertx.core.Vertx;
 import org.folio.rest.annotations.Validate;
 import org.folio.rest.jaxrs.model.Url;
 import org.folio.rest.jaxrs.model.UrlCollection;
-import org.folio.rest.jaxrs.resource.OrganizationStorageUrls;
+import org.folio.rest.jaxrs.resource.OrganizationsStorageUrls;
 import org.folio.rest.persist.EntitiesMetadataHolder;
 import org.folio.rest.persist.PgUtil;
 import org.folio.rest.persist.PostgresClient;
@@ -18,7 +18,7 @@ import java.util.Map;
 
 import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
 
-public class UrlsAPI implements OrganizationStorageUrls {
+public class UrlsAPI implements OrganizationsStorageUrls {
   private static final String URL_TABLE = "urls";
 
   private String idFieldName = "id";
@@ -30,9 +30,9 @@ public class UrlsAPI implements OrganizationStorageUrls {
 
   @Override
   @Validate
-  public void getOrganizationStorageUrls(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+  public void getOrganizationsStorageUrls(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
-      EntitiesMetadataHolder<Url, UrlCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Url.class, UrlCollection.class, GetOrganizationStorageUrlsResponse.class);
+      EntitiesMetadataHolder<Url, UrlCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Url.class, UrlCollection.class, GetOrganizationsStorageUrlsResponse.class);
       QueryHolder cql = new QueryHolder(URL_TABLE, query, offset, limit);
       getEntitiesCollection(entitiesMetadataHolder, cql, asyncResultHandler, vertxContext, okapiHeaders);
     });
@@ -40,29 +40,29 @@ public class UrlsAPI implements OrganizationStorageUrls {
 
   @Override
   @Validate
-  public void postOrganizationStorageUrls(String lang, org.folio.rest.jaxrs.model.Url entity,
+  public void postOrganizationsStorageUrls(String lang, org.folio.rest.jaxrs.model.Url entity,
                                         Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.post(URL_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationStorageUrlsResponse.class, asyncResultHandler);
+    PgUtil.post(URL_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationsStorageUrlsResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void getOrganizationStorageUrlsById(String id, String lang, Map<String, String> okapiHeaders,
+  public void getOrganizationsStorageUrlsById(String id, String lang, Map<String, String> okapiHeaders,
                                            Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.getById(URL_TABLE, Url.class, id, okapiHeaders,vertxContext, GetOrganizationStorageUrlsByIdResponse.class, asyncResultHandler);
+    PgUtil.getById(URL_TABLE, Url.class, id, okapiHeaders,vertxContext, GetOrganizationsStorageUrlsByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void deleteOrganizationStorageUrlsById(String id, String lang, Map<String, String> okapiHeaders,
+  public void deleteOrganizationsStorageUrlsById(String id, String lang, Map<String, String> okapiHeaders,
                                               Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.deleteById(URL_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationStorageUrlsByIdResponse.class, asyncResultHandler);
+    PgUtil.deleteById(URL_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationsStorageUrlsByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void putOrganizationStorageUrlsById(String id, String lang, org.folio.rest.jaxrs.model.Url entity,
+  public void putOrganizationsStorageUrlsById(String id, String lang, org.folio.rest.jaxrs.model.Url entity,
                                            Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.put(URL_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationStorageUrlsByIdResponse.class, asyncResultHandler);
+    PgUtil.put(URL_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationsStorageUrlsByIdResponse.class, asyncResultHandler);
   }
 }
