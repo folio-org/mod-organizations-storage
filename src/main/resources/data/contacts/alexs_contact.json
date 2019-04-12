@@ -8,7 +8,9 @@
   "phoneNumbers": [
     {
       "phoneNumber": "1-800-889-5937",
-      "categories": [],
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
       "language": "English",
       "isPrimary": true
     }
@@ -17,7 +19,9 @@
     {
       "value": "customerservice@alexanderstreet.com",
       "description": "main customer service email",
-      "categories": [],
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
       "language": "English",
       "isPrimary": true
     }
@@ -30,7 +34,9 @@
       "stateRegion": "VA",
       "zipCode": "22314",
       "country": "USA",
-      "categories": [],
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
       "language": "English",
       "isPrimary": true
     }
@@ -40,10 +46,14 @@
       "value": "https://alexanderstreet.com/",
       "description": "main website",
       "language": "en-us",
-      "categories": [],
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
       "notes": "",
       "isPrimary": true
     }
   ],
-  "categories": []
+  "categories": [
+    "28f1af24-e88f-45c9-8b65-8091afe4e799"
+  ]
 }
