@@ -29,6 +29,7 @@ public class PhoneNumbersAPI implements OrganizationStoragePhoneNumbers {
 
 
   @Override
+  @Validate
   public void getOrganizationStoragePhoneNumbers(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       EntitiesMetadataHolder<PhoneNumber, PhoneNumberCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(PhoneNumber.class, PhoneNumberCollection.class, GetOrganizationStoragePhoneNumbersResponse.class);

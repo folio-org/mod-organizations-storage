@@ -29,6 +29,7 @@ public class ContactsAPI implements OrganizationStorageContacts {
 
 
   @Override
+  @Validate
   public void getOrganizationStorageContacts(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       EntitiesMetadataHolder<Contact, ContactCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Contact.class, ContactCollection.class, GetOrganizationStorageContactsResponse.class);

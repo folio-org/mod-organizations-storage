@@ -28,6 +28,7 @@ public class OrganizationsAPI implements OrganizationStorageOrganizations {
   }
 
   @Override
+  @Validate
   public void getOrganizationStorageOrganizations(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       EntitiesMetadataHolder<Organization, OrganizationCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Organization.class, OrganizationCollection.class, GetOrganizationStorageOrganizationsResponse.class);

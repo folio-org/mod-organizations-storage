@@ -12,6 +12,7 @@ documentation:
 types:
     email: !include acq-models/mod-orgs/schemas/email.json
     email_collection: !include acq-models/mod-orgs/schemas/email_collection.json
+    errors: !include raml-util/schemas/errors.schema
     UUID:
       type: string
       pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
@@ -21,6 +22,7 @@ traits:
     pageable:  !include raml-util/traits/pageable.raml
     searchable: !include raml-util/traits/searchable.raml
     language: !include raml-util/traits/language.raml
+    validate: !include raml-util/traits/validation.raml
 
 resourceTypes:
     collection: !include raml-util/rtypes/collection.raml
@@ -34,6 +36,7 @@ resourceTypes:
       exampleItem: !include acq-models/mod-orgs/examples/email_post.sample
       schemaCollection: email_collection
       schemaItem: email
+  is: [validate]
   get:
     description: Get list of emails
     is: [
@@ -49,3 +52,4 @@ resourceTypes:
       collection-item:
         exampleItem: !include acq-models/mod-orgs/examples/email_get.sample
         schema: email
+    is: [validate]

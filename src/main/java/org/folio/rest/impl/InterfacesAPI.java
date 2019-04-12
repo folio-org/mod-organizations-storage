@@ -29,6 +29,7 @@ public class InterfacesAPI implements OrganizationStorageInterfaces {
 
 
   @Override
+  @Validate
   public void getOrganizationStorageInterfaces(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       EntitiesMetadataHolder<Interface, InterfaceCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Interface.class, InterfaceCollection.class, GetOrganizationStorageInterfacesResponse.class);

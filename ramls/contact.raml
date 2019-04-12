@@ -10,6 +10,7 @@ documentation:
 types:
     contact: !include acq-models/mod-orgs/schemas/contact.json
     contact_collection: !include acq-models/mod-orgs/schemas/contact_collection.json
+    errors: !include raml-util/schemas/errors.schema
     UUID:
       type: string
       pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
@@ -19,6 +20,7 @@ traits:
     pageable:  !include raml-util/traits/pageable.raml
     searchable: !include raml-util/traits/searchable.raml
     language: !include raml-util/traits/language.raml
+    validate: !include raml-util/traits/validation.raml
 
 resourceTypes:
     collection: !include raml-util/rtypes/collection.raml
@@ -32,6 +34,7 @@ resourceTypes:
       exampleItem: !include acq-models/mod-orgs/examples/contact_post.sample
       schemaCollection: contact_collection
       schemaItem: contact
+  is: [validate]
   get:
     description: Get list of contact persons
     is: [
@@ -47,3 +50,4 @@ resourceTypes:
       collection-item:
         exampleItem: !include acq-models/mod-orgs/examples/contact_get.sample
         schema: contact
+    is: [validate]
