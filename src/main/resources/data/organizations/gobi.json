@@ -124,19 +124,7 @@
     }
   },
   "interfaces": [
-    {
-      "name": "GOBI",
-      "uri": "www.gobi3.com",
-      "username": "",
-      "password": "",
-      "notes": "all staff have different logons with different permissions",
-      "available": false,
-      "deliveryMethod": "Other",
-      "statisticsFormat": "",
-      "locallyStored": false,
-      "onlineLocation": "",
-      "statisticsNotes": "get stats on demand from GOBI, or contact customers service"
-    }
+    "793b9d42-ae12-41d7-a36a-f33e5b9e82c5"
   ],
   "accounts": [
     {
