@@ -29,6 +29,7 @@ public class AddressesAPI implements OrganizationsStorageAddresses {
 
 
   @Override
+  @Validate
   public void getOrganizationsStorageAddresses(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       EntitiesMetadataHolder<Address, AddressCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Address.class, AddressCollection.class, GetOrganizationsStorageAddressesResponse.class, "setAddresses");

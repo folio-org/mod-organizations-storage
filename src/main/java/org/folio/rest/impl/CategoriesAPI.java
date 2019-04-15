@@ -29,6 +29,7 @@ public class CategoriesAPI implements OrganizationsStorageCategories {
 
 
   @Override
+  @Validate
   public void getOrganizationsStorageCategories(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       EntitiesMetadataHolder<Category, CategoryCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Category.class, CategoryCollection.class, GetOrganizationsStorageCategoriesResponse.class, "setCategories");

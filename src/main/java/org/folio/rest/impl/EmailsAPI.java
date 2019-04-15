@@ -29,6 +29,7 @@ public class EmailsAPI implements OrganizationsStorageEmails {
 
 
   @Override
+  @Validate
   public void getOrganizationsStorageEmails(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       EntitiesMetadataHolder<Email, EmailCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Email.class, EmailCollection.class, GetOrganizationsStorageEmailsResponse.class);
