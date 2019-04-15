@@ -83,19 +83,7 @@
   "taxId": "",
   "taxPercentage": 0,
   "interfaces": [
-    {
-      "name": "Taylor & Francis Online",
-      "uri": "https://www.tandfonline.com",
-      "username": "",
-      "password": "",
-      "notes": "",
-      "available": true,
-      "deliveryMethod": "Online",
-      "statisticsFormat": "COUNTER",
-      "locallyStored": "https://www.lib.sample.edu/staff/collectiondevelopment/",
-      "onlineLocation": "https://accounts.taylorfrancis.com/identity/#/login",
-      "statisticsNotes": ""
-    }
+    "92289a36-5d83-4794-9f45-97eda8938064"
   ],
   "accounts": [
     {

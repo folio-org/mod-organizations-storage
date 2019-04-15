@@ -1,0 +1,13 @@
+{
+  "id": "00b1c903-38f2-45c7-a427-30a141cf643a",
+  "name": "OttoEditions",
+  "uri": "https://www.harrassowitz.de/OttoEditions/servlet/OttoEdition?sc=sc_email&BTSubmit=searche&CBSpeedOrder=true&CBTitleId=0&TFTitleId=115003369&ID=009164240",
+  "username": "****",
+  "password": "****",
+  "notes": "all staff have different logons with different permissions",
+  "available": true,
+  "deliveryMethod": "Email",
+  "statisticsFormat": "HTML",
+  "locallyStored": false,
+  "onlineLocation": "https://www.harrassowitz.de/"
+}

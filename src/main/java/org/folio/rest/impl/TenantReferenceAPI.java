@@ -38,6 +38,7 @@ public class TenantReferenceAPI extends TenantAPI {
           .add("organizations", "organizations-storage/organizations")
           .add("categories", "organizations-storage/categories")
           .add("contacts","organizations-storage/contacts")
+          .add("interfaces", "organizations-storage/interfaces")
           .perform(tenantAttributes, headers, vertx, res1 -> {
             if (res1.failed()) {
               hndlr.handle(io.vertx.core.Future.succeededFuture(PostTenantResponse
