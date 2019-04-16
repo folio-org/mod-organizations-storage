@@ -60,7 +60,8 @@ public class TenantReferenceAPI extends TenantAPI {
       tl.withKey(PARAMETER_LOAD_SAMPLE)
         .withLead("data")
         .add("organizations", "organization-storage/organizations")
-        .add("contacts", "organization-storage/contacts");
+        .add("contacts", "organization-storage/contacts")
+        .add("interfaces", "organizations-storage/interfaces");
       loadData = true;
     }
     if (isLoadReference(tenantAttributes)) {

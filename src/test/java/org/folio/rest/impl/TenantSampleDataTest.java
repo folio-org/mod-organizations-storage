@@ -52,6 +52,8 @@ public class TenantSampleDataTest extends TestBase{
       logger.info(
           "-- upgrade the tenant again with no sample/reference data, so the previously inserted data stays in tact --");
       upgradeTenantWithNoDataLoad();
+      logger.info("-- upgrade the tenant which had no DB schema before with no sample/reference data --");
+      upgradeTenantWithNonExistentDb();
     }
     finally {
       deleteTenant(ANOTHER_TENANT_HEADER);
@@ -147,7 +149,7 @@ public class TenantSampleDataTest extends TestBase{
 
   @Test
   public void upgradeTenantWithNonExistentDb() throws MalformedURLException {
-    logger.info("-- upgrade the tenant which had no DB schema before with no sample/reference data --");
+    logger.info("upgrading Module for non existed tenant");
 
     JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(false, false);
     try {
