@@ -1,0 +1,12 @@
+{
+  "id": "fae74b9c-5338-4cd6-8a17-47c750d40b7b",
+  "name": "Naxos Digital Services, U.S.",
+  "uri": "https://www.naxosmusiclibrary.com",
+  "notes": "See also http://sample.naxosvideolibrary.com/ for Naxos Video Library",
+  "available": true,
+  "deliveryMethod": "Online",
+  "statisticsFormat": "Non-COUNTER",
+  "locallyStored": "https://www.lib.sample.edu/staff/collectiondevelopment/",
+  "onlineLocation": "http://www.naxosmusiclibrary.com/",
+  "statisticsNotes": "Login on interface used to access content."
+}

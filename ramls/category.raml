@@ -10,6 +10,7 @@ documentation:
 types:
     category: !include acq-models/mod-orgs/schemas/category.json
     category_collection: !include acq-models/mod-orgs/schemas/category_collection.json
+    errors: !include raml-util/schemas/errors.schema
     UUID:
       type: string
       pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
@@ -19,19 +20,21 @@ traits:
     pageable:  !include raml-util/traits/pageable.raml
     searchable: !include raml-util/traits/searchable.raml
     language: !include raml-util/traits/language.raml
+    validate: !include raml-util/traits/validation.raml
 
 resourceTypes:
     collection: !include raml-util/rtypes/collection.raml
     collection-item: !include raml-util/rtypes/item-collection.raml
 
 
-/organization-storage/categories:
+/organizations-storage/categories:
   type:
     collection:
       exampleCollection: !include acq-models/mod-orgs/examples/category_collection.sample
       exampleItem: !include acq-models/mod-orgs/examples/category_post.sample
       schemaCollection: category_collection
       schemaItem: category
+  is: [validate]
   get:
     description: Get list of categories
     is: [
@@ -47,3 +50,4 @@ resourceTypes:
       collection-item:
         exampleItem: !include acq-models/mod-orgs/examples/category_get.sample
         schema: category
+    is: [validate]

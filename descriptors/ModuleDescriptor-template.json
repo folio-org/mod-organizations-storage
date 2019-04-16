@@ -8,27 +8,27 @@
       "handlers": [
         {
           "methods": ["GET"],
-          "pathPattern": "/organization-storage/addresses",
+          "pathPattern": "/organizations-storage/addresses",
           "permissionsRequired": ["organizations-storage.addresses.collection.get"]
         },
         {
           "methods": ["POST"],
-          "pathPattern": "/organization-storage/addresses",
+          "pathPattern": "/organizations-storage/addresses",
           "permissionsRequired": ["organizations-storage.addresses.item.post"]
         },
         {
           "methods": ["GET"],
-          "pathPattern": "/organization-storage/addresses/{id}",
+          "pathPattern": "/organizations-storage/addresses/{id}",
           "permissionsRequired": ["organizations-storage.addresses.item.get"]
         },
         {
           "methods": ["PUT"],
-          "pathPattern": "/organization-storage/addresses/{id}",
+          "pathPattern": "/organizations-storage/addresses/{id}",
           "permissionsRequired": ["organizations-storage.addresses.item.put"]
         },
         {
           "methods": ["DELETE"],
-          "pathPattern": "/organization-storage/addresses/{id}",
+          "pathPattern": "/organizations-storage/addresses/{id}",
           "permissionsRequired": ["organizations-storage.addresses.item.delete"]
         }
       ]
@@ -39,27 +39,27 @@
       "handlers": [
         {
           "methods": ["GET"],
-          "pathPattern": "/organization-storage/categories",
+          "pathPattern": "/organizations-storage/categories",
           "permissionsRequired": ["organizations-storage.categories.collection.get"]
         },
         {
           "methods": ["POST"],
-          "pathPattern": "/organization-storage/categories",
+          "pathPattern": "/organizations-storage/categories",
           "permissionsRequired": ["organizations-storage.categories.item.post"]
         },
         {
           "methods": ["GET"],
-          "pathPattern": "/organization-storage/categories/{id}",
+          "pathPattern": "/organizations-storage/categories/{id}",
           "permissionsRequired": ["organizations-storage.categories.item.get"]
         },
         {
           "methods": ["PUT"],
-          "pathPattern": "/organization-storage/categories/{id}",
+          "pathPattern": "/organizations-storage/categories/{id}",
           "permissionsRequired": ["organizations-storage.categories.item.put"]
         },
         {
           "methods": ["DELETE"],
-          "pathPattern": "/organization-storage/categories/{id}",
+          "pathPattern": "/organizations-storage/categories/{id}",
           "permissionsRequired": ["organizations-storage.categories.item.delete"]
         }
       ]
@@ -70,27 +70,27 @@
       "handlers": [
         {
           "methods": ["GET"],
-          "pathPattern": "/organization-storage/contacts",
+          "pathPattern": "/organizations-storage/contacts",
           "permissionsRequired": ["organizations-storage.contacts.collection.get"]
         },
         {
           "methods": ["POST"],
-          "pathPattern": "/organization-storage/contacts",
+          "pathPattern": "/organizations-storage/contacts",
           "permissionsRequired": ["organizations-storage.contacts.item.post"]
         },
         {
           "methods": ["GET"],
-          "pathPattern": "/organization-storage/contacts/{id}",
+          "pathPattern": "/organizations-storage/contacts/{id}",
           "permissionsRequired": ["organizations-storage.contacts.item.get"]
         },
         {
           "methods": ["PUT"],
-          "pathPattern": "/organization-storage/contacts/{id}",
+          "pathPattern": "/organizations-storage/contacts/{id}",
           "permissionsRequired": ["organizations-storage.contacts.item.put"]
         },
         {
           "methods": ["DELETE"],
-          "pathPattern": "/organization-storage/contacts/{id}",
+          "pathPattern": "/organizations-storage/contacts/{id}",
           "permissionsRequired": ["organizations-storage.contacts.item.delete"]
         }
       ]
@@ -101,27 +101,27 @@
       "handlers": [
         {
           "methods": ["GET"],
-          "pathPattern": "/organization-storage/emails",
+          "pathPattern": "/organizations-storage/emails",
           "permissionsRequired": ["organizations-storage.emails.collection.get"]
         },
         {
           "methods": ["POST"],
-          "pathPattern": "/organization-storage/emails",
+          "pathPattern": "/organizations-storage/emails",
           "permissionsRequired": ["organizations-storage.emails.item.post"]
         },
         {
           "methods": ["GET"],
-          "pathPattern": "/organization-storage/emails/{id}",
+          "pathPattern": "/organizations-storage/emails/{id}",
           "permissionsRequired": ["organizations-storage.emails.item.get"]
         },
         {
           "methods": ["PUT"],
-          "pathPattern": "/organization-storage/emails/{id}",
+          "pathPattern": "/organizations-storage/emails/{id}",
           "permissionsRequired": ["organizations-storage.emails.item.put"]
         },
         {
           "methods": ["DELETE"],
-          "pathPattern": "/organization-storage/emails/{id}",
+          "pathPattern": "/organizations-storage/emails/{id}",
           "permissionsRequired": ["organizations-storage.emails.item.delete"]
         }
       ]
@@ -132,27 +132,27 @@
       "handlers": [
         {
           "methods": ["GET"],
-          "pathPattern": "/organization-storage/interfaces",
+          "pathPattern": "/organizations-storage/interfaces",
           "permissionsRequired": ["organizations-storage.interfaces.collection.get"]
         },
         {
           "methods": ["POST"],
-          "pathPattern": "/organization-storage/interfaces",
+          "pathPattern": "/organizations-storage/interfaces",
           "permissionsRequired": ["organizations-storage.interfaces.item.post"]
         },
         {
           "methods": ["GET"],
-          "pathPattern": "/organization-storage/interfaces/{id}",
+          "pathPattern": "/organizations-storage/interfaces/{id}",
           "permissionsRequired": ["organizations-storage.interfaces.item.get"]
         },
         {
           "methods": ["PUT"],
-          "pathPattern": "/organization-storage/interfaces/{id}",
+          "pathPattern": "/organizations-storage/interfaces/{id}",
           "permissionsRequired": ["organizations-storage.interfaces.item.put"]
         },
         {
           "methods": ["DELETE"],
-          "pathPattern": "/organization-storage/interfaces/{id}",
+          "pathPattern": "/organizations-storage/interfaces/{id}",
           "permissionsRequired": ["organizations-storage.interfaces.item.delete"]
         }
       ]
@@ -163,58 +163,58 @@
       "handlers": [
         {
           "methods": ["GET"],
-          "pathPattern": "/organization-storage/phone-numbers",
+          "pathPattern": "/organizations-storage/phone-numbers",
           "permissionsRequired": ["organizations-storage.phone-numbers.collection.get"]
         },
         {
           "methods": ["POST"],
-          "pathPattern": "/organization-storage/phone-numbers",
+          "pathPattern": "/organizations-storage/phone-numbers",
           "permissionsRequired": ["organizations-storage.phone-numbers.item.post"]
         },
         {
           "methods": ["GET"],
-          "pathPattern": "/organization-storage/phone-numbers/{id}",
+          "pathPattern": "/organizations-storage/phone-numbers/{id}",
           "permissionsRequired": ["organizations-storage.phone-numbers.item.get"]
         },
         {
           "methods": ["PUT"],
-          "pathPattern": "/organization-storage/phone-numbers/{id}",
+          "pathPattern": "/organizations-storage/phone-numbers/{id}",
           "permissionsRequired": ["organizations-storage.phone-numbers.item.put"]
         },
         {
           "methods": ["DELETE"],
-          "pathPattern": "/organization-storage/phone-numbers/{id}",
+          "pathPattern": "/organizations-storage/phone-numbers/{id}",
           "permissionsRequired": ["organizations-storage.phone-numbers.item.delete"]
         }
       ]
     },
     {
-      "id": "organizations-storage.url",
+      "id": "organizations-storage.urls",
       "version": "1.0",
       "handlers": [
         {
           "methods": ["GET"],
-          "pathPattern": "/organization-storage/urls",
+          "pathPattern": "/organizations-storage/urls",
           "permissionsRequired": ["organizations-storage.urls.collection.get"]
         },
         {
           "methods": ["POST"],
-          "pathPattern": "/organization-storage/urls",
+          "pathPattern": "/organizations-storage/urls",
           "permissionsRequired": ["organizations-storage.urls.item.post"]
         },
         {
           "methods": ["GET"],
-          "pathPattern": "/organization-storage/urls/{id}",
+          "pathPattern": "/organizations-storage/urls/{id}",
           "permissionsRequired": ["organizations-storage.urls.item.get"]
         },
         {
           "methods": ["PUT"],
-          "pathPattern": "/organization-storage/urls/{id}",
+          "pathPattern": "/organizations-storage/urls/{id}",
           "permissionsRequired": ["organizations-storage.urls.item.put"]
         },
         {
           "methods": ["DELETE"],
-          "pathPattern": "/organization-storage/urls/{id}",
+          "pathPattern": "/organizations-storage/urls/{id}",
           "permissionsRequired": ["organizations-storage.urls.item.delete"]
         }
       ]
@@ -225,27 +225,27 @@
       "handlers": [
         {
           "methods": ["GET"],
-          "pathPattern": "/organization-storage/organizations",
+          "pathPattern": "/organizations-storage/organizations",
           "permissionsRequired": ["organizations-storage.organizations.collection.get"]
         },
         {
           "methods": ["POST"],
-          "pathPattern": "/organization-storage/organizations",
+          "pathPattern": "/organizations-storage/organizations",
           "permissionsRequired": ["organizations-storage.organizations.item.post"]
         },
         {
           "methods": ["GET"],
-          "pathPattern": "/organization-storage/organizations/{organizations_id}",
+          "pathPattern": "/organizations-storage/organizations/{organizations_id}",
           "permissionsRequired": ["organizations-storage.organizations.item.get"]
         },
         {
           "methods": ["PUT"],
-          "pathPattern": "/organization-storage/organizations/{organizations_id}",
+          "pathPattern": "/organizations-storage/organizations/{organizations_id}",
           "permissionsRequired": ["organizations-storage.organizations.item.put"]
         },
         {
           "methods": ["DELETE"],
-          "pathPattern": "/organization-storage/organizations/{organizations_id}",
+          "pathPattern": "/organizations-storage/organizations/{organizations_id}",
           "permissionsRequired": ["organizations-storage.organizations.item.delete"]
         }
       ]

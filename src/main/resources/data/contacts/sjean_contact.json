@@ -8,7 +8,9 @@
   "phoneNumbers": [
     {
       "phoneNumber": "1-773-274-3000",
-      "categories": [],
+      "categories": [
+        "ab760714-4185-4859-b0dd-3e72f01c5c52"
+      ],
       "language": "English",
       "isPrimary": true
     }
@@ -17,7 +19,9 @@
     {
       "value": "sister@luc.edu",
       "description": "personal email ",
-      "categories": [],
+      "categories": [
+        "ab760714-4185-4859-b0dd-3e72f01c5c52"
+      ],
       "language": "English",
       "isPrimary": true
     }
@@ -30,20 +34,26 @@
       "stateRegion": "IL",
       "zipCode": "60660",
       "country": "USA",
-      "categories": [],
+      "categories": [
+        "ab760714-4185-4859-b0dd-3e72f01c5c52"
+      ],
       "language": "English",
       "isPrimary": true
     }
   ],
   "urls": [
     {
-      "value": "",
-      "description": "",
-      "language": "",
-      "categories": [],
+      "value": "http://luc.edu/",
+      "description": "Loyola's University Chicago main website",
+      "language": "en-us",
+      "categories": [
+        "ab760714-4185-4859-b0dd-3e72f01c5c52"
+      ],
       "notes": "",
       "isPrimary": true
     }
   ],
-  "categories": []
+  "categories": [
+    "ab760714-4185-4859-b0dd-3e72f01c5c52"
+  ]
 }

@@ -1,6 +1,6 @@
 #%RAML 1.0
 title: "Organizations"
-baseUri: https://github.com/org/folio/mod-organizations-storage
+baseUri: https://github.com/folio-org/mod-organizations-storage
 version: v1.0
 
 documentation:
@@ -10,6 +10,7 @@ documentation:
 types:
     organization: !include acq-models/mod-orgs/schemas/organization.json
     organization_collection: !include acq-models/mod-orgs/schemas/organization_collection.json
+    errors: !include raml-util/schemas/errors.schema
     UUID:
       type: string
       pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
@@ -19,18 +20,20 @@ traits:
     pageable:  !include raml-util/traits/pageable.raml
     searchable: !include raml-util/traits/searchable.raml
     language: !include raml-util/traits/language.raml
+    validate: !include raml-util/traits/validation.raml
 
 resourceTypes:
     collection: !include raml-util/rtypes/collection.raml
     collection-item: !include raml-util/rtypes/item-collection.raml
 
-/organization-storage/organizations:
+/organizations-storage/organizations:
   type:
     collection:
       exampleCollection: !include acq-models/mod-orgs/examples/organization_collection.sample
       exampleItem: !include acq-models/mod-orgs/examples/organization_post.sample
       schemaCollection: organization_collection
       schemaItem: organization
+  is: [validate]
   get:
     description: Get list of organizations
     is: [
@@ -46,6 +49,7 @@ resourceTypes:
       collection-item:
         exampleItem: !include acq-models/mod-orgs/examples/organization_get.sample
         schema: organization
+    is: [validate]
     put:
       description: Update organization with 'organization_id'
       body:

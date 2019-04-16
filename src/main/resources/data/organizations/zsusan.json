@@ -82,21 +82,6 @@
   "liableForVat": false,
   "taxId": "",
   "taxPercentage": 0,
-  "interfaces": [
-    {
-      "name": "",
-      "uri": "",
-      "username": "",
-      "password": "",
-      "notes": "",
-      "available": false,
-      "deliveryMethod": "Other",
-      "statisticsFormat": "",
-      "locallyStored": "",
-      "onlineLocation": "",
-      "statisticsNotes": ""
-    }
-  ],
   "accounts": [
     {
       "name": "Monograph",

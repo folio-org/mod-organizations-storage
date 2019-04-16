@@ -83,19 +83,7 @@
   "taxId": "",
   "taxPercentage": 0,
   "interfaces": [
-    {
-      "name": "Amazon",
-      "uri": "www.amazon.com",
-      "username": "****",
-      "password": "****",
-      "notes": "",
-      "available": false,
-      "deliveryMethod": "Other",
-      "statisticsFormat": "",
-      "locallyStored": false,
-      "onlineLocation": "",
-      "statisticsNotes": ""
-    }
+    "cd592659-77aa-4eb3-ac34-c9a4657bb20f"
   ],
   "accounts": [
     {

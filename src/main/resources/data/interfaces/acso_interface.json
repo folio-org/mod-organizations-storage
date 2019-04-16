@@ -1,0 +1,10 @@
+{
+  "id": "60b952a6-5570-44f3-9972-f00c9dcb098e",
+  "name": "American Chemical Society Web Editions",
+  "uri": "https://pubs.acs.org/",
+  "available": true,
+  "deliveryMethod": "Online",
+  "statisticsFormat": "COUNTER",
+  "locallyStored": "https://www.lib.sample.edu/staff/collectiondevelopment/",
+  "onlineLocation": "http://www.acs.org/content/acs/en.html"
+}
