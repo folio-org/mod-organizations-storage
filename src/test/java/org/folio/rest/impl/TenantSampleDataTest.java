@@ -52,8 +52,6 @@ public class TenantSampleDataTest extends TestBase{
       logger.info(
           "-- upgrade the tenant again with no sample/reference data, so the previously inserted data stays in tact --");
       upgradeTenantWithNoDataLoad();
-      logger.info("-- upgrade the tenant which had no DB schema before with no sample/reference data --");
-      upgradeTenantWithNonExistentDb();
     }
     finally {
       deleteTenant(ANOTHER_TENANT_HEADER);
@@ -115,10 +113,13 @@ public class TenantSampleDataTest extends TestBase{
       postToTenant(ANOTHER_TENANT_HEADER_WITHOUT_UPGRADE, jsonBody)
         .assertThat()
         .statusCode(201);
-      verifyCollectionQuantity("/organization-storage/categories", 4, ANOTHER_TENANT_HEADER_WITHOUT_UPGRADE);
+      verifyCollectionQuantity("/organizations-storage/categories", 4, ANOTHER_TENANT_HEADER_WITHOUT_UPGRADE);
       for (TestEntities entity : TestEntities.values()) {
-        logger.info("Test sample data not loaded for " + entity.name());
-        verifyCollectionQuantity(entity.getEndpoint(), 0, ANOTHER_TENANT_HEADER_WITHOUT_UPGRADE);
+        //category is the only reference data, which must be loaded
+        if (!entity.equals(TestEntities.CATEGORY)) {
+          logger.info("Test sample data not loaded for " + entity.name());
+          verifyCollectionQuantity(entity.getEndpoint(), 0, ANOTHER_TENANT_HEADER_WITHOUT_UPGRADE);
+        }
       }
     } finally {
       deleteTenant(ANOTHER_TENANT_HEADER_WITHOUT_UPGRADE);

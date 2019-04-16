@@ -59,15 +59,15 @@ public class TenantReferenceAPI extends TenantAPI {
     if (isLoadSample(tenantAttributes)) {
       tl.withKey(PARAMETER_LOAD_SAMPLE)
         .withLead("data")
-        .add("organizations", "organization-storage/organizations")
-        .add("contacts", "organization-storage/contacts")
+        .add("organizations", "organizations-storage/organizations")
+        .add("contacts", "organizations-storage/contacts")
         .add("interfaces", "organizations-storage/interfaces");
       loadData = true;
     }
     if (isLoadReference(tenantAttributes)) {
       tl.withKey(PARAMETER_LOAD_REFERENCE)
         .withLead("data")
-        .add("categories", "organization-storage/categories");
+        .add("categories", "organizations-storage/categories");
       loadData = true;
     }
     return loadData;
