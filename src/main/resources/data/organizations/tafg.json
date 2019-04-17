@@ -3,6 +3,7 @@
   "name": "Taylor & Francis Group, LLC ",
   "code": "TAFG",
   "description": "Serials - Domestic",
+  "isVendor": true,
   "status": "Active",
   "language": "en-us",
   "sanCode": "",

@@ -3,6 +3,7 @@
   "name": "GOBI Library Solutions",
   "code": "GOBI",
   "description": "Use for print and eBooks, approval plans, firm orders, standing orders, DDA",
+  "isVendor": true,
   "status": "Active",
   "language": "en-us",
   "sanCode": "1234567",

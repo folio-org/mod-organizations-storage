@@ -3,6 +3,7 @@
   "name": "Jean Simmons",
   "code": "SJEAN",
   "description": "Individual donor to library archives",
+  "isVendor": true,
   "status": "Active",
   "language": "en-us",
   "sanCode": "",
