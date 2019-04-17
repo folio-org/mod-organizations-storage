@@ -3,6 +3,7 @@
   "name": "Magnolia Press",
   "code": "MGNP",
   "description": "Serials-Foreign",
+  "isVendor": true,
   "status": "Active",
   "language": "en-us",
   "sanCode": "",

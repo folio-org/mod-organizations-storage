@@ -3,6 +3,7 @@
   "name": "Susan Bach Books (Brazil)",
   "code": "ZSUSANBA$*",
   "description": "Print monographs in Spanish, books from Brazil",
+  "isVendor": true,
   "status": "Active",
   "language": "Portuguese/Spanish",
   "sanCode": "",

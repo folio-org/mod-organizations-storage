@@ -3,6 +3,7 @@
   "name": "EBSCO SUBSCRIPTION SERVICES",
   "code": "SREBSCO",
   "description": "Use for single title subscriptions.",
+  "isVendor": true,
   "status": "Active",
   "language": "en-us",
   "sanCode": "1234567",

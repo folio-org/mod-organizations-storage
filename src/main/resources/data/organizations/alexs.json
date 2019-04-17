@@ -3,6 +3,7 @@
   "name": "Alexander Street Press",
   "code": "ALEXS",
   "description": "AV streaming services",
+  "isVendor": true,
   "status": "Active",
   "language": "en-us",
   "sanCode": "1234567",

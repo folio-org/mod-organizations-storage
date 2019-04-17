@@ -3,6 +3,7 @@
   "name": "Otto Harrassowitz GmbH & Co. KG",
   "code": "HARRA",
   "description": "Use for monographs, approval plans, firms orders, and standing orders",
+  "isVendor": true,
   "status": "Active",
   "language": "en-us",
   "sanCode": "1234567",

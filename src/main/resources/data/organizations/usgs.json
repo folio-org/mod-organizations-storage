@@ -3,6 +3,7 @@
   "name": "United States Geological Survey",
   "code": "USGS",
   "description": "Maps and materials from the USGS",
+  "isVendor": true,
   "status": "Active",
   "language": "en-us",
   "sanCode": "",
