@@ -1,0 +1,19 @@
+{
+  "id": "80fb5168-cdf1-11e8-a8d5-c2801f1b9f21",
+  "name": "Bibsam",
+  "isVendor": "false",
+  "code": "consortia1",
+  "description": "The Bibsam consortium is operated by Kungl. biblioteket, the National Library of Sweden. It has 79 active member institutions including universities, university colleges, and government funded research institutions. It manages about 40 licenses for approx. 100 e-resources, including \"big deal\" agreements with scholarly journal publishers as well as agreements for encyclopaedias and abstract and indexing databases.",
+  "status": "Active",
+  "aliases": [
+    {
+      "value": "Kungl biblioteket"
+    },
+    {
+      "value": "National Library of Sweden"
+    }
+  ],
+  "interfaces": [
+    "cd5926fa-77aa-4eb3-ac34-c9a1747ba21a"
+  ]
+}
