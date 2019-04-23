@@ -38,7 +38,7 @@
     {
       "value": "jbeck@ebsco.com",
       "description": "Customer Service Rep",
-      "categories": [],
+      "categories": ["f52ceea4-8e35-404b-9ebd-5c7db6613195"],
       "language": "en-us",
       "isPrimary": true
     }

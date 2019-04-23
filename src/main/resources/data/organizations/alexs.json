@@ -48,7 +48,7 @@
       "value": "https://alexanderstreet.com/",
       "description": "main website",
       "language": "en-us",
-      "categories": [],
+      "categories": ["f52ceea4-8e35-404b-9ebd-5c7db6613195"],
       "notes": "",
       "isPrimary": true
     }

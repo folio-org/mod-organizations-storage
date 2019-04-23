@@ -21,7 +21,7 @@
       "stateRegion": "IL",
       "zipCode": "60660",
       "country": "USA",
-      "categories": [],
+      "categories": ["f52ceea4-8e35-404b-9ebd-5c7db6613195"],
       "language": "English",
       "isPrimary": true
     }
@@ -29,7 +29,7 @@
   "phoneNumbers": [
     {
       "phoneNumber": "1-773-274-3000",
-      "categories": [],
+      "categories": ["f52ceea4-8e35-404b-9ebd-5c7db6613195"],
       "language": "English",
       "isPrimary": true
     }
@@ -38,7 +38,7 @@
     {
       "value": "sister@luc.edu",
       "description": "personal email ",
-      "categories": [],
+      "categories": ["f52ceea4-8e35-404b-9ebd-5c7db6613195"],
       "language": "English",
       "isPrimary": true
     }
@@ -48,7 +48,7 @@
       "value": "",
       "description": "",
       "language": "",
-      "categories": [],
+      "categories": ["f52ceea4-8e35-404b-9ebd-5c7db6613195"],
       "notes": "",
       "isPrimary": true
     }
