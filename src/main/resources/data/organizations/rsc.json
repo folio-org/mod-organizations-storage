@@ -1,0 +1,15 @@
+{
+  "id": "80fb5168-cdf1-11e8-a8d5-c2801f1b9f23",
+  "name": "Royal Society of Chemistry",
+  "isVendor": "false",
+  "code": "content_provider1",
+  "status": "Active",
+  "aliases": [
+    {
+      "value": "RSC"
+    }
+  ],
+  "interfaces": [
+    "cd5926fa-77aa-4eb3-ac34-c9a1747ba21c"
+  ]
+}
