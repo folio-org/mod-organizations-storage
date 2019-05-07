@@ -5,6 +5,7 @@
   "firstName": "Susan",
   "lastName": "Bach",
   "notes": "",
+  "inactive": false,
   "phoneNumbers": [
     {
       "phoneNumber": "55-55-21-2539-3590",

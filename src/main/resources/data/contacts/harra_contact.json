@@ -5,6 +5,7 @@
   "firstName": "Gabriele",
   "lastName": "Kerner",
   "notes": "",
+  "inactive": false,
   "phoneNumbers": [
     {
       "phoneNumber": "49-611-530 ext. 0",

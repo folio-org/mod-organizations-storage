@@ -5,6 +5,7 @@
   "firstName": "John",
   "lastName": "Denver",
   "notes": "Postal code = 80303",
+  "inactive": false,
   "phoneNumbers": [
     {
       "phoneNumber": "1-800-333-9511",
