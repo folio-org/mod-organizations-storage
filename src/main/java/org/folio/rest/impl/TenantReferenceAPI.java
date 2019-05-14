@@ -11,9 +11,12 @@ import io.vertx.core.logging.LoggerFactory;
 import java.util.List;
 import java.util.Map;
 import javax.ws.rs.core.Response;
+
 import org.folio.rest.jaxrs.model.Parameter;
 import org.folio.rest.jaxrs.model.TenantAttributes;
+import org.folio.rest.persist.PostgresClient;
 import org.folio.rest.tools.utils.TenantLoading;
+import org.folio.rest.tools.utils.TenantTool;
 
 public class TenantReferenceAPI extends TenantAPI {
   private static final Logger log = LoggerFactory.getLogger(TenantReferenceAPI.class);
@@ -114,6 +117,25 @@ public class TenantReferenceAPI extends TenantAPI {
   @Override
   public void deleteTenant(Map<String, String> headers, Handler<AsyncResult<Response>> hndlr, Context cntxt) {
     log.info("deleteTenant");
-    super.deleteTenant(headers, hndlr, cntxt);
+    Vertx vertx = cntxt.owner();
+
+    String tenantId = TenantTool.tenantId(headers);
+    PostgresClient client = PostgresClient.getInstance(vertx, tenantId);
+    super.deleteTenant(headers, res -> {
+      if (res.failed()) {
+        hndlr.handle(io.vertx.core.Future.succeededFuture(PostTenantResponse
+          .respond500WithTextPlain(res.cause().getLocalizedMessage())));
+        return;
+      }
+      client.closeClient(event -> {
+        if(event.failed()) {
+          hndlr.handle(io.vertx.core.Future.succeededFuture(PostTenantResponse
+            .respond500WithTextPlain(res.cause().getLocalizedMessage())));
+          return;
+        }
+        hndlr.handle(io.vertx.core.Future.succeededFuture(DeleteTenantResponse.respond204()));
+      });
+
+    }, cntxt);
   }
 }
