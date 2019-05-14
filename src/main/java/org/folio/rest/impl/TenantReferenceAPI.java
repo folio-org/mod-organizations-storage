@@ -1,22 +1,22 @@
 package org.folio.rest.impl;
 
-import static org.folio.rest.RestVerticle.MODULE_SPECIFIC_ARGS;
-
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Context;
 import io.vertx.core.Handler;
 import io.vertx.core.Vertx;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
-import java.util.List;
-import java.util.Map;
-import javax.ws.rs.core.Response;
-
 import org.folio.rest.jaxrs.model.Parameter;
 import org.folio.rest.jaxrs.model.TenantAttributes;
 import org.folio.rest.persist.PostgresClient;
 import org.folio.rest.tools.utils.TenantLoading;
 import org.folio.rest.tools.utils.TenantTool;
+
+import javax.ws.rs.core.Response;
+import java.util.List;
+import java.util.Map;
+
+import static org.folio.rest.RestVerticle.MODULE_SPECIFIC_ARGS;
 
 public class TenantReferenceAPI extends TenantAPI {
   private static final Logger log = LoggerFactory.getLogger(TenantReferenceAPI.class);
@@ -37,7 +37,6 @@ public class TenantReferenceAPI extends TenantAPI {
 
       TenantLoading tl = new TenantLoading();
       boolean loadData = buildDataLoadingParameters(tenantAttributes, tl);
-
       if (loadData) {
         tl.perform(tenantAttributes, headers, vertx, res1 -> {
           if (res1.failed()) {
@@ -117,25 +116,27 @@ public class TenantReferenceAPI extends TenantAPI {
   @Override
   public void deleteTenant(Map<String, String> headers, Handler<AsyncResult<Response>> hndlr, Context cntxt) {
     log.info("deleteTenant");
-    Vertx vertx = cntxt.owner();
-
-    String tenantId = TenantTool.tenantId(headers);
-    PostgresClient client = PostgresClient.getInstance(vertx, tenantId);
     super.deleteTenant(headers, res -> {
-      if (res.failed()) {
-        hndlr.handle(io.vertx.core.Future.succeededFuture(PostTenantResponse
-          .respond500WithTextPlain(res.cause().getLocalizedMessage())));
+      if (res.succeeded()) {
+        Vertx vertx = cntxt.owner();
+        String tenantId = TenantTool.tenantId(headers);
+        PostgresClient.getInstance(vertx, tenantId)
+          .closeClient(event -> {
+            if(event.succeeded()) {
+              hndlr.handle(io.vertx.core.Future.succeededFuture(DeleteTenantResponse.respond204()));
+              return;
+            }
+            handleError(hndlr, event);
+          });
         return;
       }
-      client.closeClient(event -> {
-        if(event.failed()) {
-          hndlr.handle(io.vertx.core.Future.succeededFuture(PostTenantResponse
-            .respond500WithTextPlain(res.cause().getLocalizedMessage())));
-          return;
-        }
-        hndlr.handle(io.vertx.core.Future.succeededFuture(DeleteTenantResponse.respond204()));
-      });
+      handleError(hndlr, res);
 
     }, cntxt);
+  }
+
+  private void handleError(Handler<AsyncResult<Response>> hndlr, AsyncResult<?> res) {
+    hndlr.handle(io.vertx.core.Future.succeededFuture(DeleteTenantResponse
+      .respond500WithTextPlain(res.cause().getLocalizedMessage())));
   }
 }
