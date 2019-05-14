@@ -8,5 +8,8 @@
   "statisticsFormat": "Non-COUNTER",
   "locallyStored": "https://www.lib.sample.edu/staff/collectiondevelopment/",
   "onlineLocation": "http://www.naxosmusiclibrary.com/",
-  "statisticsNotes": "Login on interface used to access content."
+  "statisticsNotes": "Login on interface used to access content.",
+  "type": [
+    "End user"
+  ]
 }

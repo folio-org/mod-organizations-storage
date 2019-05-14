@@ -9,5 +9,10 @@
   "deliveryMethod": "Email",
   "statisticsFormat": "HTML",
   "locallyStored": false,
-  "onlineLocation": "https://www.harrassowitz.de/"
+  "onlineLocation": "https://www.harrassowitz.de/",
+  "type": [
+    "Reports",
+    "Orders",
+    "Invoices"
+  ]
 }
