@@ -28,8 +28,9 @@ import static org.hamcrest.Matchers.not;
 
 public class TenantSampleDataTest extends TestBase{
 
-  private static final String TEST_EXPECTED_QUANTITY_FOR_ENTRY = "Test expected {} quantity for {}";
   private final Logger logger = LoggerFactory.getLogger(TenantSampleDataTest.class);
+
+  private static final String TEST_EXPECTED_QUANTITY_FOR_ENTRY = "Test expected {} quantity for {}";
 
   private static final Header NONEXISTENT_TENANT_HEADER = new Header(OKAPI_HEADER_TENANT, "no_tenant");
   private static final Header ANOTHER_TENANT_HEADER = new Header(OKAPI_HEADER_TENANT, "new_tenant");
