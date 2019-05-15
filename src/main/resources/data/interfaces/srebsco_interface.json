@@ -8,5 +8,11 @@
   "available": true,
   "deliveryMethod": "Email",
   "statisticsFormat": "Excel",
-  "locallyStored": false
+  "locallyStored": false,
+  "type": [
+    "End user",
+    "Reports",
+    "Orders",
+    "Invoices"
+  ]
 }

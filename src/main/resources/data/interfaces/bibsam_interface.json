@@ -4,5 +4,8 @@
   "uri": "http://www.kb.se/bibliotek/centrala-avtal/",
   "username": "patron",
   "password": "patron1",
-  "notes": "End user interface"
+  "notes": "End user interface",
+  "type": [
+    "End user"
+  ]
 }
