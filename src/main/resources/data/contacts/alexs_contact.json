@@ -5,6 +5,7 @@
   "firstName": "David",
   "lastName": "Grohl",
   "notes": "",
+  "inactive": false,
   "phoneNumbers": [
     {
       "phoneNumber": "1-800-889-5937",

@@ -4,5 +4,8 @@
   "uri": "www.amazon.com",
   "username": "****",
   "password": "****",
-  "available": false
+  "available": false,
+  "type": [
+    "Orders"
+  ]
 }

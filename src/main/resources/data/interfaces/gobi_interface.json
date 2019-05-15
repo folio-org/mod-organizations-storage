@@ -6,5 +6,8 @@
   "available": false,
   "deliveryMethod": "Other",
   "locallyStored": false,
-  "statisticsNotes": "get stats on demand from GOBI, or contact customers service"
+  "statisticsNotes": "get stats on demand from GOBI, or contact customers service",
+  "type": [
+    "Other"
+  ]
 }

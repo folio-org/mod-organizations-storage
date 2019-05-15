@@ -4,5 +4,8 @@
   "uri": "https://pubs.rsc.org/",
   "username": "admin",
   "password": "admin",
-  "notes": "Admin interface"
+  "notes": "Admin interface",
+  "type": [
+    "Admin"
+  ]
 }
