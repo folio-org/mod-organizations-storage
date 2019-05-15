@@ -7,6 +7,7 @@ import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import org.folio.rest.jaxrs.model.Organization;
 import org.folio.rest.jaxrs.model.OrganizationCollection;
+import org.folio.rest.persist.PostgresClient;
 import org.folio.rest.utils.TenantApiTestUtil;
 import org.folio.rest.utils.TestEntities;
 import org.junit.Test;
@@ -21,16 +22,18 @@ import static org.folio.rest.utils.TenantApiTestUtil.deleteTenant;
 import static org.folio.rest.utils.TenantApiTestUtil.postToTenant;
 import static org.folio.rest.utils.TenantApiTestUtil.prepareTenant;
 import static org.folio.rest.utils.TestEntities.ORGANIZATION;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.not;
 
 
 public class TenantSampleDataTest extends TestBase{
 
-  private static final String TEST_EXPECTED_QUANTITY_FOR_ENTRY = "Test expected {} quantity for {}";
   private final Logger logger = LoggerFactory.getLogger(TenantSampleDataTest.class);
+
+  private static final String TEST_EXPECTED_QUANTITY_FOR_ENTRY = "Test expected {} quantity for {}";
 
   private static final Header NONEXISTENT_TENANT_HEADER = new Header(OKAPI_HEADER_TENANT, "no_tenant");
   private static final Header ANOTHER_TENANT_HEADER = new Header(OKAPI_HEADER_TENANT, "new_tenant");
-  private static final Header ANOTHER_TENANT_HEADER_WITHOUT_UPGRADE = new Header(OKAPI_HEADER_TENANT, "no_upgrade_tenant");
   private static final Header PARTIAL_TENANT_HEADER = new Header(OKAPI_HEADER_TENANT, "partial_tenant");
 
 
@@ -110,19 +113,22 @@ public class TenantSampleDataTest extends TestBase{
     logger.info("load only Reference Data");
     try {
       JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(false, true);
-      postToTenant(ANOTHER_TENANT_HEADER_WITHOUT_UPGRADE, jsonBody)
+      postToTenant(PARTIAL_TENANT_HEADER, jsonBody)
         .assertThat()
         .statusCode(201);
-      verifyCollectionQuantity("/organizations-storage/categories", 4, ANOTHER_TENANT_HEADER_WITHOUT_UPGRADE);
+      verifyCollectionQuantity("/organizations-storage/categories", 4, PARTIAL_TENANT_HEADER);
       for (TestEntities entity : TestEntities.values()) {
         //category is the only reference data, which must be loaded
         if (!entity.equals(TestEntities.CATEGORY)) {
           logger.info("Test sample data not loaded for " + entity.name());
-          verifyCollectionQuantity(entity.getEndpoint(), 0, ANOTHER_TENANT_HEADER_WITHOUT_UPGRADE);
+          verifyCollectionQuantity(entity.getEndpoint(), 0, PARTIAL_TENANT_HEADER);
         }
       }
     } finally {
-      deleteTenant(ANOTHER_TENANT_HEADER_WITHOUT_UPGRADE);
+      PostgresClient oldClient = PostgresClient.getInstance(StorageTestSuite.getVertx(), PARTIAL_TENANT_HEADER.getValue());
+      deleteTenant(PARTIAL_TENANT_HEADER);
+      PostgresClient newClient = PostgresClient.getInstance(StorageTestSuite.getVertx(), PARTIAL_TENANT_HEADER.getValue());
+      assertThat(oldClient, not(newClient));
     }
   }
 
