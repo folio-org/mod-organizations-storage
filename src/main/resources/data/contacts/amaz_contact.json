@@ -5,6 +5,7 @@
   "firstName": "Carrie",
   "lastName": "Brownstein",
   "notes": "",
+  "inactive": false,
   "phoneNumbers": [
     {
       "phoneNumber": "1-888-238-22090",

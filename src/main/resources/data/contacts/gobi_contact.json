@@ -5,6 +5,7 @@
   "firstName": "Sarah",
   "lastName": "Silverman",
   "notes": "",
+  "inactive": false,
   "phoneNumbers": [
     {
       "phoneNumber": "1-800-258-3774",

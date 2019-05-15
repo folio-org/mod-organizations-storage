@@ -5,6 +5,7 @@
   "firstName": "Ryan",
   "lastName": "Zinke",
   "notes": "",
+  "inactive": false,
   "phoneNumbers": [
     {
       "phoneNumber": "1-888-ASK-USGS",

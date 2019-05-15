@@ -3,5 +3,6 @@
     "firstName": "Nick",
     "lastName": "Fury",
     "language": "en-us",
-    "notes": "SHIELD's Big Kahuna"
+    "notes": "SHIELD's Big Kahuna",
+    "inactive": false
 }
