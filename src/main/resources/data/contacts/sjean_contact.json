@@ -4,7 +4,8 @@
   "prefix": "Sister",
   "firstName": "Jean",
   "lastName": "Simmons",
-  "notes": "",
+  "notes": "",  
+  "inactive": false,
   "phoneNumbers": [
     {
       "phoneNumber": "1-773-274-3000",

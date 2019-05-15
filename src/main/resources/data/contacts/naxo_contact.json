@@ -4,7 +4,8 @@
   "prefix": "Prof.",
   "firstName": "Marie",
   "lastName": "Curie",
-  "notes": "",
+  "notes": "",  
+  "inactive": false,
   "phoneNumbers": [
     {
       "phoneNumber": "1-615-771-9393",

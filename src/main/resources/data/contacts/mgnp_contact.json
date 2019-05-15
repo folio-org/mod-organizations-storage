@@ -5,6 +5,7 @@
   "firstName": "Siouxsie",
   "lastName": "Sioux ",
   "notes": "",
+  "inactive": false,
   "phoneNumbers": [
     {
       "phoneNumber": "64-95-783-996",

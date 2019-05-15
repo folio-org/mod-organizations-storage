@@ -5,6 +5,7 @@
   "firstName": "Dana",
   "lastName": "Clark",
   "notes": "",
+  "inactive": false,
   "phoneNumbers": [
     {
       "phoneNumber": "1-415-332-6471",

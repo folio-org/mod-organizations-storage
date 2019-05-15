@@ -5,6 +5,7 @@
   "firstName": "John-Joe",
   "lastName": "Taylor",
   "notes": "",
+  "inactive": false,
   "phoneNumbers": [
     {
       "phoneNumber": "1-800-634-7064",
