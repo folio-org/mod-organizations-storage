@@ -1,4 +1,12 @@
-## 1.1.0 - Unreleased
+## 1.2.0 - Unreleased
+
+## 1.1.0 - Released
+The primary focus of this release was to make a few schema updates required for ui-organizations.
+
+### Stories
+ * [MODORGS-28](https://issues.folio.org/browse/MODORDERS-28) Interface schema update: new optional field - `type`
+ * [MODORGS-27](https://issues.folio.org/browse/MODORDERS-27) Make `contact.inactive` default to `false`
+ * [MODORGS-26](https://issues.folio.org/browse/MODORDERS-26) Country should not be a required field
 
 ## 1.0.0 - Released
 The primary focus of this release was transition from Vendors to Organizations. The release provides initial version of the API required to manage organizations.
