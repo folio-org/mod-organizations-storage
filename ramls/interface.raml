@@ -10,6 +10,7 @@ documentation:
 types:
     interface: !include acq-models/mod-orgs/schemas/interface.json
     interface_collection: !include acq-models/mod-orgs/schemas/interface_collection.json
+    interface_credential: !include acq-models/mod-orgs/schemas/interface_credentials.json
     errors: !include raml-util/schemas/errors.schema
     UUID:
       type: string
@@ -25,6 +26,7 @@ traits:
 resourceTypes:
     collection: !include raml-util/rtypes/collection.raml
     collection-item: !include raml-util/rtypes/item-collection.raml
+    simple-crud: !include rtypes/simple-crud.raml
 
 
 /organizations-storage/interfaces:
@@ -56,6 +58,6 @@ resourceTypes:
       displayName: Purchace Order Lines
       description: Manage purchase order (PO) lines
       type:
-        collection-item:
-          exampleItem: !include acq-models/mod-orgs/examples/interface_get.sample
-          schema: interface
+        simple-crud:
+          exampleItem: !include acq-models/mod-orgs/examples/interface_credential_get.sample
+          schema: interface_credential

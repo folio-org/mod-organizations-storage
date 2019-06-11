@@ -7,6 +7,7 @@ import io.vertx.core.Vertx;
 import org.folio.rest.annotations.Validate;
 import org.folio.rest.jaxrs.model.Interface;
 import org.folio.rest.jaxrs.model.InterfaceCollection;
+import org.folio.rest.jaxrs.model.InterfaceCredential;
 import org.folio.rest.jaxrs.resource.OrganizationsStorageInterfaces;
 import org.folio.rest.persist.EntitiesMetadataHolder;
 import org.folio.rest.persist.PgUtil;
@@ -20,6 +21,7 @@ import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
 
 public class InterfacesAPI implements OrganizationsStorageInterfaces {
   private static final String INTERFACE_TABLE = "interfaces";
+  private static final String INTERFACE_CREDENTIAL_TABLE = "interface_credentials";
 
   private String idFieldName = "id";
 
@@ -63,5 +65,25 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
   public void putOrganizationsStorageInterfacesById(String id, String lang, org.folio.rest.jaxrs.model.Interface entity,
                                            Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.put(INTERFACE_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationsStorageInterfacesByIdResponse.class, asyncResultHandler);
+  }
+
+  @Override public void postOrganizationsStorageInterfacesCredentialsById(String id, InterfaceCredential entity,
+    Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+
+  }
+
+  @Override public void getOrganizationsStorageInterfacesCredentialsById(String id, Map<String, String> okapiHeaders,
+    Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+
+  }
+
+  @Override public void deleteOrganizationsStorageInterfacesCredentialsById(String id, Map<String, String> okapiHeaders,
+    Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+
+  }
+
+  @Override public void putOrganizationsStorageInterfacesCredentialsById(String id, InterfaceCredential entity,
+    Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+
   }
 }
