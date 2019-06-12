@@ -1,19 +1,8 @@
 package org.folio.rest.impl;
 
-import io.restassured.http.Header;
-import io.vertx.core.DeploymentOptions;
-import io.vertx.core.Vertx;
-import io.vertx.core.json.JsonObject;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
-import org.folio.rest.RestVerticle;
-import org.folio.rest.persist.PostgresClient;
-import org.folio.rest.tools.client.test.HttpClientMock2;
-import org.folio.rest.tools.utils.NetworkUtils;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import static org.folio.rest.impl.TestBase.TENANT_HEADER;
+import static org.folio.rest.utils.TenantApiTestUtil.deleteTenant;
+import static org.folio.rest.utils.TenantApiTestUtil.prepareTenant;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -24,16 +13,30 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import static org.folio.rest.impl.TestBase.TENANT_HEADER;
-import static org.folio.rest.utils.TenantApiTestUtil.deleteTenant;
-import static org.folio.rest.utils.TenantApiTestUtil.prepareTenant;
+import org.folio.rest.RestVerticle;
+import org.folio.rest.persist.PostgresClient;
+import org.folio.rest.tools.client.test.HttpClientMock2;
+import org.folio.rest.tools.utils.NetworkUtils;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
+import io.restassured.http.Header;
+import io.vertx.core.DeploymentOptions;
+import io.vertx.core.Vertx;
+import io.vertx.core.json.JsonObject;
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
 
 
 @RunWith(Suite.class)
 
 @Suite.SuiteClasses({
   TenantSampleDataTest.class,
-  EntitiesCrudTest.class
+  EntitiesCrudTest.class,
+  InterfaceCredentialsTest.class
+
 })
 
 public class StorageTestSuite {
@@ -41,7 +44,7 @@ public class StorageTestSuite {
 
   private static Vertx vertx;
   private static int port = NetworkUtils.nextFreePort();
-  public static final Header URL_TO_HEADER = new Header("X-Okapi-Url-to","http://localhost:"+port);
+  public static final Header URL_TO_HEADER = new Header("X-Okapi-Url-to", "http://localhost:" + port);
 
   private StorageTestSuite() {}
 

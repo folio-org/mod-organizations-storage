@@ -2,8 +2,6 @@
   "id": "cd5926fa-77aa-4eb3-ac34-c9a1747ba21b",
   "name": "Minuteman",
   "uri": "https://www.minlib.net/",
-  "username": "patron",
-  "password": "patron1",
   "notes": "End user interface",
   "type": [
     "End user"

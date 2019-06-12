@@ -44,6 +44,13 @@
       "populateJsonWithId": true
     },
     {
+      "tableName": "interface_credentials",
+      "generateId": true,
+      "fromModuleVersion": 1.0,
+      "withMetadata": true,
+      "populateJsonWithId": true
+    },
+    {
       "tableName": "phone_numbers",
       "generateId": true,
       "fromModuleVersion": 1.0,

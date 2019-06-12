@@ -1,9 +1,12 @@
 package org.folio.rest.impl;
 
-import io.vertx.core.AsyncResult;
-import io.vertx.core.Context;
-import io.vertx.core.Handler;
-import io.vertx.core.Vertx;
+import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
+
+import java.util.Map;
+
+import javax.ws.rs.core.Response;
+
+import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.annotations.Validate;
 import org.folio.rest.jaxrs.model.Interface;
 import org.folio.rest.jaxrs.model.InterfaceCollection;
@@ -14,14 +17,15 @@ import org.folio.rest.persist.PgUtil;
 import org.folio.rest.persist.PostgresClient;
 import org.folio.rest.persist.QueryHolder;
 
-import javax.ws.rs.core.Response;
-import java.util.Map;
-
-import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
+import io.vertx.core.AsyncResult;
+import io.vertx.core.Context;
+import io.vertx.core.Handler;
+import io.vertx.core.Vertx;
 
 public class InterfacesAPI implements OrganizationsStorageInterfaces {
   private static final String INTERFACE_TABLE = "interfaces";
   private static final String INTERFACE_CREDENTIAL_TABLE = "interface_credentials";
+  public static final String MISMATCH_ERROR_MESSAGE = "Interface credential id mismatch";
 
   private String idFieldName = "id";
 
@@ -67,23 +71,32 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
     PgUtil.put(INTERFACE_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationsStorageInterfacesByIdResponse.class, asyncResultHandler);
   }
 
-  @Override public void postOrganizationsStorageInterfacesCredentialsById(String id, InterfaceCredential entity,
-    Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-
+  @Override
+  public void postOrganizationsStorageInterfacesCredentialsById(String id, InterfaceCredential entity,
+      Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+    entity.setId(id);
+    PgUtil.post(INTERFACE_CREDENTIAL_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationsStorageInterfacesCredentialsByIdResponse.class, asyncResultHandler);
   }
 
-  @Override public void getOrganizationsStorageInterfacesCredentialsById(String id, Map<String, String> okapiHeaders,
-    Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-
+  @Override
+  public void getOrganizationsStorageInterfacesCredentialsById(String id, Map<String, String> okapiHeaders,
+      Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+    PgUtil.getById(INTERFACE_CREDENTIAL_TABLE, InterfaceCredential.class, id, okapiHeaders, vertxContext, GetOrganizationsStorageInterfacesCredentialsByIdResponse.class, asyncResultHandler);
   }
 
-  @Override public void deleteOrganizationsStorageInterfacesCredentialsById(String id, Map<String, String> okapiHeaders,
-    Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-
+  @Override
+  public void deleteOrganizationsStorageInterfacesCredentialsById(String id, Map<String, String> okapiHeaders,
+      Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+    PgUtil.deleteById(INTERFACE_CREDENTIAL_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationsStorageInterfacesCredentialsByIdResponse.class, asyncResultHandler);
   }
 
-  @Override public void putOrganizationsStorageInterfacesCredentialsById(String id, InterfaceCredential entity,
-    Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-
+  @Override
+  public void putOrganizationsStorageInterfacesCredentialsById(String id, InterfaceCredential entity,
+      Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+    if (StringUtils.equals(id, entity.getId())) {
+      PgUtil.put(INTERFACE_CREDENTIAL_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationsStorageInterfacesCredentialsByIdResponse.class, asyncResultHandler);
+    } else {
+      asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(PutOrganizationsStorageInterfacesCredentialsByIdResponse.respond400WithTextPlain(MISMATCH_ERROR_MESSAGE)));
+    }
   }
 }
