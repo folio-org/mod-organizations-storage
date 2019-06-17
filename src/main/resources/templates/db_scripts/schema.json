@@ -48,7 +48,13 @@
       "generateId": true,
       "fromModuleVersion": 1.0,
       "withMetadata": true,
-      "populateJsonWithId": true
+      "populateJsonWithId": true,
+      "foreignKeys": [
+        {
+          "fieldName": "id",
+          "targetTable": "interfaces"
+        }
+      ]
     },
     {
       "tableName": "phone_numbers",
