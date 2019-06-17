@@ -19,8 +19,10 @@ public class InterfaceCredentialsTest extends TestBase {
   private static final String ID = "id";
   private static final String PASSWORD_FIELD = "password";
   private static final String MY_NEW_PASSWORD = "my_new_password";
-  private static final String INTERFACE_ID = "68f8dbe3-56b1-4689-93a3-d652886abca9";
-  private static final String ANOTHER_INTERFACE_ID = "bdfa6113-2798-46a3-9ced-7ea02c5e1299";
+  private static final String INTERFACE_ID = "60b952a6-5570-44f3-9972-f00c9dcb098e";
+  private static final String ANOTHER_INTERFACE_ID = "793b9d42-ae12-41d7-a36a-f33e5b9e82c5";
+  private static final String INTERFACE_ENDPOINT = "/organizations-storage/interfaces";
+  private static final String INTERFACE_ENDPOINT_WITH_ID = "/organizations-storage/interfaces/{id}";
   private static final String INTERFACE_CREDENTIAL_ENDPOINT_WITH_PARAM = "/organizations-storage/interfaces/%s/credentials";
   private static final String INTERFACE_CREDENTIAL_ENDPOINT_WITH_ID = "/organizations-storage/interfaces/{id}/credentials";
   private static final String INTERFACE_CREDENTIAL_ENDPOINT = String.format(INTERFACE_CREDENTIAL_ENDPOINT_WITH_PARAM, INTERFACE_ID);
@@ -32,9 +34,13 @@ public class InterfaceCredentialsTest extends TestBase {
   public void testInterfaceCredentialsCrud() throws MalformedURLException {
     try {
       logger.info(String.format("--- mod-organizations-storage %s test: Creating %s ... ", simpleClassName, simpleClassName));
+
+      // prepare interface
+      String interfaceSample_1 = getFile("data/interfaces/acso_interface.json");
+      postData(INTERFACE_ENDPOINT, interfaceSample_1).then().statusCode(201);
+
       String sample = getFile(SAMPLE_CREDENTIAL_FILE);
       Response response = postData(INTERFACE_CREDENTIAL_ENDPOINT, sample);
-      //INTERFACE_ID = response.then().extract().path("id");
 
       logger.info(String.format("--- mod-organizations-storage %s test: Valid fields exists ... ", simpleClassName));
       JsonObject sampleJson = JsonObject.mapFrom(new JsonObject(sample).mapTo(InterfaceCredential.class));
@@ -78,6 +84,9 @@ public class InterfaceCredentialsTest extends TestBase {
 
       logger.info(String.format("--- mod-organizations-storages %s test: Verify %s is deleted with ID: %s", simpleClassName, simpleClassName, INTERFACE_ID));
       testVerifyEntityDeletion(INTERFACE_CREDENTIAL_ENDPOINT_WITH_ID, INTERFACE_ID);
+
+      deleteDataSuccess(INTERFACE_ENDPOINT_WITH_ID, INTERFACE_ID);
+      testVerifyEntityDeletion(INTERFACE_ENDPOINT_WITH_ID, INTERFACE_ID);
     }
   }
 
@@ -109,6 +118,12 @@ public class InterfaceCredentialsTest extends TestBase {
   public void testEditEntityWithMismatchId() throws MalformedURLException {
     logger.info(String.format("--- mod-organizations-storage %s put by id test: Invalid %s: %s", simpleClassName, simpleClassName, NON_EXISTED_ID));
 
+    // prepare interface data
+    String interfaceSample_1 = getFile("data/interfaces/acso_interface.json");
+    postData(INTERFACE_ENDPOINT, interfaceSample_1).then().statusCode(201);
+    String interfaceSample_2 = getFile("data/interfaces/gobi_interface.json");
+    postData(INTERFACE_ENDPOINT, interfaceSample_2).then().statusCode(201);
+
     String sample = getFile(SAMPLE_CREDENTIAL_FILE);
     // create interface credential with id = INTERFACE_ID
     postData(INTERFACE_CREDENTIAL_ENDPOINT, sample);
@@ -126,5 +141,9 @@ public class InterfaceCredentialsTest extends TestBase {
 
     deleteDataSuccess(INTERFACE_CREDENTIAL_ENDPOINT_WITH_ID, INTERFACE_ID);
     deleteDataSuccess(INTERFACE_CREDENTIAL_ENDPOINT_WITH_ID, ANOTHER_INTERFACE_ID);
+
+    // interfaces cleanup
+    deleteDataSuccess(INTERFACE_ENDPOINT_WITH_ID, INTERFACE_ID);
+    deleteDataSuccess(INTERFACE_ENDPOINT_WITH_ID, ANOTHER_INTERFACE_ID);
   }
 }
