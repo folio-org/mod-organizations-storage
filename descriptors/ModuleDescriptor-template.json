@@ -468,6 +468,18 @@
       "description" : "Delete a interface"
     },
     {
+      "permissionName" : "organizations-storage.interfaces.all",
+      "displayName" : "interface all",
+      "description" : "All permissions for interface",
+      "subPermissions" : [
+        "organizations-storage.interfaces.collection.get",
+        "organizations-storage.interfaces.item.post",
+        "organizations-storage.interfaces.item.get",
+        "organizations-storage.interfaces.item.put",
+        "organizations-storage.interfaces.item.delete"
+      ]
+    },
+    {
       "permissionName" : "organizations-storage.credentials.item.post",
       "displayName" : "interface post",
       "description" : "Create a new interface"
@@ -488,15 +500,10 @@
       "description" : "Delete a interface"
     },
     {
-      "permissionName" : "organizations-storage.interfaces.all",
+      "permissionName" : "organizations-storage.credentials.all",
       "displayName" : "interface all",
       "description" : "All permissions for interface",
       "subPermissions" : [
-        "organizations-storage.interfaces.collection.get",
-        "organizations-storage.interfaces.item.post",
-        "organizations-storage.interfaces.item.get",
-        "organizations-storage.interfaces.item.put",
-        "organizations-storage.interfaces.item.delete",
         "organizations-storage.credentials.item.post",
         "organizations-storage.credentials.item.get",
         "organizations-storage.credentials.item.put",
@@ -624,6 +631,7 @@
         "organizations-storage.contacts.all",
         "organizations-storage.emails.all",
         "organizations-storage.interfaces.all",
+        "organizations-storage.credentials.all",
         "organizations-storage.phone-numbers.all",
         "organizations-storage.urls.all",
         "organizations-storage.organizations.all"
