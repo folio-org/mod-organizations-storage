@@ -115,7 +115,7 @@ public class InterfaceCredentialsTest extends TestBase {
   }
 
   @Test
-  public void testEditEntityWithMismatchId() throws MalformedURLException {
+  public void testEntityWithMismatchId() throws MalformedURLException {
     logger.info(String.format("--- mod-organizations-storage %s put by id test: Invalid %s: %s", simpleClassName, simpleClassName, NON_EXISTED_ID));
 
     // prepare interface data
@@ -132,7 +132,13 @@ public class InterfaceCredentialsTest extends TestBase {
     JsonObject credentialJson = new JsonObject(sample);
     credentialJson.put("id", ANOTHER_INTERFACE_ID);
     sample = credentialJson.toString();
+
+    // try to create interface credential with mismatched id
+    postData(INTERFACE_CREDENTIAL_ENDPOINT, sample).then().statusCode(400);
+
+    // create another interface credential
     postData(ANOTHER_INTERFACE_CREDENTIAL_ENDPOINT, sample).then().statusCode(201);
+
 
     // update interface credential with mismatched id
     putData(INTERFACE_CREDENTIAL_ENDPOINT_WITH_ID, INTERFACE_ID, sample)
