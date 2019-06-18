@@ -74,8 +74,12 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
   @Override
   public void postOrganizationsStorageInterfacesCredentialsById(String id, InterfaceCredential entity,
       Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    entity.setId(id);
-    PgUtil.post(INTERFACE_CREDENTIAL_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationsStorageInterfacesCredentialsByIdResponse.class, asyncResultHandler);
+    if (!StringUtils.equals(entity.getId(), id) && StringUtils.isNotEmpty(entity.getId())) {
+      asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(PostOrganizationsStorageInterfacesCredentialsByIdResponse.respond400WithTextPlain(MISMATCH_ERROR_MESSAGE)));
+    } else {
+      entity.setId(id);
+      PgUtil.post(INTERFACE_CREDENTIAL_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationsStorageInterfacesCredentialsByIdResponse.class, asyncResultHandler);
+    }
   }
 
   @Override

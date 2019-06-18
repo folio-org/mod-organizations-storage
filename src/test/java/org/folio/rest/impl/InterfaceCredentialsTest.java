@@ -126,13 +126,13 @@ public class InterfaceCredentialsTest extends TestBase {
 
     String sample = getFile(SAMPLE_CREDENTIAL_FILE);
     // create interface credential with id = INTERFACE_ID
-    postData(INTERFACE_CREDENTIAL_ENDPOINT, sample);
+    postData(INTERFACE_CREDENTIAL_ENDPOINT, sample).then().statusCode(201);
 
     // create interface credential with id = ANOTHER_INTERFACE_ID
     JsonObject credentialJson = new JsonObject(sample);
     credentialJson.put("id", ANOTHER_INTERFACE_ID);
     sample = credentialJson.toString();
-    postData(ANOTHER_INTERFACE_CREDENTIAL_ENDPOINT, sample);
+    postData(ANOTHER_INTERFACE_CREDENTIAL_ENDPOINT, sample).then().statusCode(201);
 
     // update interface credential with mismatched id
     putData(INTERFACE_CREDENTIAL_ENDPOINT_WITH_ID, INTERFACE_ID, sample)
