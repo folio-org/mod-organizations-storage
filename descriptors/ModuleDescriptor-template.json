@@ -481,28 +481,28 @@
     },
     {
       "permissionName" : "organizations-storage.credentials.item.post",
-      "displayName" : "interface post",
-      "description" : "Create a new interface"
+      "displayName" : "interface credentials post",
+      "description" : "Create a new interface credentials"
     },
     {
       "permissionName" : "organizations-storage.credentials.item.get",
-      "displayName" : "interface get",
-      "description" : "Fetch a interface"
+      "displayName" : "interface credentials get",
+      "description" : "Fetch an interface credentials"
     },
     {
       "permissionName" : "organizations-storage.credentials.item.put",
-      "displayName" : "interface put",
-      "description" : "Update a interface"
+      "displayName" : "interface credentials put",
+      "description" : "Update an interface credentials"
     },
     {
       "permissionName" : "organizations-storage.credentials.item.delete",
-      "displayName" : "interface delete",
-      "description" : "Delete a interface"
+      "displayName" : "interface credentials delete",
+      "description" : "Delete an interface credentials"
     },
     {
       "permissionName" : "organizations-storage.credentials.all",
-      "displayName" : "interface all",
-      "description" : "All permissions for interface",
+      "displayName" : "interface credentials all",
+      "description" : "All permissions for interface credentials",
       "subPermissions" : [
         "organizations-storage.credentials.item.post",
         "organizations-storage.credentials.item.get",
