@@ -46,7 +46,6 @@
     {
       "tableName": "interface_credentials",
       "fromModuleVersion": 1.0,
-      "withMetadata": true,
       "foreignKeys": [
         {
           "fieldName": "id",

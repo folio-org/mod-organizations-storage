@@ -6,6 +6,7 @@ import static org.junit.Assert.fail;
 import java.net.MalformedURLException;
 
 import org.folio.rest.jaxrs.model.InterfaceCredential;
+import org.folio.rest.utils.TestEntities;
 import org.junit.Test;
 
 import io.restassured.response.Response;
@@ -21,8 +22,8 @@ public class InterfaceCredentialsTest extends TestBase {
   private static final String MY_NEW_PASSWORD = "my_new_password";
   private static final String INTERFACE_ID = "60b952a6-5570-44f3-9972-f00c9dcb098e";
   private static final String ANOTHER_INTERFACE_ID = "793b9d42-ae12-41d7-a36a-f33e5b9e82c5";
-  private static final String INTERFACE_ENDPOINT = "/organizations-storage/interfaces";
-  private static final String INTERFACE_ENDPOINT_WITH_ID = "/organizations-storage/interfaces/{id}";
+  private static final String INTERFACE_ENDPOINT = TestEntities.INTERFACE.getEndpoint();
+  private static final String INTERFACE_ENDPOINT_WITH_ID = TestEntities.INTERFACE.getEndpointWithId();
   private static final String INTERFACE_CREDENTIAL_ENDPOINT_WITH_PARAM = "/organizations-storage/interfaces/%s/credentials";
   private static final String INTERFACE_CREDENTIAL_ENDPOINT_WITH_ID = "/organizations-storage/interfaces/{id}/credentials";
   private static final String INTERFACE_CREDENTIAL_ENDPOINT = String.format(INTERFACE_CREDENTIAL_ENDPOINT_WITH_PARAM, INTERFACE_ID);

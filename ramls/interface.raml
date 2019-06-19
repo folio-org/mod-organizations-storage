@@ -26,7 +26,6 @@ traits:
 resourceTypes:
     collection: !include raml-util/rtypes/collection.raml
     collection-item: !include raml-util/rtypes/item-collection.raml
-    simple-crud: !include rtypes/simple-crud.raml
 
 
 /organizations-storage/interfaces:
@@ -58,6 +57,38 @@ resourceTypes:
       displayName: Purchace Order Lines
       description: Manage purchase order (PO) lines
       type:
-        simple-crud:
+        collection-item:
           exampleItem: !include acq-models/mod-orgs/examples/interface_credential_get.sample
           schema: interface_credential
+      post:
+        description: Create a new interface credential
+        body:
+          application/json:
+            type: interface_credential
+            example:
+              strict: false
+              value: !include acq-models/mod-orgs/examples/interface_credential_get.sample
+        responses:
+          201:
+            description: "Returns a newly created interface credential, with server-controlled fields like 'id' populated"
+            headers:
+              Location:
+                description: URI to the created interface credential
+            body:
+              application/json:
+                example: !include acq-models/mod-orgs/examples/interface_credential_get.sample
+          400:
+            description: "Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response."
+            body:
+              text/plain:
+                example: "unable to add interface credential -- malformed JSON at 13:3"
+          401:
+            description: "Not authorized to perform requested action"
+            body:
+              text/plain:
+                example: "unable to create interface credential -- unauthorized"
+          500:
+            description: "Internal server error, e.g. due to misconfiguration"
+            body:
+              text/plain:
+                example: "Internal server error, contact administrator"

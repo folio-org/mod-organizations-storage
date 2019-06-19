@@ -26,7 +26,9 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
   private static final String MISMATCH_ERROR_MESSAGE = "Interface credential id mismatch";
 
   @Override
-  public void getOrganizationsStorageInterfaces(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+  @Validate
+  public void getOrganizationsStorageInterfaces(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders,
+      Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       EntitiesMetadataHolder<Interface, InterfaceCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Interface.class, InterfaceCollection.class, GetOrganizationsStorageInterfacesResponse.class);
       QueryHolder cql = new QueryHolder(INTERFACE_TABLE, query, offset, limit);
@@ -37,32 +39,33 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
   @Override
   @Validate
   public void postOrganizationsStorageInterfaces(String lang, org.folio.rest.jaxrs.model.Interface entity,
-                                        Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+      Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.post(INTERFACE_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationsStorageInterfacesResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
   public void getOrganizationsStorageInterfacesById(String id, String lang, Map<String, String> okapiHeaders,
-                                           Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.getById(INTERFACE_TABLE, Interface.class, id, okapiHeaders,vertxContext, GetOrganizationsStorageInterfacesByIdResponse.class, asyncResultHandler);
+      Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+    PgUtil.getById(INTERFACE_TABLE, Interface.class, id, okapiHeaders, vertxContext, GetOrganizationsStorageInterfacesByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
   public void deleteOrganizationsStorageInterfacesById(String id, String lang, Map<String, String> okapiHeaders,
-                                              Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+      Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.deleteById(INTERFACE_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationsStorageInterfacesByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
   public void putOrganizationsStorageInterfacesById(String id, String lang, org.folio.rest.jaxrs.model.Interface entity,
-                                           Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+      Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.put(INTERFACE_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationsStorageInterfacesByIdResponse.class, asyncResultHandler);
   }
 
   @Override
+  @Validate
   public void postOrganizationsStorageInterfacesCredentialsById(String id, InterfaceCredential entity,
       Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     if (!StringUtils.equals(entity.getId(), id) && StringUtils.isNotEmpty(entity.getId())) {
@@ -74,19 +77,22 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
   }
 
   @Override
-  public void getOrganizationsStorageInterfacesCredentialsById(String id, Map<String, String> okapiHeaders,
+  @Validate
+  public void getOrganizationsStorageInterfacesCredentialsById(String id, String lang, Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.getById(INTERFACE_CREDENTIAL_TABLE, InterfaceCredential.class, id, okapiHeaders, vertxContext, GetOrganizationsStorageInterfacesCredentialsByIdResponse.class, asyncResultHandler);
   }
 
   @Override
-  public void deleteOrganizationsStorageInterfacesCredentialsById(String id, Map<String, String> okapiHeaders,
+  @Validate
+  public void deleteOrganizationsStorageInterfacesCredentialsById(String id, String lang, Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.deleteById(INTERFACE_CREDENTIAL_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationsStorageInterfacesCredentialsByIdResponse.class, asyncResultHandler);
   }
 
   @Override
-  public void putOrganizationsStorageInterfacesCredentialsById(String id, InterfaceCredential entity,
+  @Validate
+  public void putOrganizationsStorageInterfacesCredentialsById(String id, String lang, InterfaceCredential entity,
       Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     if (StringUtils.equals(id, entity.getId())) {
       PgUtil.put(INTERFACE_CREDENTIAL_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationsStorageInterfacesCredentialsByIdResponse.class, asyncResultHandler);

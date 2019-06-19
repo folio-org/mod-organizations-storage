@@ -158,22 +158,22 @@
         {
           "methods": ["POST"],
           "pathPattern": "/organizations-storage/interfaces/{id}/credentials",
-          "permissionsRequired": ["organizations-storage.credentials.item.post"]
+          "permissionsRequired": ["organizations-storage.interfaces.credentials.item.post"]
         },
         {
           "methods": ["GET"],
           "pathPattern": "/organizations-storage/interfaces/{id}/credentials",
-          "permissionsRequired": ["organizations-storage.credentials.item.get"]
+          "permissionsRequired": ["organizations-storage.interfaces.credentials.item.get"]
         },
         {
           "methods": ["PUT"],
           "pathPattern": "/organizations-storage/interfaces/{id}/credentials",
-          "permissionsRequired": ["organizations-storage.credentials.item.put"]
+          "permissionsRequired": ["organizations-storage.interfaces.credentials.item.put"]
         },
         {
           "methods": ["DELETE"],
           "pathPattern": "/organizations-storage/interfaces/{id}/credentials",
-          "permissionsRequired": ["organizations-storage.credentials.item.delete"]
+          "permissionsRequired": ["organizations-storage.interfaces.credentials.item.delete"]
         }
       ]
     },
@@ -480,34 +480,34 @@
       ]
     },
     {
-      "permissionName" : "organizations-storage.credentials.item.post",
+      "permissionName" : "organizations-storage.interfaces.credentials.item.post",
       "displayName" : "interface credentials post",
       "description" : "Create a new interface credentials"
     },
     {
-      "permissionName" : "organizations-storage.credentials.item.get",
+      "permissionName" : "organizations-storage.interfaces.credentials.item.get",
       "displayName" : "interface credentials get",
       "description" : "Fetch an interface credentials"
     },
     {
-      "permissionName" : "organizations-storage.credentials.item.put",
+      "permissionName" : "organizations-storage.interfaces.credentials.item.put",
       "displayName" : "interface credentials put",
       "description" : "Update an interface credentials"
     },
     {
-      "permissionName" : "organizations-storage.credentials.item.delete",
+      "permissionName" : "organizations-storage.interfaces.credentials.item.delete",
       "displayName" : "interface credentials delete",
       "description" : "Delete an interface credentials"
     },
     {
-      "permissionName" : "organizations-storage.credentials.all",
+      "permissionName" : "organizations-storage.interfaces.credentials.all",
       "displayName" : "interface credentials all",
       "description" : "All permissions for interface credentials",
       "subPermissions" : [
-        "organizations-storage.credentials.item.post",
-        "organizations-storage.credentials.item.get",
-        "organizations-storage.credentials.item.put",
-        "organizations-storage.credentials.item.delete"
+        "organizations-storage.interfaces.credentials.item.post",
+        "organizations-storage.interfaces.credentials.item.get",
+        "organizations-storage.interfaces.credentials.item.put",
+        "organizations-storage.interfaces.credentials.item.delete"
       ]
     },
     {
@@ -631,7 +631,7 @@
         "organizations-storage.contacts.all",
         "organizations-storage.emails.all",
         "organizations-storage.interfaces.all",
-        "organizations-storage.credentials.all",
+        "organizations-storage.interfaces.credentials.all",
         "organizations-storage.phone-numbers.all",
         "organizations-storage.urls.all",
         "organizations-storage.organizations.all"
