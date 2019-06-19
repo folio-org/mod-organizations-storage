@@ -14,25 +14,16 @@ import org.folio.rest.jaxrs.model.InterfaceCredential;
 import org.folio.rest.jaxrs.resource.OrganizationsStorageInterfaces;
 import org.folio.rest.persist.EntitiesMetadataHolder;
 import org.folio.rest.persist.PgUtil;
-import org.folio.rest.persist.PostgresClient;
 import org.folio.rest.persist.QueryHolder;
 
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Context;
 import io.vertx.core.Handler;
-import io.vertx.core.Vertx;
 
 public class InterfacesAPI implements OrganizationsStorageInterfaces {
   private static final String INTERFACE_TABLE = "interfaces";
   private static final String INTERFACE_CREDENTIAL_TABLE = "interface_credentials";
-  public static final String MISMATCH_ERROR_MESSAGE = "Interface credential id mismatch";
-
-  private String idFieldName = "id";
-
-  public InterfacesAPI(Vertx vertx, String tenantId) {
-    PostgresClient.getInstance(vertx, tenantId).setIdField(idFieldName);
-  }
-
+  private static final String MISMATCH_ERROR_MESSAGE = "Interface credential id mismatch";
 
   @Override
   public void getOrganizationsStorageInterfaces(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
