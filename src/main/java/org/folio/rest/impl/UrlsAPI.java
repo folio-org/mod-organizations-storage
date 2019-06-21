@@ -21,13 +21,6 @@ import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
 public class UrlsAPI implements OrganizationsStorageUrls {
   private static final String URL_TABLE = "urls";
 
-  private String idFieldName = "id";
-
-  public UrlsAPI(Vertx vertx, String tenantId) {
-    PostgresClient.getInstance(vertx, tenantId).setIdField(idFieldName);
-  }
-
-
   @Override
   @Validate
   public void getOrganizationsStorageUrls(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {

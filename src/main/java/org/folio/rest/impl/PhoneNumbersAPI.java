@@ -21,13 +21,6 @@ import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
 public class PhoneNumbersAPI implements OrganizationsStoragePhoneNumbers {
   private static final String PHONE_NUMBER_TABLE = "phone_numbers";
 
-  private String idFieldName = "id";
-
-  public PhoneNumbersAPI(Vertx vertx, String tenantId) {
-    PostgresClient.getInstance(vertx, tenantId).setIdField(idFieldName);
-  }
-
-
   @Override
   @Validate
   public void getOrganizationsStoragePhoneNumbers(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {

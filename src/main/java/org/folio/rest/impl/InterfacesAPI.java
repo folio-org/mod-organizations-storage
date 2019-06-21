@@ -68,11 +68,10 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
   @Validate
   public void postOrganizationsStorageInterfacesCredentialsById(String id, InterfaceCredential entity,
       Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    if (!StringUtils.equals(entity.getId(), id) && StringUtils.isNotEmpty(entity.getId())) {
-      asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(PostOrganizationsStorageInterfacesCredentialsByIdResponse.respond400WithTextPlain(MISMATCH_ERROR_MESSAGE)));
-    } else {
-      entity.setId(id);
+    if (StringUtils.equals(entity.getInterfaceId(), id) ) {
       PgUtil.post(INTERFACE_CREDENTIAL_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationsStorageInterfacesCredentialsByIdResponse.class, asyncResultHandler);
+    } else {
+      asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(PostOrganizationsStorageInterfacesCredentialsByIdResponse.respond400WithTextPlain(MISMATCH_ERROR_MESSAGE)));
     }
   }
 
@@ -94,7 +93,7 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
   @Validate
   public void putOrganizationsStorageInterfacesCredentialsById(String id, String lang, InterfaceCredential entity,
       Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    if (StringUtils.equals(id, entity.getId())) {
+    if (StringUtils.equals(id, entity.getInterfaceId())) {
       PgUtil.put(INTERFACE_CREDENTIAL_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationsStorageInterfacesCredentialsByIdResponse.class, asyncResultHandler);
     } else {
       asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(PutOrganizationsStorageInterfacesCredentialsByIdResponse.respond400WithTextPlain(MISMATCH_ERROR_MESSAGE)));

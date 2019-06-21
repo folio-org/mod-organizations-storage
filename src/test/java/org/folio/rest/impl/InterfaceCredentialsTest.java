@@ -18,17 +18,21 @@ public class InterfaceCredentialsTest extends TestBase {
   private final Logger logger = LoggerFactory.getLogger(InterfaceCredentialsTest.class);
 
   private static final String ID = "id";
+  private static final String INTERFACE_ID_FIELD = "interfaceId";
   private static final String PASSWORD_FIELD = "password";
   private static final String MY_NEW_PASSWORD = "my_new_password";
-  private static final String INTERFACE_ID = "60b952a6-5570-44f3-9972-f00c9dcb098e";
-  private static final String ANOTHER_INTERFACE_ID = "793b9d42-ae12-41d7-a36a-f33e5b9e82c5";
+  private static final String INTERFACE_ID = "14e81009-0f98-45a0-b8e6-e25547beb22f";
+  private static final String ANOTHER_INTERFACE_ID = "cd592659-77aa-4eb3-ac34-c9a4657bb20f";
   private static final String INTERFACE_ENDPOINT = TestEntities.INTERFACE.getEndpoint();
   private static final String INTERFACE_ENDPOINT_WITH_ID = TestEntities.INTERFACE.getEndpointWithId();
   private static final String INTERFACE_CREDENTIAL_ENDPOINT_WITH_PARAM = "/organizations-storage/interfaces/%s/credentials";
   private static final String INTERFACE_CREDENTIAL_ENDPOINT_WITH_ID = "/organizations-storage/interfaces/{id}/credentials";
   private static final String INTERFACE_CREDENTIAL_ENDPOINT = String.format(INTERFACE_CREDENTIAL_ENDPOINT_WITH_PARAM, INTERFACE_ID);
   private static final String ANOTHER_INTERFACE_CREDENTIAL_ENDPOINT = String.format(INTERFACE_CREDENTIAL_ENDPOINT_WITH_PARAM, ANOTHER_INTERFACE_ID);
-  private static final String SAMPLE_CREDENTIAL_FILE = "interface_credential.sample";
+  private static final String SAMPLE_INTERFACE_FILE_1 = "data/interfaces/alexs_interface.json";
+  private static final String SAMPLE_INTERFACE_FILE_2 = "data/interfaces/amaz_interface.json";
+  private static final String SAMPLE_CREDENTIAL_FILE_1 = "data/interface_credentials/alexs_interface_credential.json";
+  private static final String SAMPLE_CREDENTIAL_FILE_2 = "data/interface_credentials/amaz_interface_credential.json";
   private static final String simpleClassName = InterfaceCredential.class.getSimpleName();
 
   @Test
@@ -37,10 +41,10 @@ public class InterfaceCredentialsTest extends TestBase {
       logger.info(String.format("--- mod-organizations-storage %s test: Creating %s ... ", simpleClassName, simpleClassName));
 
       // prepare interface
-      String interfaceSample_1 = getFile("data/interfaces/acso_interface.json");
+      String interfaceSample_1 = getFile(SAMPLE_INTERFACE_FILE_1);
       postData(INTERFACE_ENDPOINT, interfaceSample_1).then().statusCode(201);
 
-      String sample = getFile(SAMPLE_CREDENTIAL_FILE);
+      String sample = getFile(SAMPLE_CREDENTIAL_FILE_1);
       Response response = postData(INTERFACE_CREDENTIAL_ENDPOINT, sample);
 
       logger.info(String.format("--- mod-organizations-storage %s test: Valid fields exists ... ", simpleClassName));
@@ -50,19 +54,17 @@ public class InterfaceCredentialsTest extends TestBase {
       testAllFieldsExists(responseJson, sampleJson);
 
       logger.info(String.format("--- mod-organizations-storage %s test: Fetching %s with ID: %s", simpleClassName, simpleClassName, INTERFACE_ID));
-      String id = getData(INTERFACE_CREDENTIAL_ENDPOINT).then()
+      InterfaceCredential createdIC = getData(INTERFACE_CREDENTIAL_ENDPOINT).then()
         .log().ifValidationFails()
         .statusCode(200).log().ifValidationFails()
         .extract()
-        .body()
-        .jsonPath()
-        .get(ID).toString();
-      assertEquals(INTERFACE_ID, id);
+        .body().as(InterfaceCredential.class);
+
+      assertEquals(INTERFACE_ID, createdIC.getInterfaceId());
 
       logger.info(String.format("--- mod-organizations-storage %s test: Editing %s with ID: %s", simpleClassName, simpleClassName, INTERFACE_ID));
-      JsonObject catJSON = new JsonObject(sample);
-      catJSON.put(ID, INTERFACE_ID);
-      catJSON.put(PASSWORD_FIELD, MY_NEW_PASSWORD);
+      createdIC.setPassword(MY_NEW_PASSWORD);
+      JsonObject catJSON = JsonObject.mapFrom(createdIC);
       testEntityEdit(INTERFACE_CREDENTIAL_ENDPOINT_WITH_ID, catJSON.toString(), INTERFACE_ID);
 
       logger.info(String.format("--- mod-organizations-storage %s test: Fetching updated %s with ID: %s", simpleClassName, simpleClassName, INTERFACE_ID));
@@ -101,7 +103,7 @@ public class InterfaceCredentialsTest extends TestBase {
   @Test
   public void testEditEntityWithNonExistedId() throws MalformedURLException {
     logger.info(String.format("--- mod-organizations-storage %s put by id test: Invalid %s: %s", simpleClassName, simpleClassName, NON_EXISTED_ID));
-    String sampleData = getFile(SAMPLE_CREDENTIAL_FILE);
+    String sampleData = getFile(SAMPLE_CREDENTIAL_FILE_1);
     putData(INTERFACE_CREDENTIAL_ENDPOINT_WITH_ID, INTERFACE_ID, sampleData)
       .then().log().ifValidationFails()
       .statusCode(404);
@@ -118,14 +120,9 @@ public class InterfaceCredentialsTest extends TestBase {
   @Test
   public void testEntityWithMismatchId() throws MalformedURLException {
     logger.info(String.format("--- mod-organizations-storage %s put by id test: Invalid %s: %s", simpleClassName, simpleClassName, NON_EXISTED_ID));
-
     // prepare interface data
-    String interfaceSample_1 = getFile("data/interfaces/acso_interface.json");
-    postData(INTERFACE_ENDPOINT, interfaceSample_1).then().statusCode(201);
-    String interfaceSample_2 = getFile("data/interfaces/gobi_interface.json");
-    postData(INTERFACE_ENDPOINT, interfaceSample_2).then().statusCode(201);
 
-    String sample = getFile(SAMPLE_CREDENTIAL_FILE);
+    String sample = getFile(SAMPLE_CREDENTIAL_FILE_1);
     // create interface credential with id = INTERFACE_ID
     postData(INTERFACE_CREDENTIAL_ENDPOINT, sample).then().statusCode(201);
 
@@ -152,5 +149,12 @@ public class InterfaceCredentialsTest extends TestBase {
     // interfaces cleanup
     deleteDataSuccess(INTERFACE_ENDPOINT_WITH_ID, INTERFACE_ID);
     deleteDataSuccess(INTERFACE_ENDPOINT_WITH_ID, ANOTHER_INTERFACE_ID);
+  }
+
+  private void prepareInterface() throws MalformedURLException {
+    String interfaceSample_1 = getFile(SAMPLE_INTERFACE_FILE_1);
+    postData(INTERFACE_ENDPOINT, interfaceSample_1).then().statusCode(201);
+  //  String interfaceSample_2 = getFile(SAMPLE_INTERFACE_FILE_2);
+   // postData(INTERFACE_ENDPOINT, interfaceSample_2).then().statusCode(201);
   }
 }

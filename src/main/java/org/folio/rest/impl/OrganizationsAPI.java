@@ -21,12 +21,6 @@ import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
 public class OrganizationsAPI implements OrganizationsStorageOrganizations {
   private static final String ORGANIZATION_TABLE = "organizations";
 
-  private String idFieldName = "id";
-
-  public OrganizationsAPI(Vertx vertx, String tenantId) {
-    PostgresClient.getInstance(vertx, tenantId).setIdField(idFieldName);
-  }
-
   @Override
   @Validate
   public void getOrganizationsStorageOrganizations(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {

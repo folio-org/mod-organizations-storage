@@ -21,13 +21,6 @@ import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
 public class CategoriesAPI implements OrganizationsStorageCategories {
   private static final String CATEGORY_TABLE = "categories";
 
-  private String idFieldName = "id";
-
-  public CategoriesAPI(Vertx vertx, String tenantId) {
-    PostgresClient.getInstance(vertx, tenantId).setIdField(idFieldName);
-  }
-
-
   @Override
   @Validate
   public void getOrganizationsStorageCategories(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {

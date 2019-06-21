@@ -21,13 +21,6 @@ import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
 public class EmailsAPI implements OrganizationsStorageEmails {
   private static final String EMAIL_TABLE = "emails";
 
-  private String idFieldName = "id";
-
-  public EmailsAPI(Vertx vertx, String tenantId) {
-    PostgresClient.getInstance(vertx, tenantId).setIdField(idFieldName);
-  }
-
-
   @Override
   @Validate
   public void getOrganizationsStorageEmails(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
