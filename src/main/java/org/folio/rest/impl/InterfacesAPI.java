@@ -104,7 +104,6 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
                   asyncResultHandler.handle(Future.succeededFuture(GetOrganizationsStorageInterfacesCredentialsByIdResponse.respond200WithApplicationJson(response)));
                 }
               } else {
-                logger.error(reply.cause().getMessage(), reply.cause());
                 asyncResultHandler.handle(Future.succeededFuture(GetOrganizationsStorageInterfacesCredentialsByIdResponse.respond500WithTextPlain(reply.cause().getMessage())));
               }
             } catch (Exception e) {
@@ -138,7 +137,6 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
                   asyncResultHandler.handle(Future.succeededFuture(DeleteOrganizationsStorageInterfacesCredentialsByIdResponse.respond204()));
                 }
               } else {
-                logger.error(reply.cause().getMessage(), reply.cause());
                 asyncResultHandler.handle(Future.succeededFuture(DeleteOrganizationsStorageInterfacesCredentialsByIdResponse.respond500WithTextPlain(reply.cause().getMessage())));
               }
             } catch (Exception e) {
