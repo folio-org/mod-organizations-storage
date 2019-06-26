@@ -154,6 +154,26 @@
           "methods": ["DELETE"],
           "pathPattern": "/organizations-storage/interfaces/{id}",
           "permissionsRequired": ["organizations-storage.interfaces.item.delete"]
+        },
+        {
+          "methods": ["POST"],
+          "pathPattern": "/organizations-storage/interfaces/{id}/credentials",
+          "permissionsRequired": ["organizations-storage.interfaces.credentials.item.post"]
+        },
+        {
+          "methods": ["GET"],
+          "pathPattern": "/organizations-storage/interfaces/{id}/credentials",
+          "permissionsRequired": ["organizations-storage.interfaces.credentials.item.get"]
+        },
+        {
+          "methods": ["PUT"],
+          "pathPattern": "/organizations-storage/interfaces/{id}/credentials",
+          "permissionsRequired": ["organizations-storage.interfaces.credentials.item.put"]
+        },
+        {
+          "methods": ["DELETE"],
+          "pathPattern": "/organizations-storage/interfaces/{id}/credentials",
+          "permissionsRequired": ["organizations-storage.interfaces.credentials.item.delete"]
         }
       ]
     },
@@ -460,6 +480,37 @@
       ]
     },
     {
+      "permissionName" : "organizations-storage.interfaces.credentials.item.post",
+      "displayName" : "interface credentials post",
+      "description" : "Create a new interface credentials"
+    },
+    {
+      "permissionName" : "organizations-storage.interfaces.credentials.item.get",
+      "displayName" : "interface credentials get",
+      "description" : "Fetch an interface credentials"
+    },
+    {
+      "permissionName" : "organizations-storage.interfaces.credentials.item.put",
+      "displayName" : "interface credentials put",
+      "description" : "Update an interface credentials"
+    },
+    {
+      "permissionName" : "organizations-storage.interfaces.credentials.item.delete",
+      "displayName" : "interface credentials delete",
+      "description" : "Delete an interface credentials"
+    },
+    {
+      "permissionName" : "organizations-storage.interfaces.credentials.all",
+      "displayName" : "interface credentials all",
+      "description" : "All permissions for interface credentials",
+      "subPermissions" : [
+        "organizations-storage.interfaces.credentials.item.post",
+        "organizations-storage.interfaces.credentials.item.get",
+        "organizations-storage.interfaces.credentials.item.put",
+        "organizations-storage.interfaces.credentials.item.delete"
+      ]
+    },
+    {
       "permissionName" : "organizations-storage.phone-numbers.collection.get",
       "displayName" : "phone_number collection get",
       "description" : "Get a collection of phone_numbers"
@@ -580,6 +631,7 @@
         "organizations-storage.contacts.all",
         "organizations-storage.emails.all",
         "organizations-storage.interfaces.all",
+        "organizations-storage.interfaces.credentials.all",
         "organizations-storage.phone-numbers.all",
         "organizations-storage.urls.all",
         "organizations-storage.organizations.all"

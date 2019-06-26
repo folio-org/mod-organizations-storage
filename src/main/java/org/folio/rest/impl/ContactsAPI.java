@@ -21,13 +21,6 @@ import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
 public class ContactsAPI implements OrganizationsStorageContacts {
   private static final String CONTACT_TABLE = "contacts";
 
-  private String idFieldName = "id";
-
-  public ContactsAPI(Vertx vertx, String tenantId) {
-    PostgresClient.getInstance(vertx, tenantId).setIdField(idFieldName);
-  }
-
-
   @Override
   @Validate
   public void getOrganizationsStorageContacts(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {

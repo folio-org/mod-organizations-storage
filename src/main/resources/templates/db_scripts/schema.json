@@ -2,17 +2,13 @@
   "tables": [
     {
       "tableName": "addresses",
-      "generateId": true,
       "fromModuleVersion": 1.0,
-      "withMetadata": true,
-      "populateJsonWithId": true
+      "withMetadata": true
     },
     {
       "tableName": "categories",
-      "generateId": true,
       "fromModuleVersion": 1.0,
       "withMetadata": true,
-      "populateJsonWithId": true,
       "ginIndex": [
         {
           "fieldName": "values",
@@ -24,45 +20,43 @@
     },
     {
       "tableName": "contacts",
-      "generateId": true,
       "fromModuleVersion": 1.0,
-      "withMetadata": true,
-      "populateJsonWithId": true
+      "withMetadata": true
     },
     {
       "tableName": "emails",
-      "generateId": true,
       "fromModuleVersion": 1.0,
-      "withMetadata": true,
-      "populateJsonWithId": true
+      "withMetadata": true
     },
     {
       "tableName": "interfaces",
-      "generateId": true,
       "fromModuleVersion": 1.0,
-      "withMetadata": true,
-      "populateJsonWithId": true
+      "withMetadata": true
+    },
+    {
+      "tableName": "interface_credentials",
+      "fromModuleVersion": 1.2,
+      "foreignKeys": [
+        {
+          "fieldName": "interfaceId",
+          "targetTable": "interfaces"
+        }
+      ]
     },
     {
       "tableName": "phone_numbers",
-      "generateId": true,
       "fromModuleVersion": 1.0,
-      "withMetadata": true,
-      "populateJsonWithId": true
+      "withMetadata": true
     },
     {
       "tableName": "urls",
-      "generateId": true,
       "fromModuleVersion": 1.0,
-      "withMetadata": true,
-      "populateJsonWithId": true
+      "withMetadata": true
     },
     {
       "tableName": "organizations",
-      "generateId": true,
       "fromModuleVersion": 1.0,
       "withMetadata": true,
-      "populateJsonWithId": true,
       "ginIndex": [
         {
           "fieldName": "name",
