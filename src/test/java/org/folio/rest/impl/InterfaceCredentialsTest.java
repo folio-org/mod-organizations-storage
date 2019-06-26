@@ -17,22 +17,25 @@ import io.vertx.core.logging.LoggerFactory;
 public class InterfaceCredentialsTest extends TestBase {
   private final Logger logger = LoggerFactory.getLogger(InterfaceCredentialsTest.class);
 
-  private static final String ID = "id";
-  private static final String INTERFACE_ID_FIELD = "interfaceId";
   private static final String PASSWORD_FIELD = "password";
   private static final String MY_NEW_PASSWORD = "my_new_password";
+
   private static final String INTERFACE_ID = "14e81009-0f98-45a0-b8e6-e25547beb22f";
   private static final String ANOTHER_INTERFACE_ID = "cd592659-77aa-4eb3-ac34-c9a4657bb20f";
+
   private static final String INTERFACE_ENDPOINT = TestEntities.INTERFACE.getEndpoint();
   private static final String INTERFACE_ENDPOINT_WITH_ID = TestEntities.INTERFACE.getEndpointWithId();
   private static final String INTERFACE_CREDENTIAL_ENDPOINT_WITH_PARAM = "/organizations-storage/interfaces/%s/credentials";
   private static final String INTERFACE_CREDENTIAL_ENDPOINT_WITH_ID = "/organizations-storage/interfaces/{id}/credentials";
+
   private static final String INTERFACE_CREDENTIAL_ENDPOINT = String.format(INTERFACE_CREDENTIAL_ENDPOINT_WITH_PARAM, INTERFACE_ID);
   private static final String ANOTHER_INTERFACE_CREDENTIAL_ENDPOINT = String.format(INTERFACE_CREDENTIAL_ENDPOINT_WITH_PARAM, ANOTHER_INTERFACE_ID);
+
   private static final String SAMPLE_INTERFACE_FILE_1 = "data/interfaces/alexs_interface.json";
   private static final String SAMPLE_INTERFACE_FILE_2 = "data/interfaces/amaz_interface.json";
   private static final String SAMPLE_CREDENTIAL_FILE_1 = "data/interface_credentials/alexs_interface_credential.json";
   private static final String SAMPLE_CREDENTIAL_FILE_2 = "data/interface_credentials/amaz_interface_credential.json";
+
   private static final String simpleClassName = InterfaceCredential.class.getSimpleName();
 
   @Test
@@ -120,41 +123,35 @@ public class InterfaceCredentialsTest extends TestBase {
   @Test
   public void testEntityWithMismatchId() throws MalformedURLException {
     logger.info(String.format("--- mod-organizations-storage %s put by id test: Invalid %s: %s", simpleClassName, simpleClassName, NON_EXISTED_ID));
+
     // prepare interface data
+    String interfaceSample_1 = getFile(SAMPLE_INTERFACE_FILE_1);
+    postData(INTERFACE_ENDPOINT, interfaceSample_1).then().statusCode(201);
+    String interfaceSample_2 = getFile(SAMPLE_INTERFACE_FILE_2);
+    postData(INTERFACE_ENDPOINT, interfaceSample_2).then().statusCode(201);
 
-    String sample = getFile(SAMPLE_CREDENTIAL_FILE_1);
+    String sampleCredential_1 = getFile(SAMPLE_CREDENTIAL_FILE_1);
     // create interface credential with id = INTERFACE_ID
-    postData(INTERFACE_CREDENTIAL_ENDPOINT, sample).then().statusCode(201);
+    postData(INTERFACE_CREDENTIAL_ENDPOINT, sampleCredential_1).then().statusCode(201);
 
+    String sampleCredential_2 = getFile(SAMPLE_CREDENTIAL_FILE_2);
     // create interface credential with id = ANOTHER_INTERFACE_ID
-    JsonObject credentialJson = new JsonObject(sample);
-    credentialJson.put("id", ANOTHER_INTERFACE_ID);
-    sample = credentialJson.toString();
+    postData(ANOTHER_INTERFACE_CREDENTIAL_ENDPOINT, sampleCredential_2).then().statusCode(201);
 
     // try to create interface credential with mismatched id
-    postData(INTERFACE_CREDENTIAL_ENDPOINT, sample).then().statusCode(400);
-
-    // create another interface credential
-    postData(ANOTHER_INTERFACE_CREDENTIAL_ENDPOINT, sample).then().statusCode(201);
-
+    postData(INTERFACE_CREDENTIAL_ENDPOINT, sampleCredential_2).then().statusCode(400);
 
     // update interface credential with mismatched id
-    putData(INTERFACE_CREDENTIAL_ENDPOINT_WITH_ID, INTERFACE_ID, sample)
+    putData(INTERFACE_CREDENTIAL_ENDPOINT_WITH_ID, INTERFACE_ID, sampleCredential_2)
       .then().log().ifValidationFails()
       .statusCode(400);
 
+    // interface credentials cleanup
     deleteDataSuccess(INTERFACE_CREDENTIAL_ENDPOINT_WITH_ID, INTERFACE_ID);
     deleteDataSuccess(INTERFACE_CREDENTIAL_ENDPOINT_WITH_ID, ANOTHER_INTERFACE_ID);
 
     // interfaces cleanup
     deleteDataSuccess(INTERFACE_ENDPOINT_WITH_ID, INTERFACE_ID);
     deleteDataSuccess(INTERFACE_ENDPOINT_WITH_ID, ANOTHER_INTERFACE_ID);
-  }
-
-  private void prepareInterface() throws MalformedURLException {
-    String interfaceSample_1 = getFile(SAMPLE_INTERFACE_FILE_1);
-    postData(INTERFACE_ENDPOINT, interfaceSample_1).then().statusCode(201);
-  //  String interfaceSample_2 = getFile(SAMPLE_INTERFACE_FILE_2);
-   // postData(INTERFACE_ENDPOINT, interfaceSample_2).then().statusCode(201);
   }
 }
