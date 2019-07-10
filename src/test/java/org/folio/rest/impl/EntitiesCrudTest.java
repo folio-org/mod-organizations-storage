@@ -1,16 +1,23 @@
 package org.folio.rest.impl;
 
 import io.restassured.response.Response;
+import io.restassured.response.ValidatableResponse;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
+import org.folio.rest.annotations.Validate;
+import org.folio.rest.utils.TenantApiTestUtil;
 import org.folio.rest.utils.TestEntities;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.net.MalformedURLException;
+import java.util.Map;
 
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.notNullValue;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 @RunWith(Parameterized.class)
@@ -103,6 +110,15 @@ public class EntitiesCrudTest extends TestBase {
   public void testGetEntitiesWithInvalidCQLQuery() throws MalformedURLException {
     logger.info(String.format("--- mod-organizations-storage %s test: Invalid CQL query", testEntity.name()));
     testInvalidCQLQuery(testEntity.getEndpoint() + "?query=invalid-query");
+  }
+
+  @Test
+  public void testReceiveMetadata() throws MalformedURLException {
+    logger.info(String.format("--- mod-organizations-storage %s test: Test receive metadata", testEntity.name()));
+    String sample = getFile(testEntity.getSampleFileName());
+    Response response = postDataWithUserId(testEntity.getEndpoint(), sample);
+    Map metadata = response.then().extract().path("metadata");
+    assertThat(metadata, is(notNullValue()));
   }
   
 }
