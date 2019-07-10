@@ -50,9 +50,8 @@ public class EntitiesCrudTest extends TestBase {
       JsonObject responseJson = JsonObject.mapFrom(response.then().extract().response().as(testEntity.getClazz()));
       testAllFieldsExists(responseJson, sampleJson);
 
-      testReceiveMetadata();
       logger.info(String.format("--- mod-organizations-storage %s test: Verifying only 1 adjustment was created ... ", testEntity.name()));
-      verifyCollectionQuantity(testEntity.getEndpoint(),2);
+      verifyCollectionQuantity(testEntity.getEndpoint(),1);
 
       logger.info(String.format("--- mod-organizations-storage %s test: Fetching %s with ID: %s", testEntity.name(), testEntity.name(), sampleId));
       testEntitySuccessfullyFetched(testEntity.getEndpointWithId(), sampleId);
