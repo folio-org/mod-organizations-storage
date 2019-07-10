@@ -21,6 +21,7 @@ import java.util.concurrent.TimeoutException;
 import static io.restassured.RestAssured.given;
 import static org.folio.rest.RestVerticle.OKAPI_HEADER_TENANT;
 import static org.folio.rest.impl.StorageTestSuite.storageUrl;
+import static org.folio.rest.utils.TenantApiTestUtil.USER_ID_HEADER;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
 
@@ -109,6 +110,16 @@ public abstract class TestBase {
   Response postData(String endpoint, String input) throws MalformedURLException {
     return given()
       .header(TENANT_HEADER)
+      .accept(ContentType.JSON)
+      .contentType(ContentType.JSON)
+      .body(input)
+      .post(storageUrl(endpoint));
+  }
+
+  Response postDataWithUserId(String endpoint, String input) throws MalformedURLException {
+    return given()
+      .header(TENANT_HEADER)
+      .header(USER_ID_HEADER)
       .accept(ContentType.JSON)
       .contentType(ContentType.JSON)
       .body(input)

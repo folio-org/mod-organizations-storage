@@ -17,7 +17,7 @@ import org.folio.rest.jaxrs.model.TenantAttributes;
 public class TenantApiTestUtil {
 
   public static final String TENANT_ENDPOINT = "/_/tenant";
-  private static final Header USER_ID_HEADER = new Header("X-Okapi-User-id", "28d0fb04-d137-11e8-a8d5-f2801f1b9fd1");
+  public static final Header USER_ID_HEADER = new Header("X-Okapi-User-id", "28d0fb04-d137-11e8-a8d5-f2801f1b9fd1");
 
   private TenantApiTestUtil() {
 
