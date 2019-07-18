@@ -35,7 +35,7 @@
     },
     {
       "tableName": "interface_credentials",
-      "fromModuleVersion": 1.2,
+      "fromModuleVersion": 2.0,
       "foreignKeys": [
         {
           "fieldName": "interfaceId",
