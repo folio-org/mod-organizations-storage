@@ -1,4 +1,19 @@
-## 1.2.0 - Unreleased
+## 2.1.0 - Unreleased
+
+## 2.0.0 - Released
+This release consists of following updates:
+* Fix of organizations phone number schema
+* Splitting interface credentials into a separate endpoint because of security reasons. 
+* Metadata was added to all organizations schemas
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v1.1.0...v2.0.0)
+
+### Stories
+* [MODORGS-32](https://issues.folio.org/browse/MODORGS-32) Include metadata property in JSON schemas
+* [MODORGS-31](https://issues.folio.org/browse/MODORGS-31) Implement API for interface credentials
+
+### Bug Fixes
+* [MODORGS-29](https://issues.folio.org/browse/MODORGS-29) Phone numbers json doesn't match phone number storage
 
 ## 1.1.0 - Released
 The primary focus of this release was to make a few schema updates required for ui-organizations.

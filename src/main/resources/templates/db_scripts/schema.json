@@ -2,12 +2,12 @@
   "tables": [
     {
       "tableName": "addresses",
-      "fromModuleVersion": 1.0,
+      "fromModuleVersion": 2.0,
       "withMetadata": true
     },
     {
       "tableName": "categories",
-      "fromModuleVersion": 1.0,
+      "fromModuleVersion": 2.0,
       "withMetadata": true,
       "ginIndex": [
         {
@@ -20,22 +20,22 @@
     },
     {
       "tableName": "contacts",
-      "fromModuleVersion": 1.0,
+      "fromModuleVersion": 2.0,
       "withMetadata": true
     },
     {
       "tableName": "emails",
-      "fromModuleVersion": 1.0,
+      "fromModuleVersion": 2.0,
       "withMetadata": true
     },
     {
       "tableName": "interfaces",
-      "fromModuleVersion": 1.0,
+      "fromModuleVersion": 2.0,
       "withMetadata": true
     },
     {
       "tableName": "interface_credentials",
-      "fromModuleVersion": 1.2,
+      "fromModuleVersion": 2.0,
       "foreignKeys": [
         {
           "fieldName": "interfaceId",
@@ -45,17 +45,17 @@
     },
     {
       "tableName": "phone_numbers",
-      "fromModuleVersion": 1.0,
+      "fromModuleVersion": 2.0,
       "withMetadata": true
     },
     {
       "tableName": "urls",
-      "fromModuleVersion": 1.0,
+      "fromModuleVersion": 2.0,
       "withMetadata": true
     },
     {
       "tableName": "organizations",
-      "fromModuleVersion": 1.0,
+      "fromModuleVersion": 2.0,
       "withMetadata": true,
       "ginIndex": [
         {
