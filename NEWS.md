@@ -1,4 +1,12 @@
-## 2.1.0 - Unreleased
+## 2.2.0 - Unreleased
+
+## 2.1.0 - Released
+The primary focus of this release was to add ability to assign tags to an organization record
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v2.0.0...v2.1.0)
+
+### Stories
+* [MODORGS-35](https://issues.folio.org/browse/MODORGS-35) Ability to assign tags to an organization record
 
 ## 2.0.0 - Released
 This release consists of following updates:
