@@ -1,7 +1,5 @@
 package org.folio.rest.impl;
 
-import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
-
 import java.util.Map;
 
 import javax.ws.rs.core.Response;
@@ -13,10 +11,8 @@ import org.folio.rest.jaxrs.model.Interface;
 import org.folio.rest.jaxrs.model.InterfaceCollection;
 import org.folio.rest.jaxrs.model.InterfaceCredential;
 import org.folio.rest.jaxrs.resource.OrganizationsStorageInterfaces;
-import org.folio.rest.persist.EntitiesMetadataHolder;
 import org.folio.rest.persist.PgUtil;
 import org.folio.rest.persist.PostgresClient;
-import org.folio.rest.persist.QueryHolder;
 import org.folio.rest.persist.Criteria.Criteria;
 import org.folio.rest.persist.Criteria.Criterion;
 import org.folio.rest.tools.utils.TenantTool;
@@ -38,49 +34,52 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
   @Validate
   public void getOrganizationsStorageInterfaces(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    vertxContext.runOnContext((Void v) -> {
-      EntitiesMetadataHolder<Interface, InterfaceCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Interface.class, InterfaceCollection.class, GetOrganizationsStorageInterfacesResponse.class);
-      QueryHolder cql = new QueryHolder(INTERFACE_TABLE, query, offset, limit);
-      getEntitiesCollection(entitiesMetadataHolder, cql, asyncResultHandler, vertxContext, okapiHeaders);
-    });
+    PgUtil.get(INTERFACE_TABLE, Interface.class, InterfaceCollection.class, query, offset, limit, okapiHeaders, vertxContext,
+        GetOrganizationsStorageInterfacesResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
   public void postOrganizationsStorageInterfaces(String lang, org.folio.rest.jaxrs.model.Interface entity,
       Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.post(INTERFACE_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationsStorageInterfacesResponse.class, asyncResultHandler);
+    PgUtil.post(INTERFACE_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationsStorageInterfacesResponse.class,
+        asyncResultHandler);
   }
 
   @Override
   @Validate
   public void getOrganizationsStorageInterfacesById(String id, String lang, Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.getById(INTERFACE_TABLE, Interface.class, id, okapiHeaders, vertxContext, GetOrganizationsStorageInterfacesByIdResponse.class, asyncResultHandler);
+    PgUtil.getById(INTERFACE_TABLE, Interface.class, id, okapiHeaders, vertxContext,
+        GetOrganizationsStorageInterfacesByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
   public void deleteOrganizationsStorageInterfacesById(String id, String lang, Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.deleteById(INTERFACE_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationsStorageInterfacesByIdResponse.class, asyncResultHandler);
+    PgUtil.deleteById(INTERFACE_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationsStorageInterfacesByIdResponse.class,
+        asyncResultHandler);
   }
 
   @Override
   @Validate
   public void putOrganizationsStorageInterfacesById(String id, String lang, org.folio.rest.jaxrs.model.Interface entity,
       Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.put(INTERFACE_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationsStorageInterfacesByIdResponse.class, asyncResultHandler);
+    PgUtil.put(INTERFACE_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationsStorageInterfacesByIdResponse.class,
+        asyncResultHandler);
   }
 
   @Override
   @Validate
   public void postOrganizationsStorageInterfacesCredentialsById(String id, InterfaceCredential entity,
       Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    if (StringUtils.equals(entity.getInterfaceId(), id) ) {
-      PgUtil.post(INTERFACE_CREDENTIAL_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationsStorageInterfacesCredentialsByIdResponse.class, asyncResultHandler);
+    if (StringUtils.equals(entity.getInterfaceId(), id)) {
+      PgUtil.post(INTERFACE_CREDENTIAL_TABLE, entity, okapiHeaders, vertxContext,
+          PostOrganizationsStorageInterfacesCredentialsByIdResponse.class, asyncResultHandler);
     } else {
-      asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(PostOrganizationsStorageInterfacesCredentialsByIdResponse.respond400WithTextPlain(MISMATCH_ERROR_MESSAGE)));
+      asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(
+          PostOrganizationsStorageInterfacesCredentialsByIdResponse.respond400WithTextPlain(MISMATCH_ERROR_MESSAGE)));
     }
   }
 
@@ -94,26 +93,36 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
         PostgresClient pgClient = PostgresClient.getInstance(vertxContext.owner(), tenantId);
         Criterion criterion = getCriterionByInterfaceId(id);
 
-        pgClient.get(INTERFACE_CREDENTIAL_TABLE, InterfaceCredential.class, criterion,false, reply -> {
-            try {
-              if (reply.succeeded()) {
-                if (reply.result().getResults().isEmpty()) {
-                  asyncResultHandler.handle(Future.succeededFuture(GetOrganizationsStorageInterfacesCredentialsByIdResponse.respond404WithTextPlain(Response.Status.NOT_FOUND.getReasonPhrase())));
-                } else {
-                  InterfaceCredential response = reply.result().getResults().get(0);
-                  asyncResultHandler.handle(Future.succeededFuture(GetOrganizationsStorageInterfacesCredentialsByIdResponse.respond200WithApplicationJson(response)));
-                }
+        pgClient.get(INTERFACE_CREDENTIAL_TABLE, InterfaceCredential.class, criterion, false, reply -> {
+          try {
+            if (reply.succeeded()) {
+              if (reply.result()
+                .getResults()
+                .isEmpty()) {
+                asyncResultHandler.handle(Future.succeededFuture(GetOrganizationsStorageInterfacesCredentialsByIdResponse
+                  .respond404WithTextPlain(Response.Status.NOT_FOUND.getReasonPhrase())));
               } else {
-                asyncResultHandler.handle(Future.succeededFuture(GetOrganizationsStorageInterfacesCredentialsByIdResponse.respond500WithTextPlain(reply.cause().getMessage())));
+                InterfaceCredential response = reply.result()
+                  .getResults()
+                  .get(0);
+                asyncResultHandler.handle(Future.succeededFuture(
+                    GetOrganizationsStorageInterfacesCredentialsByIdResponse.respond200WithApplicationJson(response)));
               }
-            } catch (Exception e) {
-              logger.error(e.getMessage(), e);
-              asyncResultHandler.handle(Future.succeededFuture(GetOrganizationsStorageInterfacesCredentialsByIdResponse.respond500WithTextPlain(Response.Status.INTERNAL_SERVER_ERROR.getReasonPhrase())));
+            } else {
+              asyncResultHandler.handle(Future
+                .succeededFuture(GetOrganizationsStorageInterfacesCredentialsByIdResponse.respond500WithTextPlain(reply.cause()
+                  .getMessage())));
             }
-          });
+          } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            asyncResultHandler.handle(Future.succeededFuture(GetOrganizationsStorageInterfacesCredentialsByIdResponse
+              .respond500WithTextPlain(Response.Status.INTERNAL_SERVER_ERROR.getReasonPhrase())));
+          }
+        });
       } catch (Exception e) {
         logger.error(e.getMessage(), e);
-        asyncResultHandler.handle(Future.succeededFuture(GetOrganizationsStorageInterfacesCredentialsByIdResponse.respond500WithTextPlain(Response.Status.INTERNAL_SERVER_ERROR.getReasonPhrase())));
+        asyncResultHandler.handle(Future.succeededFuture(GetOrganizationsStorageInterfacesCredentialsByIdResponse
+          .respond500WithTextPlain(Response.Status.INTERNAL_SERVER_ERROR.getReasonPhrase())));
       }
     });
   }
@@ -129,24 +138,31 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
         Criterion criterion = getCriterionByInterfaceId(id);
 
         pgClient.delete(INTERFACE_CREDENTIAL_TABLE, criterion, reply -> {
-            try {
-              if (reply.succeeded()) {
-                if (reply.result().getUpdated() == 0) {
-                  asyncResultHandler.handle(Future.succeededFuture(DeleteOrganizationsStorageInterfacesCredentialsByIdResponse.respond404WithTextPlain(Response.Status.NOT_FOUND.getReasonPhrase())));
-                } else {
-                  asyncResultHandler.handle(Future.succeededFuture(DeleteOrganizationsStorageInterfacesCredentialsByIdResponse.respond204()));
-                }
+          try {
+            if (reply.succeeded()) {
+              if (reply.result()
+                .getUpdated() == 0) {
+                asyncResultHandler.handle(Future.succeededFuture(DeleteOrganizationsStorageInterfacesCredentialsByIdResponse
+                  .respond404WithTextPlain(Response.Status.NOT_FOUND.getReasonPhrase())));
               } else {
-                asyncResultHandler.handle(Future.succeededFuture(DeleteOrganizationsStorageInterfacesCredentialsByIdResponse.respond500WithTextPlain(reply.cause().getMessage())));
+                asyncResultHandler
+                  .handle(Future.succeededFuture(DeleteOrganizationsStorageInterfacesCredentialsByIdResponse.respond204()));
               }
-            } catch (Exception e) {
-              logger.error(e.getMessage(), e);
-              asyncResultHandler.handle(Future.succeededFuture(DeleteOrganizationsStorageInterfacesCredentialsByIdResponse.respond500WithTextPlain(Response.Status.INTERNAL_SERVER_ERROR.getReasonPhrase())));
+            } else {
+              asyncResultHandler.handle(Future
+                .succeededFuture(DeleteOrganizationsStorageInterfacesCredentialsByIdResponse.respond500WithTextPlain(reply.cause()
+                  .getMessage())));
             }
-          });
+          } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            asyncResultHandler.handle(Future.succeededFuture(DeleteOrganizationsStorageInterfacesCredentialsByIdResponse
+              .respond500WithTextPlain(Response.Status.INTERNAL_SERVER_ERROR.getReasonPhrase())));
+          }
+        });
       } catch (Exception e) {
         logger.error(e.getMessage(), e);
-        asyncResultHandler.handle(Future.succeededFuture(DeleteOrganizationsStorageInterfacesCredentialsByIdResponse.respond500WithTextPlain(Response.Status.INTERNAL_SERVER_ERROR.getReasonPhrase())));
+        asyncResultHandler.handle(Future.succeededFuture(DeleteOrganizationsStorageInterfacesCredentialsByIdResponse
+          .respond500WithTextPlain(Response.Status.INTERNAL_SERVER_ERROR.getReasonPhrase())));
       }
     });
   }
@@ -156,9 +172,11 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
   public void putOrganizationsStorageInterfacesCredentialsById(String id, String lang, InterfaceCredential entity,
       Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     if (StringUtils.equals(id, entity.getInterfaceId())) {
-      PgUtil.put(INTERFACE_CREDENTIAL_TABLE, entity, entity.getId(), okapiHeaders, vertxContext, PutOrganizationsStorageInterfacesCredentialsByIdResponse.class, asyncResultHandler);
+      PgUtil.put(INTERFACE_CREDENTIAL_TABLE, entity, entity.getId(), okapiHeaders, vertxContext,
+          PutOrganizationsStorageInterfacesCredentialsByIdResponse.class, asyncResultHandler);
     } else {
-      asyncResultHandler.handle(io.vertx.core.Future.succeededFuture(PutOrganizationsStorageInterfacesCredentialsByIdResponse.respond400WithTextPlain(MISMATCH_ERROR_MESSAGE)));
+      asyncResultHandler.handle(io.vertx.core.Future
+        .succeededFuture(PutOrganizationsStorageInterfacesCredentialsByIdResponse.respond400WithTextPlain(MISMATCH_ERROR_MESSAGE)));
     }
   }
 
