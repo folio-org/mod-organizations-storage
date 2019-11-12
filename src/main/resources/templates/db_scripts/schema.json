@@ -65,12 +65,6 @@
           "removeAccents": true
         },
         {
-          "fieldName": "name",
-          "tOps": "ADD",
-          "caseSensitive": false,
-          "removeAccents": true
-        },
-        {
           "fieldName": "code",
           "tOps": "ADD",
           "caseSensitive": false,
