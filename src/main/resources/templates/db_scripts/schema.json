@@ -57,7 +57,43 @@
       "tableName": "organizations",
       "fromModuleVersion": 2.0,
       "withMetadata": true,
-      "ginIndex": [
+      "fullTextIndex": [
+        {
+          "fieldName": "aliases",
+          "tOps": "ADD",
+          "caseSensitive": false,
+          "removeAccents": true
+        },
+        {
+          "fieldName": "code",
+          "tOps": "ADD",
+          "caseSensitive": false,
+          "removeAccents": true
+        },
+        {
+          "fieldName": "contacts",
+          "tOps": "ADD",
+          "caseSensitive": false,
+          "removeAccents": true
+        },
+        {
+          "fieldName": "erpCode",
+          "tOps": "ADD",
+          "caseSensitive": false,
+          "removeAccents": true
+        },
+        {
+          "fieldName": "interfaces",
+          "tOps": "ADD",
+          "caseSensitive": false,
+          "removeAccents": true
+        },
+        {
+          "fieldName": "language",
+          "tOps": "ADD",
+          "caseSensitive": false,
+          "removeAccents": true
+        },
         {
           "fieldName": "name",
           "tOps": "ADD",
@@ -65,7 +101,13 @@
           "removeAccents": true
         },
         {
-          "fieldName": "code",
+          "fieldName": "status",
+          "tOps": "ADD",
+          "caseSensitive": false,
+          "removeAccents": true
+        },
+        {
+          "fieldName": "taxId",
           "tOps": "ADD",
           "caseSensitive": false,
           "removeAccents": true
