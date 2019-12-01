@@ -13,13 +13,13 @@
   </licenses>
 
   <properties>
-    <aspectj.version>1.8.9</aspectj.version>
+    <aspectj.version>1.9.4</aspectj.version>
     <module_name>mod-organizations-storage</module_name>
     <http.port>8081</http.port>
     <jsonschema_paths>acq-models/mod-orgs/schemas,raml-util/schemas</jsonschema_paths>
     <ramlfiles_path>${basedir}/ramls</ramlfiles_path>
     <ramlfiles_util_path>${basedir}/raml-util</ramlfiles_util_path>
-    <raml-module-builder.version>28.1.1</raml-module-builder.version>
+    <raml-module-builder.version>29.0.1</raml-module-builder.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <postgres.driver.version>9.4.1212</postgres.driver.version>
   </properties>
