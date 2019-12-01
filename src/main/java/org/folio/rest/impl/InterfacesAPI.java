@@ -19,6 +19,7 @@ import org.folio.rest.persist.PostgresClient;
 import org.folio.rest.persist.QueryHolder;
 import org.folio.rest.persist.Criteria.Criteria;
 import org.folio.rest.persist.Criteria.Criterion;
+import org.folio.rest.persist.cql.CQLWrapper;
 import org.folio.rest.tools.utils.TenantTool;
 
 import io.vertx.core.AsyncResult;
@@ -92,9 +93,9 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
       try {
         String tenantId = TenantTool.calculateTenantId(okapiHeaders.get(RestVerticle.OKAPI_HEADER_TENANT));
         PostgresClient pgClient = PostgresClient.getInstance(vertxContext.owner(), tenantId);
-        Criterion criterion = getCriterionByInterfaceId(id);
+        CQLWrapper cqlWrapper = getCqlWrapperByInterfaceId(id);
 
-        pgClient.get(INTERFACE_CREDENTIAL_TABLE, InterfaceCredential.class, criterion,false, reply -> {
+        pgClient.get(INTERFACE_CREDENTIAL_TABLE, InterfaceCredential.class, cqlWrapper,false, reply -> {
             try {
               if (reply.succeeded()) {
                 if (reply.result().getResults().isEmpty()) {
@@ -126,9 +127,9 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
       try {
         String tenantId = TenantTool.calculateTenantId(okapiHeaders.get(RestVerticle.OKAPI_HEADER_TENANT));
         PostgresClient pgClient = PostgresClient.getInstance(vertxContext.owner(), tenantId);
-        Criterion criterion = getCriterionByInterfaceId(id);
+        CQLWrapper cqlWrapper = getCqlWrapperByInterfaceId(id);
 
-        pgClient.delete(INTERFACE_CREDENTIAL_TABLE, criterion, reply -> {
+        pgClient.delete(INTERFACE_CREDENTIAL_TABLE, cqlWrapper, reply -> {
             try {
               if (reply.succeeded()) {
                 if (reply.result().getUpdated() == 0) {
@@ -162,11 +163,11 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
     }
   }
 
-  private Criterion getCriterionByInterfaceId(String interfaceId) {
+  private CQLWrapper getCqlWrapperByInterfaceId(String interfaceId) {
     Criteria criteria = new Criteria();
     criteria.addField("'interfaceId'");
     criteria.setOperation("=");
     criteria.setVal(interfaceId);
-    return new Criterion(criteria);
+    return new CQLWrapper(new Criterion(criteria));
   }
 }
