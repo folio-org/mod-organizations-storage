@@ -4,7 +4,7 @@
   "provides": [
     {
       "id": "organizations-storage.addresses",
-      "version": "1.2",
+      "version": "1.1",
       "handlers": [
         {
           "methods": ["GET"],
@@ -35,7 +35,7 @@
     },
     {
       "id": "organizations-storage.categories",
-      "version": "1.2",
+      "version": "1.1",
       "handlers": [
         {
           "methods": ["GET"],
@@ -66,7 +66,7 @@
     },
     {
       "id": "organizations-storage.contacts",
-      "version": "2.1",
+      "version": "2.0",
       "handlers": [
         {
           "methods": ["GET"],
@@ -97,7 +97,7 @@
     },
     {
       "id": "organizations-storage.emails",
-      "version": "1.2",
+      "version": "1.1",
       "handlers": [
         {
           "methods": ["GET"],
@@ -128,7 +128,7 @@
     },
     {
       "id": "organizations-storage.interfaces",
-      "version": "2.1",
+      "version": "2.0",
       "handlers": [
         {
           "methods": ["GET"],
@@ -179,7 +179,7 @@
     },
     {
       "id": "organizations-storage.phone-numbers",
-      "version": "2.1",
+      "version": "2.0",
       "handlers": [
         {
           "methods": ["GET"],
@@ -210,7 +210,7 @@
     },
     {
       "id": "organizations-storage.urls",
-      "version": "1.2",
+      "version": "1.1",
       "handlers": [
         {
           "methods": ["GET"],
@@ -241,7 +241,7 @@
     },
     {
       "id": "organizations-storage.organizations",
-      "version": "2.2",
+      "version": "2.1",
       "handlers": [
         {
           "methods": ["GET"],
