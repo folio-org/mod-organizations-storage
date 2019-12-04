@@ -1,4 +1,18 @@
-## 2.2.0 - Unreleased
+## 2.3.0 - Unreleased
+
+## 2.2.0 - Released
+The focus of this release was to tune and improve environment settings
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v2.1.0...v2.2.0)
+
+### Stories
+* [MODORGS-52](https://issues.folio.org/browse/MODORGS-52) Update RMB to 29.0.1
+* [MODORGS-51](https://issues.folio.org/browse/MODORGS-51) Use JVM features to manage container memory
+* [MODORGS-42](https://issues.folio.org/browse/MODORGS-42) Fix log4j/log4j2 configuration conflict
+* [FOLIO-2235](https://issues.folio.org/browse/FOLIO-2235) Add LaunchDescriptor settings to each backend non-core module repository
+
+### Bug Fixes
+* [MODORGS-47](https://issues.folio.org/browse/MODORGS-47) CQL2PgJSON queryByFt warnings
 
 ## 2.1.0 - Released
 The primary focus of this release was to add ability to assign tags to an organization record
