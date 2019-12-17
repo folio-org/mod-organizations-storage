@@ -1,20 +1,18 @@
 package org.folio.rest.impl;
 
-import io.vertx.core.AsyncResult;
-import io.vertx.core.Context;
-import io.vertx.core.Handler;
+import java.util.Map;
+
+import javax.ws.rs.core.Response;
+
 import org.folio.rest.annotations.Validate;
 import org.folio.rest.jaxrs.model.Organization;
 import org.folio.rest.jaxrs.model.OrganizationCollection;
 import org.folio.rest.jaxrs.resource.OrganizationsStorageOrganizations;
-import org.folio.rest.persist.EntitiesMetadataHolder;
 import org.folio.rest.persist.PgUtil;
-import org.folio.rest.persist.QueryHolder;
 
-import javax.ws.rs.core.Response;
-import java.util.Map;
-
-import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
+import io.vertx.core.AsyncResult;
+import io.vertx.core.Context;
+import io.vertx.core.Handler;
 
 public class OrganizationsAPI implements OrganizationsStorageOrganizations {
   private static final String ORGANIZATION_TABLE = "organizations";
@@ -22,11 +20,8 @@ public class OrganizationsAPI implements OrganizationsStorageOrganizations {
   @Override
   @Validate
   public void getOrganizationsStorageOrganizations(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    vertxContext.runOnContext((Void v) -> {
-      EntitiesMetadataHolder<Organization, OrganizationCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Organization.class, OrganizationCollection.class, GetOrganizationsStorageOrganizationsResponse.class);
-      QueryHolder cql = new QueryHolder(ORGANIZATION_TABLE, query, offset, limit);
-      getEntitiesCollection(entitiesMetadataHolder, cql, asyncResultHandler, vertxContext, okapiHeaders);
-    });
+    PgUtil.get(ORGANIZATION_TABLE, Organization.class, OrganizationCollection.class, query, offset, limit, okapiHeaders,
+        vertxContext, GetOrganizationsStorageOrganizationsResponse.class, asyncResultHandler);
   }
 
   @Override

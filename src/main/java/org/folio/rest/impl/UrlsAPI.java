@@ -1,20 +1,18 @@
 package org.folio.rest.impl;
 
-import io.vertx.core.AsyncResult;
-import io.vertx.core.Context;
-import io.vertx.core.Handler;
+import java.util.Map;
+
+import javax.ws.rs.core.Response;
+
 import org.folio.rest.annotations.Validate;
 import org.folio.rest.jaxrs.model.Url;
 import org.folio.rest.jaxrs.model.UrlCollection;
 import org.folio.rest.jaxrs.resource.OrganizationsStorageUrls;
-import org.folio.rest.persist.EntitiesMetadataHolder;
 import org.folio.rest.persist.PgUtil;
-import org.folio.rest.persist.QueryHolder;
 
-import javax.ws.rs.core.Response;
-import java.util.Map;
-
-import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
+import io.vertx.core.AsyncResult;
+import io.vertx.core.Context;
+import io.vertx.core.Handler;
 
 public class UrlsAPI implements OrganizationsStorageUrls {
   private static final String URL_TABLE = "urls";
@@ -22,11 +20,8 @@ public class UrlsAPI implements OrganizationsStorageUrls {
   @Override
   @Validate
   public void getOrganizationsStorageUrls(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    vertxContext.runOnContext((Void v) -> {
-      EntitiesMetadataHolder<Url, UrlCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Url.class, UrlCollection.class, GetOrganizationsStorageUrlsResponse.class);
-      QueryHolder cql = new QueryHolder(URL_TABLE, query, offset, limit);
-      getEntitiesCollection(entitiesMetadataHolder, cql, asyncResultHandler, vertxContext, okapiHeaders);
-    });
+    PgUtil.get(URL_TABLE, Url.class, UrlCollection.class, query, offset, limit, okapiHeaders, vertxContext,
+        GetOrganizationsStorageUrlsResponse.class, asyncResultHandler);
   }
 
   @Override

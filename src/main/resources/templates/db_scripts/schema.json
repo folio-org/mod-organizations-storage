@@ -55,6 +55,7 @@
     },
     {
       "tableName": "organizations",
+      "customSnippetPath": "migration/organizations.sql",
       "fromModuleVersion": 2.0,
       "withMetadata": true,
       "fullTextIndex": [
