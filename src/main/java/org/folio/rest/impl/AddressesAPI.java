@@ -1,20 +1,18 @@
 package org.folio.rest.impl;
 
-import io.vertx.core.AsyncResult;
-import io.vertx.core.Context;
-import io.vertx.core.Handler;
+import java.util.Map;
+
+import javax.ws.rs.core.Response;
+
 import org.folio.rest.annotations.Validate;
 import org.folio.rest.jaxrs.model.Address;
 import org.folio.rest.jaxrs.model.AddressCollection;
 import org.folio.rest.jaxrs.resource.OrganizationsStorageAddresses;
-import org.folio.rest.persist.EntitiesMetadataHolder;
 import org.folio.rest.persist.PgUtil;
-import org.folio.rest.persist.QueryHolder;
 
-import javax.ws.rs.core.Response;
-import java.util.Map;
-
-import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
+import io.vertx.core.AsyncResult;
+import io.vertx.core.Context;
+import io.vertx.core.Handler;
 
 public class AddressesAPI implements OrganizationsStorageAddresses {
   private static final String ADDRESS_TABLE = "addresses";
@@ -22,11 +20,8 @@ public class AddressesAPI implements OrganizationsStorageAddresses {
   @Override
   @Validate
   public void getOrganizationsStorageAddresses(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    vertxContext.runOnContext((Void v) -> {
-      EntitiesMetadataHolder<Address, AddressCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Address.class, AddressCollection.class, GetOrganizationsStorageAddressesResponse.class, "setAddresses");
-      QueryHolder cql = new QueryHolder(ADDRESS_TABLE, query, offset, limit);
-      getEntitiesCollection(entitiesMetadataHolder, cql, asyncResultHandler, vertxContext, okapiHeaders);
-    });
+    PgUtil.get(ADDRESS_TABLE, Address.class, AddressCollection.class, query, offset, limit, okapiHeaders, vertxContext,
+        GetOrganizationsStorageAddressesResponse.class, asyncResultHandler);
   }
 
   @Override

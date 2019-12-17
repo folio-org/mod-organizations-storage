@@ -1,7 +1,5 @@
 package org.folio.rest.impl;
 
-import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
-
 import java.util.Map;
 
 import javax.ws.rs.core.Response;
@@ -13,10 +11,8 @@ import org.folio.rest.jaxrs.model.Interface;
 import org.folio.rest.jaxrs.model.InterfaceCollection;
 import org.folio.rest.jaxrs.model.InterfaceCredential;
 import org.folio.rest.jaxrs.resource.OrganizationsStorageInterfaces;
-import org.folio.rest.persist.EntitiesMetadataHolder;
 import org.folio.rest.persist.PgUtil;
 import org.folio.rest.persist.PostgresClient;
-import org.folio.rest.persist.QueryHolder;
 import org.folio.rest.persist.Criteria.Criteria;
 import org.folio.rest.persist.Criteria.Criterion;
 import org.folio.rest.persist.cql.CQLWrapper;
@@ -39,11 +35,8 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
   @Validate
   public void getOrganizationsStorageInterfaces(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    vertxContext.runOnContext((Void v) -> {
-      EntitiesMetadataHolder<Interface, InterfaceCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Interface.class, InterfaceCollection.class, GetOrganizationsStorageInterfacesResponse.class);
-      QueryHolder cql = new QueryHolder(INTERFACE_TABLE, query, offset, limit);
-      getEntitiesCollection(entitiesMetadataHolder, cql, asyncResultHandler, vertxContext, okapiHeaders);
-    });
+    PgUtil.get(INTERFACE_TABLE, Interface.class, InterfaceCollection.class, query, offset, limit, okapiHeaders, vertxContext,
+        GetOrganizationsStorageInterfacesResponse.class, asyncResultHandler);
   }
 
   @Override

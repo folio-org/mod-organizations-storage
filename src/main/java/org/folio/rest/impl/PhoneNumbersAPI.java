@@ -1,20 +1,18 @@
 package org.folio.rest.impl;
 
-import io.vertx.core.AsyncResult;
-import io.vertx.core.Context;
-import io.vertx.core.Handler;
+import java.util.Map;
+
+import javax.ws.rs.core.Response;
+
 import org.folio.rest.annotations.Validate;
 import org.folio.rest.jaxrs.model.PhoneNumber;
 import org.folio.rest.jaxrs.model.PhoneNumberCollection;
 import org.folio.rest.jaxrs.resource.OrganizationsStoragePhoneNumbers;
-import org.folio.rest.persist.EntitiesMetadataHolder;
 import org.folio.rest.persist.PgUtil;
-import org.folio.rest.persist.QueryHolder;
 
-import javax.ws.rs.core.Response;
-import java.util.Map;
-
-import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
+import io.vertx.core.AsyncResult;
+import io.vertx.core.Context;
+import io.vertx.core.Handler;
 
 public class PhoneNumbersAPI implements OrganizationsStoragePhoneNumbers {
   private static final String PHONE_NUMBER_TABLE = "phone_numbers";
@@ -22,11 +20,8 @@ public class PhoneNumbersAPI implements OrganizationsStoragePhoneNumbers {
   @Override
   @Validate
   public void getOrganizationsStoragePhoneNumbers(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    vertxContext.runOnContext((Void v) -> {
-      EntitiesMetadataHolder<PhoneNumber, PhoneNumberCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(PhoneNumber.class, PhoneNumberCollection.class, GetOrganizationsStoragePhoneNumbersResponse.class);
-      QueryHolder cql = new QueryHolder(PHONE_NUMBER_TABLE, query, offset, limit);
-      getEntitiesCollection(entitiesMetadataHolder, cql, asyncResultHandler, vertxContext, okapiHeaders);
-    });
+    PgUtil.get(PHONE_NUMBER_TABLE, PhoneNumber.class, PhoneNumberCollection.class, query, offset, limit, okapiHeaders, vertxContext,
+        GetOrganizationsStoragePhoneNumbersResponse.class, asyncResultHandler);
   }
 
   @Override

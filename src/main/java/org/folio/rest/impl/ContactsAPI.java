@@ -1,20 +1,18 @@
 package org.folio.rest.impl;
 
-import io.vertx.core.AsyncResult;
-import io.vertx.core.Context;
-import io.vertx.core.Handler;
+import java.util.Map;
+
+import javax.ws.rs.core.Response;
+
 import org.folio.rest.annotations.Validate;
 import org.folio.rest.jaxrs.model.Contact;
 import org.folio.rest.jaxrs.model.ContactCollection;
 import org.folio.rest.jaxrs.resource.OrganizationsStorageContacts;
-import org.folio.rest.persist.EntitiesMetadataHolder;
 import org.folio.rest.persist.PgUtil;
-import org.folio.rest.persist.QueryHolder;
 
-import javax.ws.rs.core.Response;
-import java.util.Map;
-
-import static org.folio.rest.persist.HelperUtils.getEntitiesCollection;
+import io.vertx.core.AsyncResult;
+import io.vertx.core.Context;
+import io.vertx.core.Handler;
 
 public class ContactsAPI implements OrganizationsStorageContacts {
   private static final String CONTACT_TABLE = "contacts";
@@ -22,11 +20,8 @@ public class ContactsAPI implements OrganizationsStorageContacts {
   @Override
   @Validate
   public void getOrganizationsStorageContacts(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    vertxContext.runOnContext((Void v) -> {
-      EntitiesMetadataHolder<Contact, ContactCollection> entitiesMetadataHolder = new EntitiesMetadataHolder<>(Contact.class, ContactCollection.class, GetOrganizationsStorageContactsResponse.class);
-      QueryHolder cql = new QueryHolder(CONTACT_TABLE, query, offset, limit);
-      getEntitiesCollection(entitiesMetadataHolder, cql, asyncResultHandler, vertxContext, okapiHeaders);
-    });
+    PgUtil.get(CONTACT_TABLE, Contact.class, ContactCollection.class, query, offset, limit, okapiHeaders, vertxContext,
+        GetOrganizationsStorageContactsResponse.class, asyncResultHandler);
   }
 
   @Override

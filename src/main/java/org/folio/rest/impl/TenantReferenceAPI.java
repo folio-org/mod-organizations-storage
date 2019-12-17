@@ -49,7 +49,6 @@ public class TenantReferenceAPI extends TenantAPI {
         });
       } else {
         hndlr.handle(res);
-        return;
       }
 
     }, cntxt);
