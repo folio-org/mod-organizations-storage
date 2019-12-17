@@ -2,12 +2,12 @@
   "tables": [
     {
       "tableName": "addresses",
-      "fromModuleVersion": 2.0,
+      "fromModuleVersion": "mod-organizations-storage-2.0.0",
       "withMetadata": true
     },
     {
       "tableName": "categories",
-      "fromModuleVersion": 2.0,
+      "fromModuleVersion": "mod-organizations-storage-2.0.0",
       "withMetadata": true,
       "ginIndex": [
         {
@@ -20,22 +20,22 @@
     },
     {
       "tableName": "contacts",
-      "fromModuleVersion": 2.0,
+      "fromModuleVersion": "mod-organizations-storage-2.0.0",
       "withMetadata": true
     },
     {
       "tableName": "emails",
-      "fromModuleVersion": 2.0,
+      "fromModuleVersion": "mod-organizations-storage-2.0.0",
       "withMetadata": true
     },
     {
       "tableName": "interfaces",
-      "fromModuleVersion": 2.0,
+      "fromModuleVersion": "mod-organizations-storage-2.0.0",
       "withMetadata": true
     },
     {
       "tableName": "interface_credentials",
-      "fromModuleVersion": 2.0,
+      "fromModuleVersion": "mod-organizations-storage-2.0.0",
       "foreignKeys": [
         {
           "fieldName": "interfaceId",
@@ -45,18 +45,18 @@
     },
     {
       "tableName": "phone_numbers",
-      "fromModuleVersion": 2.0,
+      "fromModuleVersion": "mod-organizations-storage-2.0.0",
       "withMetadata": true
     },
     {
       "tableName": "urls",
-      "fromModuleVersion": 2.0,
+      "fromModuleVersion": "mod-organizations-storage-2.0.0",
       "withMetadata": true
     },
     {
       "tableName": "organizations",
       "customSnippetPath": "migration/organizations.sql",
-      "fromModuleVersion": 2.0,
+      "fromModuleVersion": "mod-organizations-storage-2.0.0",
       "withMetadata": true,
       "fullTextIndex": [
         {
