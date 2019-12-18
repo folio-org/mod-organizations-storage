@@ -1,5 +1,13 @@
 ## 2.3.0 - Unreleased
 
+## 2.2.1 - Released
+Bugfix release to support filtering by Vendor=No in Organizations
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v2.2.0...v2.2.1)
+
+### Bug Fixes
+* [MODORGS-56](https://issues.folio.org/browse/MODORGS-56) Set isVendor default value in the organization schema
+
 ## 2.2.0 - Released
 The focus of this release was to tune and improve environment settings
 
