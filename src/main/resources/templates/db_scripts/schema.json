@@ -56,8 +56,13 @@
     {
       "tableName": "organizations",
       "customSnippetPath": "migration/organizations.sql",
-      "fromModuleVersion": "mod-organizations-storage-2.0.0",
+      "fromModuleVersion": "mod-organizations-storage-3.0.0",
       "withMetadata": true,
+      "uniqueIndex": [
+        {
+          "fieldName" : "code"
+        }
+      ],
       "fullTextIndex": [
         {
           "fieldName": "aliases",
