@@ -1,5 +1,13 @@
 ## 2.3.0 - Unreleased
 
+## 2.2.2 - Released
+Bugfix release to fix issues with migration script
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v2.2.1...v2.2.2)
+
+### Bug Fixes
+* [MODORGS-59](https://issues.folio.org/browse/MODORGS-59) New full text indexes not being created
+
 ## 2.2.1 - Released
 Bugfix release to support filtering by Vendor=No in Organizations
 
