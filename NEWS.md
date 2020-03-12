@@ -1,4 +1,15 @@
-## 2.3.0 - Unreleased
+## 3.1.0 - Unreleased
+
+## 3.0.0 - Released
+The primary focus of this release was to change organization code constraints: it is now required in both back-end and front-end
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v2.2.1...v3.0.0)
+
+### Stories
+* [MODORGS-60](https://issues.folio.org/browse/MODORGS-60) Migration script for organizations code
+
+### Bug Fixes
+* [MODORGS-53](https://issues.folio.org/browse/MODORGS-53) Organization code optional in back-end, required in front-end
 
 ## 2.2.1 - Released
 Bugfix release to support filtering by Vendor=No in Organizations
@@ -33,7 +44,7 @@ The primary focus of this release was to add ability to assign tags to an organi
 ## 2.0.0 - Released
 This release consists of following updates:
 * Fix of organizations phone number schema
-* Splitting interface credentials into a separate endpoint because of security reasons. 
+* Splitting interface credentials into a separate endpoint because of security reasons.
 * Metadata was added to all organizations schemas
 
 [Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v1.1.0...v2.0.0)
