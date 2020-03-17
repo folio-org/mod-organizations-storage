@@ -38,6 +38,17 @@ public class InterfaceCredentialsTest extends TestBase {
 
   private static final String simpleClassName = InterfaceCredential.class.getSimpleName();
 
+
+  @Test
+  public void testDeleteInterfaceWithCredential() throws MalformedURLException {
+
+    // prepare interface and credential data
+    postData(INTERFACE_ENDPOINT, getFile(SAMPLE_INTERFACE_FILE_1));
+    postData(INTERFACE_CREDENTIAL_ENDPOINT, getFile(SAMPLE_CREDENTIAL_FILE_1));
+
+    deleteData(INTERFACE_ENDPOINT_WITH_ID, INTERFACE_ID).then().statusCode(204);
+  }
+
   @Test
   public void testInterfaceCredentialsCrud() throws MalformedURLException {
     try {

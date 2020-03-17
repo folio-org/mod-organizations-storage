@@ -1,9 +1,14 @@
 package org.folio.rest.impl;
 
+import io.vertx.core.AsyncResult;
+import io.vertx.core.Context;
+import io.vertx.core.Future;
+import io.vertx.core.Handler;
+import io.vertx.core.Vertx;
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
 import java.util.Map;
-
 import javax.ws.rs.core.Response;
-
 import org.apache.commons.lang3.StringUtils;
 import org.folio.rest.RestVerticle;
 import org.folio.rest.annotations.Validate;
@@ -11,25 +16,26 @@ import org.folio.rest.jaxrs.model.Interface;
 import org.folio.rest.jaxrs.model.InterfaceCollection;
 import org.folio.rest.jaxrs.model.InterfaceCredential;
 import org.folio.rest.jaxrs.resource.OrganizationsStorageInterfaces;
-import org.folio.rest.persist.PgUtil;
-import org.folio.rest.persist.PostgresClient;
 import org.folio.rest.persist.Criteria.Criteria;
 import org.folio.rest.persist.Criteria.Criterion;
+import org.folio.rest.persist.PgUtil;
+import org.folio.rest.persist.PostgresClient;
 import org.folio.rest.persist.cql.CQLWrapper;
 import org.folio.rest.tools.utils.TenantTool;
-
-import io.vertx.core.AsyncResult;
-import io.vertx.core.Context;
-import io.vertx.core.Future;
-import io.vertx.core.Handler;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
+import org.folio.service.InterfaceService;
 
 public class InterfacesAPI implements OrganizationsStorageInterfaces {
+
   private static final String INTERFACE_TABLE = "interfaces";
   private static final String INTERFACE_CREDENTIAL_TABLE = "interface_credentials";
   private static final String MISMATCH_ERROR_MESSAGE = "Interface credential id mismatch";
   private final Logger logger = LoggerFactory.getLogger(InterfacesAPI.class);
+
+  private InterfaceService interfaceService;
+
+  public InterfacesAPI(Vertx vertx, String tenantId) {
+    interfaceService = new InterfaceService(PostgresClient.getInstance(vertx, tenantId));
+  }
 
   @Override
   @Validate
@@ -56,9 +62,10 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
   @Override
   @Validate
   public void deleteOrganizationsStorageInterfacesById(String id, String lang, Map<String, String> okapiHeaders,
-      Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.deleteById(INTERFACE_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationsStorageInterfacesByIdResponse.class, asyncResultHandler);
+    Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+    interfaceService.deleteOrganizationsInterfaceById(id, vertxContext,  asyncResultHandler);
   }
+
 
   @Override
   @Validate
