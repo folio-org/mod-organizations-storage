@@ -1,5 +1,6 @@
 package org.folio.rest.impl;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -21,6 +22,7 @@ public class InterfaceCredentialsTest extends TestBase {
   private static final String MY_NEW_PASSWORD = "my_new_password";
 
   private static final String INTERFACE_ID = "14e81009-0f98-45a0-b8e6-e25547beb22f";
+  private static final String CREDENTIAL_ID = "426abc2f-b5da-492a-91e2-9615d2edf13d";
   private static final String ANOTHER_INTERFACE_ID = "cd592659-77aa-4eb3-ac34-c9a4657bb20f";
 
   private static final String INTERFACE_ENDPOINT = TestEntities.INTERFACE.getEndpoint();
@@ -41,12 +43,26 @@ public class InterfaceCredentialsTest extends TestBase {
 
   @Test
   public void testDeleteInterfaceWithCredential() throws MalformedURLException {
-
     // prepare interface and credential data
     postData(INTERFACE_ENDPOINT, getFile(SAMPLE_INTERFACE_FILE_1));
     postData(INTERFACE_CREDENTIAL_ENDPOINT, getFile(SAMPLE_CREDENTIAL_FILE_1));
 
-    deleteData(INTERFACE_ENDPOINT_WITH_ID, INTERFACE_ID).then().statusCode(204);
+    // check that data exist
+    testEntitySuccessfullyFetched(INTERFACE_ENDPOINT_WITH_ID, INTERFACE_ID);
+
+    getDataById(INTERFACE_CREDENTIAL_ENDPOINT_WITH_ID, INTERFACE_ID)
+      .then()
+      .statusCode(200)
+      .body("id", equalTo(CREDENTIAL_ID));
+
+    // delete data
+    deleteDataSuccess(INTERFACE_ENDPOINT_WITH_ID, INTERFACE_ID);
+
+    // check that interface has been deleted
+    testVerifyEntityDeletion(INTERFACE_ENDPOINT_WITH_ID, INTERFACE_ID);
+
+    // check that interface credential has been deleted
+    testVerifyEntityDeletion(INTERFACE_CREDENTIAL_ENDPOINT_WITH_ID, INTERFACE_ID);
   }
 
   @Test
