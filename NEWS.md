@@ -1,5 +1,13 @@
 ## 3.1.0 - Unreleased
 
+## 3.0.1 - Released
+Bugfix release to fix of deletion functionality for Interface in Organizations app
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v3.0.0...v3.0.1)
+
+### Bug Fixes
+* [MODORGS-58](https://issues.folio.org/browse/MODORGS-58) Unable to delete Interface in Organizations app
+
 ## 3.0.0 - Released
 The primary focus of this release was to change organization code constraints: it is now required in both back-end and front-end
 
