@@ -1,24 +1,22 @@
 package org.folio.rest.impl;
 
-import io.restassured.response.Response;
-import io.restassured.response.ValidatableResponse;
-import io.vertx.core.json.JsonObject;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
-import org.folio.rest.annotations.Validate;
-import org.folio.rest.utils.TenantApiTestUtil;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.fail;
+
+import java.net.MalformedURLException;
+import java.util.Map;
+
 import org.folio.rest.utils.TestEntities;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.net.MalformedURLException;
-import java.util.Map;
-
-import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
+import io.restassured.response.Response;
+import io.vertx.core.json.JsonObject;
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
 
 @RunWith(Parameterized.class)
 public class EntitiesCrudTest extends TestBase {
@@ -120,5 +118,5 @@ public class EntitiesCrudTest extends TestBase {
     Map metadata = response.then().extract().path("metadata");
     assertThat(metadata, is(notNullValue()));
   }
-  
+
 }

@@ -1,4 +1,16 @@
 {
+  "scripts": [
+    {
+      "run": "after",
+      "snippetPath": "migration/make_organization_code_unique.sql",
+      "fromModuleVersion": "mod-organizations-storage-2.2.2"
+    },
+    {
+      "run": "after",
+      "snippetPath": "migration/make_organization_code_unique.sql",
+      "fromModuleVersion": "mod-organizations-storage-3.0.2"
+    }
+  ],
   "tables": [
     {
       "tableName": "addresses",
@@ -55,8 +67,7 @@
     },
     {
       "tableName": "organizations",
-      "customSnippetPath": "migration/organizations.sql",
-      "fromModuleVersion": "mod-organizations-storage-3.0.0",
+      "fromModuleVersion": "mod-organizations-storage-2.2.2",
       "withMetadata": true,
       "fullTextIndex": [
         {
