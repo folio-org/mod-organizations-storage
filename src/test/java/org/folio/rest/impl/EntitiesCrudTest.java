@@ -17,13 +17,13 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 
-public class EntitiesCrudTest extends TestBase {
+class EntitiesCrudTest extends TestBase {
 
   private final Logger logger = LoggerFactory.getLogger(EntitiesCrudTest.class);
 
   @ParameterizedTest
   @EnumSource(TestEntities.class)
-  public void testPositiveCases(TestEntities testEntity) throws MalformedURLException {
+  void testPositiveCases(TestEntities testEntity) throws MalformedURLException {
     String sampleId = null;
     try {
 
@@ -74,7 +74,7 @@ public class EntitiesCrudTest extends TestBase {
 
   @ParameterizedTest
   @EnumSource(TestEntities.class)
-  public void testFetchEntityWithNonExistedId(TestEntities testEntity) throws MalformedURLException {
+  void testFetchEntityWithNonExistedId(TestEntities testEntity) throws MalformedURLException {
     logger.info(String.format("--- mod-organizations-storage %s get by id test: Invalid %s: %s", testEntity.name(), testEntity.name(), NON_EXISTED_ID));
     getDataById(testEntity.getEndpointWithId(), NON_EXISTED_ID).then().log().ifValidationFails()
       .statusCode(404);
@@ -82,7 +82,7 @@ public class EntitiesCrudTest extends TestBase {
 
   @ParameterizedTest
   @EnumSource(TestEntities.class)
-  public void testEditEntityWithNonExistedId(TestEntities testEntity) throws MalformedURLException {
+  void testEditEntityWithNonExistedId(TestEntities testEntity) throws MalformedURLException {
     logger.info(String.format("--- mod-organizations-storage %s put by id test: Invalid %s: %s", testEntity.name(), testEntity.name(), NON_EXISTED_ID));
     String sampleData = getFile(testEntity.getSampleFileName());
     putData(testEntity.getEndpointWithId(), NON_EXISTED_ID, sampleData)
@@ -92,7 +92,7 @@ public class EntitiesCrudTest extends TestBase {
 
   @ParameterizedTest
   @EnumSource(TestEntities.class)
-  public void testDeleteEntityWithNonExistedId(TestEntities testEntity) throws MalformedURLException {
+  void testDeleteEntityWithNonExistedId(TestEntities testEntity) throws MalformedURLException {
     logger.info(String.format("--- mod-organizations-storage %s delete by id test: Invalid %s: %s", testEntity.name(), testEntity.name(), NON_EXISTED_ID));
     deleteData(testEntity.getEndpointWithId(), NON_EXISTED_ID)
       .then().log().ifValidationFails()
@@ -101,14 +101,14 @@ public class EntitiesCrudTest extends TestBase {
 
   @ParameterizedTest
   @EnumSource(TestEntities.class)
-  public void testGetEntitiesWithInvalidCQLQuery(TestEntities testEntity) throws MalformedURLException {
+  void testGetEntitiesWithInvalidCQLQuery(TestEntities testEntity) throws MalformedURLException {
     logger.info(String.format("--- mod-organizations-storage %s test: Invalid CQL query", testEntity.name()));
     testInvalidCQLQuery(testEntity.getEndpoint() + "?query=invalid-query");
   }
 
   @ParameterizedTest
   @EnumSource(TestEntities.class)
-  public void testReceiveMetadata(TestEntities testEntity) throws MalformedURLException {
+  void testReceiveMetadata(TestEntities testEntity) throws MalformedURLException {
     logger.info(String.format("--- mod-organizations-storage %s test: Test receive metadata", testEntity.name()));
     String sample = getFile(testEntity.getSampleFileName());
     Response response = postDataWithUserId(testEntity.getEndpoint(), sample);

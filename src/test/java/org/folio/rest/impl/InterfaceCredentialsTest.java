@@ -15,7 +15,7 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 
-public class InterfaceCredentialsTest extends TestBase {
+class InterfaceCredentialsTest extends TestBase {
   private final Logger logger = LoggerFactory.getLogger(InterfaceCredentialsTest.class);
 
   private static final String PASSWORD_FIELD = "password";
@@ -42,7 +42,7 @@ public class InterfaceCredentialsTest extends TestBase {
 
 
   @Test
-  public void testDeleteInterfaceWithCredential() throws MalformedURLException {
+  void testDeleteInterfaceWithCredential() throws MalformedURLException {
     // prepare interface and credential data
     postData(INTERFACE_ENDPOINT, getFile(SAMPLE_INTERFACE_FILE_1));
     postData(INTERFACE_CREDENTIAL_ENDPOINT, getFile(SAMPLE_CREDENTIAL_FILE_1));
@@ -66,7 +66,7 @@ public class InterfaceCredentialsTest extends TestBase {
   }
 
   @Test
-  public void testInterfaceCredentialsCrud() throws MalformedURLException {
+  void testInterfaceCredentialsCrud() throws MalformedURLException {
     try {
       logger.info(String.format("--- mod-organizations-storage %s test: Creating %s ... ", simpleClassName, simpleClassName));
 
@@ -124,14 +124,14 @@ public class InterfaceCredentialsTest extends TestBase {
   }
 
   @Test
-  public void testFetchEntityWithNonExistedId() throws MalformedURLException {
+  void testFetchEntityWithNonExistedId() throws MalformedURLException {
     logger.info(String.format("--- mod-organizations-storage %s get by id test: Invalid %s: %s", simpleClassName,simpleClassName, NON_EXISTED_ID));
     getDataById(INTERFACE_CREDENTIAL_ENDPOINT_WITH_ID, NON_EXISTED_ID).then().log().ifValidationFails()
       .statusCode(404);
   }
 
   @Test
-  public void testEditEntityWithNonExistedId() throws MalformedURLException {
+  void testEditEntityWithNonExistedId() throws MalformedURLException {
     logger.info(String.format("--- mod-organizations-storage %s put by id test: Invalid %s: %s", simpleClassName, simpleClassName, NON_EXISTED_ID));
     String sampleData = getFile(SAMPLE_CREDENTIAL_FILE_1);
     putData(INTERFACE_CREDENTIAL_ENDPOINT_WITH_ID, INTERFACE_ID, sampleData)
@@ -140,7 +140,7 @@ public class InterfaceCredentialsTest extends TestBase {
   }
 
   @Test
-  public void testDeleteEntityWithNonExistedId() throws MalformedURLException {
+  void testDeleteEntityWithNonExistedId() throws MalformedURLException {
     logger.info(String.format("--- mod-organizations-storage %s delete by id test: Invalid %s: %s", simpleClassName, simpleClassName, NON_EXISTED_ID));
     deleteData(INTERFACE_CREDENTIAL_ENDPOINT_WITH_ID, NON_EXISTED_ID)
       .then().log().ifValidationFails()
@@ -148,7 +148,7 @@ public class InterfaceCredentialsTest extends TestBase {
   }
 
   @Test
-  public void testEntityWithMismatchId() throws MalformedURLException {
+  void testEntityWithMismatchId() throws MalformedURLException {
     logger.info(String.format("--- mod-organizations-storage %s put by id test: Invalid %s: %s", simpleClassName, simpleClassName, NON_EXISTED_ID));
 
     // prepare interface data
