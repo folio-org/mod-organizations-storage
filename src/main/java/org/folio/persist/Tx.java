@@ -1,10 +1,11 @@
 package org.folio.persist;
 
+import org.folio.rest.persist.PostgresClient;
+import org.folio.rest.persist.SQLConnection;
+
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 import io.vertx.core.Promise;
-import io.vertx.ext.sql.SQLConnection;
-import org.folio.rest.persist.PostgresClient;
 
 public class Tx<T> {
 

@@ -12,8 +12,7 @@ public class CriterionBuilder {
   }
 
   public CriterionBuilder with(String filedName, String fieldValue) {
-    criteria
-      .addField("'" + filedName + "'")
+    criteria.addField("'" + filedName + "'")
       .setOperation("=")
       .setVal(fieldValue);
     return this;

@@ -1,19 +1,5 @@
 package org.folio.rest.impl;
 
-import io.restassured.http.ContentType;
-import io.restassured.http.Header;
-import io.vertx.core.json.JsonObject;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
-import org.folio.rest.jaxrs.model.Organization;
-import org.folio.rest.jaxrs.model.OrganizationCollection;
-import org.folio.rest.persist.PostgresClient;
-import org.folio.rest.utils.TenantApiTestUtil;
-import org.folio.rest.utils.TestEntities;
-import org.junit.Test;
-
-import java.net.MalformedURLException;
-
 import static io.restassured.RestAssured.given;
 import static org.folio.rest.RestVerticle.OKAPI_HEADER_TENANT;
 import static org.folio.rest.impl.StorageTestSuite.storageUrl;
@@ -24,6 +10,21 @@ import static org.folio.rest.utils.TenantApiTestUtil.prepareTenant;
 import static org.folio.rest.utils.TestEntities.ORGANIZATION;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.not;
+
+import java.net.MalformedURLException;
+
+import org.folio.rest.jaxrs.model.Organization;
+import org.folio.rest.jaxrs.model.OrganizationCollection;
+import org.folio.rest.persist.PostgresClient;
+import org.folio.rest.utils.TenantApiTestUtil;
+import org.folio.rest.utils.TestEntities;
+import org.junit.jupiter.api.Test;
+
+import io.restassured.http.ContentType;
+import io.restassured.http.Header;
+import io.vertx.core.json.JsonObject;
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
 
 
 public class TenantSampleDataTest extends TestBase{

@@ -3,35 +3,27 @@ package org.folio.rest.impl;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.net.MalformedURLException;
 import java.util.Map;
 
 import org.folio.rest.utils.TestEntities;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
 import io.restassured.response.Response;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 
-@RunWith(Parameterized.class)
 public class EntitiesCrudTest extends TestBase {
 
   private final Logger logger = LoggerFactory.getLogger(EntitiesCrudTest.class);
 
-  @Parameterized.Parameter public TestEntities testEntity;
-
-  @Parameterized.Parameters(name = "{index}:{0}")
-  public static TestEntities[] data() {
-    return TestEntities.values();
-  }
-
-  @Test
-  public void testPositiveCases() throws MalformedURLException {
+  @ParameterizedTest
+  @EnumSource(TestEntities.class)
+  public void testPositiveCases(TestEntities testEntity) throws MalformedURLException {
     String sampleId = null;
     try {
 
@@ -80,15 +72,17 @@ public class EntitiesCrudTest extends TestBase {
     return JsonObject.mapFrom(new JsonObject(sample).mapTo(testEntity.getClazz()));
   }
 
-  @Test
-  public void testFetchEntityWithNonExistedId() throws MalformedURLException {
+  @ParameterizedTest
+  @EnumSource(TestEntities.class)
+  public void testFetchEntityWithNonExistedId(TestEntities testEntity) throws MalformedURLException {
     logger.info(String.format("--- mod-organizations-storage %s get by id test: Invalid %s: %s", testEntity.name(), testEntity.name(), NON_EXISTED_ID));
     getDataById(testEntity.getEndpointWithId(), NON_EXISTED_ID).then().log().ifValidationFails()
       .statusCode(404);
   }
 
-  @Test
-  public void testEditEntityWithNonExistedId() throws MalformedURLException {
+  @ParameterizedTest
+  @EnumSource(TestEntities.class)
+  public void testEditEntityWithNonExistedId(TestEntities testEntity) throws MalformedURLException {
     logger.info(String.format("--- mod-organizations-storage %s put by id test: Invalid %s: %s", testEntity.name(), testEntity.name(), NON_EXISTED_ID));
     String sampleData = getFile(testEntity.getSampleFileName());
     putData(testEntity.getEndpointWithId(), NON_EXISTED_ID, sampleData)
@@ -96,22 +90,25 @@ public class EntitiesCrudTest extends TestBase {
       .statusCode(404);
   }
 
-  @Test
-  public void testDeleteEntityWithNonExistedId() throws MalformedURLException {
+  @ParameterizedTest
+  @EnumSource(TestEntities.class)
+  public void testDeleteEntityWithNonExistedId(TestEntities testEntity) throws MalformedURLException {
     logger.info(String.format("--- mod-organizations-storage %s delete by id test: Invalid %s: %s", testEntity.name(), testEntity.name(), NON_EXISTED_ID));
     deleteData(testEntity.getEndpointWithId(), NON_EXISTED_ID)
       .then().log().ifValidationFails()
       .statusCode(404);
   }
 
-  @Test
-  public void testGetEntitiesWithInvalidCQLQuery() throws MalformedURLException {
+  @ParameterizedTest
+  @EnumSource(TestEntities.class)
+  public void testGetEntitiesWithInvalidCQLQuery(TestEntities testEntity) throws MalformedURLException {
     logger.info(String.format("--- mod-organizations-storage %s test: Invalid CQL query", testEntity.name()));
     testInvalidCQLQuery(testEntity.getEndpoint() + "?query=invalid-query");
   }
 
-  @Test
-  public void testReceiveMetadata() throws MalformedURLException {
+  @ParameterizedTest
+  @EnumSource(TestEntities.class)
+  public void testReceiveMetadata(TestEntities testEntity) throws MalformedURLException {
     logger.info(String.format("--- mod-organizations-storage %s test: Test receive metadata", testEntity.name()));
     String sample = getFile(testEntity.getSampleFileName());
     Response response = postDataWithUserId(testEntity.getEndpoint(), sample);

@@ -19,7 +19,8 @@ public class ContactsAPI implements OrganizationsStorageContacts {
 
   @Override
   @Validate
-  public void getOrganizationsStorageContacts(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+  public void getOrganizationsStorageContacts(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders,
+      Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.get(CONTACT_TABLE, Contact.class, ContactCollection.class, query, offset, limit, okapiHeaders, vertxContext,
         GetOrganizationsStorageContactsResponse.class, asyncResultHandler);
   }
@@ -27,28 +28,32 @@ public class ContactsAPI implements OrganizationsStorageContacts {
   @Override
   @Validate
   public void postOrganizationsStorageContacts(String lang, org.folio.rest.jaxrs.model.Contact entity,
-                                          Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.post(CONTACT_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationsStorageContactsResponse.class, asyncResultHandler);
+      Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+    PgUtil.post(CONTACT_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationsStorageContactsResponse.class,
+        asyncResultHandler);
   }
 
   @Override
   @Validate
   public void getOrganizationsStorageContactsById(String id, String lang, Map<String, String> okapiHeaders,
-                                             Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.getById(CONTACT_TABLE, Contact.class, id, okapiHeaders,vertxContext, GetOrganizationsStorageContactsByIdResponse.class, asyncResultHandler);
+      Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+    PgUtil.getById(CONTACT_TABLE, Contact.class, id, okapiHeaders, vertxContext, GetOrganizationsStorageContactsByIdResponse.class,
+        asyncResultHandler);
   }
 
   @Override
   @Validate
   public void deleteOrganizationsStorageContactsById(String id, String lang, Map<String, String> okapiHeaders,
-                                                Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.deleteById(CONTACT_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationsStorageContactsByIdResponse.class, asyncResultHandler);
+      Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+    PgUtil.deleteById(CONTACT_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationsStorageContactsByIdResponse.class,
+        asyncResultHandler);
   }
 
   @Override
   @Validate
   public void putOrganizationsStorageContactsById(String id, String lang, org.folio.rest.jaxrs.model.Contact entity,
-                                             Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.put(CONTACT_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationsStorageContactsByIdResponse.class, asyncResultHandler);
+      Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+    PgUtil.put(CONTACT_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationsStorageContactsByIdResponse.class,
+        asyncResultHandler);
   }
 }

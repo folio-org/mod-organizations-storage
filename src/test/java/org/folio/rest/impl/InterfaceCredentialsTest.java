@@ -1,14 +1,14 @@
 package org.folio.rest.impl;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.net.MalformedURLException;
 
 import org.folio.rest.jaxrs.model.InterfaceCredential;
 import org.folio.rest.utils.TestEntities;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import io.restassured.response.Response;
 import io.vertx.core.json.JsonObject;
