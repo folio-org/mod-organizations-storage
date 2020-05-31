@@ -13,6 +13,7 @@ import org.junit.BeforeClass;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
@@ -208,7 +209,7 @@ public abstract class TestBase {
     String value = "";
     try (InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(filename)) {
       if (inputStream != null) {
-        value = IOUtils.toString(inputStream, "UTF-8");
+        value = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
       }
     } catch (Exception e) {
       value = "";

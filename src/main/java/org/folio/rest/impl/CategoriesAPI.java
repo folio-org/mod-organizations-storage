@@ -19,36 +19,41 @@ public class CategoriesAPI implements OrganizationsStorageCategories {
 
   @Override
   @Validate
-  public void getOrganizationsStorageCategories(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+  public void getOrganizationsStorageCategories(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders,
+      Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.get(CATEGORY_TABLE, Category.class, CategoryCollection.class, query, offset, limit, okapiHeaders, vertxContext,
-      GetOrganizationsStorageCategoriesResponse.class, asyncResultHandler);
+        GetOrganizationsStorageCategoriesResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
   public void postOrganizationsStorageCategories(String lang, org.folio.rest.jaxrs.model.Category entity,
-                                       Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.post(CATEGORY_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationsStorageCategoriesResponse.class, asyncResultHandler);
+      Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+    PgUtil.post(CATEGORY_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationsStorageCategoriesResponse.class,
+        asyncResultHandler);
   }
 
   @Override
   @Validate
   public void getOrganizationsStorageCategoriesById(String id, String lang, Map<String, String> okapiHeaders,
-                                          Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.getById(CATEGORY_TABLE, Category.class, id, okapiHeaders,vertxContext, GetOrganizationsStorageCategoriesByIdResponse.class, asyncResultHandler);
+      Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+    PgUtil.getById(CATEGORY_TABLE, Category.class, id, okapiHeaders, vertxContext,
+        GetOrganizationsStorageCategoriesByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
   public void deleteOrganizationsStorageCategoriesById(String id, String lang, Map<String, String> okapiHeaders,
-                                             Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.deleteById(CATEGORY_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationsStorageCategoriesByIdResponse.class, asyncResultHandler);
+      Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+    PgUtil.deleteById(CATEGORY_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationsStorageCategoriesByIdResponse.class,
+        asyncResultHandler);
   }
 
   @Override
   @Validate
   public void putOrganizationsStorageCategoriesById(String id, String lang, org.folio.rest.jaxrs.model.Category entity,
-                                          Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.put(CATEGORY_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationsStorageCategoriesByIdResponse.class, asyncResultHandler);
+      Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+    PgUtil.put(CATEGORY_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationsStorageCategoriesByIdResponse.class,
+        asyncResultHandler);
   }
 }

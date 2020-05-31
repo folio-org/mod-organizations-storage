@@ -4,6 +4,13 @@ import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 import static org.folio.util.ResponseUtils.handleFailure;
 import static org.folio.util.ResponseUtils.handleNoContentResponse;
 
+import javax.ws.rs.core.Response;
+
+import org.folio.persist.CriterionBuilder;
+import org.folio.persist.Tx;
+import org.folio.rest.persist.PostgresClient;
+import org.folio.rest.persist.Criteria.Criterion;
+
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Context;
 import io.vertx.core.Future;
@@ -12,11 +19,6 @@ import io.vertx.core.Promise;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.handler.impl.HttpStatusException;
-import javax.ws.rs.core.Response;
-import org.folio.persist.CriterionBuilder;
-import org.folio.persist.Tx;
-import org.folio.rest.persist.Criteria.Criterion;
-import org.folio.rest.persist.PostgresClient;
 
 public class InterfaceService {
 
@@ -24,7 +26,7 @@ public class InterfaceService {
   private static final String INTERFACE_TABLE = "interfaces";
 
   private final Logger logger = LoggerFactory.getLogger(this.getClass());
-  private PostgresClient pgClient;
+  private final PostgresClient pgClient;
 
   public InterfaceService(PostgresClient pgClient) {
     this.pgClient = pgClient;
@@ -38,7 +40,7 @@ public class InterfaceService {
         .compose(this::deleteCredentialByInterfaceId)
         .compose(this::deleteInterfaceById)
         .compose(Tx::endTx)
-        .setHandler(handleNoContentResponse(asyncResultHandler, tx, "Interface {} {} deleted"));
+        .onComplete(handleNoContentResponse(asyncResultHandler, tx, "Interface {} {} deleted"));
     });
   }
 
@@ -52,7 +54,7 @@ public class InterfaceService {
       if (reply.failed()) {
         handleFailure(promise, reply);
       } else {
-        logger.info("{} credential with InterfaceId={} has been deleted", reply.result().getUpdated(), tx.getEntity());
+        logger.info("{} credential with InterfaceId={} has been deleted", reply.result().rowCount(), tx.getEntity());
         promise.complete(tx);
       }
     });
@@ -62,7 +64,7 @@ public class InterfaceService {
   private Future<Tx<String>> deleteInterfaceById(Tx<String> tx) {
     Promise<Tx<String>> promise = Promise.promise();
     pgClient.delete(tx.getConnection(), INTERFACE_TABLE, tx.getEntity(), reply -> {
-      if (reply.result().getUpdated() == 0) {
+      if (reply.result().rowCount() == 0) {
         promise.fail(new HttpStatusException(NOT_FOUND.getStatusCode(), NOT_FOUND.getReasonPhrase()));
       } else {
         promise.complete(tx);

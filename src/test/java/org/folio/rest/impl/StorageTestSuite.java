@@ -17,10 +17,11 @@ import org.folio.rest.RestVerticle;
 import org.folio.rest.persist.PostgresClient;
 import org.folio.rest.tools.client.test.HttpClientMock2;
 import org.folio.rest.tools.utils.NetworkUtils;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Nested;
+import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
 
 import io.restassured.http.Header;
 import io.vertx.core.DeploymentOptions;
@@ -29,21 +30,12 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 
-
-@RunWith(Suite.class)
-
-@Suite.SuiteClasses({
-  TenantSampleDataTest.class,
-  EntitiesCrudTest.class,
-  InterfaceCredentialsTest.class
-
-})
-
+@RunWith(JUnitPlatform.class)
 public class StorageTestSuite {
   private static final Logger logger = LoggerFactory.getLogger(StorageTestSuite.class);
 
   private static Vertx vertx;
-  private static int port = NetworkUtils.nextFreePort();
+  private final static int port = NetworkUtils.nextFreePort();
   public static final Header URL_TO_HEADER = new Header("X-Okapi-Url-to", "http://localhost:" + port);
 
   private StorageTestSuite() {}
@@ -56,7 +48,7 @@ public class StorageTestSuite {
     return vertx;
   }
 
-  @BeforeClass
+  @BeforeAll
   public static void before() throws IOException, InterruptedException, ExecutionException, TimeoutException {
 
     // tests expect English error messages only, no Danish/German/...
@@ -78,7 +70,7 @@ public class StorageTestSuite {
     prepareTenant(TENANT_HEADER, false, false);
   }
 
-  @AfterClass
+  @AfterAll
   public static void after() throws InterruptedException, ExecutionException, TimeoutException, MalformedURLException {
     logger.info("Delete tenant");
     deleteTenant(TENANT_HEADER);
@@ -116,6 +108,18 @@ public class StorageTestSuite {
     });
 
     deploymentComplete.get(60, TimeUnit.SECONDS);
+  }
+
+  @Nested
+  class TenantSampleDataTestNested extends TenantSampleDataTest {
+  }
+
+  @Nested
+  class EntitiesCrudTestNested extends EntitiesCrudTest {
+  }
+
+  @Nested
+  class TInterfaceCredentialsTestNested extends InterfaceCredentialsTest {
   }
 
 }

@@ -1,19 +1,5 @@
 package org.folio.rest.impl;
 
-import io.restassured.http.ContentType;
-import io.restassured.http.Header;
-import io.vertx.core.json.JsonObject;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
-import org.folio.rest.jaxrs.model.Organization;
-import org.folio.rest.jaxrs.model.OrganizationCollection;
-import org.folio.rest.persist.PostgresClient;
-import org.folio.rest.utils.TenantApiTestUtil;
-import org.folio.rest.utils.TestEntities;
-import org.junit.Test;
-
-import java.net.MalformedURLException;
-
 import static io.restassured.RestAssured.given;
 import static org.folio.rest.RestVerticle.OKAPI_HEADER_TENANT;
 import static org.folio.rest.impl.StorageTestSuite.storageUrl;
@@ -25,8 +11,23 @@ import static org.folio.rest.utils.TestEntities.ORGANIZATION;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.not;
 
+import java.net.MalformedURLException;
 
-public class TenantSampleDataTest extends TestBase{
+import org.folio.rest.jaxrs.model.Organization;
+import org.folio.rest.jaxrs.model.OrganizationCollection;
+import org.folio.rest.persist.PostgresClient;
+import org.folio.rest.utils.TenantApiTestUtil;
+import org.folio.rest.utils.TestEntities;
+import org.junit.jupiter.api.Test;
+
+import io.restassured.http.ContentType;
+import io.restassured.http.Header;
+import io.vertx.core.json.JsonObject;
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
+
+
+class TenantSampleDataTest extends TestBase{
 
   private final Logger logger = LoggerFactory.getLogger(TenantSampleDataTest.class);
 
@@ -38,7 +39,7 @@ public class TenantSampleDataTest extends TestBase{
 
 
   @Test
-  public void isTenantCreated() throws MalformedURLException {
+  void isTenantCreated() throws MalformedURLException {
     getData(TENANT_ENDPOINT)
       .then()
       .assertThat()
@@ -46,7 +47,7 @@ public class TenantSampleDataTest extends TestBase{
   }
 
   @Test
-  public void sampleDataTests() throws MalformedURLException {
+  void sampleDataTests() throws MalformedURLException {
     try {
       logger.info("-- create a tenant with no sample/reference data --");
       prepareTenant(ANOTHER_TENANT_HEADER, false, false);
@@ -62,7 +63,7 @@ public class TenantSampleDataTest extends TestBase{
   }
 
   @Test
-  public void failIfNoUrlToHeader() throws MalformedURLException {
+  void failIfNoUrlToHeader() throws MalformedURLException {
     JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(true, true);
     given()
         .header(new Header(OKAPI_HEADER_TENANT, "noURL"))
@@ -75,7 +76,7 @@ public class TenantSampleDataTest extends TestBase{
   }
 
   @Test
-  public void testPartialSampleDataLoading() throws MalformedURLException {
+  void testPartialSampleDataLoading() throws MalformedURLException {
     logger.info("load sample date");
 
     try{
@@ -109,7 +110,7 @@ public class TenantSampleDataTest extends TestBase{
 
 
   @Test
-  public void testLoadReferenceData() throws MalformedURLException {
+  void testLoadReferenceData() throws MalformedURLException {
     logger.info("load only Reference Data");
     try {
       JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(false, true);
@@ -155,7 +156,7 @@ public class TenantSampleDataTest extends TestBase{
   }
 
   @Test
-  public void upgradeTenantWithNonExistentDb() throws MalformedURLException {
+  void upgradeTenantWithNonExistentDb() throws MalformedURLException {
     logger.info("upgrading Module for non existed tenant");
 
     JsonObject jsonBody = TenantApiTestUtil.prepareTenantBody(false, false);

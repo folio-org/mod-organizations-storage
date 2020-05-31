@@ -4,6 +4,11 @@ import static javax.ws.rs.core.HttpHeaders.CONTENT_TYPE;
 import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
 import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 
+import javax.ws.rs.core.Response;
+
+import org.folio.persist.Tx;
+import org.folio.rest.persist.PgExceptionUtil;
+
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
@@ -11,9 +16,6 @@ import io.vertx.core.Promise;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.handler.impl.HttpStatusException;
-import javax.ws.rs.core.Response;
-import org.folio.persist.Tx;
-import org.folio.rest.persist.PgExceptionUtil;
 
 public class ResponseUtils {
 
@@ -30,7 +32,7 @@ public class ResponseUtils {
         logger.error(logMessage, cause, tx.getEntity(), "or associated data failed to be");
 
         // The result of rollback operation is not so important, main failure cause is used to build the response
-        tx.rollbackTransaction().setHandler(res -> asyncResultHandler.handle(buildErrorResponse(cause)));
+        tx.rollbackTransaction().onComplete(res -> asyncResultHandler.handle(buildErrorResponse(cause)));
       } else {
         logger.info(logMessage, tx.getEntity(), "and associated data were successfully");
         asyncResultHandler.handle(buildNoContentResponse());
