@@ -1,4 +1,17 @@
-## 3.1.0 - Unreleased
+## 3.2.0 - Unreleased
+
+## 3.1.0 - Released
+The primary focus of this release was to add acquisition units support for organizations API
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v3.0.1...v3.1.0)
+
+### Stories
+* [MODORGSTOR-72](https://issues.folio.org/browse/MODORGSTOR-72) Update to RMB v30.0.1
+* [MODORGSTOR-69](https://issues.folio.org/browse/MODORGSTOR-69) Securing APIs by default
+* [MODORGSTOR-67](https://issues.folio.org/browse/MODORGSTOR-67) Add an "acqUnitIds" field to the organization schema
+
+### Bug Fixes
+* [MODORGSTOR-68](https://issues.folio.org/browse/MODORGSTOR-68) Migration issue between Edelweiss and Fameflower
 
 ## 3.0.1 - Released
 Bugfix release to fix of deletion functionality for Interface in Organizations app
