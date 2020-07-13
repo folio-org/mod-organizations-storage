@@ -1,4 +1,11 @@
 ## 3.2.0 - Unreleased
+## 3.1.1 - Released
+Bugfix release for fixing upgrade issue between Q1 and Q2 and it was done by moving on RMB 30.2.4
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v3.1.0...v3.1.1)
+
+### Bug Fixes
+* [MODORGSTOR-74](https://issues.folio.org/browse/MODORGSTOR-74) Upgrade issue between Q1 and Q2: "public.gin_trgm_ops" does not exist)
 
 ## 3.1.0 - Released
 The primary focus of this release was to add acquisition units support for organizations API
