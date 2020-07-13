@@ -56,10 +56,6 @@ public class StorageTestSuite {
 
     vertx = Vertx.vertx();
 
-    logger.info("Start embedded database");
-    PostgresClient.setIsEmbedded(true);
-    PostgresClient.getInstance(vertx).startEmbeddedPostgres();
-
     DeploymentOptions options = new DeploymentOptions();
 
     options.setConfig(new JsonObject().put("http.port", port).put(HttpClientMock2.MOCK_MODE, "true"));
