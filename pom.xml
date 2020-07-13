@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.folio</groupId>
   <artifactId>mod-organizations-storage</artifactId>
-  <version>3.1.1-SNAPSHOT</version>
+  <version>3.1.1</version>
   <packaging>jar</packaging>
 
   <licenses>
@@ -469,7 +469,7 @@
     <url>https://github.com/folio-org/mod-organizations-storage</url>
     <connection>scm:git:git://github.com/folio-org/mod-organizations-storage.git</connection>
     <developerConnection>scm:git:git@github.com:folio-org/mod-organizations-storage.git</developerConnection>
-    <tag>v3.1.0</tag>
+    <tag>v3.1.1</tag>
   </scm>
 
 </project>
