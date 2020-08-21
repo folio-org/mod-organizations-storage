@@ -3,6 +3,7 @@
   "name": "Ro*Co films",
   "code": "ZROCO$",
   "description": "Distributor of documentary films",
+  "exportToAccounting": true,
   "isVendor": true,
   "status": "Inactive",
   "language": "English",

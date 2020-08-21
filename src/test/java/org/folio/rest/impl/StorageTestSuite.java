@@ -119,7 +119,7 @@ public class StorageTestSuite {
   }
 
   @Nested
-  class TInterfaceCredentialsTestNested extends InterfaceCredentialsTest {
+  class InterfaceCredentialsTestNested extends InterfaceCredentialsTest {
   }
 
 }
