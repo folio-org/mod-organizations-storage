@@ -3,6 +3,7 @@
   "name": "American Chemical Society",
   "code": "ACSO",
   "description": "Serials - Domestic",
+  "exportToAccounting": true,
   "isVendor": true,
   "status": "Active",
   "language": "en-us",

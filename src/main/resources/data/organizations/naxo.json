@@ -3,6 +3,7 @@
   "name": "Naxos of America, Inc.",
   "code": "NAXO",
   "description": "AV streaming services, other onilne content",
+  "exportToAccounting": false,
   "isVendor": true,
   "status": "Active",
   "language": "en-us",
