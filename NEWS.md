@@ -1,4 +1,16 @@
-## 3.2.0 - Unreleased
+## 3.3.0 - Unreleased
+## 3.2.0 - Released
+The primary focus of this release was to migrate to JDK 11 with new RMB, update schema
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v3.1.1...v3.2.0)
+
+### Stories
+* [MODORGSTOR-85](https://issues.folio.org/browse/MODORGSTOR-85) Retrieve exact count of total records > 1000
+* [MODORGSTOR-83](https://issues.folio.org/browse/MODORGSTOR-83) mod-organizations-storage: Update RMB
+* [MODORGSTOR-79](https://issues.folio.org/browse/MODORGSTOR-79) Migrate mod-organizations-storage to JDK 11
+* [MODORGSTOR-78](https://issues.folio.org/browse/MODORGSTOR-78) Allow use of spaces in organization code
+* [MODORGSTOR-77](https://issues.folio.org/browse/MODORGSTOR-77) Support new field "exportToAccounting" in organization schema
+
 ## 3.1.1 - Released
 Bugfix release for fixing upgrade issue between Q1 and Q2 and it was done by moving on RMB 30.2.4
 
