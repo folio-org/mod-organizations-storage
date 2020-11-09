@@ -1,4 +1,16 @@
 ## 4.0.0 - Unreleased
+
+## 3.2.1 - Released
+
+The primary focus of this release was to fix RMB and logging issues
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v3.2.0...v3.2.1)
+
+### Bug Fixes
+* [MODORGSTOR-93](https://issues.folio.org/browse/MODORGSTOR-93) - Update RMB up to v31.1.5
+* [MODORGSTOR-91](https://issues.folio.org/browse/MODORGSTOR-91) - No logging in honeysuckle version
+
+
 ## 3.2.0 - Released
 The primary focus of this release was to migrate to JDK 11 with new RMB, update schema
 
