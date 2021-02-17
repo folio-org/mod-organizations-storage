@@ -5,6 +5,8 @@ import java.util.Map;
 import javax.ws.rs.core.Response;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.folio.rest.RestVerticle;
 import org.folio.rest.annotations.Validate;
 import org.folio.rest.jaxrs.model.Interface;
@@ -24,15 +26,13 @@ import io.vertx.core.Context;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
 import io.vertx.core.Vertx;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
 
 public class InterfacesAPI implements OrganizationsStorageInterfaces {
 
   private static final String INTERFACE_TABLE = "interfaces";
   private static final String INTERFACE_CREDENTIAL_TABLE = "interface_credentials";
   private static final String MISMATCH_ERROR_MESSAGE = "Interface credential id mismatch";
-  private final Logger logger = LoggerFactory.getLogger(InterfacesAPI.class);
+  private final Logger logger = LogManager.getLogger(InterfacesAPI.class);
 
   private final InterfaceService interfaceService;
 

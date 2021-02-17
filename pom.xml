@@ -19,9 +19,10 @@
     <jsonschema_paths>acq-models/mod-orgs/schemas,raml-util/schemas,acq-models/common/schemas</jsonschema_paths>
     <ramlfiles_path>${basedir}/ramls</ramlfiles_path>
     <ramlfiles_util_path>${basedir}/raml-util</ramlfiles_util_path>
-    <raml-module-builder.version>31.1.5</raml-module-builder.version>
+    <raml-module-builder.version>32.1.0</raml-module-builder.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <vertx.version>3.9.4</vertx.version>
+    <vertx.version>4.0.0</vertx.version>
+    <argLine/>
   </properties>
 
   <repositories>
@@ -44,7 +45,7 @@
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
-        <version>5.6.2</version>
+        <version>5.7.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -83,7 +84,7 @@
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
-      <version>4.3.0</version>
+      <version>4.3.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -95,12 +96,6 @@
       <groupId>org.junit.platform</groupId>
       <artifactId>junit-platform-runner</artifactId>
       <scope>test</scope>
-    </dependency>
-    <!-- The RMB runtime defines usage of log4j2 for vert.x logging interface. Including Log4j 2 SLF4J Binding to allow SLF4J API to use Log4j 2 as the implementation. -->
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-slf4j-impl</artifactId>
-      <version>2.13.1</version>
     </dependency>
   </dependencies>
 
@@ -222,13 +217,7 @@
         <version>1.12.6</version>
         <configuration>
           <verbose>true</verbose>
-          <showWeaveInfo>false</showWeaveInfo>
-          <complianceLevel>1.8</complianceLevel>
-          <includes>
-            <include>**/impl/*.java</include>
-            <include>**/*.aj</include>
-          </includes>
-          <aspectDirectory>src/main/java/org/folio/rest/annotations</aspectDirectory>
+          <complianceLevel>11</complianceLevel>
           <XaddSerialVersionUID>true</XaddSerialVersionUID>
           <showWeaveInfo>true</showWeaveInfo>
           <aspectLibraries>
@@ -261,7 +250,7 @@
 
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
-        <version>3.1.0</version>
+        <version>3.2.0</version>
         <executions>
           <execution>
             <id>copy-resources</id>
@@ -381,7 +370,7 @@
             <configuration>
               <properties>
                 <property>
-                  <name>log4j.configuration</name>
+                  <name>log4j.configurationFile</name>
                   <value>${project.baseUri}src/main/resources/log4j2.properties</value>
                 </property>
               </properties>
@@ -449,11 +438,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.22.2</version>
         <configuration>
-          <systemPropertyVariables>
-            <vertx.logger-delegate-factory-class-name>
-              io.vertx.core.logging.Log4j2LogDelegateFactory
-            </vertx.logger-delegate-factory-class-name>
-          </systemPropertyVariables>
+          <argLine>-Duser.language=en -Duser.region=US</argLine>
           <excludes>
             <exclude>org/folio/rest/impl/**Test.class</exclude>
           </excludes>
