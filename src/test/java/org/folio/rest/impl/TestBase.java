@@ -1,14 +1,11 @@
 package org.folio.rest.impl;
 
-import io.restassured.http.ContentType;
-import io.restassured.http.Header;
-import io.restassured.response.Response;
-import io.vertx.core.Vertx;
-import io.vertx.core.json.JsonObject;
-import org.apache.commons.io.IOUtils;
-import org.folio.rest.utils.TestEntities;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import static io.restassured.RestAssured.given;
+import static org.folio.rest.RestVerticle.OKAPI_HEADER_TENANT;
+import static org.folio.rest.impl.StorageTestSuite.storageUrl;
+import static org.folio.rest.utils.TenantApiTestUtil.USER_ID_HEADER;
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,12 +16,16 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
-import static io.restassured.RestAssured.given;
-import static org.folio.rest.RestVerticle.OKAPI_HEADER_TENANT;
-import static org.folio.rest.impl.StorageTestSuite.storageUrl;
-import static org.folio.rest.utils.TenantApiTestUtil.USER_ID_HEADER;
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertEquals;
+import org.apache.commons.io.IOUtils;
+import org.folio.rest.utils.TestEntities;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+
+import io.restassured.http.ContentType;
+import io.restassured.http.Header;
+import io.restassured.response.Response;
+import io.vertx.core.Vertx;
+import io.vertx.core.json.JsonObject;
 
 /**
  * When not run from StorageTestSuite then this class invokes StorageTestSuite.before() and
@@ -50,12 +51,7 @@ public abstract class TestBase {
   }
 
   @AfterClass
-  public static void testBaseAfterClass()
-    throws InterruptedException,
-    ExecutionException,
-    TimeoutException,
-    MalformedURLException {
-
+  public static void testBaseAfterClass() throws InterruptedException, ExecutionException, TimeoutException {
     if (invokeStorageTestSuiteAfter) {
       StorageTestSuite.after();
     }

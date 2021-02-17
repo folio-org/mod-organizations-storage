@@ -6,6 +6,8 @@ import static org.folio.util.ResponseUtils.handleNoContentResponse;
 
 import javax.ws.rs.core.Response;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.folio.persist.CriterionBuilder;
 import org.folio.persist.Tx;
 import org.folio.rest.persist.PostgresClient;
@@ -16,8 +18,6 @@ import io.vertx.core.Context;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
 import io.vertx.core.Promise;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.handler.impl.HttpStatusException;
 
 public class InterfaceService {
@@ -25,7 +25,7 @@ public class InterfaceService {
   private static final String INTERFACE_CREDENTIALS_TABLE = "interface_credentials";
   private static final String INTERFACE_TABLE = "interfaces";
 
-  private final Logger logger = LoggerFactory.getLogger(this.getClass());
+  private final Logger logger = LogManager.getLogger(this.getClass());
   private final PostgresClient pgClient;
 
   public InterfaceService(PostgresClient pgClient) {

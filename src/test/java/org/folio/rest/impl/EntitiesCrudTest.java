@@ -8,18 +8,18 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.net.MalformedURLException;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.folio.rest.utils.TestEntities;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
 import io.restassured.response.Response;
 import io.vertx.core.json.JsonObject;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
 
 class EntitiesCrudTest extends TestBase {
 
-  private final Logger logger = LoggerFactory.getLogger(EntitiesCrudTest.class);
+  private final Logger logger = LogManager.getLogger(EntitiesCrudTest.class);
 
   @ParameterizedTest
   @EnumSource(TestEntities.class)
@@ -112,7 +112,7 @@ class EntitiesCrudTest extends TestBase {
     logger.info(String.format("--- mod-organizations-storage %s test: Test receive metadata", testEntity.name()));
     String sample = getFile(testEntity.getSampleFileName());
     Response response = postDataWithUserId(testEntity.getEndpoint(), sample);
-    Map metadata = response.then().extract().path("metadata");
+    Map<String, String> metadata = response.then().extract().path("metadata");
     assertThat(metadata, is(notNullValue()));
   }
 

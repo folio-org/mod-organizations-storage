@@ -6,17 +6,17 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.net.MalformedURLException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.folio.rest.jaxrs.model.InterfaceCredential;
 import org.folio.rest.utils.TestEntities;
 import org.junit.jupiter.api.Test;
 
 import io.restassured.response.Response;
 import io.vertx.core.json.JsonObject;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
 
 class InterfaceCredentialsTest extends TestBase {
-  private final Logger logger = LoggerFactory.getLogger(InterfaceCredentialsTest.class);
+  private final Logger logger = LogManager.getLogger(InterfaceCredentialsTest.class);
 
   private static final String PASSWORD_FIELD = "password";
   private static final String MY_NEW_PASSWORD = "my_new_password";
