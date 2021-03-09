@@ -1,4 +1,23 @@
-## 3.3.0 - Unreleased
+## 4.1.0 - Unreleased
+
+## 4.0.0 - Released
+
+The primary focus of this release was to update RMB up to v32.1.0
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v3.2.2...v4.0.0)
+
+### Stories
+* [MODORGSTOR-98](https://issues.folio.org/browse/MODORGSTOR-98) - mod-organizations-storage: Update RMB
+
+## 3.2.2 - Released
+
+The primary focus of this release was to fix RMB and logging issues
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v3.2.1...v3.2.2)
+
+### Bug Fixes
+* [MODORGSTOR-95](https://issues.folio.org/browse/MODORGSTOR-95) - Wrong RMB version in the latest 3.2.1 Q3 release
+* [MODORGSTOR-91](https://issues.folio.org/browse/MODORGSTOR-91) - No logging in honeysuckle version
 
 ## 3.2.1 - Released
 
