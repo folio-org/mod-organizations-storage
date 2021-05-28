@@ -18,7 +18,7 @@ import io.vertx.core.Context;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
 import io.vertx.core.Promise;
-import io.vertx.ext.web.handler.impl.HttpStatusException;
+import io.vertx.ext.web.handler.HttpException;
 
 public class InterfaceService {
 
@@ -65,7 +65,7 @@ public class InterfaceService {
     Promise<Tx<String>> promise = Promise.promise();
     pgClient.delete(tx.getConnection(), INTERFACE_TABLE, tx.getEntity(), reply -> {
       if (reply.result().rowCount() == 0) {
-        promise.fail(new HttpStatusException(NOT_FOUND.getStatusCode(), NOT_FOUND.getReasonPhrase()));
+        promise.fail(new HttpException(NOT_FOUND.getStatusCode(), NOT_FOUND.getReasonPhrase()));
       } else {
         promise.complete(tx);
       }

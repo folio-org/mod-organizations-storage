@@ -14,9 +14,9 @@ import org.folio.rest.client.TenantClient;
 import org.folio.rest.jaxrs.model.Parameter;
 import org.folio.rest.jaxrs.model.TenantAttributes;
 import org.folio.rest.jaxrs.model.TenantJob;
-import org.folio.rest.tools.PomReader;
 
 import io.restassured.http.Header;
+import org.folio.rest.tools.PomReader;
 
 public class TenantApiTestUtil {
 

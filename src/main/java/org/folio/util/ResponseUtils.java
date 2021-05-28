@@ -6,6 +6,7 @@ import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 
 import javax.ws.rs.core.Response;
 
+import io.vertx.ext.web.handler.HttpException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.folio.persist.Tx;
@@ -15,7 +16,6 @@ import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
 import io.vertx.core.Promise;
-import io.vertx.ext.web.handler.impl.HttpStatusException;
 
 public class ResponseUtils {
 
@@ -28,7 +28,7 @@ public class ResponseUtils {
     String logMessage) {
     return result -> {
       if (result.failed()) {
-        HttpStatusException cause = (HttpStatusException) result.cause();
+        HttpException cause = (HttpException) result.cause();
         logger.error(logMessage, cause, tx.getEntity(), "or associated data failed to be");
 
         // The result of rollback operation is not so important, main failure cause is used to build the response
@@ -44,9 +44,9 @@ public class ResponseUtils {
     Throwable cause = reply.cause();
     String badRequestMessage = PgExceptionUtil.badRequestMessage(cause);
     if (badRequestMessage != null) {
-      promise.fail(new HttpStatusException(Response.Status.BAD_REQUEST.getStatusCode(), badRequestMessage));
+      promise.fail(new HttpException(Response.Status.BAD_REQUEST.getStatusCode(), badRequestMessage));
     } else {
-      promise.fail(new HttpStatusException(INTERNAL_SERVER_ERROR.getStatusCode(), cause.getMessage()));
+      promise.fail(new HttpException(INTERNAL_SERVER_ERROR.getStatusCode(), cause.getMessage()));
     }
   }
 
@@ -58,9 +58,9 @@ public class ResponseUtils {
     final String message;
     final int code;
 
-    if (throwable instanceof HttpStatusException) {
-      code = ((HttpStatusException) throwable).getStatusCode();
-      message = ((HttpStatusException) throwable).getPayload();
+    if (throwable instanceof HttpException) {
+      code = ((HttpException) throwable).getStatusCode();
+      message = ((HttpException) throwable).getPayload();
     } else {
       code = INTERNAL_SERVER_ERROR.getStatusCode();
       message = throwable.getMessage();
