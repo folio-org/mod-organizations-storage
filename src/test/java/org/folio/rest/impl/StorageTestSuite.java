@@ -4,7 +4,6 @@ import static org.folio.rest.impl.TestBase.TENANT_HEADER;
 import static org.folio.rest.utils.TenantApiTestUtil.deleteTenant;
 import static org.folio.rest.utils.TenantApiTestUtil.prepareTenant;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
@@ -19,12 +18,14 @@ import org.folio.rest.RestVerticle;
 import org.folio.rest.jaxrs.model.TenantJob;
 import org.folio.rest.persist.PostgresClient;
 import org.folio.rest.tools.client.test.HttpClientMock2;
+import org.folio.rest.tools.utils.Envs;
 import org.folio.rest.tools.utils.NetworkUtils;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Nested;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
+import org.testcontainers.containers.PostgreSQLContainer;
 
 import io.restassured.http.Header;
 import io.vertx.core.DeploymentOptions;
@@ -40,6 +41,11 @@ public class StorageTestSuite {
   public static final Header URL_TO_HEADER = new Header("X-Okapi-Url-to", "http://localhost:" + port);
   private static TenantJob tenantJob;
 
+  public static final String POSTGRES_DOCKER_IMAGE = "postgres:12-alpine";
+
+
+  private static PostgreSQLContainer<?> postgresSQLContainer;
+
   private StorageTestSuite() {}
 
   public static URL storageUrl(String path) throws MalformedURLException {
@@ -51,22 +57,30 @@ public class StorageTestSuite {
   }
 
   @BeforeAll
-  public static void before() throws IOException, InterruptedException, ExecutionException, TimeoutException {
+  public static void before() throws InterruptedException, ExecutionException, TimeoutException {
 
     // tests expect English error messages only, no Danish/German/...
     Locale.setDefault(Locale.US);
-
     vertx = Vertx.vertx();
 
-    logger.info("Start embedded database");
-    PostgresClient.setIsEmbedded(true);
-    PostgresClient.getInstance(vertx).startEmbeddedPostgres();
+    logger.info("Start container database");
+
+    // databaseName = "test", username = "test" password = "test", port = random
+    postgresSQLContainer = new PostgreSQLContainer<>(POSTGRES_DOCKER_IMAGE);
+
+    postgresSQLContainer.start();
+
+    Envs.setEnv(
+      postgresSQLContainer.getHost(),
+      postgresSQLContainer.getFirstMappedPort(),
+      postgresSQLContainer.getUsername(),
+      postgresSQLContainer.getPassword(),
+      postgresSQLContainer.getDatabaseName()
+    );
 
     DeploymentOptions options = new DeploymentOptions();
 
     options.setConfig(new JsonObject().put("http.port", port).put(HttpClientMock2.MOCK_MODE, "true"));
-    options.setWorker(true);
-
     startVerticle(options);
 
     tenantJob = prepareTenant(TENANT_HEADER, false, false);
@@ -90,7 +104,8 @@ public class StorageTestSuite {
 
     undeploymentComplete.get(20, TimeUnit.SECONDS);
     logger.info("Stop database");
-    PostgresClient.stopEmbeddedPostgres();
+    PostgresClient.stopPostgresTester();
+    postgresSQLContainer.stop();
   }
 
   private static void startVerticle(DeploymentOptions options)

@@ -14,7 +14,7 @@ import org.folio.rest.client.TenantClient;
 import org.folio.rest.jaxrs.model.Parameter;
 import org.folio.rest.jaxrs.model.TenantAttributes;
 import org.folio.rest.jaxrs.model.TenantJob;
-import org.folio.rest.tools.PomReader;
+import org.folio.rest.tools.utils.ModuleName;
 
 import io.restassured.http.Header;
 
@@ -31,7 +31,7 @@ public class TenantApiTestUtil {
   public static TenantAttributes prepareTenantBody(Boolean isLoadSampleData, Boolean isLoadReferenceData) {
     TenantAttributes tenantAttributes = new TenantAttributes();
 
-    String moduleId = String.format("%s-%s", PomReader.INSTANCE.getModuleName(), PomReader.INSTANCE.getVersion());
+    String moduleId = String.format("%s", ModuleName.getModuleName());
     List<Parameter> parameters = new ArrayList<>();
     parameters.add(new Parameter().withKey("loadReference").withValue(isLoadReferenceData.toString()));
     parameters.add(new Parameter().withKey("loadSample").withValue(isLoadSampleData.toString()));
