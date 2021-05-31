@@ -17,7 +17,6 @@ import org.apache.logging.log4j.Logger;
 import org.folio.rest.RestVerticle;
 import org.folio.rest.jaxrs.model.TenantJob;
 import org.folio.rest.persist.PostgresClient;
-import org.folio.rest.tools.PomReader;
 import org.folio.rest.tools.client.test.HttpClientMock2;
 import org.folio.rest.tools.utils.Envs;
 import org.folio.rest.tools.utils.NetworkUtils;
@@ -42,6 +41,8 @@ public class StorageTestSuite {
   public static final Header URL_TO_HEADER = new Header("X-Okapi-Url-to", "http://localhost:" + port);
   private static TenantJob tenantJob;
 
+  public static final String POSTGRES_DOCKER_IMAGE = "postgres:12-alpine";
+
 
   private static PostgreSQLContainer<?> postgresSQLContainer;
 
@@ -64,10 +65,8 @@ public class StorageTestSuite {
 
     logger.info("Start container database");
 
-    String postgresImage = PomReader.INSTANCE.getProps().getProperty("postgres.image");
-
     // databaseName = "test", username = "test" password = "test", port = random
-    postgresSQLContainer = new PostgreSQLContainer<>(postgresImage);
+    postgresSQLContainer = new PostgreSQLContainer<>(POSTGRES_DOCKER_IMAGE);
 
     postgresSQLContainer.start();
 
