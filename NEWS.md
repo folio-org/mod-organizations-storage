@@ -1,4 +1,15 @@
-## 4.1.0 - Unreleased
+## 4.2.0 - Unreleased
+
+## 4.1.0 - Released
+
+The primary focus of this release was to update RMB up to v33.0.0
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v4.0.0...v4.1.0)
+
+### Stories
+* [MODORGSTOR-110] (https://issues.folio.org/browse/MODORGSTOR-110) - Add personal data disclosure form
+* [MODORGSTOR-107] (https://issues.folio.org/browse/MODORGSTOR-107) - Account schema remove from required : "paymentMethod", "libraryCode","libraryEdiCode"
+* [MODORGSTOR-104] (https://issues.folio.org/browse/MODORGSTOR-104) - Mod-organizations-storage: Update RMB
 
 ## 4.0.0 - Released
 
