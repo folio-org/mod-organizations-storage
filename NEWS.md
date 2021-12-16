@@ -1,5 +1,14 @@
 ## 4.2.0 - Unreleased
 
+## 4.1.1 - Released
+
+This bugfix release focused on fixing Log4j vulnerability
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v4.1.0...v4.1.1)
+
+### Bug Fixes
+* [MODORGSTOR-117](https://issues.folio.org/browse/MODORGSTOR-117) - Kiwi R3 2021 - Log4j vulnerability verification and correction
+
 ## 4.1.0 - Released
 
 The primary focus of this release was to update RMB up to v33.0.0
