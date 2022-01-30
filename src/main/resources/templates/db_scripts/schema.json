@@ -131,6 +131,21 @@
           "removeAccents": true
         }
       ]
+    },
+    {
+      "tableName": "organization_types",
+      "fromModuleVersion": "mod-organizations-storage-4.2.0",
+      "withMetadata": true,
+      "fullTextIndex" : [
+        {
+          "fieldName" : "name",
+          "tOps" : "ADD"
+        },
+        {
+          "fieldName" : "status",
+          "tOps" : "ADD"
+        }
+      ]
     }
   ]
 }
