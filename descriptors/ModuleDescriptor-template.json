@@ -240,8 +240,39 @@
       ]
     },
     {
+      "id": "organizations-storage.organization-types",
+      "version": "1.0",
+      "handlers": [
+        {
+          "methods": ["GET"],
+          "pathPattern": "/organizations-storage/organization-types",
+          "permissionsRequired": ["organizations-storage.organization-types.collection.get"]
+        },
+        {
+          "methods": ["POST"],
+          "pathPattern": "/organizations-storage/organization-types",
+          "permissionsRequired": ["organizations-storage.organization-types.item.post"]
+        },
+        {
+          "methods": ["GET"],
+          "pathPattern": "/organizations-storage/organization-types/{id}",
+          "permissionsRequired": ["organizations-storage.organization-types.item.get"]
+        },
+        {
+          "methods": ["PUT"],
+          "pathPattern": "/organizations-storage/organization-types/{id}",
+          "permissionsRequired": ["organizations-storage.organization-types.item.put"]
+        },
+        {
+          "methods": ["DELETE"],
+          "pathPattern": "/organizations-storage/organization-types/{id}",
+          "permissionsRequired": ["organizations-storage.organization-types.item.delete"]
+        }
+      ]
+    },
+    {
       "id": "organizations-storage.organizations",
-      "version": "3.2",
+      "version": "3.3",
       "handlers": [
         {
           "methods": ["GET"],
@@ -627,6 +658,43 @@
       ]
     },
     {
+      "permissionName" : "organizations-storage.organization-types.collection.get",
+      "displayName" : "organization_type collection get",
+      "description" : "Get a collection of organization_types"
+    },
+    {
+      "permissionName" : "organizations-storage.organization-types.item.post",
+      "displayName" : "organization_type post",
+      "description" : "Create a new organization_type"
+    },
+    {
+      "permissionName" : "organizations-storage.organization-types.item.get",
+      "displayName" : "organization_type get",
+      "description" : "Fetch a organization_type"
+    },
+    {
+      "permissionName" : "organizations-storage.organization-types.item.put",
+      "displayName" : "organization_type put",
+      "description" : "Update a organization_type"
+    },
+    {
+      "permissionName" : "organizations-storage.organization-types.item.delete",
+      "displayName" : "organization_type delete",
+      "description" : "Delete a organization_type"
+    },
+    {
+      "permissionName" : "organizations-storage.organization-types.all",
+      "displayName" : "organization_type all",
+      "description" : "All permissions for organization_type",
+      "subPermissions" : [
+        "organizations-storage.organization-types.collection.get",
+        "organizations-storage.organization-types.item.post",
+        "organizations-storage.organization-types.item.get",
+        "organizations-storage.organization-types.item.put",
+        "organizations-storage.organization-types.item.delete"
+      ]
+    },
+    {
       "permissionName" : "organizations-storage.module.all",
       "displayName" : "organizations-storage-module all",
       "description" : "All permissions for the organizations module",
@@ -639,7 +707,8 @@
         "organizations-storage.interfaces.credentials.all",
         "organizations-storage.phone-numbers.all",
         "organizations-storage.urls.all",
-        "organizations-storage.organizations.all"
+        "organizations-storage.organizations.all",
+        "organizations-storage.organization-types.all"
       ]
     }
   ],
