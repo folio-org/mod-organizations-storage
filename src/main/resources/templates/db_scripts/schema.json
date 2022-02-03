@@ -15,6 +15,11 @@
       "run": "after",
       "snippetPath": "migration/make_organization_export_to_accounting_default.sql",
       "fromModuleVersion": "mod-organizations-storage-3.2.0"
+    },
+    {
+      "run": "after",
+      "snippetPath": "organization_type_check_reference_triggers.sql",
+      "fromModuleVersion": "mod-organizations-storage-4.2.0"
     }
   ],
   "tables": [

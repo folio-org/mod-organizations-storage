@@ -127,4 +127,7 @@ public class StorageTestSuite {
   class InterfaceCredentialsTestNested extends InterfaceCredentialsTest {
   }
 
+  @Nested
+  class OrganizationTypesTestNested extends OrganizationTypesTest {
+  }
 }
