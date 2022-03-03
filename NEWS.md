@@ -1,4 +1,14 @@
-## 4.2.0 - Unreleased
+## 4.3.0 - Unreleased
+
+## 4.2.0 - Released
+
+The primary focus of this release was to update RMB up to v33.0.0
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v4.1.0...v4.2.0)
+
+### Stories
+* [MODORGSTOR-112] (https://issues.folio.org/browse/MODORGSTOR-112) - All organizations should have primary address
+
 
 ## 4.1.0 - Released
 
