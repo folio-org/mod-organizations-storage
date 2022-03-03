@@ -19,7 +19,7 @@
     {
       "run": "after",
       "snippetPath": "organization_type_check_reference_triggers.sql",
-      "fromModuleVersion": "mod-organizations-storage-4.2.0"
+      "fromModuleVersion": "mod-organizations-storage-4.3.0"
     }
   ],
   "tables": [
@@ -78,7 +78,7 @@
     },
     {
       "tableName": "organizations",
-      "fromModuleVersion": "mod-organizations-storage-4.2.0",
+      "fromModuleVersion": "mod-organizations-storage-4.3.0",
       "withMetadata": true,
       "fullTextIndex": [
         {
@@ -147,7 +147,7 @@
     },
     {
       "tableName": "organization_types",
-      "fromModuleVersion": "mod-organizations-storage-4.2.0",
+      "fromModuleVersion": "mod-organizations-storage-4.3.0",
       "withMetadata": true,
       "fullTextIndex" : [
         {
