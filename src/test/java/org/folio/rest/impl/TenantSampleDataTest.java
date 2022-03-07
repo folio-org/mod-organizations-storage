@@ -91,10 +91,10 @@ class TenantSampleDataTest extends TestBase {
       TenantAttributes tenantAttributes = TenantApiTestUtil.prepareTenantBody(false, true);
       tenantJob = postTenant(PARTIAL_TENANT_HEADER, tenantAttributes);
 
-      verifyCollectionQuantity("/organizations-storage/categories", 4, PARTIAL_TENANT_HEADER);
       for (TestEntities entity : TestEntities.values()) {
-        //category is the only reference data, which must be loaded
-        if (!entity.equals(TestEntities.CATEGORY)) {
+        if (entity.isReferenceData()) {
+          verifyCollectionQuantity(entity.getEndpoint(), entity.getInitialQuantity(), PARTIAL_TENANT_HEADER);
+        } else {
           logger.info("Test sample data not loaded for " + entity.name());
           verifyCollectionQuantity(entity.getEndpoint(), 0, PARTIAL_TENANT_HEADER);
         }

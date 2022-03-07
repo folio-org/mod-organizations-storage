@@ -1,0 +1,60 @@
+#%RAML 1.0
+title: "Organization types"
+baseUri: https://github.com/folio-org/mod-organizations-storage
+version: v1.0
+
+documentation:
+  - title: Organization types
+    content: <b>CRUD APIs used to manage organization types.</b>
+
+types:
+  organization_type: !include acq-models/mod-orgs/schemas/organization_type.json
+  organization_type_collection: !include acq-models/mod-orgs/schemas/organization_type_collection.json
+  errors: !include raml-util/schemas/errors.schema
+  UUID:
+    type: string
+    pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
+
+traits:
+  orderable: !include raml-util/traits/orderable.raml
+  pageable: !include raml-util/traits/pageable.raml
+  searchable: !include raml-util/traits/searchable.raml
+  language: !include raml-util/traits/language.raml
+  validate: !include raml-util/traits/validation.raml
+
+resourceTypes:
+  collection: !include raml-util/rtypes/collection.raml
+  collection-item: !include raml-util/rtypes/item-collection.raml
+
+
+/organizations-storage/organization-types:
+  type:
+    collection:
+      exampleCollection: !include acq-models/mod-orgs/examples/organization_type_collection.sample
+      exampleItem: !include acq-models/mod-orgs/examples/organization_type_post.sample
+      schemaCollection: organization_type_collection
+      schemaItem: organization_type
+  get:
+    description: Get a list of organization types
+    is: [
+        searchable: { description: "CQL query", example: "status=Active" },
+        pageable
+    ]
+  post:
+    description: Create an organization type
+    is: [ validate ]
+  /{id}:
+    uriParameters:
+      id:
+        description: The UUID of a organization type
+        type: UUID
+    type:
+      collection-item:
+        exampleItem: !include acq-models/mod-orgs/examples/organization_type_get.sample
+        schema: organization_type
+    put:
+      description: Update an organization type by id
+      is: [ validate ]
+    delete:
+      description: Delete an organization type by id
+      is: [ validate ]

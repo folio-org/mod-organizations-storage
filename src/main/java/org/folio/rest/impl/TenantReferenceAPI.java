@@ -59,7 +59,8 @@ public class TenantReferenceAPI extends TenantAPI {
     if (isLoadReference(tenantAttributes)) {
       tl.withKey(PARAMETER_LOAD_REFERENCE)
         .withLead("data")
-        .add("categories", "organizations-storage/categories");
+        .add("categories", "organizations-storage/categories")
+        .add("organization_types", "organizations-storage/organization-types");
     }
   }
 

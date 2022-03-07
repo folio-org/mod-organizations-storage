@@ -15,6 +15,11 @@
       "run": "after",
       "snippetPath": "migration/make_organization_export_to_accounting_default.sql",
       "fromModuleVersion": "mod-organizations-storage-3.2.0"
+    },
+    {
+      "run": "after",
+      "snippetPath": "organization_type_check_reference_triggers.sql",
+      "fromModuleVersion": "mod-organizations-storage-4.3.0"
     }
   ],
   "tables": [
@@ -73,7 +78,7 @@
     },
     {
       "tableName": "organizations",
-      "fromModuleVersion": "mod-organizations-storage-2.2.2",
+      "fromModuleVersion": "mod-organizations-storage-4.3.0",
       "withMetadata": true,
       "fullTextIndex": [
         {
@@ -129,6 +134,29 @@
           "tOps": "ADD",
           "caseSensitive": false,
           "removeAccents": true
+        }
+      ],
+      "ginIndex": [
+        {
+          "fieldName": "organizationTypes",
+          "tOps": "ADD",
+          "caseSensitive": true,
+          "removeAccents": false
+        }
+      ]
+    },
+    {
+      "tableName": "organization_types",
+      "fromModuleVersion": "mod-organizations-storage-4.3.0",
+      "withMetadata": true,
+      "fullTextIndex" : [
+        {
+          "fieldName" : "name",
+          "tOps" : "ADD"
+        },
+        {
+          "fieldName" : "status",
+          "tOps" : "ADD"
         }
       ]
     }
