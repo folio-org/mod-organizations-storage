@@ -1,4 +1,15 @@
-## 4.3.0 - Unreleased
+## 4.4.0 - Unreleased
+
+## 4.3.0 - Released (Morning Glory R2 2022)
+
+The primary focus of this release was to update RMB up to v34.1.0
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v4.2.0...v4.3.0)
+
+### Stories
+* [MODORGSTOR-129] (https://issues.folio.org/browse/MODORGSTOR-129) - Upgrade RAML Module Builder
+* [MODORGSTOR-121] (https://issues.folio.org/browse/MODORGSTOR-121) - Create Organization type schema and API
+
 
 ## 4.2.0 - Released
 
