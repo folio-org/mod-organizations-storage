@@ -31,7 +31,7 @@ public class TenantApiTestUtil {
   public static TenantAttributes prepareTenantBody(Boolean isLoadSampleData, Boolean isLoadReferenceData) {
     TenantAttributes tenantAttributes = new TenantAttributes();
 
-    String moduleId = String.format("%s", ModuleName.getModuleName());
+    String moduleId = String.format("%s-%s", ModuleName.getModuleName(), ModuleName.getModuleVersion());
     List<Parameter> parameters = new ArrayList<>();
     parameters.add(new Parameter().withKey("loadReference").withValue(isLoadReferenceData.toString()));
     parameters.add(new Parameter().withKey("loadSample").withValue(isLoadSampleData.toString()));
