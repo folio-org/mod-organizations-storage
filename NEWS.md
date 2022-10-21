@@ -1,4 +1,12 @@
-## 4.4.0 - Unreleased
+## 4.5.0 - Unreleased
+
+## 4.4.0 - Released (Nolana R3)
+The primary focus of this release was to update RMB up to v35.0.1
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v4.3.0...v4.4.0)
+
+### Stories
+* [MODORGSTOR-131] (https://issues.folio.org/browse/MODORGSTOR-131) - Upgrade RAML Module Builder
 
 ## 4.3.0 - Released (Morning Glory R2 2022)
 
