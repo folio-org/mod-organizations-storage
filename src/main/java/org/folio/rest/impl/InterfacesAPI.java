@@ -94,6 +94,7 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       try {
+        logger.debug("Trying to get row from '{}' table by id: {}", INTERFACE_CREDENTIAL_TABLE, id);
         String tenantId = TenantTool.calculateTenantId(okapiHeaders.get(RestVerticle.OKAPI_HEADER_TENANT));
         PostgresClient pgClient = PostgresClient.getInstance(vertxContext.owner(), tenantId);
         CQLWrapper cqlWrapper = getCqlWrapperByInterfaceId(id);
@@ -102,6 +103,7 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
             try {
               if (reply.succeeded()) {
                 if (reply.result().getResults().isEmpty()) {
+                  logger.warn("No rows found in '{}' table by id: {}", INTERFACE_CREDENTIAL_TABLE, id);
                   asyncResultHandler.handle(Future.succeededFuture(GetOrganizationsStorageInterfacesCredentialsByIdResponse.respond404WithTextPlain(Response.Status.NOT_FOUND.getReasonPhrase())));
                 } else {
                   InterfaceCredential response = reply.result().getResults().get(0);
@@ -111,12 +113,12 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
                 asyncResultHandler.handle(Future.succeededFuture(GetOrganizationsStorageInterfacesCredentialsByIdResponse.respond500WithTextPlain(reply.cause().getMessage())));
               }
             } catch (Exception e) {
-              logger.error(e.getMessage(), e);
+              logger.error("Error getting row from '{}' table by id: {}", INTERFACE_CREDENTIAL_TABLE, id, e);
               asyncResultHandler.handle(Future.succeededFuture(GetOrganizationsStorageInterfacesCredentialsByIdResponse.respond500WithTextPlain(Response.Status.INTERNAL_SERVER_ERROR.getReasonPhrase())));
             }
           });
       } catch (Exception e) {
-        logger.error(e.getMessage(), e);
+        logger.error("Error getting row from '{}' table by id: {}", INTERFACE_CREDENTIAL_TABLE, id, e);
         asyncResultHandler.handle(Future.succeededFuture(GetOrganizationsStorageInterfacesCredentialsByIdResponse.respond500WithTextPlain(Response.Status.INTERNAL_SERVER_ERROR.getReasonPhrase())));
       }
     });
@@ -128,6 +130,7 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       try {
+        logger.debug("Trying to delete row from '{}' table by id: {}", INTERFACE_CREDENTIAL_TABLE, id);
         String tenantId = TenantTool.calculateTenantId(okapiHeaders.get(RestVerticle.OKAPI_HEADER_TENANT));
         PostgresClient pgClient = PostgresClient.getInstance(vertxContext.owner(), tenantId);
         CQLWrapper cqlWrapper = getCqlWrapperByInterfaceId(id);
@@ -136,6 +139,7 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
             try {
               if (reply.succeeded()) {
                 if (reply.result().rowCount() == 0) {
+                  logger.warn("No rows found in '{}' table by id: {}", INTERFACE_CREDENTIAL_TABLE, id);
                   asyncResultHandler.handle(Future.succeededFuture(DeleteOrganizationsStorageInterfacesCredentialsByIdResponse.respond404WithTextPlain(Response.Status.NOT_FOUND.getReasonPhrase())));
                 } else {
                   asyncResultHandler.handle(Future.succeededFuture(DeleteOrganizationsStorageInterfacesCredentialsByIdResponse.respond204()));
@@ -144,12 +148,12 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
                 asyncResultHandler.handle(Future.succeededFuture(DeleteOrganizationsStorageInterfacesCredentialsByIdResponse.respond500WithTextPlain(reply.cause().getMessage())));
               }
             } catch (Exception e) {
-              logger.error(e.getMessage(), e);
+              logger.error("Error deleting row from '{}' table by id: {}", INTERFACE_CREDENTIAL_TABLE, id, e);
               asyncResultHandler.handle(Future.succeededFuture(DeleteOrganizationsStorageInterfacesCredentialsByIdResponse.respond500WithTextPlain(Response.Status.INTERNAL_SERVER_ERROR.getReasonPhrase())));
             }
           });
       } catch (Exception e) {
-        logger.error(e.getMessage(), e);
+        logger.error("Error deleting row from '{}' table by id: {}", INTERFACE_CREDENTIAL_TABLE, id, e);
         asyncResultHandler.handle(Future.succeededFuture(DeleteOrganizationsStorageInterfacesCredentialsByIdResponse.respond500WithTextPlain(Response.Status.INTERNAL_SERVER_ERROR.getReasonPhrase())));
       }
     });

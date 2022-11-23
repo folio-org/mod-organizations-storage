@@ -30,7 +30,7 @@ public class TenantReferenceAPI extends TenantAPI {
 
   @Override
   public Future<Integer> loadData(TenantAttributes attributes, String tenantId, Map<String, String> headers, Context vertxContext) {
-    log.info("postTenant");
+    log.debug("loadData:: Trying to load reference data for tenant {}", tenantId);
     Vertx vertx = vertxContext.owner();
     Promise<Integer> promise = Promise.promise();
 
@@ -39,6 +39,7 @@ public class TenantReferenceAPI extends TenantAPI {
 
     tl.perform(attributes, headers, vertx, res1 -> {
       if (res1.failed()) {
+        log.warn("loadData:: Failed to load reference data for tenant {}", tenantId, res1.cause());
         promise.fail(res1.cause());
       } else {
         promise.complete(res1.result());
