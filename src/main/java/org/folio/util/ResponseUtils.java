@@ -26,6 +26,7 @@ public class ResponseUtils {
 
   public static <T> Handler<AsyncResult<Tx<T>>> handleNoContentResponse(Handler<AsyncResult<Response>> asyncResultHandler, Tx<T> tx,
     String logMessage) {
+    logger.debug("handleNoContentResponse:: Trying to handle no content response for entity: {}', logMessage: {}", tx.getEntity(), logMessage);
     return result -> {
       if (result.failed()) {
         HttpException cause = (HttpException) result.cause();

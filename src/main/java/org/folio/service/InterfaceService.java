@@ -40,21 +40,22 @@ public class InterfaceService {
         .compose(this::deleteCredentialByInterfaceId)
         .compose(this::deleteInterfaceById)
         .compose(Tx::endTx)
-        .onComplete(handleNoContentResponse(asyncResultHandler, tx, "Interface {} {} deleted"));
+        .onComplete(handleNoContentResponse(asyncResultHandler, tx, "Interface '{}' '{}' deleted"));
     });
   }
 
   private Future<Tx<String>> deleteCredentialByInterfaceId(Tx<String> tx) {
-    logger.info("Delete credential by InterfaceId={}", tx.getEntity());
+    logger.debug("Trying to delete credential by interfaceId: {}", tx.getEntity());
 
     Promise<Tx<String>> promise = Promise.promise();
     Criterion criterion = new CriterionBuilder()
       .with("interfaceId", tx.getEntity()).build();
     pgClient.delete(tx.getConnection(), INTERFACE_CREDENTIALS_TABLE, criterion, reply -> {
       if (reply.failed()) {
+        logger.warn("Failed to delete credential by interfaceId: {}", tx.getEntity(), reply.cause());
         handleFailure(promise, reply);
       } else {
-        logger.info("{} credential with InterfaceId={} has been deleted", reply.result().rowCount(), tx.getEntity());
+        logger.info("{} credential with interfaceId '{}' has been deleted", reply.result().rowCount(), tx.getEntity());
         promise.complete(tx);
       }
     });
@@ -62,11 +63,14 @@ public class InterfaceService {
   }
 
   private Future<Tx<String>> deleteInterfaceById(Tx<String> tx) {
+    logger.debug("Trying to delete interface by id: {}", tx.getEntity());
     Promise<Tx<String>> promise = Promise.promise();
     pgClient.delete(tx.getConnection(), INTERFACE_TABLE, tx.getEntity(), reply -> {
       if (reply.result().rowCount() == 0) {
+        logger.warn("Failed to delete interface by id: {}", tx.getEntity());
         promise.fail(new HttpException(NOT_FOUND.getStatusCode(), NOT_FOUND.getReasonPhrase()));
       } else {
+        logger.info("Interface '{}' has been deleted", tx.getEntity());
         promise.complete(tx);
       }
     });

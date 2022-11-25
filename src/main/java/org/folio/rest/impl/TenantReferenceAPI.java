@@ -24,13 +24,12 @@ import io.vertx.core.Vertx;
 
 public class TenantReferenceAPI extends TenantAPI {
   private static final Logger log = LogManager.getLogger(TenantReferenceAPI.class);
-
   private static final String PARAMETER_LOAD_SAMPLE = "loadSample";
   private static final String PARAMETER_LOAD_REFERENCE = "loadReference";
 
   @Override
   public Future<Integer> loadData(TenantAttributes attributes, String tenantId, Map<String, String> headers, Context vertxContext) {
-    log.info("postTenant");
+    log.info("loadData:: Loading reference data for tenant {}", tenantId);
     Vertx vertx = vertxContext.owner();
     Promise<Integer> promise = Promise.promise();
 
@@ -39,6 +38,7 @@ public class TenantReferenceAPI extends TenantAPI {
 
     tl.perform(attributes, headers, vertx, res1 -> {
       if (res1.failed()) {
+        log.warn("loadData:: Failed to load reference data for tenant {}", tenantId, res1.cause());
         promise.fail(res1.cause());
       } else {
         promise.complete(res1.result());
@@ -65,6 +65,7 @@ public class TenantReferenceAPI extends TenantAPI {
   }
 
   private boolean isLoadSample(TenantAttributes tenantAttributes) {
+    log.info("isLoadSample:: Checking if sample data should be loaded");
     // if a system parameter is passed from command line, ex: loadSample=true
     // that value is considered,Priority of Parameters:
     // Tenant Attributes > command line parameter > default(false)
@@ -75,13 +76,15 @@ public class TenantReferenceAPI extends TenantAPI {
         loadSample = Boolean.parseBoolean(parameter.getValue());
       }
     }
+    log.info("isLoadSample:: result: {}", loadSample);
     return loadSample;
 
   }
 
   private boolean isLoadReference(TenantAttributes tenantAttributes) {
+    log.info("isLoadReference:: Checking if reference data needs to be loaded for tenant");
     // if a system parameter is passed from command line, ex: loadReference=true
-    // that value is considered,Priority of Parameters:
+    // that value is considered, Priority of Parameters:
     // Tenant Attributes > command line parameter > default(false)
     boolean loadReference = Boolean.parseBoolean(MODULE_SPECIFIC_ARGS.getOrDefault(PARAMETER_LOAD_REFERENCE, "false"));
     List<Parameter> parameters = tenantAttributes.getParameters();
@@ -90,6 +93,7 @@ public class TenantReferenceAPI extends TenantAPI {
         loadReference = Boolean.parseBoolean(parameter.getValue());
       }
     }
+    log.info("isLoadReference:: result: {}", loadReference);
     return loadReference;
 
   }
@@ -97,7 +101,7 @@ public class TenantReferenceAPI extends TenantAPI {
   @Override
   public void deleteTenantByOperationId(String operationId, Map<String, String> headers, Handler<AsyncResult<Response>> handler,
       Context ctx) {
-    log.info("deleteTenant");
+    log.info("deleteTenantByOperationId:: Deleting tenant by operationId: {}", operationId);
     super.deleteTenantByOperationId(operationId, headers, res -> {
       Vertx vertx = ctx.owner();
       String tenantId = TenantTool.tenantId(headers);
