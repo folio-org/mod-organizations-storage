@@ -1,4 +1,12 @@
-## 4.5.0 - Unreleased
+## 4.6.0 - Unreleased
+
+## 4.5.0 - Released (Orchid R1 2023)
+The primary focus of this release was to update logging
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v4.4.0...v4.5.0)
+
+### Stories
+* [MODORGSTOR-122] (https://issues.folio.org/browse/MODORGSTOR-122) - Logging improvement
 
 ## 4.4.0 - Released (Nolana R3)
 The primary focus of this release was to update RMB up to v35.0.1
