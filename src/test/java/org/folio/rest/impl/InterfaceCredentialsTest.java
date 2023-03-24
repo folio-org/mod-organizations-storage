@@ -33,8 +33,8 @@ class InterfaceCredentialsTest extends TestBase {
   private static final String INTERFACE_CREDENTIAL_ENDPOINT = String.format(INTERFACE_CREDENTIAL_ENDPOINT_WITH_PARAM, INTERFACE_ID);
   private static final String ANOTHER_INTERFACE_CREDENTIAL_ENDPOINT = String.format(INTERFACE_CREDENTIAL_ENDPOINT_WITH_PARAM, ANOTHER_INTERFACE_ID);
 
-  private static final String SAMPLE_INTERFACE_FILE_1 = "data/interfaces/alexs_interface.json";
-  private static final String SAMPLE_INTERFACE_FILE_2 = "data/interfaces/amaz_interface.json";
+  private static final String SAMPLE_INTERFACE_FILE_1 = "data/interfaces-2.0.0/alexs_interface.json";
+  private static final String SAMPLE_INTERFACE_FILE_2 = "data/interfaces-2.0.0/amaz_interface.json";
   private static final String SAMPLE_CREDENTIAL_FILE_1 = "data/interface_credentials/alexs_interface_credential.json";
   private static final String SAMPLE_CREDENTIAL_FILE_2 = "data/interface_credentials/amaz_interface_credential.json";
 

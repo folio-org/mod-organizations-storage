@@ -34,6 +34,7 @@ class TenantSampleDataTest extends TestBase {
   private static final Header NONEXISTENT_TENANT_HEADER = new Header(OKAPI_HEADER_TENANT, "no_tenant");
   private static final Header ANOTHER_TENANT_HEADER = new Header(OKAPI_HEADER_TENANT, "new_tenant");
   private static final Header PARTIAL_TENANT_HEADER = new Header(OKAPI_HEADER_TENANT, "partial_tenant");
+  private static final Header MIGRATION_TENANT_HEADER = new Header(OKAPI_HEADER_TENANT, "migration");
   private static TenantJob tenantJob;
 
 
@@ -104,6 +105,25 @@ class TenantSampleDataTest extends TestBase {
       deleteTenant(tenantJob, PARTIAL_TENANT_HEADER);
       PostgresClient newClient = PostgresClient.getInstance(StorageTestSuite.getVertx(), PARTIAL_TENANT_HEADER.getValue());
       assertThat(oldClient, not(newClient));
+    }
+  }
+
+  @Test
+  void testMigrationFromVersion() {
+    try {
+      prepareTenant(MIGRATION_TENANT_HEADER, false, false);
+      var tenantAttributes = TenantApiTestUtil.prepareTenantBody(true, true).withModuleFrom("3.0.0");
+      postTenant(MIGRATION_TENANT_HEADER, tenantAttributes);
+      TestEntities [] skipped = { TestEntities.INTERFACE, TestEntities.CATEGORY };
+      for (var entity : skipped) {
+        verifyCollectionQuantity(entity.getEndpoint(), 0, MIGRATION_TENANT_HEADER);
+      }
+      TestEntities [] populated = { TestEntities.ORGANIZATION, TestEntities.ORGANIZATION_TYPE };
+      for (var entity : populated) {
+        verifyCollectionQuantity(entity.getEndpoint(), entity.getInitialQuantity(), MIGRATION_TENANT_HEADER);
+      }
+    } finally {
+      purge(MIGRATION_TENANT_HEADER);
     }
   }
 
