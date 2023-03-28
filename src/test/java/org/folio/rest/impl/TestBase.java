@@ -57,7 +57,7 @@ public abstract class TestBase {
     }
   }
 
-  void verifyCollectionQuantity(String endpoint, int quantity, Header tenantHeader) throws MalformedURLException {
+  void verifyCollectionQuantity(String endpoint, int quantity, Header tenantHeader) {
     getData(endpoint, tenantHeader)
       .then()
       .log().all()
@@ -71,7 +71,7 @@ public abstract class TestBase {
     verifyCollectionQuantity(endpoint, quantity,TENANT_HEADER);
   }
 
-  Response getData(String endpoint, Header tenantHeader) throws MalformedURLException {
+  Response getData(String endpoint, Header tenantHeader) {
     return given()
       .header(tenantHeader)
       .contentType(ContentType.JSON)
