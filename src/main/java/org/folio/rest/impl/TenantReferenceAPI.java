@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.folio.dbschema.Versioned;
 import org.folio.rest.jaxrs.model.Parameter;
 import org.folio.rest.jaxrs.model.TenantAttributes;
 import org.folio.rest.persist.PostgresClient;
@@ -50,18 +51,47 @@ public class TenantReferenceAPI extends TenantAPI {
 
   private void buildDataLoadingParameters(TenantAttributes tenantAttributes, TenantLoading tl) {
     if (isLoadSample(tenantAttributes)) {
-      tl.withKey(PARAMETER_LOAD_SAMPLE)
+      if (isNew(tenantAttributes, "3.2.0")) {
+        tl.withKey(PARAMETER_LOAD_SAMPLE)
         .withLead("data")
-        .add("organizations", "organizations-storage/organizations")
-        .add("contacts", "organizations-storage/contacts")
-        .add("interfaces", "organizations-storage/interfaces");
+        .add("organizations-3.2.0", "organizations-storage/organizations");
+      }
+      if (isNew(tenantAttributes, "1.1.0")) {
+        tl.withKey(PARAMETER_LOAD_SAMPLE)
+        .withLead("data")
+        .add("contacts-1.1.0", "organizations-storage/contacts");
+      }
+      if (isNew(tenantAttributes, "2.0.0")) {
+        tl.withKey(PARAMETER_LOAD_SAMPLE)
+        .withLead("data")
+        .add("interfaces-2.0.0", "organizations-storage/interfaces");
+      }
     }
     if (isLoadReference(tenantAttributes)) {
-      tl.withKey(PARAMETER_LOAD_REFERENCE)
+      if (isNew(tenantAttributes, "1.0.0")) {
+        tl.withKey(PARAMETER_LOAD_REFERENCE)
         .withLead("data")
-        .add("categories", "organizations-storage/categories")
-        .add("organization_types", "organizations-storage/organization-types");
+        .add("categories-1.0.0", "organizations-storage/categories");
+      }
+      if (isNew(tenantAttributes, "4.3.0")) {
+        tl.withKey(PARAMETER_LOAD_REFERENCE)
+        .withLead("data")
+        .add("organization_types-4.3.0", "organizations-storage/organization-types");
+      }
     }
+  }
+
+  /**
+   * Returns attributes.getModuleFrom() < featureVersion or attributes.getModuleFrom() is null.
+   */
+  private static boolean isNew(TenantAttributes attributes, String featureVersion) {
+    if (attributes.getModuleFrom() == null) {
+      return true;
+    }
+    var since = new Versioned() {
+    };
+    since.setFromModuleVersion(featureVersion);
+    return since.isNewForThisInstall(attributes.getModuleFrom());
   }
 
   private boolean isLoadSample(TenantAttributes tenantAttributes) {

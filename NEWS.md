@@ -1,4 +1,11 @@
-## 4.6.0 - Unreleased
+## 4.5.2 - Unreleased
+
+## 4.5.1 - Released (Orchid R1 2023 Bug Fix)
+This release only fixes the data migration:
+
+* [MODORGSTOR-136](https://issues.folio.org/browse/MODORGSTOR-136) Upgrading tenant resets reference and sample records
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v4.5.0...v4.5.1)
 
 ## 4.5.0 - Released (Orchid R1 2023)
 The primary focus of this release was to update logging
