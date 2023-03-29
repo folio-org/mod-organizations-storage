@@ -18,9 +18,9 @@ public class OrganizationTypesAPI implements OrganizationsStorageOrganizationTyp
   @Validate
   public void getOrganizationsStorageOrganizationTypes(
       String query,
+      String totalRecords,
       int offset,
       int limit,
-      String lang,
       Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler,
       Context vertxContext) {
@@ -40,7 +40,6 @@ public class OrganizationTypesAPI implements OrganizationsStorageOrganizationTyp
   @Override
   @Validate
   public void postOrganizationsStorageOrganizationTypes(
-      String lang,
       OrganizationType entity,
       Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler,
@@ -58,7 +57,6 @@ public class OrganizationTypesAPI implements OrganizationsStorageOrganizationTyp
   @Validate
   public void getOrganizationsStorageOrganizationTypesById(
       String id,
-      String lang,
       Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler,
       Context vertxContext) {
@@ -76,7 +74,6 @@ public class OrganizationTypesAPI implements OrganizationsStorageOrganizationTyp
   @Validate
   public void deleteOrganizationsStorageOrganizationTypesById(
       String id,
-      String lang,
       Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler,
       Context vertxContext) {
@@ -93,7 +90,6 @@ public class OrganizationTypesAPI implements OrganizationsStorageOrganizationTyp
   @Validate
   public void putOrganizationsStorageOrganizationTypesById(
       String id,
-      String lang,
       OrganizationType entity,
       Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler,

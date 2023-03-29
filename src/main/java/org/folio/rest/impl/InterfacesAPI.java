@@ -42,7 +42,7 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
 
   @Override
   @Validate
-  public void getOrganizationsStorageInterfaces(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders,
+  public void getOrganizationsStorageInterfaces(String query, String totalRecords, int offset, int limit, Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.get(INTERFACE_TABLE, Interface.class, InterfaceCollection.class, query, offset, limit, okapiHeaders, vertxContext,
         GetOrganizationsStorageInterfacesResponse.class, asyncResultHandler);
@@ -50,21 +50,21 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
 
   @Override
   @Validate
-  public void postOrganizationsStorageInterfaces(String lang, org.folio.rest.jaxrs.model.Interface entity,
+  public void postOrganizationsStorageInterfaces(org.folio.rest.jaxrs.model.Interface entity,
       Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.post(INTERFACE_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationsStorageInterfacesResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void getOrganizationsStorageInterfacesById(String id, String lang, Map<String, String> okapiHeaders,
+  public void getOrganizationsStorageInterfacesById(String id, Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.getById(INTERFACE_TABLE, Interface.class, id, okapiHeaders, vertxContext, GetOrganizationsStorageInterfacesByIdResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void deleteOrganizationsStorageInterfacesById(String id, String lang, Map<String, String> okapiHeaders,
+  public void deleteOrganizationsStorageInterfacesById(String id, Map<String, String> okapiHeaders,
     Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     interfaceService.deleteOrganizationsInterfaceById(id, vertxContext,  asyncResultHandler);
   }
@@ -72,7 +72,7 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
 
   @Override
   @Validate
-  public void putOrganizationsStorageInterfacesById(String id, String lang, org.folio.rest.jaxrs.model.Interface entity,
+  public void putOrganizationsStorageInterfacesById(String id, org.folio.rest.jaxrs.model.Interface entity,
       Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.put(INTERFACE_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationsStorageInterfacesByIdResponse.class, asyncResultHandler);
   }
@@ -90,7 +90,7 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
 
   @Override
   @Validate
-  public void getOrganizationsStorageInterfacesCredentialsById(String id, String lang, Map<String, String> okapiHeaders,
+  public void getOrganizationsStorageInterfacesCredentialsById(String id, Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       try {
@@ -126,7 +126,7 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
 
   @Override
   @Validate
-  public void deleteOrganizationsStorageInterfacesCredentialsById(String id, String lang, Map<String, String> okapiHeaders,
+  public void deleteOrganizationsStorageInterfacesCredentialsById(String id, Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     vertxContext.runOnContext((Void v) -> {
       try {
@@ -161,7 +161,7 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
 
   @Override
   @Validate
-  public void putOrganizationsStorageInterfacesCredentialsById(String id, String lang, InterfaceCredential entity,
+  public void putOrganizationsStorageInterfacesCredentialsById(String id, InterfaceCredential entity,
       Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     if (StringUtils.equals(id, entity.getInterfaceId())) {
       PgUtil.put(INTERFACE_CREDENTIAL_TABLE, entity, entity.getId(), okapiHeaders, vertxContext, PutOrganizationsStorageInterfacesCredentialsByIdResponse.class, asyncResultHandler);

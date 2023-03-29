@@ -19,7 +19,7 @@ public class AddressesAPI implements OrganizationsStorageAddresses {
 
   @Override
   @Validate
-  public void getOrganizationsStorageAddresses(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders,
+  public void getOrganizationsStorageAddresses(String query, String totalRecords, int offset, int limit, Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.get(ADDRESS_TABLE, Address.class, AddressCollection.class, query, offset, limit, okapiHeaders, vertxContext,
         GetOrganizationsStorageAddressesResponse.class, asyncResultHandler);
@@ -27,7 +27,7 @@ public class AddressesAPI implements OrganizationsStorageAddresses {
 
   @Override
   @Validate
-  public void postOrganizationsStorageAddresses(String lang, org.folio.rest.jaxrs.model.Address entity,
+  public void postOrganizationsStorageAddresses(org.folio.rest.jaxrs.model.Address entity,
       Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.post(ADDRESS_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationsStorageAddressesResponse.class,
         asyncResultHandler);
@@ -35,7 +35,7 @@ public class AddressesAPI implements OrganizationsStorageAddresses {
 
   @Override
   @Validate
-  public void getOrganizationsStorageAddressesById(String id, String lang, Map<String, String> okapiHeaders,
+  public void getOrganizationsStorageAddressesById(String id, Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.getById(ADDRESS_TABLE, Address.class, id, okapiHeaders, vertxContext, GetOrganizationsStorageAddressesByIdResponse.class,
         asyncResultHandler);
@@ -43,7 +43,7 @@ public class AddressesAPI implements OrganizationsStorageAddresses {
 
   @Override
   @Validate
-  public void deleteOrganizationsStorageAddressesById(String id, String lang, Map<String, String> okapiHeaders,
+  public void deleteOrganizationsStorageAddressesById(String id, Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.deleteById(ADDRESS_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationsStorageAddressesByIdResponse.class,
         asyncResultHandler);
@@ -51,7 +51,7 @@ public class AddressesAPI implements OrganizationsStorageAddresses {
 
   @Override
   @Validate
-  public void putOrganizationsStorageAddressesById(String id, String lang, org.folio.rest.jaxrs.model.Address entity,
+  public void putOrganizationsStorageAddressesById(String id, org.folio.rest.jaxrs.model.Address entity,
       Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.put(ADDRESS_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationsStorageAddressesByIdResponse.class,
         asyncResultHandler);
