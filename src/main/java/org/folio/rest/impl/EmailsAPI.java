@@ -19,7 +19,7 @@ public class EmailsAPI implements OrganizationsStorageEmails {
 
   @Override
   @Validate
-  public void getOrganizationsStorageEmails(String query, int offset, int limit, String lang, Map<String, String> okapiHeaders,
+  public void getOrganizationsStorageEmails(String query, String totalRecords, int offset, int limit, Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.get(EMAIL_TABLE, Email.class, EmailCollection.class, query, offset, limit, okapiHeaders, vertxContext,
         GetOrganizationsStorageEmailsResponse.class, asyncResultHandler);
@@ -27,14 +27,14 @@ public class EmailsAPI implements OrganizationsStorageEmails {
 
   @Override
   @Validate
-  public void postOrganizationsStorageEmails(String lang, org.folio.rest.jaxrs.model.Email entity, Map<String, String> okapiHeaders,
+  public void postOrganizationsStorageEmails(org.folio.rest.jaxrs.model.Email entity, Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.post(EMAIL_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationsStorageEmailsResponse.class, asyncResultHandler);
   }
 
   @Override
   @Validate
-  public void getOrganizationsStorageEmailsById(String id, String lang, Map<String, String> okapiHeaders,
+  public void getOrganizationsStorageEmailsById(String id, Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.getById(EMAIL_TABLE, Email.class, id, okapiHeaders, vertxContext, GetOrganizationsStorageEmailsByIdResponse.class,
         asyncResultHandler);
@@ -42,7 +42,7 @@ public class EmailsAPI implements OrganizationsStorageEmails {
 
   @Override
   @Validate
-  public void deleteOrganizationsStorageEmailsById(String id, String lang, Map<String, String> okapiHeaders,
+  public void deleteOrganizationsStorageEmailsById(String id, Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.deleteById(EMAIL_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationsStorageEmailsByIdResponse.class,
         asyncResultHandler);
@@ -50,7 +50,7 @@ public class EmailsAPI implements OrganizationsStorageEmails {
 
   @Override
   @Validate
-  public void putOrganizationsStorageEmailsById(String id, String lang, org.folio.rest.jaxrs.model.Email entity,
+  public void putOrganizationsStorageEmailsById(String id, org.folio.rest.jaxrs.model.Email entity,
       Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
     PgUtil.put(EMAIL_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationsStorageEmailsByIdResponse.class,
         asyncResultHandler);
