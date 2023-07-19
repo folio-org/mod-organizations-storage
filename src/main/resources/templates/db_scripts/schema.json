@@ -80,6 +80,11 @@
       "tableName": "organizations",
       "fromModuleVersion": "mod-organizations-storage-4.3.0",
       "withMetadata": true,
+      "index": [
+        {
+          "fieldName": "status"
+        }
+      ],
       "fullTextIndex": [
         {
           "fieldName": "aliases",
@@ -124,7 +129,7 @@
           "removeAccents": true
         },
         {
-          "fieldName": "status",
+          "fieldName": "acqUnitIds",
           "tOps": "ADD",
           "caseSensitive": false,
           "removeAccents": true
