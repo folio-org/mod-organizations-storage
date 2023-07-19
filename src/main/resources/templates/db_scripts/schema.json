@@ -129,12 +129,6 @@
           "removeAccents": true
         },
         {
-          "fieldName": "acqUnitIds",
-          "tOps": "ADD",
-          "caseSensitive": false,
-          "removeAccents": true
-        },
-        {
           "fieldName": "taxId",
           "tOps": "ADD",
           "caseSensitive": false,
@@ -147,6 +141,9 @@
           "tOps": "ADD",
           "caseSensitive": true,
           "removeAccents": false
+        },
+        {
+          "fieldName": "acqUnitIds"
         }
       ]
     },
