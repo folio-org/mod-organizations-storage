@@ -1,4 +1,9 @@
-## 4.5.2 - Unreleased
+## 4.5.2 - Released (Orchid Service Patch 5)
+This release fixes issue with incorrect organizations total number shown in case of this number is high.
+
+* [MODORGSTOR-144](https://issues.folio.org/browse/MODORGSTOR-144) Organizations app shows only 20k records as total when the actual number is much higher
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v4.5.1...v4.5.2)
 
 ## 4.5.1 - Released (Orchid R1 2023 Bug Fix)
 This release only fixes the data migration:
