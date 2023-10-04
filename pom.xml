@@ -13,18 +13,19 @@
   </licenses>
 
   <properties>
-    <aspectj.version>1.9.19</aspectj.version>
+    <aspectj.version>1.9.20.1</aspectj.version>
     <module_name>mod-organizations-storage</module_name>
     <http.port>8081</http.port>
     <jsonschema_paths>acq-models/mod-orgs/schemas,raml-util/schemas,acq-models/common/schemas</jsonschema_paths>
     <ramlfiles_path>${basedir}/ramls</ramlfiles_path>
     <ramlfiles_util_path>${basedir}/raml-util</ramlfiles_util_path>
     <raml-module-builder.version>35.1.0</raml-module-builder.version>
+    <junit.jupiter.version>5.10.0</junit.jupiter.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <vertx.version>4.4.5</vertx.version>
-    <testcontainers.version>1.17.4</testcontainers.version>
+    <testcontainers.version>1.19.0</testcontainers.version>
     <postgres.image>postgres:12-alpine</postgres.image>
-    <log4j.version>2.19.0</log4j.version>
+    <log4j.version>2.20.0</log4j.version>
 
     <argLine />
   </properties>
@@ -116,12 +117,13 @@
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
-      <version>5.2.0</version>
+      <version>5.3.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
+      <version>${junit.jupiter.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
