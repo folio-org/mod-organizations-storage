@@ -1,4 +1,13 @@
-## 4.6.0 - Unreleased
+## 4.7.0 - Unreleased
+
+## 4.6.0 - Released (Poppy R2 2023)
+The primary focus of this release was to update dependent raml-util and java version
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v4.5.0...v4.6.0)
+
+### Stories
+* [MODORGSTOR-143] (https://issues.folio.org/browse/MODORGSTOR-143) - Update to Java 17 mod-organizations-storage
+* [MODORGSTOR-137] (https://issues.folio.org/browse/MODORGSTOR-137) - Update dependent raml-util
 
 ## 4.5.0 - Released (Orchid R1 2023)
 The primary focus of this release was to update logging
