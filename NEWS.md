@@ -9,6 +9,9 @@ The primary focus of this release was to update dependent raml-util and java ver
 * [MODORGSTOR-143] (https://issues.folio.org/browse/MODORGSTOR-143) - Update to Java 17 mod-organizations-storage
 * [MODORGSTOR-137] (https://issues.folio.org/browse/MODORGSTOR-137) - Update dependent raml-util
 
+### Bug Fixes
+* [MODORGSTOR-144] (https://issues.folio.org/browse/MODORGSTOR-144) - Organizations app shows only 20k records as total when the actual number is much higher
+
 ## 4.5.0 - Released (Orchid R1 2023)
 The primary focus of this release was to update logging
 
