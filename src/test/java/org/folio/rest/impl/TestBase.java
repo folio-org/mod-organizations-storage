@@ -17,6 +17,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
 import org.apache.commons.io.IOUtils;
+import org.folio.rest.persist.PgUtil;
+import org.folio.rest.persist.PostgresClient;
 import org.folio.rest.utils.TestEntities;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -24,6 +26,7 @@ import org.junit.jupiter.api.BeforeAll;
 import io.restassured.http.ContentType;
 import io.restassured.http.Header;
 import io.restassured.response.Response;
+import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
 
@@ -39,6 +42,7 @@ public abstract class TestBase {
   static final Header TENANT_HEADER = new Header(OKAPI_HEADER_TENANT, TENANT_NAME);
 
   private static boolean invokeStorageTestSuiteAfter = false;
+  private static PostgresClient pgClient;
 
   @BeforeAll
   public static void testBaseBeforeClass() throws InterruptedException, ExecutionException, TimeoutException, IOException {
@@ -47,6 +51,11 @@ public abstract class TestBase {
       invokeStorageTestSuiteAfter = true;
       StorageTestSuite.before();
     }
+
+    pgClient =
+      PgUtil.postgresClient(
+        StorageTestSuite.getVertx().getOrCreateContext(),
+        Map.of(TENANT_HEADER.getName(), TENANT_HEADER.getValue()));
 
   }
 
@@ -211,6 +220,16 @@ public abstract class TestBase {
       value = "";
     }
     return value;
+  }
+
+  Future<Void> runSQLTx(String sqlString, boolean startFirst, String failureMessage) {
+    String sql =
+      startFirst ? sqlString + "SELECT pg_sleep(1);\n" : "SELECT pg_sleep(0.5);\n" + sqlString;
+    return pgClient
+      .runSQLFile(sql, true)
+      .flatMap(
+        list ->
+          list.isEmpty() ? Future.succeededFuture() : Future.failedFuture(failureMessage));
   }
 
 }

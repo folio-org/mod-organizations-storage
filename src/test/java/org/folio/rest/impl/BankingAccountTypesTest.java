@@ -8,12 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.net.MalformedURLException;
 import java.util.List;
-import java.util.Map;
 
 import org.folio.rest.jaxrs.model.BankingAccountType;
 import org.folio.rest.jaxrs.model.BankingAccountTypeCollection;
-import org.folio.rest.persist.PgUtil;
-import org.folio.rest.persist.PostgresClient;
 import org.folio.rest.tools.utils.ModuleName;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -21,7 +18,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import io.vertx.core.CompositeFuture;
-import io.vertx.core.Future;
 import io.vertx.junit5.VertxExtension;
 import io.vertx.junit5.VertxTestContext;
 
@@ -35,17 +31,11 @@ class BankingAccountTypesTest extends TestBase {
   private static final String SAMPLE_BANKING_ACCOUNT_TYPE_ID = "f04c7277-0019-43cf-84b3-02d894a9d81a";
   private static final String SAMPLE_BANKING_ACCOUNT_TYPE_NAME = "Personal";
 
-  private static PostgresClient pgClient;
   private static String deleteSQL;
   private static String updateSQL;
 
   @BeforeAll
   static void beforeAll() {
-    pgClient =
-      PgUtil.postgresClient(
-        StorageTestSuite.getVertx().getOrCreateContext(),
-        Map.of(TENANT_HEADER.getName(), TENANT_HEADER.getValue()));
-
     String schema = TENANT_HEADER.getValue() + "_" + ModuleName.getModuleName();
     String searchPathSQL = String.format("SET search_path TO %s;", schema);
     deleteSQL =
@@ -65,16 +55,6 @@ class BankingAccountTypesTest extends TestBase {
   static void afterAll() {
     purge(TENANT_HEADER);
     prepareTenant(TENANT_HEADER, false, false);
-  }
-
-  private Future<Void> runSQLTx(String sqlString, boolean startFirst, String failureMessage) {
-    String sql =
-      startFirst ? sqlString + "SELECT pg_sleep(1);\n" : "SELECT pg_sleep(0.5);\n" + sqlString;
-    return pgClient
-      .runSQLFile(sql, true)
-      .flatMap(
-        list ->
-          list.isEmpty() ? Future.succeededFuture() : Future.failedFuture(failureMessage));
   }
 
   @Test

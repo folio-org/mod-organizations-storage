@@ -167,7 +167,7 @@
     },
     {
       "tableName": "banking_account_types",
-      "fromModuleVersion": "mod-organizations-storage-4.6.0",
+      "fromModuleVersion": "mod-organizations-storage-4.7.0",
       "withMetadata": true,
       "fullTextIndex" : [
         {
