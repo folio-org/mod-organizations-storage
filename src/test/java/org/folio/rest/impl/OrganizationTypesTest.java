@@ -6,16 +6,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 import io.vertx.core.CompositeFuture;
-import io.vertx.core.Future;
 import io.vertx.core.json.Json;
 import io.vertx.junit5.VertxExtension;
 import io.vertx.junit5.VertxTestContext;
 import java.net.MalformedURLException;
-import java.util.Map;
 import java.util.Set;
 import org.folio.rest.jaxrs.model.Organization;
-import org.folio.rest.persist.PgUtil;
-import org.folio.rest.persist.PostgresClient;
 import org.folio.rest.tools.utils.ModuleName;
 import org.folio.rest.utils.TestEntities;
 import org.junit.jupiter.api.AfterAll;
@@ -42,17 +38,11 @@ class OrganizationTypesTest extends TestBase {
   private static final String ORGANIZATIONS_TABLE = "organizations";
   private static final String ORGANIZATION_TYPES_TABLE = "organization_types";
 
-  private static PostgresClient pgClient;
   private static String deleteSQL;
   private static String updateSQL;
 
   @BeforeAll
   static void beforeAll() {
-    pgClient =
-        PgUtil.postgresClient(
-            StorageTestSuite.getVertx().getOrCreateContext(),
-            Map.of(TENANT_HEADER.getName(), TENANT_HEADER.getValue()));
-
     String schema = TENANT_HEADER.getValue() + "_" + ModuleName.getModuleName();
     String searchPathSQL = String.format("SET search_path TO %s;", schema);
     deleteSQL =
@@ -78,16 +68,6 @@ class OrganizationTypesTest extends TestBase {
   private String getOrganizationWithType(String organization, String typeId) {
     return Json.encode(
         Json.decodeValue(organization, Organization.class).withOrganizationTypes(Set.of(typeId)));
-  }
-
-  private Future<Void> runSQLTx(String sqlString, boolean startFirst, String failureMessage) {
-    String sql =
-        startFirst ? sqlString + "SELECT pg_sleep(1);\n" : "SELECT pg_sleep(0.5);\n" + sqlString;
-    return pgClient
-        .runSQLFile(sql, true)
-        .flatMap(
-            list ->
-                list.isEmpty() ? Future.succeededFuture() : Future.failedFuture(failureMessage));
   }
 
   @Test

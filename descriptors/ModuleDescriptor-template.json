@@ -271,6 +271,37 @@
       ]
     },
     {
+      "id": "organizations-storage.banking-account-types",
+      "version": "1.0",
+      "handlers": [
+        {
+          "methods": ["GET"],
+          "pathPattern": "/organizations-storage/banking-account-types",
+          "permissionsRequired": ["organizations-storage.banking-account-types.collection.get"]
+        },
+        {
+          "methods": ["POST"],
+          "pathPattern": "/organizations-storage/banking-account-types",
+          "permissionsRequired": ["organizations-storage.banking-account-types.item.post"]
+        },
+        {
+          "methods": ["GET"],
+          "pathPattern": "/organizations-storage/banking-account-types/{id}",
+          "permissionsRequired": ["organizations-storage.banking-account-types.item.get"]
+        },
+        {
+          "methods": ["PUT"],
+          "pathPattern": "/organizations-storage/banking-account-types/{id}",
+          "permissionsRequired": ["organizations-storage.banking-account-types.item.put"]
+        },
+        {
+          "methods": ["DELETE"],
+          "pathPattern": "/organizations-storage/banking-account-types/{id}",
+          "permissionsRequired": ["organizations-storage.banking-account-types.item.delete"]
+        }
+      ]
+    },
+    {
       "id": "organizations-storage.organizations",
       "version": "3.3",
       "handlers": [
@@ -695,6 +726,43 @@
       ]
     },
     {
+      "permissionName" : "organizations-storage.banking-account-types.collection.get",
+      "displayName" : "banking_account_type collection get",
+      "description" : "Get a collection of banking_account_types"
+    },
+    {
+      "permissionName" : "organizations-storage.banking-account-types.item.post",
+      "displayName" : "banking_account_type post",
+      "description" : "Create a new banking_account_type"
+    },
+    {
+      "permissionName" : "organizations-storage.banking-account-types.item.get",
+      "displayName" : "banking_account_type get",
+      "description" : "Fetch a banking_account_type"
+    },
+    {
+      "permissionName" : "organizations-storage.banking-account-types.item.put",
+      "displayName" : "banking_account_type put",
+      "description" : "Update a banking_account_type"
+    },
+    {
+      "permissionName" : "organizations-storage.banking-account-types.item.delete",
+      "displayName" : "banking_account_type delete",
+      "description" : "Delete a banking_account_type"
+    },
+    {
+      "permissionName" : "organizations-storage.banking-account-types.all",
+      "displayName" : "banking_account_type all",
+      "description" : "All permissions for banking_account_type",
+      "subPermissions" : [
+        "organizations-storage.banking-account-types.collection.get",
+        "organizations-storage.banking-account-types.item.post",
+        "organizations-storage.banking-account-types.item.get",
+        "organizations-storage.banking-account-types.item.put",
+        "organizations-storage.banking-account-types.item.delete"
+      ]
+    },
+    {
       "permissionName" : "organizations-storage.module.all",
       "displayName" : "organizations-storage-module all",
       "description" : "All permissions for the organizations module",
@@ -708,7 +776,8 @@
         "organizations-storage.phone-numbers.all",
         "organizations-storage.urls.all",
         "organizations-storage.organizations.all",
-        "organizations-storage.organization-types.all"
+        "organizations-storage.organization-types.all",
+        "organizations-storage.banking-account-types.all"
       ]
     }
   ],

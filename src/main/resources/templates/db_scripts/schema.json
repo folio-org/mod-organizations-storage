@@ -164,6 +164,17 @@
           "tOps" : "ADD"
         }
       ]
+    },
+    {
+      "tableName": "banking_account_types",
+      "fromModuleVersion": "mod-organizations-storage-4.7.0",
+      "withMetadata": true,
+      "fullTextIndex" : [
+        {
+          "fieldName" : "name",
+          "tOps" : "ADD"
+        }
+      ]
     }
   ]
 }
