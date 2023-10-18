@@ -23,8 +23,8 @@ class OrganizationSettingsTest extends TestBase {
   private static final String SETTINGS_ENDPOINT = "/organizations-storage/settings";
   private static final String SETTINGS_ENDPOINT_WITH_ID = SETTINGS_ENDPOINT + "/{id}";
   private static final String SAMPLE_SETTING_KEY = "BANKING_INFORMATION_ENABLED";
-  private static final String SAMPLE_SETTING_VALUE_OLD = "true";
-  private static final String SAMPLE_SETTING_VALUE_NEW = "false";
+  private static final String SAMPLE_SETTING_VALUE_OLD = "false";
+  private static final String SAMPLE_SETTING_VALUE_NEW = "true";
 
   @AfterAll
   static void afterAll() {

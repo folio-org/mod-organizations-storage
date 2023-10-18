@@ -1,3 +1,3 @@
 INSERT INTO ${myuniversity}_${mymodule}.settings (id, jsonb)
-VALUES ('3c7fc2ac-6d09-11ee-b962-0242ac120002', '{"id": "3c7fc2ac-6d09-11ee-b962-0242ac120002", "key": "BANKING_INFORMATION_ENABLED", "value": "true"}')
+VALUES ('cb007def-4b68-496c-ad78-ea8e039e819d', '{"id": "cb007def-4b68-496c-ad78-ea8e039e819d", "key": "BANKING_INFORMATION_ENABLED", "value": "false"}')
 ON CONFLICT (id) DO NOTHING;

@@ -184,17 +184,7 @@
     {
       "tableName": "settings",
       "fromModuleVersion": "mod-organizations-storage-4.7.0",
-      "withMetadata": true,
-      "fullTextIndex" : [
-        {
-          "fieldName" : "key",
-          "tOps" : "ADD"
-        },
-        {
-          "fieldName" : "value",
-          "tOps" : "ADD"
-        }
-      ]
+      "withMetadata": true
     }
   ]
 }
