@@ -20,6 +20,11 @@
       "run": "after",
       "snippetPath": "organization_type_check_reference_triggers.sql",
       "fromModuleVersion": "mod-organizations-storage-4.3.0"
+    },
+    {
+      "run": "after",
+      "snippetPath": "migration/create_banking_information_setting.sql",
+      "fromModuleVersion": "mod-organizations-storage-4.7.0"
     }
   ],
   "tables": [
@@ -175,6 +180,11 @@
           "tOps" : "ADD"
         }
       ]
+    },
+    {
+      "tableName": "settings",
+      "fromModuleVersion": "mod-organizations-storage-4.7.0",
+      "withMetadata": true
     }
   ]
 }

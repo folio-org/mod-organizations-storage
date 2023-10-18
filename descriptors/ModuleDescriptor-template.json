@@ -302,6 +302,27 @@
       ]
     },
     {
+      "id": "organizations-storage.settings",
+      "version": "1.0",
+      "handlers": [
+        {
+          "methods": ["GET"],
+          "pathPattern": "/organizations-storage/settings",
+          "permissionsRequired": ["organizations-storage.settings.collection.get"]
+        },
+        {
+          "methods": ["GET"],
+          "pathPattern": "/organizations-storage/settings/{id}",
+          "permissionsRequired": ["organizations-storage.settings.item.get"]
+        },
+        {
+          "methods": ["PUT"],
+          "pathPattern": "/organizations-storage/settings/{id}",
+          "permissionsRequired": ["organizations-storage.settings.item.put"]
+        }
+      ]
+    },
+    {
       "id": "organizations-storage.organizations",
       "version": "3.3",
       "handlers": [
@@ -763,6 +784,31 @@
       ]
     },
     {
+      "permissionName" : "organizations-storage.settings.collection.get",
+      "displayName" : "setting collection get",
+      "description" : "Get a collection of settings"
+    },
+    {
+      "permissionName" : "organizations-storage.settings.item.get",
+      "displayName" : "setting get",
+      "description" : "Fetch a setting"
+    },
+    {
+      "permissionName" : "organizations-storage.settings.item.put",
+      "displayName" : "setting put",
+      "description" : "Update a setting"
+    },
+    {
+      "permissionName" : "organizations-storage.settings.all",
+      "displayName" : "setting all",
+      "description" : "All permissions for setting",
+      "subPermissions" : [
+        "organizations-storage.settings.collection.get",
+        "organizations-storage.settings.item.get",
+        "organizations-storage.settings.item.put"
+      ]
+    },
+    {
       "permissionName" : "organizations-storage.module.all",
       "displayName" : "organizations-storage-module all",
       "description" : "All permissions for the organizations module",
@@ -777,7 +823,8 @@
         "organizations-storage.urls.all",
         "organizations-storage.organizations.all",
         "organizations-storage.organization-types.all",
-        "organizations-storage.banking-account-types.all"
+        "organizations-storage.banking-account-types.all",
+        "organizations-storage.settings.all"
       ]
     }
   ],

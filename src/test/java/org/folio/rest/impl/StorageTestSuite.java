@@ -138,4 +138,8 @@ public class StorageTestSuite {
   @Nested
   class BankingAccountTypesTestNested extends BankingAccountTypesTest {
   }
+
+  @Nested
+  class OrganizationSettingsTestNested extends OrganizationSettingsTest {
+  }
 }
