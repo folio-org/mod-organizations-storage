@@ -66,7 +66,7 @@ public class InterfacesAPI implements OrganizationsStorageInterfaces {
   @Validate
   public void deleteOrganizationsStorageInterfacesById(String id, Map<String, String> okapiHeaders,
     Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    interfaceService.deleteOrganizationsInterfaceById(id, vertxContext,  asyncResultHandler);
+    interfaceService.deleteOrganizationsInterfaceById(id, asyncResultHandler);
   }
 
 
