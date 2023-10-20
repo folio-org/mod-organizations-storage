@@ -1,79 +1,62 @@
 package org.folio.service;
 
-import static javax.ws.rs.core.Response.Status.NOT_FOUND;
-import static org.folio.util.ResponseUtils.handleFailure;
-import static org.folio.util.ResponseUtils.handleNoContentResponse;
-
 import javax.ws.rs.core.Response;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.folio.persist.CriterionBuilder;
-import org.folio.persist.Tx;
-import org.folio.rest.persist.PostgresClient;
+import org.folio.rest.persist.Conn;
 import org.folio.rest.persist.Criteria.Criterion;
+import org.folio.rest.persist.PostgresClient;
+import org.folio.util.DbUtils;
+import org.folio.util.ResponseUtils;
 
 import io.vertx.core.AsyncResult;
-import io.vertx.core.Context;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
-import io.vertx.core.Promise;
-import io.vertx.ext.web.handler.HttpException;
+import io.vertx.sqlclient.Row;
+import io.vertx.sqlclient.RowSet;
 
 public class InterfaceService {
+
+  private static final Logger logger = LogManager.getLogger(InterfaceService.class);
 
   private static final String INTERFACE_CREDENTIALS_TABLE = "interface_credentials";
   private static final String INTERFACE_TABLE = "interfaces";
 
-  private final Logger logger = LogManager.getLogger(this.getClass());
   private final PostgresClient pgClient;
 
   public InterfaceService(PostgresClient pgClient) {
     this.pgClient = pgClient;
   }
 
-  public void deleteOrganizationsInterfaceById(String id,
-    Context vertxContext, Handler<AsyncResult<Response>> asyncResultHandler) {
-    vertxContext.runOnContext(v -> {
-      Tx<String> tx = new Tx<>(id, pgClient);
-      tx.startTx()
-        .compose(this::deleteCredentialByInterfaceId)
-        .compose(this::deleteInterfaceById)
-        .compose(Tx::endTx)
-        .onComplete(handleNoContentResponse(asyncResultHandler, tx, "Interface '{}' '{}' deleted"));
-    });
+  public void deleteOrganizationsInterfaceById(String id, Handler<AsyncResult<Response>> asyncResultHandler) {
+    pgClient.withTrans(conn -> deleteCredentialByInterfaceId(conn, id)
+        .compose(rowSet -> deleteInterfaceById(conn, id)))
+      .onSuccess(rowSet -> {
+        logger.info("Interface '{}' and associated data were successfully deleted", id);
+        asyncResultHandler.handle(ResponseUtils.buildNoContentResponse());
+      })
+      .onFailure(throwable -> {
+        logger.error("Failed to delete interface '{}' or associated data", id, throwable);
+        asyncResultHandler.handle(ResponseUtils.buildErrorResponse(throwable));
+      });
   }
 
-  private Future<Tx<String>> deleteCredentialByInterfaceId(Tx<String> tx) {
-    logger.debug("Trying to delete credential by interfaceId: {}", tx.getEntity());
-
-    Promise<Tx<String>> promise = Promise.promise();
-    Criterion criterion = new CriterionBuilder()
-      .with("interfaceId", tx.getEntity()).build();
-    pgClient.delete(tx.getConnection(), INTERFACE_CREDENTIALS_TABLE, criterion, reply -> {
-      if (reply.failed()) {
-        logger.warn("Failed to delete credential by interfaceId: {}", tx.getEntity(), reply.cause());
-        handleFailure(promise, reply);
-      } else {
-        logger.info("{} credential with interfaceId '{}' has been deleted", reply.result().rowCount(), tx.getEntity());
-        promise.complete(tx);
-      }
-    });
-    return promise.future();
+  private Future<RowSet<Row>> deleteCredentialByInterfaceId(Conn conn, String id) {
+    logger.debug("Trying to delete credential by interfaceId: {}", id);
+    Criterion criterion = new CriterionBuilder().with("interfaceId", id).build();
+    return conn.delete(INTERFACE_CREDENTIALS_TABLE, criterion)
+      .onSuccess(rowSet -> logger.info("{} credential with interfaceId '{}' has been deleted", rowSet.rowCount(), id))
+      .onFailure(e -> logger.warn("Failed to delete credential by interfaceId: {}", id, e));
   }
 
-  private Future<Tx<String>> deleteInterfaceById(Tx<String> tx) {
-    logger.debug("Trying to delete interface by id: {}", tx.getEntity());
-    Promise<Tx<String>> promise = Promise.promise();
-    pgClient.delete(tx.getConnection(), INTERFACE_TABLE, tx.getEntity(), reply -> {
-      if (reply.result().rowCount() == 0) {
-        logger.warn("Failed to delete interface by id: {}", tx.getEntity());
-        promise.fail(new HttpException(NOT_FOUND.getStatusCode(), NOT_FOUND.getReasonPhrase()));
-      } else {
-        logger.info("Interface '{}' has been deleted", tx.getEntity());
-        promise.complete(tx);
-      }
-    });
-    return promise.future();
+  private Future<RowSet<Row>> deleteInterfaceById(Conn conn, String id) {
+    logger.debug("Trying to delete interface by id: {}", id);
+    return conn.delete(INTERFACE_TABLE, id)
+      .compose(DbUtils::failOnNoUpdateOrDelete)
+      .onSuccess(rowSet -> logger.info("Interface '{}' has been deleted", id))
+      .onFailure(e -> logger.warn("Failed to delete interface by id: {}", id, e));
   }
+
 }

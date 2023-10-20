@@ -6,49 +6,12 @@ import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 
 import javax.ws.rs.core.Response;
 
-import io.vertx.ext.web.handler.HttpException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.folio.persist.Tx;
-import org.folio.rest.persist.PgExceptionUtil;
-
-import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
-import io.vertx.core.Handler;
-import io.vertx.core.Promise;
+import io.vertx.ext.web.handler.HttpException;
 
 public class ResponseUtils {
 
-  private static final Logger logger = LogManager.getLogger(ResponseUtils.class);
-
   private ResponseUtils() {
-  }
-
-  public static <T> Handler<AsyncResult<Tx<T>>> handleNoContentResponse(Handler<AsyncResult<Response>> asyncResultHandler, Tx<T> tx,
-    String logMessage) {
-    logger.debug("handleNoContentResponse:: Trying to handle no content response for entity: {}', logMessage: {}", tx.getEntity(), logMessage);
-    return result -> {
-      if (result.failed()) {
-        HttpException cause = (HttpException) result.cause();
-        logger.error(logMessage, cause, tx.getEntity(), "or associated data failed to be");
-
-        // The result of rollback operation is not so important, main failure cause is used to build the response
-        tx.rollbackTransaction().onComplete(res -> asyncResultHandler.handle(buildErrorResponse(cause)));
-      } else {
-        logger.info(logMessage, tx.getEntity(), "and associated data were successfully");
-        asyncResultHandler.handle(buildNoContentResponse());
-      }
-    };
-  }
-
-  public static void handleFailure(Promise<?> promise, AsyncResult<?> reply) {
-    Throwable cause = reply.cause();
-    String badRequestMessage = PgExceptionUtil.badRequestMessage(cause);
-    if (badRequestMessage != null) {
-      promise.fail(new HttpException(Response.Status.BAD_REQUEST.getStatusCode(), badRequestMessage));
-    } else {
-      promise.fail(new HttpException(INTERNAL_SERVER_ERROR.getStatusCode(), cause.getMessage()));
-    }
   }
 
   public static Future<Response> buildNoContentResponse() {
@@ -56,25 +19,18 @@ public class ResponseUtils {
   }
 
   public static Future<Response> buildErrorResponse(Throwable throwable) {
-    final String message;
-    final int code;
-
-    if (throwable instanceof HttpException) {
-      code = ((HttpException) throwable).getStatusCode();
-      message = ((HttpException) throwable).getPayload();
+    if (throwable instanceof HttpException httpException) {
+      return buildErrorResponse(httpException.getStatusCode(), httpException.getPayload());
     } else {
-      code = INTERNAL_SERVER_ERROR.getStatusCode();
-      message = throwable.getMessage();
+      return buildErrorResponse(INTERNAL_SERVER_ERROR.getStatusCode(), throwable.getMessage());
     }
-
-    return Future.succeededFuture(buildErrorResponse(code, message));
   }
 
-  private static Response buildErrorResponse(int code, String message) {
-    return Response.status(code)
+  private static Future<Response> buildErrorResponse(int code, String message) {
+    return Future.succeededFuture(Response.status(code)
       .header(CONTENT_TYPE, TEXT_PLAIN)
       .entity(message)
-      .build();
+      .build());
   }
 
 }
