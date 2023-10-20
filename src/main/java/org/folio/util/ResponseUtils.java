@@ -8,7 +8,6 @@ import javax.ws.rs.core.Response;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.folio.rest.persist.Conn;
 import org.folio.rest.persist.PgExceptionUtil;
 
 import io.vertx.core.AsyncResult;
@@ -24,25 +23,29 @@ public class ResponseUtils {
   private ResponseUtils() {
   }
 
-  public static void handleNoContentResponse(AsyncResult<Conn> result,
-                                             String id,
-                                             String logMessage,
-                                             Handler<AsyncResult<Response>> onComplete) {
-    logger.debug("handleNoContentResponse:: Trying to handle no content response for entity: {}', logMessage: {}", id, logMessage);
+  public static <T> void handleNoContentResponse(AsyncResult<T> result,
+                                                 String id,
+                                                 Handler<AsyncResult<Response>> onComplete) {
     if (result.failed()) {
       HttpException cause = (HttpException) result.cause();
-      logger.error(logMessage, cause, id, "or associated data failed to be");
+      logger.error("Failed to delete interface '{}' or associated data", id, cause);
       onComplete.handle(buildErrorResponse(cause));
     } else {
-      logger.info(logMessage, id, "and associated data were successfully");
+      logger.info("Interface '{}' and associated data were successfully deleted", id);
       onComplete.handle(buildNoContentResponse());
     }
   }
 
-  public static void handleFailure(Promise<?> promise, AsyncResult<?> reply) {
+  public static <T> Future<T> handleFailure(Throwable cause) {
+    return Future.future(promise -> handleFailure(promise, Future.failedFuture(cause)));
+  }
+
+  private static <T, V> void handleFailure(Promise<T> promise, AsyncResult<V> reply) {
     Throwable cause = reply.cause();
     String badRequestMessage = PgExceptionUtil.badRequestMessage(cause);
-    if (badRequestMessage != null) {
+    if (cause instanceof HttpException) {
+      promise.fail(cause);
+    } else if (badRequestMessage != null) {
       promise.fail(new HttpException(Response.Status.BAD_REQUEST.getStatusCode(), badRequestMessage));
     } else {
       promise.fail(new HttpException(INTERNAL_SERVER_ERROR.getStatusCode(), cause.getMessage()));
