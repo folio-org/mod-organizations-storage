@@ -1,0 +1,52 @@
+#%RAML 1.0
+title: "Organizations"
+baseUri: https://github.com/folio-org/mod-organizations-storage
+version: v2.0
+
+documentation:
+  - title: Privileged Contacts
+    content: <b>CRUD APIs used to manage privileged contacts.</b>
+
+types:
+    contact: !include acq-models/mod-orgs/schemas/contact.json
+    contact_collection: !include acq-models/mod-orgs/schemas/contact_collection.json
+    errors: !include raml-util/schemas/errors.schema
+    UUID:
+      type: string
+      pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
+
+traits:
+    orderable: !include raml-util/traits/orderable.raml
+    pageable:  !include raml-util/traits/pageable.raml
+    searchable: !include raml-util/traits/searchable.raml
+    validate: !include raml-util/traits/validation.raml
+
+resourceTypes:
+    collection: !include raml-util/rtypes/collection.raml
+    collection-item: !include raml-util/rtypes/item-collection.raml
+
+
+/organizations-storage/privileged-contacts:
+  type:
+    collection:
+      exampleCollection: !include acq-models/mod-orgs/examples/contact_collection.sample
+      exampleItem: !include acq-models/mod-orgs/examples/contact_post.sample
+      schemaCollection: contact_collection
+      schemaItem: contact
+  is: [validate]
+  get:
+    description: Get list of privileged contact persons
+    is: [
+      searchable: {description: "with valid searchable fields: for example code", example: "[\"code\", \"MEDGRANT\", \"=\"]"},
+      pageable
+    ]
+  /{id}:
+    uriParameters:
+      id:
+        description: The UUID of a privileged contact
+        type: UUID
+    type:
+      collection-item:
+        exampleItem: !include acq-models/mod-orgs/examples/contact_get.sample
+        schema: contact
+    is: [validate]

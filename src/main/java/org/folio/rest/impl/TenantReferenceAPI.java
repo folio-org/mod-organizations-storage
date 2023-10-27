@@ -66,6 +66,11 @@ public class TenantReferenceAPI extends TenantAPI {
         .withLead("data")
         .add("interfaces-2.0.0", "organizations-storage/interfaces");
       }
+      if (isNew(tenantAttributes, "4.7.0")) {
+        tl.withKey(PARAMETER_LOAD_SAMPLE)
+          .withLead("data")
+          .add("privileged_contacts-4.7.0", "organizations-storage/privileged-contacts");
+      }
     }
     if (isLoadReference(tenantAttributes)) {
       if (isNew(tenantAttributes, "1.0.0")) {

@@ -14,6 +14,7 @@ public enum TestEntities {
   ADDRESS("/organizations-storage/addresses", Address.class, "address.sample", "city", "Boston ", 0, false),
   CATEGORY("/organizations-storage/categories", Category.class, "category.sample", "value", "AccountingServices", 4, true),
   CONTACT("/organizations-storage/contacts", Contact.class, "contact.sample",  "notes", "ABC123", 13, false),
+  PRIVILEGED_CONTACT("/organizations-storage/privileged-contacts", Contact.class, "contact.sample",  "notes", "ABC123", 13, false),
   EMAIL("/organizations-storage/emails", Email.class, "email.sample", "value", "test@folio.org", 0, false),
   INTERFACE("/organizations-storage/interfaces", Interface.class, "interface.sample", "name", "Test Portal", 13, false),
   ORGANIZATION("/organizations-storage/organizations", Organization.class, "organization.sample",  "code", "ABC123", 16, false),

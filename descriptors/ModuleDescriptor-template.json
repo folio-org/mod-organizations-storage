@@ -96,6 +96,37 @@
       ]
     },
     {
+      "id": "organizations-storage.privileged-contacts",
+      "version": "4.7",
+      "handlers": [
+        {
+          "methods": ["GET"],
+          "pathPattern": "/organizations-storage/privileged-contacts",
+          "permissionsRequired": ["organizations-storage.privileged-contacts.collection.get"]
+        },
+        {
+          "methods": ["POST"],
+          "pathPattern": "/organizations-storage/privileged-contacts",
+          "permissionsRequired": ["organizations-storage.privileged-contacts.item.post"]
+        },
+        {
+          "methods": ["GET"],
+          "pathPattern": "/organizations-storage/privileged-contacts/{id}",
+          "permissionsRequired": ["organizations-storage.privileged-contacts.item.get"]
+        },
+        {
+          "methods": ["PUT"],
+          "pathPattern": "/organizations-storage/privileged-contacts/{id}",
+          "permissionsRequired": ["organizations-storage.privileged-contacts.item.put"]
+        },
+        {
+          "methods": ["DELETE"],
+          "pathPattern": "/organizations-storage/privileged-contacts/{id}",
+          "permissionsRequired": ["organizations-storage.privileged-contacts.item.delete"]
+        }
+      ]
+    },
+    {
       "id": "organizations-storage.emails",
       "version": "1.1",
       "handlers": [
@@ -272,7 +303,7 @@
     },
     {
       "id": "organizations-storage.banking-account-types",
-      "version": "1.0",
+      "version": "4.7",
       "handlers": [
         {
           "methods": ["GET"],
@@ -491,6 +522,43 @@
         "organizations-storage.contacts.item.get",
         "organizations-storage.contacts.item.put",
         "organizations-storage.contacts.item.delete"
+      ]
+    },
+    {
+      "permissionName" : "organizations-storage.privileged-contacts.collection.get",
+      "displayName" : "privileged contact collection get",
+      "description" : "Get a collection of privileged contacts"
+    },
+    {
+      "permissionName" : "organizations-storage.privileged-contacts.item.post",
+      "displayName" : "privileged contact post",
+      "description" : "Create a new privileged contact"
+    },
+    {
+      "permissionName" : "organizations-storage.privileged-contacts.item.get",
+      "displayName" : "privileged contact get",
+      "description" : "Fetch a privileged contact"
+    },
+    {
+      "permissionName" : "organizations-storage.privileged-contacts.item.put",
+      "displayName" : "privileged contact put",
+      "description" : "Update a privileged contact"
+    },
+    {
+      "permissionName" : "organizations-storage.privileged-contacts.item.delete",
+      "displayName" : "privileged contact delete",
+      "description" : "Delete a privileged contact"
+    },
+    {
+      "permissionName" : "organizations-storage.privileged-contacts.all",
+      "displayName" : "privileged contact all",
+      "description" : "All permissions for privileged contact",
+      "subPermissions" : [
+        "organizations-storage.privileged-contacts.collection.get",
+        "organizations-storage.privileged-contacts.item.post",
+        "organizations-storage.privileged-contacts.item.get",
+        "organizations-storage.privileged-contacts.item.put",
+        "organizations-storage.privileged-contacts.item.delete"
       ]
     },
     {
@@ -816,6 +884,7 @@
         "organizations-storage.addresses.all",
         "organizations-storage.categories.all",
         "organizations-storage.contacts.all",
+        "organizations-storage.privileged-contacts.all",
         "organizations-storage.emails.all",
         "organizations-storage.interfaces.all",
         "organizations-storage.interfaces.credentials.all",

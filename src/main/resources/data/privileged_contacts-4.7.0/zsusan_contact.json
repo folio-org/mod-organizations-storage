@@ -1,0 +1,69 @@
+{
+  "id": "15fb695a-cdf1-11e8-a8d5-f2801f1b9fd1",
+  "language": "English",
+  "prefix": "",
+  "firstName": "Susan",
+  "lastName": "Bach",
+  "notes": "",
+  "inactive": false,
+  "phoneNumbers": [
+    {
+      "phoneNumber": "55-55-21-2539-3590",
+      "categories": [
+        "28f1af24-e88f-45c9-8b65-8091afe4e799"
+      ],
+      "language": "Portuguese",
+      "isPrimary": true
+    }
+  ],
+  "emails": [
+    {
+      "value": "sbach@sbachbooks.com.br",
+      "description": "Customer Service",
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195",
+        "ab760714-4185-4859-b0dd-3e72f01c5c52",
+        "28f1af24-e88f-45c9-8b65-8091afe4e799",
+        "cbfaec07-5df1-4197-bfa5-1bc91f9073cf"
+      ],
+      "language": "English",
+      "isPrimary": true
+    }
+  ],
+  "addresses": [
+    {
+      "addressLine1": "RUA VISCONDE DE CARAVELAS, Nº 17",
+      "addressLine2": "BOTAFOGO",
+      "city": "RIO DE JANEIRO",
+      "stateRegion": "",
+      "zipCode": "22271-021",
+      "country": "Brazil",
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195",
+        "ab760714-4185-4859-b0dd-3e72f01c5c52",
+        "28f1af24-e88f-45c9-8b65-8091afe4e799",
+        "cbfaec07-5df1-4197-bfa5-1bc91f9073cf"
+      ],
+      "language": "Portuguese",
+      "isPrimary": true
+    }
+  ],
+  "urls": [
+    {
+      "value": "http://www.sbachbooks.com.br/",
+      "description": "main website",
+      "language": "English/Portuguese",
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
+      "notes": "",
+      "isPrimary": true
+    }
+  ],
+  "categories": [
+    "f52ceea4-8e35-404b-9ebd-5c7db6613195",
+    "ab760714-4185-4859-b0dd-3e72f01c5c52",
+    "28f1af24-e88f-45c9-8b65-8091afe4e799",
+    "cbfaec07-5df1-4197-bfa5-1bc91f9073cf"
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "id": "f0fb6130-cdf1-11e8-a8d5-f2801f1b9fd1",
+  "language": "English",
+  "prefix": "Mrs.",
+  "firstName": "Siouxsie",
+  "lastName": "Sioux ",
+  "notes": "",
+  "inactive": false,
+  "phoneNumbers": [
+    {
+      "phoneNumber": "64-95-783-996",
+      "categories": [
+        "28f1af24-e88f-45c9-8b65-8091afe4e799"
+      ],
+      "language": "English",
+      "isPrimary": true
+    }
+  ],
+  "emails": [
+    {
+      "value": "magnolia@mapress.com",
+      "description": "Customer Service",
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
+      "language": "English",
+      "isPrimary": true
+    }
+  ],
+  "addresses": [
+    {
+      "addressLine1": "Saint Lukes",
+      "addressLine2": "P.O. Box 41383",
+      "city": "Auckland",
+      "stateRegion": "",
+      "zipCode": "1346",
+      "country": "New Zealand",
+      "categories": [
+        "cbfaec07-5df1-4197-bfa5-1bc91f9073cf"
+      ],
+      "language": "English",
+      "isPrimary": true
+    }
+  ],
+  "urls": [
+    {
+      "value": "http://www.mapress.com/j/",
+      "description": "main website",
+      "language": "en-us",
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
+      "notes": "",
+      "isPrimary": true
+    }
+  ],
+  "categories": [
+    "f52ceea4-8e35-404b-9ebd-5c7db6613195",
+    "28f1af24-e88f-45c9-8b65-8091afe4e799",
+    "cbfaec07-5df1-4197-bfa5-1bc91f9073cf"
+  ]
+}

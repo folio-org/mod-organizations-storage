@@ -1,0 +1,61 @@
+{
+  "id": "70fb4e66-cdf1-11e8-a8d5-f2801f1b9fd1",
+  "language": "English",
+  "prefix": "Prof.",
+  "firstName": "Marie",
+  "lastName": "Curie",
+  "notes": "",  
+  "inactive": false,
+  "phoneNumbers": [
+    {
+      "phoneNumber": "1-615-771-9393",
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
+      "language": "English",
+      "isPrimary": true
+    }
+  ],
+  "emails": [
+    {
+      "value": "service@naxosusa.com",
+      "description": "Customer Service",
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
+      "language": "English",
+      "isPrimary": true
+    }
+  ],
+  "addresses": [
+    {
+      "addressLine1": "416 Mary Lindsay Polk Dr.",
+      "addressLine2": "",
+      "city": "Franklin",
+      "stateRegion": "TN",
+      "zipCode": "37067",
+      "country": "USA",
+      "categories": [
+        "28f1af24-e88f-45c9-8b65-8091afe4e799"
+      ],
+      "language": "English",
+      "isPrimary": true
+    }
+  ],
+  "urls": [
+    {
+      "value": "https://www.naxos.com/",
+      "description": "main website",
+      "language": "en-us",
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
+      "notes": "",
+      "isPrimary": true
+    }
+  ],
+  "categories": [
+    "f52ceea4-8e35-404b-9ebd-5c7db6613195",
+    "28f1af24-e88f-45c9-8b65-8091afe4e799"
+  ]
+}

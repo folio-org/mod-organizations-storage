@@ -1,0 +1,62 @@
+{
+  "id": "d0fb5aa0-cdf1-11e8-a8d5-f2801f1b9fd1",
+  "language": "en-us",
+  "prefix": "",
+  "firstName": "Sarah",
+  "lastName": "Silverman",
+  "notes": "",
+  "inactive": false,
+  "phoneNumbers": [
+    {
+      "phoneNumber": "1-800-258-3774",
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
+      "language": "en-us",
+      "isPrimary": true
+    }
+  ],
+  "emails": [
+    {
+      "value": "gobiserviceissue@ebsco.com",
+      "description": "for general questions",
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
+      "language": "en-us",
+      "isPrimary": true
+    }
+  ],
+  "addresses": [
+    {
+      "addressLine1": "999 Maple Street",
+      "addressLine2": "2",
+      "city": "Contoocook",
+      "stateRegion": "NH",
+      "zipCode": "03229",
+      "country": "USA",
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195",
+        "cbfaec07-5df1-4197-bfa5-1bc91f9073cf"
+      ],
+      "language": "en",
+      "isPrimary": true
+    }
+  ],
+  "urls": [
+    {
+      "value": "https://gobi.ebsco.com/",
+      "description": "main website",
+      "language": "en-us",
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
+      "notes": "",
+      "isPrimary": true
+    }
+  ],
+  "categories": [
+    "f52ceea4-8e35-404b-9ebd-5c7db6613195",
+    "cbfaec07-5df1-4197-bfa5-1bc91f9073cf"
+  ]
+}

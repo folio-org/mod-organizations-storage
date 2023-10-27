@@ -1,0 +1,61 @@
+{
+  "id": "13fb64dc-cdf1-11e8-a8d5-f2801f1b9fd1",
+  "language": "English",
+  "prefix": "Mr.",
+  "firstName": "Ryan",
+  "lastName": "Zinke",
+  "notes": "",
+  "inactive": false,
+  "phoneNumbers": [
+    {
+      "phoneNumber": "1-888-ASK-USGS",
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
+      "language": "English",
+      "isPrimary": true
+    }
+  ],
+  "emails": [
+    {
+      "value": "usgsstore@usgs.gov",
+      "description": "main customer service email",
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
+      "language": "English",
+      "isPrimary": true
+    }
+  ],
+  "addresses": [
+    {
+      "addressLine1": "12201 Sunrise Valley Drive",
+      "addressLine2": "P.O. Box 15550",
+      "city": "Reston",
+      "stateRegion": "VA",
+      "zipCode": "20192",
+      "country": "USA",
+      "categories": [
+        "cbfaec07-5df1-4197-bfa5-1bc91f9073cf"
+      ],
+      "language": "English",
+      "isPrimary": true
+    }
+  ],
+  "urls": [
+    {
+      "value": "https://www.usgs.gov/",
+      "description": "main website",
+      "language": "en-us",
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
+      "notes": "",
+      "isPrimary": true
+    }
+  ],
+  "categories": [
+    "f52ceea4-8e35-404b-9ebd-5c7db6613195",
+    "cbfaec07-5df1-4197-bfa5-1bc91f9073cf"
+  ]
+}
