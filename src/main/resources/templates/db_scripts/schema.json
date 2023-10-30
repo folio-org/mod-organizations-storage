@@ -110,6 +110,12 @@
           "removeAccents": true
         },
         {
+          "fieldName": "privilegedContacts",
+          "tOps": "ADD",
+          "caseSensitive": false,
+          "removeAccents": true
+        },
+        {
           "fieldName": "erpCode",
           "tOps": "ADD",
           "caseSensitive": false,
@@ -158,6 +164,7 @@
     {
       "tableName": "organization_types",
       "fromModuleVersion": "mod-organizations-storage-4.3.0",
+      "withOptimisticLocking": "failOnConflict",
       "withMetadata": true,
       "fullTextIndex" : [
         {
@@ -184,6 +191,13 @@
     {
       "tableName": "settings",
       "fromModuleVersion": "mod-organizations-storage-4.7.0",
+      "withOptimisticLocking": "failOnConflict",
+      "withMetadata": true
+    },
+    {
+      "tableName": "privileged_contacts",
+      "fromModuleVersion": "mod-organizations-storage-4.7.0",
+      "withOptimisticLocking": "failOnConflict",
       "withMetadata": true
     },
     {
