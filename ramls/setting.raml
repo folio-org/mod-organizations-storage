@@ -68,6 +68,11 @@ resourceTypes:
           description: Not found
           body:
             text/plain:
+        409:
+          description: "Optimistic locking version conflict"
+          body:
+            text/plain:
+              example: "version conflict"
         500:
           description: Internal error
           body:

@@ -33,7 +33,7 @@ class OrganizationSettingsTest extends TestBase {
   }
 
   @Test
-  void testBankingAccountTypeEndpoints() throws MalformedURLException {
+  void testOrganizationSettingEndpoints() throws MalformedURLException {
 
     Setting setting = assertGetCollection(SAMPLE_SETTING_VALUE_OLD);
 
