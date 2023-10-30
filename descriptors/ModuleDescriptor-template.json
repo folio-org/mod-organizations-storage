@@ -97,7 +97,7 @@
     },
     {
       "id": "organizations-storage.privileged-contacts",
-      "version": "4.7",
+      "version": "1.0",
       "handlers": [
         {
           "methods": ["GET"],
@@ -303,7 +303,7 @@
     },
     {
       "id": "organizations-storage.banking-account-types",
-      "version": "4.7",
+      "version": "1.0",
       "handlers": [
         {
           "methods": ["GET"],
