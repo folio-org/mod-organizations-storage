@@ -189,6 +189,7 @@
     {
       "tableName": "banking_information",
       "fromModuleVersion": "mod-organizations-storage-4.7.0",
+      "withOptimisticLocking": "failOnConflict",
       "withMetadata": true,
       "foreignKeys": [
         {
