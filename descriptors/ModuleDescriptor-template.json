@@ -333,6 +333,37 @@
       ]
     },
     {
+      "id": "organizations-storage.banking-information",
+      "version": "1.0",
+      "handlers": [
+        {
+          "methods": ["GET"],
+          "pathPattern": "/organizations-storage/banking-information",
+          "permissionsRequired": ["organizations-storage.banking-information.collection.get"]
+        },
+        {
+          "methods": ["POST"],
+          "pathPattern": "/organizations-storage/banking-information",
+          "permissionsRequired": ["organizations-storage.banking-information.item.post"]
+        },
+        {
+          "methods": ["GET"],
+          "pathPattern": "/organizations-storage/banking-information/{id}",
+          "permissionsRequired": ["organizations-storage.banking-information.item.get"]
+        },
+        {
+          "methods": ["PUT"],
+          "pathPattern": "/organizations-storage/banking-information/{id}",
+          "permissionsRequired": ["organizations-storage.banking-information.item.put"]
+        },
+        {
+          "methods": ["DELETE"],
+          "pathPattern": "/organizations-storage/banking-information/{id}",
+          "permissionsRequired": ["organizations-storage.banking-information.item.delete"]
+        }
+      ]
+    },
+    {
       "id": "organizations-storage.settings",
       "version": "1.0",
       "handlers": [
@@ -852,6 +883,43 @@
       ]
     },
     {
+      "permissionName" : "organizations-storage.banking-information.collection.get",
+      "displayName" : "banking_information collection get",
+      "description" : "Get a collection of banking_information"
+    },
+    {
+      "permissionName" : "organizations-storage.banking-information.item.post",
+      "displayName" : "banking_information post",
+      "description" : "Create a new banking_information"
+    },
+    {
+      "permissionName" : "organizations-storage.banking-information.item.get",
+      "displayName" : "banking_information get",
+      "description" : "Fetch a banking_information"
+    },
+    {
+      "permissionName" : "organizations-storage.banking-information.item.put",
+      "displayName" : "banking_information put",
+      "description" : "Update a banking_information"
+    },
+    {
+      "permissionName" : "organizations-storage.banking-information.item.delete",
+      "displayName" : "banking_information delete",
+      "description" : "Delete a banking_information"
+    },
+    {
+      "permissionName" : "organizations-storage.banking-information.all",
+      "displayName" : "banking_information all",
+      "description" : "All permissions for banking_information",
+      "subPermissions" : [
+        "organizations-storage.banking-information.collection.get",
+        "organizations-storage.banking-information.item.post",
+        "organizations-storage.banking-information.item.get",
+        "organizations-storage.banking-information.item.put",
+        "organizations-storage.banking-information.item.delete"
+      ]
+    },
+    {
       "permissionName" : "organizations-storage.settings.collection.get",
       "displayName" : "setting collection get",
       "description" : "Get a collection of settings"
@@ -893,6 +961,7 @@
         "organizations-storage.organizations.all",
         "organizations-storage.organization-types.all",
         "organizations-storage.banking-account-types.all",
+        "organizations-storage.banking-information.all",
         "organizations-storage.settings.all"
       ]
     }
