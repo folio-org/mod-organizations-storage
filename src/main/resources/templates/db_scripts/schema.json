@@ -208,7 +208,9 @@
       "foreignKeys": [
         {
           "fieldName": "organizationId",
-          "targetTable": "organizations"
+          "targetTable": "organizations",
+          "tableAlias": "bankingInformation",
+          "targetTableAlias": "organizations"
         }
       ]
     }
