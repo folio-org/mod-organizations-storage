@@ -186,13 +186,23 @@
           "fieldName" : "name",
           "tOps" : "ADD"
         }
+      ],
+      "uniqueIndex": [
+        {
+          "fieldName" : "name"
+        }
       ]
     },
     {
       "tableName": "settings",
       "fromModuleVersion": "mod-organizations-storage-4.7.0",
       "withOptimisticLocking": "failOnConflict",
-      "withMetadata": true
+      "withMetadata": true,
+      "uniqueIndex": [
+        {
+          "fieldName" : "key"
+        }
+      ]
     },
     {
       "tableName": "privileged_contacts",
