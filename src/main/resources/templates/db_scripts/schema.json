@@ -215,9 +215,12 @@
       "fromModuleVersion": "mod-organizations-storage-4.7.0",
       "withOptimisticLocking": "failOnConflict",
       "withMetadata": true,
-      "index": [
+      "fullTextIndex": [
         {
-          "fieldName": "bankAccountNumber"
+          "fieldName": "bankAccountNumber",
+          "tOps": "ADD",
+          "caseSensitive": false,
+          "removeAccents": true
         }
       ],
       "foreignKeys": [
