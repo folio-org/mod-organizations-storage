@@ -215,6 +215,11 @@
       "fromModuleVersion": "mod-organizations-storage-4.7.0",
       "withOptimisticLocking": "failOnConflict",
       "withMetadata": true,
+      "index": [
+        {
+          "fieldName": "bankAccountNumber"
+        }
+      ],
       "foreignKeys": [
         {
           "fieldName": "organizationId",
