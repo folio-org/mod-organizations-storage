@@ -218,9 +218,7 @@
       "fullTextIndex": [
         {
           "fieldName": "bankAccountNumber",
-          "tOps": "ADD",
-          "caseSensitive": false,
-          "removeAccents": true
+          "tOps": "ADD"
         }
       ],
       "foreignKeys": [
