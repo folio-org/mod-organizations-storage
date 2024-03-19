@@ -1,4 +1,22 @@
-## 4.7.0 - Unreleased
+## 4.8.0 - Unreleased
+
+## 4.7.0 - Released (Quesnelia R1 2024)
+The primary focus of this release was to create CRUD for Banking Accounting Types
+and Organization Settings as well as API for privileged contacts
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v4.6.0...v4.7.0)
+
+### Stories
+* [MODORGSTOR-155] (https://issues.folio.org/browse/MODORGSTOR-155) - Implement CRUD for Organization Settings
+* [MODORGSTOR-153] (https://issues.folio.org/browse/MODORGSTOR-153) - Implement API for Privileged contacts
+* [MODORGSTOR-148] (https://issues.folio.org/browse/MODORGSTOR-148) - Implement CRUD for Banking Account Types
+
+### Tech Debts
+* [MODORGSTOR-154] (https://issues.folio.org/browse/MODORGSTOR-154) - Refactor deleteOrganizationsInterfaceById to remove Tx usage
+
+### Dependencies
+* Bump `raml` from `35.0.1` to `35.2.0`
+* Bump `vertx` from `4.3.4` to `4.5.4`
 
 ## 4.6.0 - Released (Poppy R2 2023)
 The primary focus of this release was to update dependent raml-util and java version
