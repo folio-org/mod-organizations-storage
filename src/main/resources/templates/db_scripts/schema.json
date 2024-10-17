@@ -227,6 +227,12 @@
           "targetTable": "organizations",
           "tableAlias": "bankingInformation",
           "targetTableAlias": "organizations"
+        },
+        {
+          "fieldName": "accountTypeId",
+          "targetTable": "banking_account_types",
+          "tableAlias": "bankingInformation",
+          "targetTableAlias": "bankingAccountType"
         }
       ]
     }
