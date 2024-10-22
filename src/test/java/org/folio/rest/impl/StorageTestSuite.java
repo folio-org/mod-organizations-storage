@@ -25,7 +25,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Nested;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
-import org.testcontainers.containers.PostgreSQLContainer;
 
 import io.restassured.http.Header;
 import io.vertx.core.DeploymentOptions;
@@ -40,11 +39,6 @@ public class StorageTestSuite {
   private final static int port = NetworkUtils.nextFreePort();
   public static final Header URL_TO_HEADER = new Header("X-Okapi-Url-to", "http://localhost:" + port);
   private static TenantJob tenantJob;
-
-  public static final String POSTGRES_DOCKER_IMAGE = "postgres:12-alpine";
-
-
-  private static PostgreSQLContainer<?> postgresSQLContainer;
 
   private StorageTestSuite() {}
 
