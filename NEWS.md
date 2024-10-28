@@ -1,4 +1,18 @@
-## 4.8.0 - Unreleased
+## 4.9.0 - Unreleased
+
+## 4.8.0 - Released (Ramson R2 2024)
+The primary focus of this release was to improve the banking feature and update libraries of dependent acq modules
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v4.7.0...v4.8.0)
+
+### Stories
+* [MODORGSTOR-155] (https://folio-org.atlassian.net/browse/MODORGSTOR-163) - Banking - prevent deletion of account type if it is being used by an organization
+* [MODORGSTOR-153] (https://folio-org.atlassian.net/browse/MODORGSTOR-166) - Update libraries of dependant acq modules to the latest versions
+
+### Dependencies
+* Bump `raml` from `35.2.0` to `35.3.0`
+* Added `folio-module-descriptor-validator` version `1.0.0`
+
 
 ## 4.7.0 - Released (Quesnelia R1 2024)
 The primary focus of this release was to create CRUD for Banking Accounting Types
