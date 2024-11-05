@@ -5,7 +5,6 @@ import io.vertx.core.Handler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.folio.persist.CriterionBuilder;
-import org.folio.rest.impl.OrganizationsAPI;
 import org.folio.rest.persist.Criteria.Criterion;
 import org.folio.rest.persist.PostgresClient;
 import org.folio.util.DbUtils;
@@ -14,7 +13,7 @@ import org.folio.util.ResponseUtils;
 import javax.ws.rs.core.Response;
 
 public class OrganizationService {
-  private final Logger logger = LogManager.getLogger(OrganizationsAPI.class);
+  private final Logger logger = LogManager.getLogger(OrganizationService.class);
 
   private static final String ORGANIZATION_TABLE = "organizations";
   private static final String BANKING_INFORMATION_TABLE = "banking_information";
