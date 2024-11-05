@@ -1,0 +1,44 @@
+{
+  "edi": {
+    "ediFtp": {
+      "ftpMode": "ASCII",
+      "ftpFormat": "SFTP",
+      "ftpConnMode": "Active"
+    },
+    "libEdiType": "31B/US-SAN",
+    "vendorEdiType": "31B/US-SAN"
+  },
+  "code": "Test2",
+  "name": "Test2",
+  "urls": [],
+  "emails": [],
+  "status": "Active",
+  "aliases": [],
+  "isDonor": false,
+  "accounts": [
+    {
+      "name": "Acc1",
+      "accountNo": "Acc1Num",
+      "acqUnitIds": [],
+      "accountStatus": "Active"
+    }
+  ],
+  "contacts": [],
+  "isVendor": true,
+  "metadata": {
+    "createdDate": "2024-11-04T12:25:22.868Z",
+    "updatedDate": "2024-11-04T12:30:35.030Z",
+    "createdByUserId": "6bf8ca86-27dd-4023-ac9b-ef73c97bbd77",
+    "updatedByUserId": "6bf8ca86-27dd-4023-ac9b-ef73c97bbd77"
+  },
+  "addresses": [],
+  "acqUnitIds": [],
+  "agreements": [],
+  "changelogs": [],
+  "interfaces": [],
+  "phoneNumbers": [],
+  "vendorCurrencies": [],
+  "organizationTypes": [],
+  "exportToAccounting": false,
+  "privilegedContacts": []
+}
