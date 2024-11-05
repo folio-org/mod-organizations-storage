@@ -29,12 +29,12 @@ public class OrganizationService {
     pgClient.withTrans(conn ->
       conn.delete(BANKING_INFORMATION_TABLE, criterion)
         .compose(res -> {
-          logger.info("Deleted {} records from table {}", res.rowCount(), BANKING_INFORMATION_TABLE);
+          logger.info("deleteOrganizationById:: deleted {} records from table {}", res.rowCount(), BANKING_INFORMATION_TABLE);
           return conn.delete(ORGANIZATION_TABLE, id)
             .compose(DbUtils::failOnNoUpdateOrDelete);
         })
     ).onSuccess(rowSet -> {
-      logger.info("Organization '{}' and associated data were successfully deleted", id);
+      logger.info("deleteOrganizationById:: organization '{}' and associated data were successfully deleted", id);
       asyncResultHandler.handle(ResponseUtils.buildNoContentResponse());
     }).onFailure(throwable -> {
       logger.error("Failed to delete organization '{}' or associated data", id, throwable);
