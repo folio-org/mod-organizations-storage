@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.ws.rs.core.Response;
 
+import io.vertx.core.Vertx;
 import org.folio.rest.annotations.Validate;
 import org.folio.rest.jaxrs.model.Organization;
 import org.folio.rest.jaxrs.model.OrganizationCollection;
@@ -13,9 +14,17 @@ import org.folio.rest.persist.PgUtil;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Context;
 import io.vertx.core.Handler;
+import org.folio.rest.persist.PostgresClient;
+import org.folio.service.OrganizationService;
 
 public class OrganizationsAPI implements OrganizationsStorageOrganizations {
   private static final String ORGANIZATION_TABLE = "organizations";
+
+  private final OrganizationService organizationService;
+
+  public OrganizationsAPI(Vertx vertx, String tenantId) {
+    this.organizationService = new OrganizationService(PostgresClient.getInstance(vertx, tenantId));
+  }
 
   @Override
   @Validate
@@ -45,8 +54,7 @@ public class OrganizationsAPI implements OrganizationsStorageOrganizations {
   @Validate
   public void deleteOrganizationsStorageOrganizationsById(String id, Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.deleteById(ORGANIZATION_TABLE, id, okapiHeaders, vertxContext, DeleteOrganizationsStorageOrganizationsByIdResponse.class,
-        asyncResultHandler);
+    organizationService.deleteOrganizationById(id, asyncResultHandler);
   }
 
   @Override
