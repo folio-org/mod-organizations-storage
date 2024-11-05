@@ -37,8 +37,7 @@ public class OrganizationService {
     ).onSuccess(rowSet -> {
       logger.info("Organization '{}' and associated data were successfully deleted", id);
       asyncResultHandler.handle(ResponseUtils.buildNoContentResponse());
-    })
-    .onFailure(throwable -> {
+    }).onFailure(throwable -> {
       logger.error("Failed to delete organization '{}' or associated data", id, throwable);
       asyncResultHandler.handle(ResponseUtils.buildErrorResponse(throwable));
     });
