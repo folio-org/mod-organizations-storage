@@ -1,5 +1,13 @@
 ## 4.9.0 - Unreleased
 
+## 4.8.1 - Released (Ramsons R2 2024 Bug Fix)
+The primary focus of this release was to fix the issue when an organization cannot be deleted because of banking information
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v4.8.0...v4.8.1)
+
+### Bug fixes
+* [MODORGSTOR-172] (https://folio-org.atlassian.net/browse/MODORGSTOR-172) - Error message when an organization cannot be deleted because of banking information
+
 ## 4.8.0 - Released (Ramson R2 2024)
 The primary focus of this release was to improve the banking feature and update libraries of dependent acq modules
 
