@@ -66,8 +66,8 @@ public class StorageTestSuite {
   }
 
   private static Context getFirstContextFromVertx(Vertx vertx) {
-    return vertx.deploymentIDs().stream().flatMap((id) -> ((VertxImpl)vertx)
-        .getDeployment(id).getVerticles().stream())
+    return vertx.deploymentIDs().stream()
+      .flatMap(id -> ((VertxImpl) vertx).getDeployment(id).getVerticles().stream())
       .map(StorageTestSuite::getContextWithReflection)
       .filter(Objects::nonNull)
       .findFirst()
@@ -79,7 +79,7 @@ public class StorageTestSuite {
       Field field = AbstractVerticle.class.getDeclaredField("context");
       field.setAccessible(true);
       return ((Context) field.get(verticle));
-    } catch (NoSuchFieldException | IllegalAccessException var2) {
+    } catch (NoSuchFieldException | IllegalAccessException ignored) {
       return null;
     }
   }
