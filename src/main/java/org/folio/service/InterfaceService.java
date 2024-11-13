@@ -4,12 +4,12 @@ import javax.ws.rs.core.Response;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.folio.dao.DbUtils;
 import org.folio.persist.CriterionBuilder;
 import org.folio.rest.persist.Conn;
 import org.folio.rest.persist.Criteria.Criterion;
 import org.folio.rest.persist.PostgresClient;
-import org.folio.util.DbUtils;
-import org.folio.util.ResponseUtils;
+import org.folio.rest.utils.ResponseUtils;
 
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
@@ -51,10 +51,10 @@ public class InterfaceService {
       .onFailure(e -> logger.warn("Failed to delete credential by interfaceId: {}", id, e));
   }
 
-  private Future<RowSet<Row>> deleteInterfaceById(Conn conn, String id) {
+  private Future<Void> deleteInterfaceById(Conn conn, String id) {
     logger.debug("Trying to delete interface by id: {}", id);
     return conn.delete(INTERFACE_TABLE, id)
-      .compose(DbUtils::failOnNoUpdateOrDelete)
+      .compose(DbUtils::verifyEntityUpdate)
       .onSuccess(rowSet -> logger.info("Interface '{}' has been deleted", id))
       .onFailure(e -> logger.warn("Failed to delete interface by id: {}", id, e));
   }
