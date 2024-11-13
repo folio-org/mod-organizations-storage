@@ -35,7 +35,7 @@ public class OrganizationPostgresDAO implements OrganizationDAO {
   public Future<Void> updateOrganization(String id, Organization organization, Conn conn) {
     return conn.update(ORGANIZATION_TABLE, organization, id)
       .compose(DbUtils::verifyEntityUpdate)
-      .onSuccess(v -> log.info("updateInvoice:: Organization with id: '{}' successfully updated", organization.getId()))
+      .onSuccess(v -> log.info("updateOrganization:: Organization with id: '{}' successfully updated", organization.getId()))
       .onFailure(t -> log.error("Update failed for organization with id: '{}'", organization.getId(), t))
       .mapEmpty();
   }

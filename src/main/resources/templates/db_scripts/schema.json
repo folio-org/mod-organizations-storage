@@ -25,6 +25,16 @@
       "run": "after",
       "snippetPath": "migration/create_banking_information_setting.sql",
       "fromModuleVersion": "mod-organizations-storage-4.7.0"
+    },
+    {
+      "run": "after",
+      "snippetPath": "tables/create_audit_outbox_table.sql",
+      "fromModuleVersion": "mod-organizations-storage-4.9.0"
+    },
+    {
+      "run": "after",
+      "snippetPath": "tables/create_internal_lock_table.sql",
+      "fromModuleVersion": "mod-organizations-storage-4.9.0"
     }
   ],
   "tables": [
