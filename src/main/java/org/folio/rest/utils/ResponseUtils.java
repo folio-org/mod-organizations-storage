@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import org.folio.HttpStatus;
 import org.folio.rest.persist.PgExceptionUtil;
 
 import io.vertx.core.Future;
@@ -61,10 +62,10 @@ public class ResponseUtils {
       .build());
   }
 
-  public static Throwable convertPgExceptionIfNeeded(Throwable cause) {
+  public static Throwable convertPgExceptionIfNeeded(Throwable cause, HttpStatus status) {
     var badRequestMessage = PgExceptionUtil.badRequestMessage(cause);
     if (badRequestMessage != null) {
-      return new HttpException(BAD_REQUEST.getStatusCode(), badRequestMessage);
+      return new HttpException(status.toInt(), badRequestMessage);
     } else {
       return new HttpException(INTERNAL_SERVER_ERROR.getStatusCode(), cause.getMessage());
     }

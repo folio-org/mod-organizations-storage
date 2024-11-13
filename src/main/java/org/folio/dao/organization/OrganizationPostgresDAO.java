@@ -4,6 +4,7 @@ import static org.folio.rest.utils.ResponseUtils.convertPgExceptionIfNeeded;
 
 import java.util.UUID;
 
+import org.folio.HttpStatus;
 import org.folio.dao.DbUtils;
 import org.folio.persist.CriterionBuilder;
 import org.folio.rest.jaxrs.model.Organization;
@@ -26,7 +27,7 @@ public class OrganizationPostgresDAO implements OrganizationDAO {
       organization.setId(UUID.randomUUID().toString());
     }
     return conn.save(ORGANIZATION_TABLE, organization.getId(), organization, true)
-      .recover(t -> Future.failedFuture(convertPgExceptionIfNeeded(t)))
+      .recover(t -> Future.failedFuture(convertPgExceptionIfNeeded(t, HttpStatus.HTTP_BAD_REQUEST)))
       .onSuccess(s -> log.info("createOrganization:: New organization with id: '{}' successfully created", organization.getId()))
       .onFailure(t -> log.error("Failed to create organization with id: '{}'", organization.getId(), t));
   }
@@ -34,6 +35,7 @@ public class OrganizationPostgresDAO implements OrganizationDAO {
   @Override
   public Future<Void> updateOrganization(String id, Organization organization, Conn conn) {
     return conn.update(ORGANIZATION_TABLE, organization, id)
+      .recover(t -> Future.failedFuture(convertPgExceptionIfNeeded(t, HttpStatus.HTTP_UNPROCESSABLE_ENTITY)))
       .compose(DbUtils::verifyEntityUpdate)
       .onSuccess(v -> log.info("updateOrganization:: Organization with id: '{}' successfully updated", organization.getId()))
       .onFailure(t -> log.error("Update failed for organization with id: '{}'", organization.getId(), t))

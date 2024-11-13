@@ -35,7 +35,7 @@ public class OrganizationService {
     log.info("createOrganization:: Creating a new organization by id: {}", organization.getId());
     getPgClient(vertxContext, headers)
       .withTrans(conn -> organizationDAO.createOrganization(organization, conn)
-      .compose(id -> auditOutboxService.saveOrganizationOutboxLog(conn, organization, OrganizationAuditEvent.Action.CREATE, headers)))
+        .compose(id -> auditOutboxService.saveOrganizationOutboxLog(conn, organization, OrganizationAuditEvent.Action.CREATE, headers)))
       .onSuccess(s -> {
         log.info("createOrganization:: Successfully created a new organization by id: {}", organization.getId());
         auditOutboxService.processOutboxEventLogs(headers, vertxContext);
@@ -56,7 +56,7 @@ public class OrganizationService {
     }
     getPgClient(vertxContext, headers)
       .withTrans(conn -> organizationDAO.updateOrganization(id, organization, conn)
-      .compose(organizationId -> auditOutboxService.saveOrganizationOutboxLog(conn, organization, OrganizationAuditEvent.Action.EDIT, headers)))
+        .compose(organizationId -> auditOutboxService.saveOrganizationOutboxLog(conn, organization, OrganizationAuditEvent.Action.EDIT, headers)))
       .onSuccess(s -> {
         log.info("updateOrganization:: Successfully updated organization with id: {}", id);
         auditOutboxService.processOutboxEventLogs(headers, vertxContext);
