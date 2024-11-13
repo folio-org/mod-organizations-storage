@@ -441,6 +441,20 @@
           "permissionsRequired" : [ ]
         }
       ]
+    },
+    {
+      "id": "_timer",
+      "version": "1.0",
+      "interfaceType": "system",
+      "handlers": [
+        {
+          "methods": ["POST"],
+          "pathPattern": "/organizations-storage/audit-outbox/process",
+          "modulePermissions": [],
+          "unit": "minute",
+          "delay": "30"
+        }
+      ]
     }
   ],
   "permissionSets" : [
