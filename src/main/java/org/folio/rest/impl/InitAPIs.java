@@ -1,21 +1,18 @@
 package org.folio.rest.impl;
 
+import java.util.concurrent.Callable;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.folio.config.ApplicationConfig;
-import org.folio.dbschema.ObjectMapperTool;
 import org.folio.rest.resource.interfaces.InitAPI;
 import org.folio.spring.SpringContextUtil;
-
-import com.fasterxml.jackson.databind.DeserializationConfig;
-import com.fasterxml.jackson.databind.SerializationConfig;
 
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Context;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
 import io.vertx.core.Vertx;
-import io.vertx.core.json.jackson.DatabindCodec;
 
 /**
  * The class initializes vertx context adding spring context
@@ -26,9 +23,9 @@ public class InitAPIs implements InitAPI {
   @Override
   public void init(Vertx vertx, Context context, Handler<AsyncResult<Boolean>> resultHandler) {
     vertx.executeBlocking(
-      promise -> {
+      (Callable<Void>) () -> {
         SpringContextUtil.init(vertx, context, ApplicationConfig.class);
-        promise.complete();
+        return null;
       },
       result -> {
         if (result.succeeded()) {
