@@ -416,6 +416,37 @@
       ]
     },
     {
+      "id": "organizations-storage.integration_details",
+      "version": "1.1",
+      "handlers": [
+        {
+          "methods": ["GET"],
+          "pathPattern": "/organizations-storage/integration-details",
+          "permissionsRequired": ["organizations-storage.integration_details.collection.get"]
+        },
+        {
+          "methods": ["POST"],
+          "pathPattern": "/organizations-storage/integration-details",
+          "permissionsRequired": ["organizations-storage.integration_details.item.post"]
+        },
+        {
+          "methods": ["GET"],
+          "pathPattern": "/organizations-storage/integration-details/{id}",
+          "permissionsRequired": ["organizations-storage.integration_details.item.get"]
+        },
+        {
+          "methods": ["PUT"],
+          "pathPattern": "/organizations-storage/integration-details/{id}",
+          "permissionsRequired": ["organizations-storage.integration_details.item.put"]
+        },
+        {
+          "methods": ["DELETE"],
+          "pathPattern": "/organizations-storage/integration-details/{id}",
+          "permissionsRequired": ["organizations-storage.integration_details.item.delete"]
+        }
+      ]
+    },
+    {
       "id": "_tenant",
       "version": "2.0",
       "interfaceType": "system",
@@ -945,6 +976,43 @@
       ]
     },
     {
+      "permissionName" : "organizations-storage.integration_details.collection.get",
+      "displayName" : "integration_detail collection get",
+      "description" : "Get a collection of integration_details"
+    },
+    {
+      "permissionName" : "organizations-storage.integration_details.item.post",
+      "displayName" : "integration_detail post",
+      "description" : "Create a new integration_detail"
+    },
+    {
+      "permissionName" : "organizations-storage.integration_details.item.get",
+      "displayName" : "integration_detail get",
+      "description" : "Fetch a integration_detail"
+    },
+    {
+      "permissionName" : "organizations-storage.integration_details.item.put",
+      "displayName" : "integration_detail put",
+      "description" : "Update a integration_detail"
+    },
+    {
+      "permissionName" : "organizations-storage.integration_details.item.delete",
+      "displayName" : "integration_detail delete",
+      "description" : "Delete a integration_detail"
+    },
+    {
+      "permissionName" : "organizations-storage.integration_details.all",
+      "displayName" : "integration_detail all",
+      "description" : "All permissions for integration_detail",
+      "subPermissions" : [
+        "organizations-storage.integration_details.collection.get",
+        "organizations-storage.integration_details.item.post",
+        "organizations-storage.integration_details.item.get",
+        "organizations-storage.integration_details.item.put",
+        "organizations-storage.integration_details.item.delete"
+      ]
+    },
+    {
       "permissionName" : "organizations-storage.module.all",
       "displayName" : "organizations-storage-module all",
       "description" : "All permissions for the organizations module",
@@ -962,7 +1030,8 @@
         "organizations-storage.organization-types.all",
         "organizations-storage.banking-account-types.all",
         "organizations-storage.banking-information.all",
-        "organizations-storage.settings.all"
+        "organizations-storage.settings.all",
+        "organizations-storage.integration_details.all"
       ]
     }
   ],

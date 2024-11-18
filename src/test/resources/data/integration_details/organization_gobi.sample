@@ -1,0 +1,164 @@
+{
+  "id": "d0fb5aa0-cdf1-11e8-a8d5-f2801f1b9fd1",
+  "edi": {
+    "notes": "no EDI invoices for our tech services invoices",
+    "ediFtp": {
+      "notes": "separate directories for EOCRs and cat records",
+      "ftpMode": "Binary",
+      "ftpPort": 22,
+      "password": "password",
+      "username": "sample",
+      "ftpFormat": "SFTP",
+      "ftpConnMode": "Passive",
+      "serverAddress": "ftps://ftp.ybp.com",
+      "orderDirectory": "/dropoff",
+      "invoiceDirectory": "/invoices"
+    },
+    "ediJob": {
+      "isFriday": false,
+      "isMonday": false,
+      "isSunday": false,
+      "isTuesday": false,
+      "isSaturday": false,
+      "isThursday": false,
+      "isWednesday": false,
+      "scheduleEdi": true,
+      "notifyAllEdi": true,
+      "sendToEmails": "bobbarker@priceisright.com",
+      "notifyErrorOnly": false,
+      "notifyInvoiceOnly": false
+    },
+    "libEdiCode": "7659876",
+    "libEdiType": "31B/US-SAN",
+    "prorateTax": true,
+    "prorateFees": false,
+    "sendAcctNum": true,
+    "supportOrder": true,
+    "vendorEdiCode": "1694510",
+    "vendorEdiType": "31B/US-SAN",
+    "supportInvoice": true,
+    "ediNamingConvention": "*.edi"
+  },
+  "code": "GOBI",
+  "name": "GOBI Library Solutions",
+  "urls": [
+    {
+      "notes": "",
+      "value": "https://gobi.ebsco.com/",
+      "language": "en-us",
+      "isPrimary": true,
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
+      "description": "main website"
+    }
+  ],
+  "taxId": "888888888",
+  "emails": [
+    {
+      "value": "gobiserviceissue@ebsco.com",
+      "language": "en-us",
+      "isPrimary": true,
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
+      "description": "for general questions"
+    }
+  ],
+  "status": "Active",
+  "aliases": [
+    {
+      "value": "YBP Library Services",
+      "description": "former name"
+    }
+  ],
+  "erpCode": "G64758-74836",
+  "isDonor": false,
+  "sanCode": "1234567",
+  "accounts": [
+    {
+      "name": "US print orders",
+      "notes": "separate accounts for eBooks and UK orders",
+      "accountNo": "99999-10",
+      "acqUnitIds": [],
+      "appSystemNo": "",
+      "contactInfo": "jlegier@ebsco.com",
+      "description": "Main library orders for print books, shipped from US office",
+      "libraryCode": "COB",
+      "accountStatus": "Active",
+      "paymentMethod": "EFT",
+      "libraryEdiCode": "765987610"
+    }
+  ],
+  "contacts": [
+    "d0fb5aa0-cdf1-11e8-a8d5-f2801f1b9fd1"
+  ],
+  "isVendor": true,
+  "language": "en-us",
+  "licensor": false,
+  "addresses": [
+    {
+      "city": "Contoocook",
+      "country": "USA",
+      "zipCode": "03229",
+      "language": "en",
+      "isPrimary": true,
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195",
+        "ab760714-4185-4859-b0dd-3e72f01c5c52",
+        "cbfaec07-5df1-4197-bfa5-1bc91f9073cf"
+      ],
+      "stateRegion": "NH",
+      "addressLine1": "999 Maple Street",
+      "addressLine2": "2"
+    }
+  ],
+  "acqUnitIds": [],
+  "agreements": [
+    {
+      "name": "No formal agreement",
+      "notes": "Review SLAs & fulfillment stats 2 months before end of FY",
+      "discount": 10.0,
+      "referenceUrl": ""
+    }
+  ],
+  "changelogs": [
+    {
+      "timestamp": "2008-05-15T10:53:00.000+00:00",
+      "description": "This is a sample note."
+    }
+  ],
+  "interfaces": [
+    "793b9d42-ae12-41d7-a36a-f33e5b9e82c5"
+  ],
+  "description": "Use for print and eBooks, approval plans, firm orders, standing orders, DDA",
+  "governmental": false,
+  "liableForVat": false,
+  "phoneNumbers": [
+    {
+      "language": "en-us",
+      "isPrimary": true,
+      "categories": [
+        "f52ceea4-8e35-404b-9ebd-5c7db6613195"
+      ],
+      "phoneNumber": "1-800-258-3774"
+    }
+  ],
+  "paymentMethod": "EFT",
+  "taxPercentage": 0.0,
+  "accessProvider": false,
+  "discountPercent": 10.0,
+  "claimingInterval": 45,
+  "materialSupplier": true,
+  "vendorCurrencies": [
+    "USD"
+  ],
+  "organizationTypes": [],
+  "exportToAccounting": false,
+  "privilegedContacts": [],
+  "subscriptionInterval": 0,
+  "expectedInvoiceInterval": 30,
+  "expectedReceiptInterval": 30,
+  "renewalActivationInterval": 0,
+  "expectedActivationInterval": 3
+}

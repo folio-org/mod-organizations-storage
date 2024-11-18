@@ -235,6 +235,26 @@
           "targetTableAlias": "bankingAccountType"
         }
       ]
+    },
+    {
+      "tableName": "integration_details",
+      "fromModuleVersion": "mod-organizations-storage-4.9.0",
+      "withOptimisticLocking": "failOnConflict",
+      "withMetadata": true,
+      "fullTextIndex": [
+        {
+          "fieldName": "configName",
+          "tOps": "ADD"
+        }
+      ],
+      "foreignKeys": [
+        {
+          "fieldName": "vendorId",
+          "targetTable": "organizations",
+          "tableAlias": "bankingInformation",
+          "targetTableAlias": "organizations"
+        }
+      ]
     }
   ]
 }
