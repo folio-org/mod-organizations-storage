@@ -22,14 +22,18 @@
 
     <!--Dependency Properties-->
     <raml-module-builder.version>35.3.0</raml-module-builder.version>
+    <spring.version>6.1.14</spring.version>
     <vertx.version>4.5.10</vertx.version>
     <log4j.version>2.24.1</log4j.version>
     <aspectj.version>1.9.22.1</aspectj.version>
     <java.version>17</java.version>
     <jackson-bom.version>2.18.0</jackson-bom.version>
+    <kafkaclients.version>3.6.1</kafkaclients.version>
 
     <!--Folio dependencies properties-->
     <folio-module-descriptor-validator.version>1.0.0</folio-module-descriptor-validator.version>
+    <folio-kafka-wrapper.version>3.2.0</folio-kafka-wrapper.version>
+    <folio-di-support.version>2.2.0</folio-di-support.version>
 
     <!--Maven plugin properties-->
     <aspectj-maven-plugin.version>1.14</aspectj-maven-plugin.version>
@@ -101,6 +105,23 @@
 
   <dependencies>
     <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${spring.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.folio</groupId>
+      <artifactId>folio-di-support</artifactId>
+      <version>${folio-di-support.version}</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
       <groupId>org.folio</groupId>
       <artifactId>domain-models-api-interfaces</artifactId>
       <version>${raml-module-builder.version}</version>
@@ -109,6 +130,21 @@
       <groupId>org.folio</groupId>
       <artifactId>domain-models-runtime</artifactId>
       <version>${raml-module-builder.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.folio</groupId>
+      <artifactId>folio-kafka-wrapper</artifactId>
+      <version>${folio-kafka-wrapper.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-kafka-client</artifactId>
+      <version>${vertx.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka-clients</artifactId>
+      <version>${kafkaclients.version}</version>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
@@ -232,6 +268,10 @@
           <complianceLevel>${java.version}</complianceLevel>
           <XaddSerialVersionUID>true</XaddSerialVersionUID>
           <showWeaveInfo>true</showWeaveInfo>
+          <includes>
+            <include>**/impl/*.java</include>
+            <include>**/*.aj</include>
+          </includes>
           <aspectLibraries>
             <aspectLibrary>
               <groupId>org.folio</groupId>

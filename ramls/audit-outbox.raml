@@ -1,0 +1,19 @@
+#%RAML 1.0
+title: Audit outbox API
+version: v1.0
+protocols: [ HTTP, HTTPS ]
+baseUri: http://github.com/folio-org/mod-organizations-storage
+
+documentation:
+  - title: Audit outbox API
+    content: This API is intended for internal use only by the Timer interface
+
+types:
+  outbox-event-log: !include acq-models/mod-orgs/schemas/outbox_event_log.json
+  organization-audit-event: !include acq-models/mod-orgs/schemas/organization_audit_event.json
+  event-topic: !include acq-models/mod-orgs/schemas/event_topic.json
+
+/organizations-storage/audit-outbox:
+  /process:
+    post:
+      description: Read audit events from DB and send them to Kafka
