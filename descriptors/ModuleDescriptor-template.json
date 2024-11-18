@@ -417,7 +417,7 @@
     },
     {
       "id": "organizations-storage.integration_details",
-      "version": "1.1",
+      "version": "1.0",
       "handlers": [
         {
           "methods": ["GET"],
