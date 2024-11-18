@@ -1,44 +1,83 @@
 package org.folio.service;
 
+import static org.folio.dao.DbUtils.getPgClient;
+import static org.folio.rest.utils.ResponseUtils.buildBadRequestResponse;
+import static org.folio.rest.utils.ResponseUtils.buildErrorResponse;
+import static org.folio.rest.utils.ResponseUtils.buildNoContentResponse;
+import static org.folio.rest.utils.ResponseUtils.buildResponseWithLocation;
+import static org.folio.rest.utils.RestConstants.OKAPI_URL;
+import static org.folio.rest.utils.RestConstants.ORGANIZATION_PREFIX;
+
 import io.vertx.core.AsyncResult;
+import io.vertx.core.Context;
 import io.vertx.core.Handler;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.folio.persist.CriterionBuilder;
-import org.folio.rest.persist.Criteria.Criterion;
-import org.folio.rest.persist.PostgresClient;
-import org.folio.util.DbUtils;
-import org.folio.util.ResponseUtils;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
+import org.apache.commons.lang3.StringUtils;
+import org.folio.dao.organization.OrganizationDAO;
+import org.folio.rest.jaxrs.model.Organization;
+import org.folio.rest.jaxrs.model.OrganizationAuditEvent;
+import org.folio.service.audit.AuditOutboxService;
 
 import javax.ws.rs.core.Response;
+import java.util.Map;
 
+@Log4j2
+@RequiredArgsConstructor
 public class OrganizationService {
-  private final Logger logger = LogManager.getLogger(OrganizationService.class);
 
-  private static final String ORGANIZATION_TABLE = "organizations";
-  private static final String BANKING_INFORMATION_TABLE = "banking_information";
+  private final OrganizationDAO organizationDAO;
+  private final AuditOutboxService auditOutboxService;
 
-  private final PostgresClient pgClient;
-
-  public OrganizationService(PostgresClient pgClient) {
-    this.pgClient = pgClient;
+  public void createOrganization(Organization organization, Map<String, String> headers,
+                                 Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+    log.info("createOrganization:: Creating a new organization by id: {}", organization.getId());
+    getPgClient(vertxContext, headers)
+      .withTrans(conn -> organizationDAO.createOrganization(organization, conn)
+        .compose(id -> auditOutboxService.saveOrganizationOutboxLog(conn, organization, OrganizationAuditEvent.Action.CREATE, headers)))
+      .onSuccess(s -> {
+        log.info("createOrganization:: Successfully created a new organization by id: {}", organization.getId());
+        auditOutboxService.processOutboxEventLogs(headers, vertxContext);
+        var endpoint = ORGANIZATION_PREFIX.getValue() + "/" + organization.getId();
+        asyncResultHandler.handle(buildResponseWithLocation(headers.get(OKAPI_URL.getValue()), endpoint, organization));
+      })
+      .onFailure(f -> {
+        log.error("Error occurred while creating a new organization with id: {}", organization.getId(), f);
+        asyncResultHandler.handle(buildErrorResponse(f));
+      });
   }
 
-  public void deleteOrganizationById(String id, Handler<AsyncResult<Response>> asyncResultHandler) {
-    Criterion criterion = new CriterionBuilder().with("organizationId", id).build();
-    pgClient.withTrans(conn ->
-      conn.delete(BANKING_INFORMATION_TABLE, criterion)
-        .compose(res -> {
-          logger.info("deleteOrganizationById:: deleted {} records from table {}", res.rowCount(), BANKING_INFORMATION_TABLE);
-          return conn.delete(ORGANIZATION_TABLE, id)
-            .compose(DbUtils::failOnNoUpdateOrDelete);
-        })
-    ).onSuccess(rowSet -> {
-      logger.info("deleteOrganizationById:: organization '{}' and associated data were successfully deleted", id);
-      asyncResultHandler.handle(ResponseUtils.buildNoContentResponse());
-    }).onFailure(throwable -> {
-      logger.error("Failed to delete organization '{}' or associated data", id, throwable);
-      asyncResultHandler.handle(ResponseUtils.buildErrorResponse(throwable));
-    });
+  public void updateOrganization(String id, Organization organization, Map<String, String> headers,
+                                 Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+    log.info("updateOrganization:: Updating organization with id: {}", id);
+    if (StringUtils.isBlank(id)) {
+      asyncResultHandler.handle(buildBadRequestResponse("Organization id is required"));
+    }
+    getPgClient(vertxContext, headers)
+      .withTrans(conn -> organizationDAO.updateOrganization(id, organization, conn)
+        .compose(organizationId -> auditOutboxService.saveOrganizationOutboxLog(conn, organization, OrganizationAuditEvent.Action.EDIT, headers)))
+      .onSuccess(s -> {
+        log.info("updateOrganization:: Successfully updated organization with id: {}", id);
+        auditOutboxService.processOutboxEventLogs(headers, vertxContext);
+        asyncResultHandler.handle(buildNoContentResponse());
+      })
+      .onFailure(f -> {
+        log.error("Error occurred while updating organization with id: {}", id, f);
+        asyncResultHandler.handle(buildErrorResponse(f));
+      });
+  }
+
+  public void deleteOrganization(String id, Map<String, String> headers,
+                                 Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+    getPgClient(vertxContext, headers)
+      .withTrans(conn -> organizationDAO.deleteOrganization(id, conn))
+      .onSuccess(rowSet -> {
+        log.info("deleteOrganization:: Organization with id: '{}' and associated data were successfully deleted", id);
+        asyncResultHandler.handle(buildNoContentResponse());
+      }).onFailure(throwable -> {
+        log.error("Failed to delete organization with id:  '{}' or associated data", id, throwable);
+        asyncResultHandler.handle(buildErrorResponse(throwable));
+      });
   }
 }

@@ -14,16 +14,19 @@ import org.folio.rest.persist.PgUtil;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Context;
 import io.vertx.core.Handler;
-import org.folio.rest.persist.PostgresClient;
 import org.folio.service.OrganizationService;
+import org.folio.spring.SpringContextUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class OrganizationsAPI implements OrganizationsStorageOrganizations {
+
   private static final String ORGANIZATION_TABLE = "organizations";
 
-  private final OrganizationService organizationService;
+  @Autowired
+  private OrganizationService organizationService;
 
-  public OrganizationsAPI(Vertx vertx, String tenantId) {
-    this.organizationService = new OrganizationService(PostgresClient.getInstance(vertx, tenantId));
+  public OrganizationsAPI() {
+    SpringContextUtil.autowireDependencies(this, Vertx.currentContext());
   }
 
   @Override
@@ -38,8 +41,7 @@ public class OrganizationsAPI implements OrganizationsStorageOrganizations {
   @Validate
   public void postOrganizationsStorageOrganizations(Organization entity, Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.post(ORGANIZATION_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationsStorageOrganizationsResponse.class,
-        asyncResultHandler);
+    organizationService.createOrganization(entity, okapiHeaders, asyncResultHandler, vertxContext);
   }
 
   @Override
@@ -54,14 +56,13 @@ public class OrganizationsAPI implements OrganizationsStorageOrganizations {
   @Validate
   public void deleteOrganizationsStorageOrganizationsById(String id, Map<String, String> okapiHeaders,
       Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    organizationService.deleteOrganizationById(id, asyncResultHandler);
+    organizationService.deleteOrganization(id, okapiHeaders, asyncResultHandler, vertxContext);
   }
 
   @Override
   @Validate
   public void putOrganizationsStorageOrganizationsById(String id, Organization entity,
       Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
-    PgUtil.put(ORGANIZATION_TABLE, entity, id, okapiHeaders, vertxContext, PutOrganizationsStorageOrganizationsByIdResponse.class,
-        asyncResultHandler);
+    organizationService.updateOrganization(id, entity, okapiHeaders, asyncResultHandler, vertxContext);
   }
 }
