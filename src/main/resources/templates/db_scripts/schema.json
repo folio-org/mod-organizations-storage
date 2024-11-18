@@ -263,8 +263,8 @@
         {
           "fieldName": "vendorId",
           "targetTable": "organizations",
-          "tableAlias": "organizations",
-          "targetTableAlias": "integrationDetails"
+          "targetTableAlias": "organizations",
+          "tableAlias": "integrationDetails"
         }
       ]
     }
