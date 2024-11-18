@@ -251,18 +251,20 @@
       "fromModuleVersion": "mod-organizations-storage-4.9.0",
       "withOptimisticLocking": "failOnConflict",
       "withMetadata": true,
-      "fullTextIndex": [
+      "ginIndex": [
         {
           "fieldName": "configName",
-          "tOps": "ADD"
+          "tOps": "ADD",
+          "caseSensitive": true,
+          "removeAccents": true
         }
       ],
       "foreignKeys": [
         {
           "fieldName": "vendorId",
           "targetTable": "organizations",
-          "tableAlias": "bankingInformation",
-          "targetTableAlias": "organizations"
+          "tableAlias": "organizations",
+          "targetTableAlias": "integrationDetails"
         }
       ]
     }
