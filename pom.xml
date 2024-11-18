@@ -17,7 +17,7 @@
     <http.port>8081</http.port>
     <jsonschema_paths>acq-models/mod-orgs/schemas,raml-util/schemas,acq-models/common/schemas</jsonschema_paths>
     <ramlfiles_path>${basedir}/ramls</ramlfiles_path>
-    <ramlfiles_util_path>${basedir}/raml-util</ramlfiles_util_path>
+    <ramlfiles_util_path>${ramlfiles_path}/raml-util</ramlfiles_util_path>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!--Dependency Properties-->
@@ -53,7 +53,6 @@
 
     <argLine />
   </properties>
-
 
   <repositories>
     <repository>
@@ -229,6 +228,10 @@
             <goals>
               <goal>java</goal>
             </goals>
+            <configuration>
+              <schemaPaths>${jsonschema_paths}</schemaPaths>
+              <ramlDirs>${ramlfiles_path}</ramlDirs>
+            </configuration>
           </execution>
         </executions>
       </plugin>
