@@ -2,6 +2,7 @@ package org.folio.rest.impl;
 
 import static io.restassured.RestAssured.given;
 import static org.folio.rest.RestVerticle.OKAPI_HEADER_TENANT;
+import static org.folio.rest.impl.StorageTestSuite.initSpringContext;
 import static org.folio.rest.impl.StorageTestSuite.storageUrl;
 import static org.folio.rest.utils.TenantApiTestUtil.USER_ID_HEADER;
 import static org.hamcrest.Matchers.equalTo;
@@ -17,6 +18,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
 import org.apache.commons.io.IOUtils;
+import org.folio.config.ApplicationConfig;
 import org.folio.rest.persist.PgUtil;
 import org.folio.rest.persist.PostgresClient;
 import org.folio.rest.utils.TestEntities;
@@ -57,6 +59,7 @@ public abstract class TestBase {
         StorageTestSuite.getVertx().getOrCreateContext(),
         Map.of(TENANT_HEADER.getName(), TENANT_HEADER.getValue()));
 
+    initSpringContext(ApplicationConfig.class);
   }
 
   @AfterAll
