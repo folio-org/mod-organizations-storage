@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.net.MalformedURLException;
 import java.util.Map;
-import java.util.Objects;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,13 +26,6 @@ class EntitiesCrudTest extends TestBase {
   void testPositiveCases(TestEntities testEntity) throws MalformedURLException {
     String sampleId = null;
     try {
-      if (testEntity.isReferenceData() && Objects.nonNull(testEntity.getReferenceEndpoint()) && Objects.nonNull(testEntity.getReferenceSampleData())) {
-        logger.info(String.format("--- mod-organizations-storage %s test: Creating reference data ... ", testEntity.name()));
-        String referenceData = getFile(String.format("data/%s", testEntity.getReferenceSampleData()));
-        Response response = postData(testEntity.getReferenceEndpoint(), referenceData);
-        String referenceSampleId = response.then().extract().path("id");
-        logger.info(String.format("--- mod-organizations-storage %s test: Created reference data with ID: %s ", testEntity.name(), referenceSampleId));
-      }
 
       logger.info(String.format("--- mod-organizations-storage %s test: Verifying database's initial state ... ", testEntity.name()));
       verifyCollectionQuantity(testEntity.getEndpoint(), 0);
