@@ -4,7 +4,6 @@ import org.folio.rest.jaxrs.model.Address;
 import org.folio.rest.jaxrs.model.Category;
 import org.folio.rest.jaxrs.model.Contact;
 import org.folio.rest.jaxrs.model.Email;
-import org.folio.rest.jaxrs.model.IntegrationDetail;
 import org.folio.rest.jaxrs.model.Interface;
 import org.folio.rest.jaxrs.model.Organization;
 import org.folio.rest.jaxrs.model.OrganizationType;
@@ -21,8 +20,8 @@ public enum TestEntities {
   ORGANIZATION("/organizations-storage/organizations", Organization.class, "organization.sample", "code", "ABC123", 16, false),
   ORGANIZATION_TYPE("/organizations-storage/organization-types", OrganizationType.class, "organization_type.sample", "status", "Inactive", 4, true),
   PHONE_NUMBER("/organizations-storage/phone-numbers", PhoneNumber.class, "phoneNumber.sample", "phoneNumber", "9999999999", 0, false),
-  URL("/organizations-storage/urls", Url.class, "url.sample", "value", "http://test.org", 0, false),
-  INTEGRATION_DETAILS("/organizations-storage/integration-details", IntegrationDetail.class, "integration_detail.sample", "configName", "Sample EDI Config - Updated", 0, true, "/organizations-storage/organizations", "integration_details/organization_gobi.sample");
+  URL("/organizations-storage/urls", Url.class, "url.sample", "value", "http://test.org", 0, false);
+
 
   TestEntities(String endpoint, Class<?> clazz, String sampleFileName, String updatedFieldName, String updatedFieldValue, int initialQuantity, boolean isReferenceData) {
     this.endpoint = endpoint;
@@ -32,19 +31,6 @@ public enum TestEntities {
     this.updatedFieldValue = updatedFieldValue;
     this.initialQuantity = initialQuantity;
     this.isReferenceData = isReferenceData;
-    this.referenceEndpoint = null;
-    this.getReferenceSampleData = null;
-  }
-  TestEntities(String endpoint, Class<?> clazz, String sampleFileName, String updatedFieldName, String updatedFieldValue, int initialQuantity, boolean isReferenceData, String referenceEndpoint, String referenceSampleData) {
-    this.endpoint = endpoint;
-    this.clazz = clazz;
-    this.sampleFileName = sampleFileName;
-    this.updatedFieldName = updatedFieldName;
-    this.updatedFieldValue = updatedFieldValue;
-    this.initialQuantity = initialQuantity;
-    this.isReferenceData = isReferenceData;
-    this.referenceEndpoint = referenceEndpoint;
-    this.getReferenceSampleData = referenceSampleData;
   }
 
   private int initialQuantity;
@@ -53,8 +39,6 @@ public enum TestEntities {
   private String updatedFieldName;
   private Object updatedFieldValue;
   private boolean isReferenceData;
-  private String referenceEndpoint;
-  private String getReferenceSampleData;
   private Class<?> clazz;
 
   public String getEndpoint() {
@@ -87,13 +71,5 @@ public enum TestEntities {
 
   public boolean isReferenceData() {
     return isReferenceData;
-  }
-
-  public String getReferenceEndpoint() {
-    return referenceEndpoint;
-  }
-
-  public String getReferenceSampleData() {
-    return getReferenceSampleData;
   }
 }
