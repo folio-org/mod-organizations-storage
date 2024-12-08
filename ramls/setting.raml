@@ -1,7 +1,7 @@
 #%RAML 1.0
 title: "Settings"
 baseUri: https://github.com/folio-org/mod-organizations-storage
-version: v1.0
+version: v1.1
 
 documentation:
   - title: Settings
@@ -22,13 +22,13 @@ traits:
   validate: !include raml-util/traits/validation.raml
 
 resourceTypes:
-  collection-get: !include raml-util/rtypes/collection-get.raml
-  collection-item-get: !include raml-util/rtypes/item-collection-get.raml
+  collection: !include raml-util/rtypes/collection.raml
+  collection-item: !include raml-util/rtypes/item-collection.raml
 
 
 /organizations-storage/settings:
   type:
-    collection-get:
+    collection:
       exampleCollection: !include acq-models/common/examples/setting_collection.sample
       exampleItem: !include acq-models/common/examples/setting_post.sample
       schemaCollection: setting_collection
@@ -45,7 +45,7 @@ resourceTypes:
         description: The UUID of a setting
         type: UUID
     type:
-      collection-item-get:
+      collection-item:
         exampleItem: !include acq-models/common/examples/setting_get.sample
         schema: setting
     put:

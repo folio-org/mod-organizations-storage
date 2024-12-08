@@ -365,12 +365,17 @@
     },
     {
       "id": "organizations-storage.settings",
-      "version": "1.0",
+      "version": "1.1",
       "handlers": [
         {
           "methods": ["GET"],
           "pathPattern": "/organizations-storage/settings",
           "permissionsRequired": ["organizations-storage.settings.collection.get"]
+        },
+        {
+          "methods": ["POST"],
+          "pathPattern": "/organizations-storage/settings",
+          "permissionsRequired": ["organizations-storage.settings.item.post"]
         },
         {
           "methods": ["GET"],
@@ -381,6 +386,11 @@
           "methods": ["PUT"],
           "pathPattern": "/organizations-storage/settings/{id}",
           "permissionsRequired": ["organizations-storage.settings.item.put"]
+        },
+        {
+          "methods": ["DELETE"],
+          "pathPattern": "/organizations-storage/settings/{id}",
+          "permissionsRequired": ["organizations-storage.settings.item.delete"]
         }
       ]
     },
@@ -939,6 +949,11 @@
       "description" : "Get a collection of settings"
     },
     {
+      "permissionName" : "organizations-storage.settings.item.post",
+      "displayName" : "setting post",
+      "description" : "Create a setting"
+    },
+    {
       "permissionName" : "organizations-storage.settings.item.get",
       "displayName" : "setting get",
       "description" : "Fetch a setting"
@@ -949,13 +964,20 @@
       "description" : "Update a setting"
     },
     {
+      "permissionName" : "organizations-storage.settings.item.delete",
+      "displayName" : "setting delete",
+      "description" : "Delete a setting"
+    },
+    {
       "permissionName" : "organizations-storage.settings.all",
       "displayName" : "setting all",
       "description" : "All permissions for setting",
       "subPermissions" : [
         "organizations-storage.settings.collection.get",
+        "organizations-storage.settings.item.post",
         "organizations-storage.settings.item.get",
-        "organizations-storage.settings.item.put"
+        "organizations-storage.settings.item.put",
+        "organizations-storage.settings.item.delete"
       ]
     },
     {

@@ -14,7 +14,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import io.vertx.core.json.JsonObject;
+import io.vertx.core.json.Json;
 import io.vertx.junit5.VertxExtension;
 
 @ExtendWith(VertxExtension.class)
@@ -36,29 +36,42 @@ class OrganizationSettingsTest extends TestBase {
   void testOrganizationSettingEndpoints() throws MalformedURLException {
 
     Setting setting = assertGetCollection(SAMPLE_SETTING_VALUE_OLD);
+    String settingId = setting.getId();
 
-    int statusCode = getDataById(SETTINGS_ENDPOINT_WITH_ID, setting.getId()).getStatusCode();
+    int statusCode = getDataById(SETTINGS_ENDPOINT_WITH_ID, settingId).getStatusCode();
     assertEquals(200, statusCode);
 
     setting.setValue(SAMPLE_SETTING_VALUE_NEW);
-    putData(SETTINGS_ENDPOINT_WITH_ID, setting.getId(), JsonObject.mapFrom(setting).encodePrettily());
+    putData(SETTINGS_ENDPOINT_WITH_ID, settingId, Json.encode(setting));
 
+    assertGetCollection(SAMPLE_SETTING_VALUE_NEW);
+
+    deleteData(SETTINGS_ENDPOINT_WITH_ID, settingId);
+    assertEquals(0, getSettings().size());
+
+    postData(SETTINGS_ENDPOINT, Json.encode(setting));
     assertGetCollection(SAMPLE_SETTING_VALUE_NEW);
   }
 
   @NotNull
   private Setting assertGetCollection(String settingValue) throws MalformedURLException {
-    List<Setting> settings = getData(SETTINGS_ENDPOINT)
-      .then()
-      .log().ifValidationFails()
-      .statusCode(200).log().ifValidationFails()
-      .extract()
-      .body().as(SettingCollection.class).getSettings();
+    List<Setting> settings = getSettings();
     assertEquals(1, settings.size());
     Setting setting = settings.get(0);
     assertEquals(SAMPLE_SETTING_KEY, setting.getKey());
     assertEquals(settingValue, setting.getValue());
     return setting;
+  }
+
+  private List<Setting> getSettings() throws MalformedURLException {
+    return getData(SETTINGS_ENDPOINT)
+      .then()
+      .log()
+      .ifValidationFails()
+      .statusCode(200)
+      .extract()
+      .as(SettingCollection.class)
+      .getSettings();
   }
 
 }
