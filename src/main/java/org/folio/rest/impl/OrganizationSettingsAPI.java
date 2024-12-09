@@ -33,12 +33,32 @@ public class OrganizationSettingsAPI implements OrganizationsStorageSettings {
 
   @Override
   @Validate
+  public void postOrganizationsStorageSettings(Setting entity,
+                                               Map<String, String> okapiHeaders,
+                                               Handler<AsyncResult<Response>> asyncResultHandler,
+                                               Context vertxContext) {
+    PgUtil.post(SETTINGS_TABLE, entity, okapiHeaders, vertxContext, PostOrganizationsStorageSettingsResponse.class,
+      asyncResultHandler);
+  }
+
+  @Override
+  @Validate
   public void getOrganizationsStorageSettingsById(String id,
                                                   Map<String, String> okapiHeaders,
                                                   Handler<AsyncResult<Response>> asyncResultHandler,
                                                   Context vertxContext) {
     PgUtil.getById(SETTINGS_TABLE, Setting.class, id, okapiHeaders, vertxContext,
       GetOrganizationsStorageSettingsByIdResponse.class, asyncResultHandler);
+  }
+
+  @Override
+  @Validate
+  public void deleteOrganizationsStorageSettingsById(String id,
+                                                     Map<String, String> okapiHeaders,
+                                                     Handler<AsyncResult<Response>> asyncResultHandler,
+                                                     Context vertxContext) {
+    PgUtil.deleteById(SETTINGS_TABLE, id, okapiHeaders, vertxContext,
+      DeleteOrganizationsStorageSettingsByIdResponse.class, asyncResultHandler);
   }
 
   @Override
