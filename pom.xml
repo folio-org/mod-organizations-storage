@@ -25,7 +25,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!--Dependency Properties-->
-    <raml-module-builder.version>35.3.0</raml-module-builder.version>
+    <raml-module-builder.version>35.4.0-SNAPSHOT</raml-module-builder.version>
     <spring.version>6.2.3</spring.version>
     <vertx.version>4.5.13</vertx.version>
     <log4j.version>2.24.1</log4j.version>
