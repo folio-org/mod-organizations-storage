@@ -52,7 +52,7 @@
 
     <!--Test Scope dependencies-->
     <junit.jupiter.version>5.11.2</junit.jupiter.version>
-    <rest-assured.version>5.5.0</rest-assured.version>
+    <rest-assured.version>5.5.1</rest-assured.version>
 
     <argLine />
   </properties>
