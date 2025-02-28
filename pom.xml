@@ -25,18 +25,18 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!--Dependency Properties-->
-    <raml-module-builder.version>35.4.0-SNAPSHOT</raml-module-builder.version>
+    <raml-module-builder.version>35.4.0</raml-module-builder.version>
     <spring.version>6.2.3</spring.version>
     <vertx.version>4.5.13</vertx.version>
-    <log4j.version>2.24.1</log4j.version>
+    <log4j.version>2.24.3</log4j.version>
     <aspectj.version>1.9.22.1</aspectj.version>
-    <jackson-bom.version>2.18.0</jackson-bom.version>
+    <jackson-bom.version>2.18.2</jackson-bom.version>
     <kafkaclients.version>3.6.1</kafkaclients.version>
 
     <!--Folio dependencies properties-->
     <folio-module-descriptor-validator.version>1.0.0</folio-module-descriptor-validator.version>
     <folio-kafka-wrapper.version>3.2.0</folio-kafka-wrapper.version>
-    <folio-di-support.version>2.2.0</folio-di-support.version>
+    <folio-di-support.version>3.0.0</folio-di-support.version>
 
     <!--Maven plugin properties-->
     <aspectj-maven-plugin.version>1.14</aspectj-maven-plugin.version>
@@ -51,7 +51,7 @@
     <copy-rename-maven-plugin.version>1.0.1</copy-rename-maven-plugin.version>
 
     <!--Test Scope dependencies-->
-    <junit.jupiter.version>5.11.2</junit.jupiter.version>
+    <junit.jupiter.version>5.12.0</junit.jupiter.version>
     <rest-assured.version>5.5.1</rest-assured.version>
 
     <argLine />
