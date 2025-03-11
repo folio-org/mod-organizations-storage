@@ -12,7 +12,7 @@ The primary focus of the release was to implement kafka events and update librar
 
 ### Dependencies
 * Bump `raml` from `35.3.0` to `35.4.0`
-* Added `java` from `17` to `21`
+* Bump `java` from `17` to `21`
 
 
 ## 4.8.0 - Released (Ramson R2 2024)
