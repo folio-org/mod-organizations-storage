@@ -11,8 +11,8 @@ The primary focus of the release was to implement kafka events and update librar
 * [FOLIO-4200] (https://folio-org.atlassian.net/browse/FOLIO-4200) - Update to mod-organizations-storage Java 21
 
 ### Dependencies
-* Bump `raml` from `35.3.0` to `35.4.0`
 * Bump `java` from `17` to `21`
+* Bump `raml` from `35.3.0` to `35.4.0`
 
 
 ## 4.8.0 - Released (Ramson R2 2024)
