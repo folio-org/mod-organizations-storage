@@ -1,4 +1,19 @@
-## 4.9.0 - Unreleased
+## 5.0.0 - Unreleased
+
+## 4.9.0 - Released (Sunflower R1 2025)
+The primary focus of the release was to implement kafka events and update libraries of dependent acquisition modules.
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v4.8.0...v4.9.0)
+
+### Stories
+* [MODORGSTOR-164] (https://folio-org.atlassian.net/browse/MODORGSTOR-164) - Implement audit outbox pattern for sending kafka events about organization updates
+* [MODORGSTOR-173] (https://folio-org.atlassian.net/browse/MODORGSTOR-173) - Add POST and DELETE methods to /organizations-storage/settings API
+* [FOLIO-4200] (https://folio-org.atlassian.net/browse/FOLIO-4200) - Update to mod-organizations-storage Java 21
+
+### Dependencies
+* Bump `raml` from `35.3.0` to `35.4.0`
+* Added `java` from `17` to `21`
+
 
 ## 4.8.0 - Released (Ramson R2 2024)
 The primary focus of this release was to improve the banking feature and update libraries of dependent acq modules
