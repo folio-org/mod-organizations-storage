@@ -37,7 +37,7 @@
       "fromModuleVersion": "mod-organizations-storage-4.9.0"
     },
     {
-      "run": "before",
+      "run": "after",
       "snippetPath": "migration/uuid_categories.ftl",
       "fromModuleVersion": "mod-organizations-storage-5.0.0"
     }
