@@ -45,8 +45,7 @@
   "tables": [
     {
       "tableName": "addresses",
-      "fromModuleVersion": "mod-organizations-storage-2.0.0",
-      "withMetadata": true
+      "mode": "delete"
     },
     {
       "tableName": "categories",
@@ -68,8 +67,7 @@
     },
     {
       "tableName": "emails",
-      "fromModuleVersion": "mod-organizations-storage-2.0.0",
-      "withMetadata": true
+      "mode": "delete"
     },
     {
       "tableName": "interfaces",
@@ -88,13 +86,11 @@
     },
     {
       "tableName": "phone_numbers",
-      "fromModuleVersion": "mod-organizations-storage-2.0.0",
-      "withMetadata": true
+      "mode": "delete"
     },
     {
       "tableName": "urls",
-      "fromModuleVersion": "mod-organizations-storage-2.0.0",
-      "withMetadata": true
+      "mode": "delete"
     },
     {
       "tableName": "organizations",
