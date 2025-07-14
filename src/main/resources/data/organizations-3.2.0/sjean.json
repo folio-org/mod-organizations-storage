@@ -5,6 +5,7 @@
   "description": "Individual donor to library archives",
   "exportToAccounting": false,
   "isVendor": true,
+  "isDonor": true,
   "status": "Active",
   "language": "en-us",
   "sanCode": "",
