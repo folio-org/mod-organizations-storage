@@ -1,0 +1,64 @@
+{
+  "id": "7df72a2b-cdc7-419f-80ff-7f6ab349fd34",
+  "edi": {
+    "ediFtp": {
+      "ftpMode": "ASCII",
+      "ftpFormat": "SFTP",
+      "ftpConnMode": "Active"
+    },
+    "libEdiType": "31B/US-SAN",
+    "vendorEdiType": "31B/US-SAN"
+  },
+  "code": "JAS",
+  "name": "James, Ada",
+  "urls": [],
+  "emails": [],
+  "status": "Active",
+  "aliases": [],
+  "isDonor": true,
+  "accounts": [
+    {
+      "name": "Research Fund",
+      "accountNo": "RF982365",
+      "acqUnitIds": [],
+      "accountStatus": "Active"
+    }
+  ],
+  "contacts": [],
+  "isVendor": false,
+  "metadata": {
+    "createdDate": "2025-07-18T11:28:50.782Z",
+    "updatedDate": "2025-07-18T11:39:22.585Z",
+    "createdByUserId": "ea703e33-d9eb-4ab0-bff0-3eb7e18ac4a8",
+    "updatedByUserId": "ea703e33-d9eb-4ab0-bff0-3eb7e18ac4a8"
+  },
+  "addresses": [
+    {
+      "isPrimary": true,
+      "categories": [],
+      "addressLine1": "1234 Pine Avenue",
+      "addressLine2": "Floor 5",
+      "city": "Portland",
+      "stateRegion": "OR",
+      "zipCode": "97201",
+      "country": "USA"
+    }
+  ],
+  "acqUnitIds": [],
+  "agreements": [],
+  "changelogs": [],
+  "interfaces": [],
+  "phoneNumbers": [],
+  "vendorCurrencies": [
+    "USD",
+    "CAD"
+  ],
+  "organizationTypes": [],
+  "exportToAccounting": false,
+  "privilegedContacts": [
+    "b1b56c53-23a6-46f9-af2d-80921efcf84f"
+  ],
+  "paymentMethod": "Bank Transfer",
+  "discountPercent": 8.75
+}
+

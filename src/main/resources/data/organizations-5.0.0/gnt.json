@@ -1,0 +1,70 @@
+{
+  "id": "c428b467-7cec-45e1-8f8a-9a46d00181ff",
+  "edi": {
+    "ediFtp": {
+      "ftpMode": "ASCII",
+      "ftpFormat": "SFTP",
+      "ftpConnMode": "Active"
+    },
+    "libEdiType": "31B/US-SAN",
+    "vendorEdiType": "31B/US-SAN"
+  },
+  "code": "GNT",
+  "name": "Gnome Technologies",
+  "urls": [],
+  "emails": [],
+  "status": "Active",
+  "aliases": [],
+  "isDonor": false,
+  "accounts": [
+    {
+      "name": "Tech Solutions",
+      "accountNo": "TS951753",
+      "acqUnitIds": [],
+      "accountStatus": "Active"
+    },
+    {
+      "name": "Research Division",
+      "accountNo": "RD357159",
+      "acqUnitIds": [],
+      "accountStatus": "Active"
+    }
+  ],
+  "contacts": [],
+  "isVendor": true,
+  "metadata": {
+    "createdDate": "2025-07-18T11:18:42.399Z",
+    "updatedDate": "2025-07-18T11:40:02.979Z",
+    "createdByUserId": "ea703e33-d9eb-4ab0-bff0-3eb7e18ac4a8",
+    "updatedByUserId": "ea703e33-d9eb-4ab0-bff0-3eb7e18ac4a8"
+  },
+  "addresses": [
+    {
+      "isPrimary": true,
+      "categories": [],
+      "addressLine1": "987 Innovation Park",
+      "addressLine2": "Building C",
+      "city": "San Jose",
+      "stateRegion": "CA",
+      "zipCode": "95110",
+      "country": "USA"
+    }
+  ],
+  "acqUnitIds": [],
+  "agreements": [],
+  "changelogs": [],
+  "interfaces": [],
+  "phoneNumbers": [],
+  "paymentMethod": "ACH Transfer",
+  "discountPercent": 22.5,
+  "claimingInterval": 45,
+  "vendorCurrencies": [
+    "USD",
+    "EUR",
+    "JPY",
+    "GBP"
+  ],
+  "organizationTypes": [],
+  "exportToAccounting": false,
+  "privilegedContacts": []
+}

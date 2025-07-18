@@ -1,0 +1,43 @@
+{
+  "id": "f2b56c53-23a6-46f9-af2d-80921efcf85e",
+  "urls": [],
+  "emails": [
+    {
+      "value": "sarah.wilson@lopez-foundation.org",
+      "description": "Primary Email",
+      "isPrimary": true,
+      "categories": []
+    }
+  ],
+  "_version": 1,
+  "inactive": false,
+  "lastName": "Wilson",
+  "metadata": {
+    "createdDate": "2025-07-18T11:27:25.189Z",
+    "updatedDate": "2025-07-18T11:27:25.189Z",
+    "createdByUserId": "ea703e33-d9eb-4ab0-bff0-3eb7e18ac4a8",
+    "updatedByUserId": "ea703e33-d9eb-4ab0-bff0-3eb7e18ac4a8"
+  },
+  "addresses": [
+    {
+      "isPrimary": true,
+      "categories": [],
+      "addressLine1": "543 Elm Street",
+      "addressLine2": "Apt 7B",
+      "city": "Seattle",
+      "stateRegion": "WA",
+      "zipCode": "98101",
+      "country": "USA"
+    }
+  ],
+  "firstName": "Sarah",
+  "categories": [],
+  "phoneNumbers": [
+    {
+      "phoneNumber": "+1 (206) 555-0123",
+      "categories": [],
+      "isPrimary": true,
+      "language": "eng"
+    }
+  ]
+}
