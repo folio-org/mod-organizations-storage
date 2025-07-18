@@ -1,0 +1,62 @@
+{
+  "id": "edafbc2c-60fc-4633-ba4b-81d36ed65a78",
+  "edi": {
+    "ediFtp": {
+      "ftpMode": "ASCII",
+      "ftpFormat": "SFTP",
+      "ftpConnMode": "Active"
+    },
+    "libEdiType": "31B/US-SAN",
+    "vendorEdiType": "31B/US-SAN"
+  },
+  "code": "LOP",
+  "name": "Lopez, Cheryl",
+  "urls": [],
+  "emails": [],
+  "status": "Active",
+  "aliases": [],
+  "isDonor": true,
+  "accounts": [
+    {
+      "name": "Donation Fund",
+      "accountNo": "DF456123",
+      "acqUnitIds": [],
+      "accountStatus": "Active"
+    }
+  ],
+  "contacts": [],
+  "isVendor": false,
+  "metadata": {
+    "createdDate": "2025-07-18T11:29:52.185Z",
+    "updatedDate": "2025-07-18T11:39:14.148Z",
+    "createdByUserId": "ea703e33-d9eb-4ab0-bff0-3eb7e18ac4a8",
+    "updatedByUserId": "ea703e33-d9eb-4ab0-bff0-3eb7e18ac4a8"
+  },
+  "addresses": [
+    {
+      "isPrimary": true,
+      "categories": [],
+      "addressLine1": "543 Elm Street",
+      "addressLine2": "Apt 7B",
+      "city": "Seattle",
+      "stateRegion": "WA",
+      "zipCode": "98101",
+      "country": "USA"
+    }
+  ],
+  "acqUnitIds": [],
+  "agreements": [],
+  "changelogs": [],
+  "interfaces": [],
+  "phoneNumbers": [],
+  "vendorCurrencies": [
+    "USD"
+  ],
+  "organizationTypes": [],
+  "exportToAccounting": false,
+  "privilegedContacts": [
+    "f2b56c53-23a6-46f9-af2d-80921efcf85e"
+  ],
+  "paymentMethod": "Wire Transfer",
+  "discountPercent": 5.75
+}

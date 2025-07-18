@@ -1,0 +1,68 @@
+{
+  "id": "9304bb1e-cbfb-4db8-a1ca-2c16079f0a3d",
+  "edi": {
+    "ediFtp": {
+      "ftpMode": "ASCII",
+      "ftpFormat": "SFTP",
+      "ftpConnMode": "Active"
+    },
+    "libEdiType": "31B/US-SAN",
+    "vendorEdiType": "31B/US-SAN"
+  },
+  "code": "SLM",
+  "name": "Soulman",
+  "urls": [],
+  "emails": [],
+  "status": "Active",
+  "aliases": [],
+  "isDonor": false,
+  "accounts": [
+    {
+      "name": "Corporate Account",
+      "accountNo": "AC789456",
+      "acqUnitIds": [],
+      "accountStatus": "Active"
+    },
+    {
+      "name": "Purchase Account",
+      "accountNo": "PA123654",
+      "acqUnitIds": [],
+      "accountStatus": "Pending"
+    }
+  ],
+  "contacts": [],
+  "isVendor": true,
+  "metadata": {
+    "createdDate": "2025-07-18T11:16:58.473Z",
+    "updatedDate": "2025-07-18T11:38:51.228Z",
+    "createdByUserId": "ea703e33-d9eb-4ab0-bff0-3eb7e18ac4a8",
+    "updatedByUserId": "ea703e33-d9eb-4ab0-bff0-3eb7e18ac4a8"
+  },
+  "addresses": [
+    {
+      "isPrimary": true,
+      "categories": [],
+      "addressLine1": "742 Maple Street",
+      "addressLine2": "Suite 300",
+      "city": "Austin",
+      "stateRegion": "TX",
+      "zipCode": "78701",
+      "country": "USA"
+    }
+  ],
+  "acqUnitIds": [],
+  "agreements": [],
+  "changelogs": [],
+  "interfaces": [],
+  "phoneNumbers": [],
+  "paymentMethod": "Credit Card",
+  "discountPercent": 10,
+  "vendorCurrencies": [
+    "USD",
+    "EUR",
+    "GBP"
+  ],
+  "organizationTypes": [],
+  "exportToAccounting": false,
+  "privilegedContacts": []
+}

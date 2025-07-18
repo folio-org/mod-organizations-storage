@@ -1,0 +1,57 @@
+{
+  "id": "b1b56c53-23a6-46f9-af2d-80921efcf84f",
+  "urls": [
+    {
+      "value": "https://james-foundation.org/staff/mcmillan",
+      "description": "Staff Profile",
+      "language": "eng",
+      "categories": [],
+      "isPrimary": true
+    }
+  ],
+  "emails": [
+    {
+      "value": "mina.mcmillan@james-foundation.org",
+      "description": "Work Email",
+      "isPrimary": true,
+      "categories": []
+    }
+  ],
+  "_version": 1,
+  "inactive": false,
+  "lastName": "Mcmillan",
+  "metadata": {
+    "createdDate": "2025-07-18T11:27:25.189Z",
+    "updatedDate": "2025-07-18T11:27:25.189Z",
+    "createdByUserId": "ea703e33-d9eb-4ab0-bff0-3eb7e18ac4a8",
+    "updatedByUserId": "ea703e33-d9eb-4ab0-bff0-3eb7e18ac4a8"
+  },
+  "addresses": [
+    {
+      "isPrimary": true,
+      "categories": [],
+      "addressLine1": "1234 Pine Avenue",
+      "addressLine2": "Floor 5",
+      "city": "Portland",
+      "stateRegion": "OR",
+      "zipCode": "97201",
+      "country": "USA"
+    }
+  ],
+  "firstName": "Mina",
+  "categories": [],
+  "phoneNumbers": [
+    {
+      "phoneNumber": "+1 (503) 555-0192",
+      "categories": [],
+      "isPrimary": true,
+      "language": "eng"
+    },
+    {
+      "phoneNumber": "+1 (503) 555-0193",
+      "categories": [],
+      "isPrimary": false,
+      "language": "eng"
+    }
+  ]
+}

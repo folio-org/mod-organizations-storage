@@ -40,6 +40,7 @@ import io.vertx.core.json.JsonObject;
 
 @RunWith(JUnitPlatform.class)
 public class StorageTestSuite {
+
   private static final Logger logger = LogManager.getLogger(StorageTestSuite.class);
 
   private static Vertx vertx;
@@ -86,17 +87,14 @@ public class StorageTestSuite {
 
   @BeforeAll
   public static void before() throws InterruptedException, ExecutionException, TimeoutException {
-
     // tests expect English error messages only, no Danish/German/...
     Locale.setDefault(Locale.US);
     vertx = Vertx.vertx();
 
     logger.info("Start container database");
-
     PostgresClient.setPostgresTester(new PostgresTesterContainer());
 
     DeploymentOptions options = new DeploymentOptions();
-
     options.setConfig(new JsonObject().put("http.port", port).put(HttpClientMock2.MOCK_MODE, "true"));
     startVerticle(options);
 
@@ -126,11 +124,9 @@ public class StorageTestSuite {
 
   private static void startVerticle(DeploymentOptions options)
     throws InterruptedException, ExecutionException, TimeoutException {
-
     logger.info("Start verticle");
 
     CompletableFuture<String> deploymentComplete = new CompletableFuture<>();
-
     vertx.deployVerticle(RestVerticle.class.getName(), options, res -> {
       if(res.succeeded()) {
         deploymentComplete.complete(res.result());

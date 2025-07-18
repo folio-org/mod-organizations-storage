@@ -18,6 +18,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.folio.config.ApplicationConfig;
 import org.folio.rest.persist.PgUtil;
 import org.folio.rest.persist.PostgresClient;
@@ -38,6 +40,8 @@ import io.vertx.core.json.JsonObject;
  * IDE during development.
  */
 public abstract class TestBase {
+
+  private final Logger logger = LogManager.getLogger(TestBase.class);
 
   static final String NON_EXISTED_ID = "bad500aa-aaaa-500a-aaaa-aaaaaaaaaaaa";
   private static final String TENANT_NAME = "diku";
@@ -70,13 +74,13 @@ public abstract class TestBase {
   }
 
   void verifyCollectionQuantity(String endpoint, int quantity, Header tenantHeader) {
+    logger.info("verifyCollectionQuantity:: Endpoint: {}, expected quantity: {}", endpoint, quantity);
     getData(endpoint, tenantHeader)
       .then()
       .log().all()
       .statusCode(200)
       .body("totalRecords", equalTo(quantity));
   }
-
 
   void verifyCollectionQuantity(String endpoint, int quantity) throws MalformedURLException {
     // Verify that there are no existing  records
@@ -103,14 +107,6 @@ public abstract class TestBase {
   Response getDataById(String endpoint, String id) throws MalformedURLException {
     return given()
       .pathParam("id", id)
-      .header(TENANT_HEADER)
-      .contentType(ContentType.JSON)
-      .get(storageUrl(endpoint));
-  }
-
-  Response getDataByParam(String endpoint, Map<String, Object> params) throws MalformedURLException {
-    return given()
-      .params(params)
       .header(TENANT_HEADER)
       .contentType(ContentType.JSON)
       .get(storageUrl(endpoint));
@@ -234,5 +230,4 @@ public abstract class TestBase {
         list ->
           list.isEmpty() ? Future.succeededFuture() : Future.failedFuture(failureMessage));
   }
-
 }
