@@ -56,7 +56,7 @@
   "interfaces": [],
   "phoneNumbers": [],
   "paymentMethod": "International Wire",
-  "discountPercent": 18.5,
+  "discountPercent": 0,
   "vendorCurrencies": [
     "EUR",
     "GBP",
