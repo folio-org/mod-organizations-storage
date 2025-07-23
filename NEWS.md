@@ -1,5 +1,14 @@
 ## 5.0.0 - Unreleased
 
+## 4.9.1 - Released (Sunflower R1 2025 Bug fix)
+The primary focus of the release was to implement migration script for populating missed fields for the Integration details.
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v4.9.0...v4.9.1)
+
+### Bug fixes
+* [MODORGSTOR-181] (https://folio-org.atlassian.net/browse/MODORGSTOR-181) - Migration script for organization integration type not executing properly
+
+
 ## 4.9.0 - Released (Sunflower R1 2025)
 The primary focus of the release was to implement kafka events and update libraries of dependent acquisition modules.
 
