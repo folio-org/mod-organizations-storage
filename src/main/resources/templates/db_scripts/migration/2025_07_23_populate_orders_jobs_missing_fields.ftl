@@ -1,3 +1,5 @@
+<#if mode.name() == "UPDATE">
+
 UPDATE ${myuniversity}_mod_configuration.config_data
 SET jsonb = jsonb_set(
       jsonb,
@@ -22,3 +24,5 @@ WHERE jsonb->>'module' = 'mod-data-export-spring' AND jsonb ? 'value'
   AND NOT (((jsonb->>'value')::jsonb->'exportTypeSpecificParameters'->'vendorEdiOrdersExportConfig') ? 'integrationType')
   AND NOT (((jsonb->>'value')::jsonb->'exportTypeSpecificParameters'->'vendorEdiOrdersExportConfig') ? 'transmissionMethod')
   AND NOT (((jsonb->>'value')::jsonb->'exportTypeSpecificParameters'->'vendorEdiOrdersExportConfig') ? 'fileFormat');
+
+</#if>
