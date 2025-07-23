@@ -58,9 +58,6 @@
   "paymentMethod": "International Wire",
   "discountPercent": 0,
   "vendorCurrencies": [
-    "EUR",
-    "GBP",
-    "CHF",
     "USD"
   ],
   "organizationTypes": [],
