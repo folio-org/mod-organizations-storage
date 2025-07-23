@@ -35,6 +35,11 @@
       "run": "after",
       "snippetPath": "tables/create_internal_lock_table.sql",
       "fromModuleVersion": "mod-organizations-storage-4.9.0"
+    },
+    {
+      "run": "after",
+      "snippetPath": "migration/2025_07_23_populate_orders_jobs_missing_fields.ftl",
+      "fromModuleVersion": "mod-organizations-storage-4.9.1"
     }
   ],
   "tables": [

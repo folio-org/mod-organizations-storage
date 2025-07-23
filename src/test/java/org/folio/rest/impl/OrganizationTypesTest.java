@@ -57,6 +57,8 @@ class OrganizationTypesTest extends TestBase {
             ORGANIZATIONS_TABLE,
             SAMPLE_ORGANIZATION_TYPE_ID,
             SAMPLE_ORGANIZATION_ID);
+
+    createTables("schemas/configuration_schema.sql");
   }
 
   @AfterAll

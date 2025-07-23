@@ -20,6 +20,7 @@ import org.folio.rest.jaxrs.model.TenantJob;
 import org.folio.rest.persist.PostgresClient;
 import org.folio.rest.utils.TenantApiTestUtil;
 import org.folio.rest.utils.TestEntities;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import io.restassured.http.Header;
@@ -37,6 +38,10 @@ class TenantSampleDataTest extends TestBase {
   private static final Header MIGRATION_TENANT_HEADER = new Header(OKAPI_HEADER_TENANT, "migration");
   private static TenantJob tenantJob;
 
+  @BeforeAll
+  static void beforeAll() {
+    createTables("schemas/configuration_schema.sql");
+  }
 
   @Test
   void sampleDataTests() throws MalformedURLException {
