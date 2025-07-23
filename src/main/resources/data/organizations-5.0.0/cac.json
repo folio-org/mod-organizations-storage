@@ -58,9 +58,7 @@
   "paymentMethod": "Electronic Transfer",
   "discountPercent": 0,
   "vendorCurrencies": [
-    "USD",
-    "EUR",
-    "JPY"
+    "USD"
   ],
   "organizationTypes": [],
   "exportToAccounting": false,
