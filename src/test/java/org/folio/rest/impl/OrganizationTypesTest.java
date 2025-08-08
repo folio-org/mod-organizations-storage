@@ -5,12 +5,13 @@ import static org.folio.rest.utils.TenantApiTestUtil.purge;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-import io.vertx.core.CompositeFuture;
 import io.vertx.core.json.Json;
 import io.vertx.junit5.VertxExtension;
 import io.vertx.junit5.VertxTestContext;
 import java.net.MalformedURLException;
+import java.util.List;
 import java.util.Set;
+import org.folio.okapi.common.GenericCompositeFuture;
 import org.folio.rest.jaxrs.model.Organization;
 import org.folio.rest.tools.utils.ModuleName;
 import org.folio.rest.utils.TestEntities;
@@ -121,9 +122,9 @@ class OrganizationTypesTest extends TestBase {
   @Test
   void testAdvisoryLockDeleteFirst(VertxTestContext context) {
     prepareTenant(TENANT_HEADER, true, true);
-    CompositeFuture.all(
+    GenericCompositeFuture.all(List.of(
             runSQLTx(deleteSQL, true, "delete_tx_failed"),
-            runSQLTx(updateSQL, false, "update_tx_failed"))
+            runSQLTx(updateSQL, false, "update_tx_failed")))
         .onComplete(
             context.failing(
                 t ->
@@ -135,9 +136,9 @@ class OrganizationTypesTest extends TestBase {
   @Test
   void testAdvisoryLockUpdateFirst(VertxTestContext context) {
     prepareTenant(TENANT_HEADER, true, true);
-    CompositeFuture.all(
+    GenericCompositeFuture.all(List.of(
             runSQLTx(updateSQL, true, "update_tx_failed"),
-            runSQLTx(deleteSQL, false, "delete_tx_failed"))
+            runSQLTx(deleteSQL, false, "delete_tx_failed")))
         .onComplete(
             context.failing(
                 t ->

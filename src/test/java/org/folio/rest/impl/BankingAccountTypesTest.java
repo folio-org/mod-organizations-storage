@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.net.MalformedURLException;
 import java.util.List;
 
+import org.folio.okapi.common.GenericCompositeFuture;
 import org.folio.rest.jaxrs.model.BankingAccountType;
 import org.folio.rest.jaxrs.model.BankingAccountTypeCollection;
 import org.folio.rest.tools.utils.ModuleName;
@@ -17,7 +18,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import io.vertx.core.CompositeFuture;
 import io.vertx.junit5.VertxExtension;
 import io.vertx.junit5.VertxTestContext;
 
@@ -93,9 +93,9 @@ class BankingAccountTypesTest extends TestBase {
   @Test
   void testAdvisoryLockDeleteFirst(VertxTestContext context) {
     prepareTenant(TENANT_HEADER, true, true);
-    CompositeFuture.all(
+    GenericCompositeFuture.all(List.of(
         runSQLTx(deleteSQL, true, "delete_tx_failed"),
-        runSQLTx(updateSQL, false, "update_tx_failed"))
+        runSQLTx(updateSQL, false, "update_tx_failed")))
       .onComplete(
         context.failing(
           t ->
