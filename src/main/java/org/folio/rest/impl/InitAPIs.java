@@ -22,12 +22,10 @@ public class InitAPIs implements InitAPI {
 
   @Override
   public void init(Vertx vertx, Context context, Handler<AsyncResult<Boolean>> resultHandler) {
-    vertx.executeBlocking(
-      (Callable<Void>) () -> {
+    vertx.executeBlocking((Callable<Void>) () -> {
         SpringContextUtil.init(vertx, context, ApplicationConfig.class);
         return null;
-      },
-      result -> {
+      }).onComplete(result -> {
         if (result.succeeded()) {
           log.info("APIs initialized successfully");
           resultHandler.handle(Future.succeededFuture(true));
