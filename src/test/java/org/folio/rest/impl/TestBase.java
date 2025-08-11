@@ -13,8 +13,11 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import org.apache.commons.io.IOUtils;
@@ -31,12 +34,15 @@ import io.restassured.response.Response;
 import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
+import lombok.SneakyThrows;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * When not run from StorageTestSuite then this class invokes StorageTestSuite.before() and
  * StorageTestSuite.after() to allow to run a single test class, for example from within an
  * IDE during development.
  */
+@Log4j2
 public abstract class TestBase {
 
   static final String NON_EXISTED_ID = "bad500aa-aaaa-500a-aaaa-aaaaaaaaaaaa";
@@ -69,14 +75,27 @@ public abstract class TestBase {
     }
   }
 
+  @SneakyThrows
+  protected static void createTables(String schemaName) {
+    log.info("creating tables for schema: {}", schemaName);
+
+    try (InputStream tableInput = TenantSampleDataTest.class.getClassLoader().getResourceAsStream(schemaName)) {
+      String sqlFile = IOUtils.toString(Objects.requireNonNull(tableInput), StandardCharsets.UTF_8);
+      CompletableFuture<Void> schemaCreated = new CompletableFuture<>();
+      PostgresClient.getInstance(StorageTestSuite.getVertx()).runSQLFile(sqlFile, false)
+        .onComplete(listAsyncResult -> schemaCreated.complete(null));
+      schemaCreated.get(60, TimeUnit.SECONDS);
+    }
+  }
+
   void verifyCollectionQuantity(String endpoint, int quantity, Header tenantHeader) {
+    log.info("verifyCollectionQuantity:: Endpoint: {}, expected quantity: {}", endpoint, quantity);
     getData(endpoint, tenantHeader)
       .then()
       .log().all()
       .statusCode(200)
       .body("totalRecords", equalTo(quantity));
   }
-
 
   void verifyCollectionQuantity(String endpoint, int quantity) throws MalformedURLException {
     // Verify that there are no existing  records
@@ -103,14 +122,6 @@ public abstract class TestBase {
   Response getDataById(String endpoint, String id) throws MalformedURLException {
     return given()
       .pathParam("id", id)
-      .header(TENANT_HEADER)
-      .contentType(ContentType.JSON)
-      .get(storageUrl(endpoint));
-  }
-
-  Response getDataByParam(String endpoint, Map<String, Object> params) throws MalformedURLException {
-    return given()
-      .params(params)
       .header(TENANT_HEADER)
       .contentType(ContentType.JSON)
       .get(storageUrl(endpoint));
@@ -234,5 +245,4 @@ public abstract class TestBase {
         list ->
           list.isEmpty() ? Future.succeededFuture() : Future.failedFuture(failureMessage));
   }
-
 }

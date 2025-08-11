@@ -24,6 +24,7 @@ import io.vertx.core.Promise;
 import io.vertx.core.Vertx;
 
 public class TenantReferenceAPI extends TenantAPI {
+
   private static final Logger log = LogManager.getLogger(TenantReferenceAPI.class);
   private static final String PARAMETER_LOAD_SAMPLE = "loadSample";
   private static final String PARAMETER_LOAD_REFERENCE = "loadReference";
@@ -53,30 +54,38 @@ public class TenantReferenceAPI extends TenantAPI {
     if (isLoadSample(tenantAttributes)) {
       if (isNew(tenantAttributes, "3.2.0")) {
         tl.withKey(PARAMETER_LOAD_SAMPLE)
-        .withLead("data")
-        .add("organizations-3.2.0", "organizations-storage/organizations");
+          .withLead("data")
+          .add("organizations-3.2.0", "organizations-storage/organizations");
       }
       if (isNew(tenantAttributes, "1.1.0")) {
         tl.withKey(PARAMETER_LOAD_SAMPLE)
-        .withLead("data")
-        .add("contacts-1.1.0", "organizations-storage/contacts");
+          .withLead("data")
+          .add("contacts-1.1.0", "organizations-storage/contacts");
       }
       if (isNew(tenantAttributes, "2.0.0")) {
         tl.withKey(PARAMETER_LOAD_SAMPLE)
-        .withLead("data")
-        .add("interfaces-2.0.0", "organizations-storage/interfaces");
+          .withLead("data")
+          .add("interfaces-2.0.0", "organizations-storage/interfaces");
       }
     }
     if (isLoadReference(tenantAttributes)) {
       if (isNew(tenantAttributes, "1.0.0")) {
         tl.withKey(PARAMETER_LOAD_REFERENCE)
-        .withLead("data")
-        .add("categories-1.0.0", "organizations-storage/categories");
+          .withLead("data")
+          .add("categories-1.0.0", "organizations-storage/categories");
       }
       if (isNew(tenantAttributes, "4.3.0")) {
         tl.withKey(PARAMETER_LOAD_REFERENCE)
-        .withLead("data")
-        .add("organization_types-4.3.0", "organizations-storage/organization-types");
+          .withLead("data")
+          .add("organization_types-4.3.0", "organizations-storage/organization-types");
+      }
+      if (isNew(tenantAttributes, "5.0.0")) {
+        tl.withKey(PARAMETER_LOAD_REFERENCE)
+          .withLead("data")
+          .add("privileged-contacts-5.0.0", "organizations-storage/privileged-contacts");
+        tl.withKey(PARAMETER_LOAD_REFERENCE)
+          .withLead("data")
+          .add("organizations-5.0.0", "organizations-storage/organizations");
       }
     }
   }

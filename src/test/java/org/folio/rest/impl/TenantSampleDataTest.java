@@ -6,6 +6,7 @@ import static org.folio.rest.utils.TenantApiTestUtil.postTenant;
 import static org.folio.rest.utils.TenantApiTestUtil.prepareTenant;
 import static org.folio.rest.utils.TenantApiTestUtil.purge;
 import static org.folio.rest.utils.TestEntities.ORGANIZATION;
+import static org.folio.rest.utils.TestEntities.PRIVILEGED_CONTACT;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.not;
 
@@ -20,10 +21,10 @@ import org.folio.rest.jaxrs.model.TenantJob;
 import org.folio.rest.persist.PostgresClient;
 import org.folio.rest.utils.TenantApiTestUtil;
 import org.folio.rest.utils.TestEntities;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import io.restassured.http.Header;
-
 
 class TenantSampleDataTest extends TestBase {
 
@@ -37,6 +38,10 @@ class TenantSampleDataTest extends TestBase {
   private static final Header MIGRATION_TENANT_HEADER = new Header(OKAPI_HEADER_TENANT, "migration");
   private static TenantJob tenantJob;
 
+  @BeforeAll
+  static void beforeAll() {
+    createTables("schemas/configuration_schema.sql");
+  }
 
   @Test
   void sampleDataTests() throws MalformedURLException {
@@ -45,36 +50,28 @@ class TenantSampleDataTest extends TestBase {
       tenantJob = prepareTenant(ANOTHER_TENANT_HEADER, false, false);
       logger.info("-- upgrade the tenant with sample & reference data, so that it will be inserted now --");
       tenantJob = upgradeTenantWithDataLoad();
-      logger.info(
-          "-- upgrade the tenant again with no sample/reference data, so the previously inserted data stays in tact --");
+      logger.info("-- upgrade the tenant again with no sample/reference data, so the previously inserted data stays in tact --");
       tenantJob = upgradeTenantWithNoDataLoad();
-    }
-    finally {
+    } finally {
       deleteTenant(tenantJob ,ANOTHER_TENANT_HEADER);
     }
   }
 
-
   @Test
   void testPartialSampleDataLoading() throws MalformedURLException {
     logger.info("load sample date");
-
     try {
       TenantAttributes tenantAttributes = TenantApiTestUtil.prepareTenantBody(true, false);
       tenantJob = postTenant(PARTIAL_TENANT_HEADER, tenantAttributes);
-
       OrganizationCollection organizationCollection = getData(ORGANIZATION.getEndpoint(), PARTIAL_TENANT_HEADER).then()
         .extract()
         .response()
         .as(OrganizationCollection.class);
-
       for (Organization organization : organizationCollection.getOrganizations()) {
         deleteData(ORGANIZATION.getEndpointWithId(), organization.getId(), PARTIAL_TENANT_HEADER);
       }
-
       tenantAttributes = TenantApiTestUtil.prepareTenantBody(true, true);
       tenantJob = postTenant(PARTIAL_TENANT_HEADER, tenantAttributes);
-
       for (TestEntities entity : TestEntities.values()) {
         logger.info(TEST_EXPECTED_QUANTITY_FOR_ENTRY, entity.getInitialQuantity(), entity.name());
         verifyCollectionQuantity(entity.getEndpoint(), entity.getInitialQuantity(), PARTIAL_TENANT_HEADER);
@@ -84,20 +81,19 @@ class TenantSampleDataTest extends TestBase {
     }
   }
 
-
   @Test
-  void testLoadReferenceData() throws MalformedURLException {
+  void testLoadReferenceData() {
     logger.info("load only Reference Data");
     try {
       TenantAttributes tenantAttributes = TenantApiTestUtil.prepareTenantBody(false, true);
       tenantJob = postTenant(PARTIAL_TENANT_HEADER, tenantAttributes);
-
       for (TestEntities entity : TestEntities.values()) {
         if (entity.isReferenceData()) {
           verifyCollectionQuantity(entity.getEndpoint(), entity.getInitialQuantity(), PARTIAL_TENANT_HEADER);
         } else {
-          logger.info("Test sample data not loaded for " + entity.name());
-          verifyCollectionQuantity(entity.getEndpoint(), 0, PARTIAL_TENANT_HEADER);
+          logger.info("testLoadReferenceData:: Test sample data not loaded for {}", entity.name());
+          int expectedExistingReferenceQuantity = entity == PRIVILEGED_CONTACT ? 2 : entity == ORGANIZATION ? 7 : 0;
+          verifyCollectionQuantity(entity.getEndpoint(), expectedExistingReferenceQuantity, PARTIAL_TENANT_HEADER);
         }
       }
     } finally {
@@ -127,24 +123,21 @@ class TenantSampleDataTest extends TestBase {
     }
   }
 
-  private TenantJob upgradeTenantWithDataLoad() throws MalformedURLException {
-
+  private TenantJob upgradeTenantWithDataLoad() {
     logger.info("upgrading Module with sample and reference data");
     TenantAttributes tenantAttributes = TenantApiTestUtil.prepareTenantBody(true, true);
     tenantJob = postTenant(ANOTHER_TENANT_HEADER, tenantAttributes);
     for (TestEntities entity : TestEntities.values()) {
-      logger.info("Test expected quantity for " + entity.name());
+      logger.info("upgradeTenantWithDataLoad:: Test expected quantity for {}", entity.name());
       verifyCollectionQuantity(entity.getEndpoint(), entity.getInitialQuantity(), ANOTHER_TENANT_HEADER);
     }
     return tenantJob;
   }
 
   private TenantJob upgradeTenantWithNoDataLoad() throws MalformedURLException {
-
     logger.info("upgrading Module without sample data");
     TenantAttributes tenantAttributes = TenantApiTestUtil.prepareTenantBody(false, false);
     tenantJob = postTenant(ANOTHER_TENANT_HEADER, tenantAttributes);
-
     for(TestEntities te: TestEntities.values()) {
       verifyCollectionQuantity(te.getEndpoint(), te.getInitialQuantity(), ANOTHER_TENANT_HEADER);
     }
@@ -158,16 +151,13 @@ class TenantSampleDataTest extends TestBase {
     try {
       // RMB-331 the case if older version has no db schema
       postTenant(NONEXISTENT_TENANT_HEADER, tenantAttributes);
-
       // Check that no sample data loaded
       for (TestEntities entity : TestEntities.values()) {
         logger.info(TEST_EXPECTED_QUANTITY_FOR_ENTRY, 0, entity.name());
         verifyCollectionQuantity(entity.getEndpoint(), 0, NONEXISTENT_TENANT_HEADER);
       }
-    }
-    finally {
+    } finally {
       purge(NONEXISTENT_TENANT_HEADER);
     }
   }
-
 }

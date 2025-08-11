@@ -3,37 +3,6 @@
   "name": "Organizations CRUD module",
   "provides": [
     {
-      "id": "organizations-storage.addresses",
-      "version": "1.1",
-      "handlers": [
-        {
-          "methods": ["GET"],
-          "pathPattern": "/organizations-storage/addresses",
-          "permissionsRequired": ["organizations-storage.addresses.collection.get"]
-        },
-        {
-          "methods": ["POST"],
-          "pathPattern": "/organizations-storage/addresses",
-          "permissionsRequired": ["organizations-storage.addresses.item.post"]
-        },
-        {
-          "methods": ["GET"],
-          "pathPattern": "/organizations-storage/addresses/{id}",
-          "permissionsRequired": ["organizations-storage.addresses.item.get"]
-        },
-        {
-          "methods": ["PUT"],
-          "pathPattern": "/organizations-storage/addresses/{id}",
-          "permissionsRequired": ["organizations-storage.addresses.item.put"]
-        },
-        {
-          "methods": ["DELETE"],
-          "pathPattern": "/organizations-storage/addresses/{id}",
-          "permissionsRequired": ["organizations-storage.addresses.item.delete"]
-        }
-      ]
-    },
-    {
       "id": "organizations-storage.categories",
       "version": "1.1",
       "handlers": [
@@ -127,37 +96,6 @@
       ]
     },
     {
-      "id": "organizations-storage.emails",
-      "version": "1.1",
-      "handlers": [
-        {
-          "methods": ["GET"],
-          "pathPattern": "/organizations-storage/emails",
-          "permissionsRequired": ["organizations-storage.emails.collection.get"]
-        },
-        {
-          "methods": ["POST"],
-          "pathPattern": "/organizations-storage/emails",
-          "permissionsRequired": ["organizations-storage.emails.item.post"]
-        },
-        {
-          "methods": ["GET"],
-          "pathPattern": "/organizations-storage/emails/{id}",
-          "permissionsRequired": ["organizations-storage.emails.item.get"]
-        },
-        {
-          "methods": ["PUT"],
-          "pathPattern": "/organizations-storage/emails/{id}",
-          "permissionsRequired": ["organizations-storage.emails.item.put"]
-        },
-        {
-          "methods": ["DELETE"],
-          "pathPattern": "/organizations-storage/emails/{id}",
-          "permissionsRequired": ["organizations-storage.emails.item.delete"]
-        }
-      ]
-    },
-    {
       "id": "organizations-storage.interfaces",
       "version": "2.1",
       "handlers": [
@@ -205,68 +143,6 @@
           "methods": ["DELETE"],
           "pathPattern": "/organizations-storage/interfaces/{id}/credentials",
           "permissionsRequired": ["organizations-storage.interfaces.credentials.item.delete"]
-        }
-      ]
-    },
-    {
-      "id": "organizations-storage.phone-numbers",
-      "version": "2.0",
-      "handlers": [
-        {
-          "methods": ["GET"],
-          "pathPattern": "/organizations-storage/phone-numbers",
-          "permissionsRequired": ["organizations-storage.phone-numbers.collection.get"]
-        },
-        {
-          "methods": ["POST"],
-          "pathPattern": "/organizations-storage/phone-numbers",
-          "permissionsRequired": ["organizations-storage.phone-numbers.item.post"]
-        },
-        {
-          "methods": ["GET"],
-          "pathPattern": "/organizations-storage/phone-numbers/{id}",
-          "permissionsRequired": ["organizations-storage.phone-numbers.item.get"]
-        },
-        {
-          "methods": ["PUT"],
-          "pathPattern": "/organizations-storage/phone-numbers/{id}",
-          "permissionsRequired": ["organizations-storage.phone-numbers.item.put"]
-        },
-        {
-          "methods": ["DELETE"],
-          "pathPattern": "/organizations-storage/phone-numbers/{id}",
-          "permissionsRequired": ["organizations-storage.phone-numbers.item.delete"]
-        }
-      ]
-    },
-    {
-      "id": "organizations-storage.urls",
-      "version": "1.1",
-      "handlers": [
-        {
-          "methods": ["GET"],
-          "pathPattern": "/organizations-storage/urls",
-          "permissionsRequired": ["organizations-storage.urls.collection.get"]
-        },
-        {
-          "methods": ["POST"],
-          "pathPattern": "/organizations-storage/urls",
-          "permissionsRequired": ["organizations-storage.urls.item.post"]
-        },
-        {
-          "methods": ["GET"],
-          "pathPattern": "/organizations-storage/urls/{id}",
-          "permissionsRequired": ["organizations-storage.urls.item.get"]
-        },
-        {
-          "methods": ["PUT"],
-          "pathPattern": "/organizations-storage/urls/{id}",
-          "permissionsRequired": ["organizations-storage.urls.item.put"]
-        },
-        {
-          "methods": ["DELETE"],
-          "pathPattern": "/organizations-storage/urls/{id}",
-          "permissionsRequired": ["organizations-storage.urls.item.delete"]
         }
       ]
     },
@@ -365,12 +241,17 @@
     },
     {
       "id": "organizations-storage.settings",
-      "version": "1.0",
+      "version": "1.1",
       "handlers": [
         {
           "methods": ["GET"],
           "pathPattern": "/organizations-storage/settings",
           "permissionsRequired": ["organizations-storage.settings.collection.get"]
+        },
+        {
+          "methods": ["POST"],
+          "pathPattern": "/organizations-storage/settings",
+          "permissionsRequired": ["organizations-storage.settings.item.post"]
         },
         {
           "methods": ["GET"],
@@ -381,6 +262,11 @@
           "methods": ["PUT"],
           "pathPattern": "/organizations-storage/settings/{id}",
           "permissionsRequired": ["organizations-storage.settings.item.put"]
+        },
+        {
+          "methods": ["DELETE"],
+          "pathPattern": "/organizations-storage/settings/{id}",
+          "permissionsRequired": ["organizations-storage.settings.item.delete"]
         }
       ]
     },
@@ -458,43 +344,6 @@
     }
   ],
   "permissionSets" : [
-    {
-      "permissionName" : "organizations-storage.addresses.collection.get",
-      "displayName" : "address collection get",
-      "description" : "Get a collection of addresses"
-    },
-    {
-      "permissionName" : "organizations-storage.addresses.item.post",
-      "displayName" : "address post",
-      "description" : "Create a new address"
-    },
-    {
-      "permissionName" : "organizations-storage.addresses.item.get",
-      "displayName" : "address get",
-      "description" : "Fetch a address"
-    },
-    {
-      "permissionName" : "organizations-storage.addresses.item.put",
-      "displayName" : "address put",
-      "description" : "Update a address"
-    },
-    {
-      "permissionName" : "organizations-storage.addresses.item.delete",
-      "displayName" : "address delete",
-      "description" : "Delete a address"
-    },
-    {
-      "permissionName" : "organizations-storage.addresses.all",
-      "displayName" : "address all",
-      "description" : "All permissions for address",
-      "subPermissions" : [
-        "organizations-storage.addresses.collection.get",
-        "organizations-storage.addresses.item.post",
-        "organizations-storage.addresses.item.get",
-        "organizations-storage.addresses.item.put",
-        "organizations-storage.addresses.item.delete"
-      ]
-    },
     {
       "permissionName" : "organizations-storage.categories.collection.get",
       "displayName" : "category collection get",
@@ -607,43 +456,6 @@
       ]
     },
     {
-      "permissionName" : "organizations-storage.emails.collection.get",
-      "displayName" : "email collection get",
-      "description" : "Get a collection of emails"
-    },
-    {
-      "permissionName" : "organizations-storage.emails.item.post",
-      "displayName" : "email post",
-      "description" : "Create a new email"
-    },
-    {
-      "permissionName" : "organizations-storage.emails.item.get",
-      "displayName" : "email get",
-      "description" : "Fetch a email"
-    },
-    {
-      "permissionName" : "organizations-storage.emails.item.put",
-      "displayName" : "email put",
-      "description" : "Update a email"
-    },
-    {
-      "permissionName" : "organizations-storage.emails.item.delete",
-      "displayName" : "email delete",
-      "description" : "Delete a email"
-    },
-    {
-      "permissionName" : "organizations-storage.emails.all",
-      "displayName" : "email all",
-      "description" : "All permissions for email",
-      "subPermissions" : [
-        "organizations-storage.emails.collection.get",
-        "organizations-storage.emails.item.post",
-        "organizations-storage.emails.item.get",
-        "organizations-storage.emails.item.put",
-        "organizations-storage.emails.item.delete"
-      ]
-    },
-    {
       "permissionName" : "organizations-storage.interfaces.collection.get",
       "displayName" : "interface collection get",
       "description" : "Get a collection of interface"
@@ -709,80 +521,6 @@
         "organizations-storage.interfaces.credentials.item.get",
         "organizations-storage.interfaces.credentials.item.put",
         "organizations-storage.interfaces.credentials.item.delete"
-      ]
-    },
-    {
-      "permissionName" : "organizations-storage.phone-numbers.collection.get",
-      "displayName" : "phone_number collection get",
-      "description" : "Get a collection of phone_numbers"
-    },
-    {
-      "permissionName" : "organizations-storage.phone-numbers.item.post",
-      "displayName" : "phone_number post",
-      "description" : "Create a new phone_number"
-    },
-    {
-      "permissionName" : "organizations-storage.phone-numbers.item.get",
-      "displayName" : "phone_number get",
-      "description" : "Fetch a phone_number"
-    },
-    {
-      "permissionName" : "organizations-storage.phone-numbers.item.put",
-      "displayName" : "phone_number put",
-      "description" : "Update a phone_number"
-    },
-    {
-      "permissionName" : "organizations-storage.phone-numbers.item.delete",
-      "displayName" : "phone_number delete",
-      "description" : "Delete a phone_number"
-    },
-    {
-      "permissionName" : "organizations-storage.phone-numbers.all",
-      "displayName" : "phone_number all",
-      "description" : "All permissions for phone_number",
-      "subPermissions" : [
-        "organizations-storage.phone-numbers.collection.get",
-        "organizations-storage.phone-numbers.item.post",
-        "organizations-storage.phone-numbers.item.get",
-        "organizations-storage.phone-numbers.item.put",
-        "organizations-storage.phone-numbers.item.delete"
-      ]
-    },
-    {
-      "permissionName" : "organizations-storage.urls.collection.get",
-      "displayName" : "url collection get",
-      "description" : "Get a collection of urls"
-    },
-    {
-      "permissionName" : "organizations-storage.urls.item.post",
-      "displayName" : "url post",
-      "description" : "Create a new url"
-    },
-    {
-      "permissionName" : "organizations-storage.urls.item.get",
-      "displayName" : "url get",
-      "description" : "Fetch a url"
-    },
-    {
-      "permissionName" : "organizations-storage.urls.item.put",
-      "displayName" : "url put",
-      "description" : "Update a url"
-    },
-    {
-      "permissionName" : "organizations-storage.urls.item.delete",
-      "displayName" : "url delete",
-      "description" : "Delete a url"
-    },
-    {
-      "permissionName" : "organizations-storage.urls.all",
-      "displayName" : "url all",
-      "description" : "All permissions for url",
-      "subPermissions" : [
-        "organizations-storage.urls.collection.get",
-        "organizations-storage.urls.item.post",
-        "organizations-storage.urls.item.get",
-        "organizations-storage.urls.item.put",
-        "organizations-storage.urls.item.delete"
       ]
     },
     {
@@ -939,6 +677,11 @@
       "description" : "Get a collection of settings"
     },
     {
+      "permissionName" : "organizations-storage.settings.item.post",
+      "displayName" : "setting post",
+      "description" : "Create a setting"
+    },
+    {
       "permissionName" : "organizations-storage.settings.item.get",
       "displayName" : "setting get",
       "description" : "Fetch a setting"
@@ -949,13 +692,20 @@
       "description" : "Update a setting"
     },
     {
+      "permissionName" : "organizations-storage.settings.item.delete",
+      "displayName" : "setting delete",
+      "description" : "Delete a setting"
+    },
+    {
       "permissionName" : "organizations-storage.settings.all",
       "displayName" : "setting all",
       "description" : "All permissions for setting",
       "subPermissions" : [
         "organizations-storage.settings.collection.get",
+        "organizations-storage.settings.item.post",
         "organizations-storage.settings.item.get",
-        "organizations-storage.settings.item.put"
+        "organizations-storage.settings.item.put",
+        "organizations-storage.settings.item.delete"
       ]
     },
     {
@@ -963,15 +713,11 @@
       "displayName" : "organizations-storage-module all",
       "description" : "All permissions for the organizations module",
       "subPermissions" : [
-        "organizations-storage.addresses.all",
         "organizations-storage.categories.all",
         "organizations-storage.contacts.all",
         "organizations-storage.privileged-contacts.all",
-        "organizations-storage.emails.all",
         "organizations-storage.interfaces.all",
         "organizations-storage.interfaces.credentials.all",
-        "organizations-storage.phone-numbers.all",
-        "organizations-storage.urls.all",
         "organizations-storage.organizations.all",
         "organizations-storage.organization-types.all",
         "organizations-storage.banking-account-types.all",

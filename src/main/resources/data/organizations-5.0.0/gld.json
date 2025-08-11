@@ -1,0 +1,66 @@
+{
+  "id": "7c2d0697-b619-40ab-9b6f-590e6964daa8",
+  "edi": {
+    "ediFtp": {
+      "ftpMode": "ASCII",
+      "ftpFormat": "SFTP",
+      "ftpConnMode": "Active"
+    },
+    "libEdiType": "31B/US-SAN",
+    "vendorEdiType": "31B/US-SAN"
+  },
+  "code": "GLD",
+  "name": "Gold Limited",
+  "urls": [],
+  "emails": [],
+  "status": "Active",
+  "aliases": [],
+  "isDonor": false,
+  "accounts": [
+    {
+      "name": "Premium Trading",
+      "accountNo": "PT789012",
+      "acqUnitIds": [],
+      "accountStatus": "Active"
+    },
+    {
+      "name": "International Sales",
+      "accountNo": "IS456789",
+      "acqUnitIds": [],
+      "accountStatus": "Active"
+    }
+  ],
+  "contacts": [],
+  "isVendor": true,
+  "metadata": {
+    "createdDate": "2025-07-18T10:42:28.220Z",
+    "updatedDate": "2025-07-18T11:38:02.072Z",
+    "createdByUserId": "ea703e33-d9eb-4ab0-bff0-3eb7e18ac4a8",
+    "updatedByUserId": "ea703e33-d9eb-4ab0-bff0-3eb7e18ac4a8"
+  },
+  "addresses": [
+    {
+      "isPrimary": true,
+      "categories": [],
+      "addressLine1": "123 Gold Street",
+      "addressLine2": "Floor 15",
+      "city": "Chicago",
+      "stateRegion": "IL",
+      "zipCode": "60601",
+      "country": "USA"
+    }
+  ],
+  "acqUnitIds": [],
+  "agreements": [],
+  "changelogs": [],
+  "interfaces": [],
+  "phoneNumbers": [],
+  "paymentMethod": "International Wire",
+  "discountPercent": 0,
+  "vendorCurrencies": [
+    "USD"
+  ],
+  "organizationTypes": [],
+  "exportToAccounting": false,
+  "privilegedContacts": []
+}
