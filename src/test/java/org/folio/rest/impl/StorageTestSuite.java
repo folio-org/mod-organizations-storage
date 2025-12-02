@@ -68,7 +68,8 @@ public class StorageTestSuite {
 
   private static Context getFirstContextFromVertx(Vertx vertx) {
     return vertx.deploymentIDs().stream()
-      .flatMap(id -> ((VertxImpl) vertx).getDeployment(id).getVerticles().stream())
+      .flatMap(id -> ((VertxImpl)vertx).deploymentManager().deployment(id).deployment().instances().stream())
+      .map(deployable -> (Verticle) deployable)
       .map(StorageTestSuite::getContextWithReflection)
       .filter(Objects::nonNull)
       .findFirst()
@@ -108,7 +109,7 @@ public class StorageTestSuite {
 
     CompletableFuture<String> undeploymentComplete = new CompletableFuture<>();
 
-    vertx.close(res -> {
+    vertx.close().onComplete(res -> {
       if(res.succeeded()) {
         undeploymentComplete.complete(null);
       }
@@ -127,7 +128,7 @@ public class StorageTestSuite {
     logger.info("Start verticle");
 
     CompletableFuture<String> deploymentComplete = new CompletableFuture<>();
-    vertx.deployVerticle(RestVerticle.class.getName(), options, res -> {
+    vertx.deployVerticle(RestVerticle.class.getName(), options).onComplete(res -> {
       if(res.succeeded()) {
         deploymentComplete.complete(res.result());
       }
