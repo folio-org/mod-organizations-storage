@@ -69,7 +69,7 @@ public class StorageTestSuite {
   private static Context getFirstContextFromVertx(Vertx vertx) {
     return vertx.deploymentIDs().stream()
       .flatMap(id -> ((VertxImpl)vertx).deploymentManager().deployment(id).deployment().instances().stream())
-      .map(deployable -> (Verticle) deployable)
+      .map(Verticle.class::cast)
       .map(StorageTestSuite::getContextWithReflection)
       .filter(Objects::nonNull)
       .findFirst()
