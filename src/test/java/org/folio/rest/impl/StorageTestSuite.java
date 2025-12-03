@@ -26,8 +26,6 @@ import org.folio.spring.SpringContextUtil;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Nested;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import io.restassured.http.Header;
 import io.vertx.core.AbstractVerticle;
@@ -38,7 +36,6 @@ import io.vertx.core.Vertx;
 import io.vertx.core.impl.VertxImpl;
 import io.vertx.core.json.JsonObject;
 
-@RunWith(JUnitPlatform.class)
 public class StorageTestSuite {
 
   private static final Logger logger = LogManager.getLogger(StorageTestSuite.class);
