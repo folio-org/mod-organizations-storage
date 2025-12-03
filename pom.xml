@@ -26,7 +26,7 @@
 
     <!--Dependency Properties-->
     <raml-module-builder.version>36.0.0-SNAPSHOT</raml-module-builder.version>
-    <spring.version>6.2.11</spring.version>
+    <spring.version>7.0.1</spring.version>
     <vertx.version>5.0.5</vertx.version>
     <log4j.version>2.24.3</log4j.version>
     <aspectj.version>1.9.22.1</aspectj.version>
