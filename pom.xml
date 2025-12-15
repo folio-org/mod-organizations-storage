@@ -26,7 +26,7 @@
 
     <!--Dependency Properties-->
     <raml-module-builder.version>36.0.0-SNAPSHOT</raml-module-builder.version>
-    <spring.version>7.0.1</spring.version>
+    <spring.version>7.0.2</spring.version>
     <vertx.version>5.0.5</vertx.version>
     <log4j.version>2.25.2</log4j.version>
     <aspectj.version>1.9.25</aspectj.version>
@@ -45,7 +45,7 @@
     <maven-compiler-plugin.version>3.14.1</maven-compiler-plugin.version>
     <maven-antrun-plugin.version>3.2.0</maven-antrun-plugin.version>
     <maven-shade-plugin.version>3.6.1</maven-shade-plugin.version>
-    <maven-release-plugin.version>3.2.0</maven-release-plugin.version>
+    <maven-release-plugin.version>3.3.1</maven-release-plugin.version>
     <maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version>
     <build-helper-maven-plugin.version>3.6.1</build-helper-maven-plugin.version>
     <copy-rename-maven-plugin.version>1.0.1</copy-rename-maven-plugin.version>
