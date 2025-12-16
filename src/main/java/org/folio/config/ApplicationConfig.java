@@ -2,8 +2,6 @@ package org.folio.config;
 
 import org.folio.dao.audit.AuditOutboxEventLogDAO;
 import org.folio.dao.audit.AuditOutboxEventLogPostgresDAO;
-import org.folio.dao.lock.InternalLockDAO;
-import org.folio.dao.lock.InternalLockPostgresDAO;
 import org.folio.dao.organization.OrganizationDAO;
 import org.folio.dao.organization.OrganizationPostgresDAO;
 import org.folio.kafka.KafkaConfig;
@@ -34,18 +32,12 @@ public class ApplicationConfig {
   }
 
   @Bean
-  public InternalLockDAO internalLockDAO() {
-    return new InternalLockPostgresDAO();
-  }
-
-  @Bean
   public AuditEventProducer auditEventProducer(KafkaConfig kafkaConfig) {
     return new AuditEventProducer(kafkaConfig);
   }
 
   @Bean
-  public AuditOutboxService auditOutboxService(AuditOutboxEventLogDAO auditOutboxEventLogDAO, InternalLockDAO internalLockDAO, AuditEventProducer producer) {
-    return new AuditOutboxService(auditOutboxEventLogDAO, internalLockDAO, producer);
+  public AuditOutboxService auditOutboxService(AuditOutboxEventLogDAO auditOutboxEventLogDAO, AuditEventProducer producer) {
+    return new AuditOutboxService(auditOutboxEventLogDAO, producer);
   }
-
 }
