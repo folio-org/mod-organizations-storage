@@ -26,8 +26,6 @@ import org.folio.spring.SpringContextUtil;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Nested;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 import io.restassured.http.Header;
 import io.vertx.core.AbstractVerticle;
@@ -38,7 +36,6 @@ import io.vertx.core.Vertx;
 import io.vertx.core.impl.VertxImpl;
 import io.vertx.core.json.JsonObject;
 
-@RunWith(JUnitPlatform.class)
 public class StorageTestSuite {
 
   private static final Logger logger = LogManager.getLogger(StorageTestSuite.class);
@@ -68,7 +65,8 @@ public class StorageTestSuite {
 
   private static Context getFirstContextFromVertx(Vertx vertx) {
     return vertx.deploymentIDs().stream()
-      .flatMap(id -> ((VertxImpl) vertx).getDeployment(id).getVerticles().stream())
+      .flatMap(id -> ((VertxImpl)vertx).deploymentManager().deployment(id).deployment().instances().stream())
+      .map(Verticle.class::cast)
       .map(StorageTestSuite::getContextWithReflection)
       .filter(Objects::nonNull)
       .findFirst()
@@ -108,7 +106,7 @@ public class StorageTestSuite {
 
     CompletableFuture<String> undeploymentComplete = new CompletableFuture<>();
 
-    vertx.close(res -> {
+    vertx.close().onComplete(res -> {
       if(res.succeeded()) {
         undeploymentComplete.complete(null);
       }
@@ -127,7 +125,7 @@ public class StorageTestSuite {
     logger.info("Start verticle");
 
     CompletableFuture<String> deploymentComplete = new CompletableFuture<>();
-    vertx.deployVerticle(RestVerticle.class.getName(), options, res -> {
+    vertx.deployVerticle(RestVerticle.class.getName(), options).onComplete(res -> {
       if(res.succeeded()) {
         deploymentComplete.complete(res.result());
       }

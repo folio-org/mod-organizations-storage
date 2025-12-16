@@ -17,7 +17,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import io.vertx.core.CompositeFuture;
+import io.vertx.core.Future;
 import io.vertx.junit5.VertxExtension;
 import io.vertx.junit5.VertxTestContext;
 
@@ -93,7 +93,7 @@ class BankingAccountTypesTest extends TestBase {
   @Test
   void testAdvisoryLockDeleteFirst(VertxTestContext context) {
     prepareTenant(TENANT_HEADER, true, true);
-    CompositeFuture.all(
+    Future.all(
         runSQLTx(deleteSQL, true, "delete_tx_failed"),
         runSQLTx(updateSQL, false, "update_tx_failed"))
       .onComplete(

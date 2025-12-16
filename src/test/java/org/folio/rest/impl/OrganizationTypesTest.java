@@ -5,7 +5,7 @@ import static org.folio.rest.utils.TenantApiTestUtil.purge;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-import io.vertx.core.CompositeFuture;
+import io.vertx.core.Future;
 import io.vertx.core.json.Json;
 import io.vertx.junit5.VertxExtension;
 import io.vertx.junit5.VertxTestContext;
@@ -121,7 +121,7 @@ class OrganizationTypesTest extends TestBase {
   @Test
   void testAdvisoryLockDeleteFirst(VertxTestContext context) {
     prepareTenant(TENANT_HEADER, true, true);
-    CompositeFuture.all(
+    Future.all(
             runSQLTx(deleteSQL, true, "delete_tx_failed"),
             runSQLTx(updateSQL, false, "update_tx_failed"))
         .onComplete(
@@ -135,7 +135,7 @@ class OrganizationTypesTest extends TestBase {
   @Test
   void testAdvisoryLockUpdateFirst(VertxTestContext context) {
     prepareTenant(TENANT_HEADER, true, true);
-    CompositeFuture.all(
+    Future.all(
             runSQLTx(updateSQL, true, "update_tx_failed"),
             runSQLTx(deleteSQL, false, "delete_tx_failed"))
         .onComplete(
