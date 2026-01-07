@@ -1,5 +1,15 @@
 ## 4.9.0 - Unreleased
 
+## 4.8.2 - Released (Ramsons R2 2024 Bug Fix)
+The primary focus of this release was to implement RMB logging improvements and security fixes
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v4.8.1...v4.8.2)
+
+### Stories
+* [MODORGSTOR-191] (https://folio-org.atlassian.net/browse/MODORGSTOR-191) - Ramsons CSP - RMB 35.3.2 Vertx 4.5.23 fixing CVE-2025-67735 netty CRLF
+* [MODORGSTOR-188] (https://folio-org.atlassian.net/browse/MODORGSTOR-188) - Ramsons CSP - RMB Logging release - RMB 35.3.1
+
+
 ## 4.8.1 - Released (Ramsons R2 2024 Bug Fix)
 The primary focus of this release was to fix the issue when an organization cannot be deleted because of banking information
 
