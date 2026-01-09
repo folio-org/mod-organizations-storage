@@ -1,5 +1,14 @@
 ## 5.0.0 - Unreleased
 
+## 4.9.2 - Released (Sunflower R1 2025 Bug fix)
+The primary focus of the release was to update to RMB 35.4.2 and Vertx 4.5.23.
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v4.9.1...v4.9.2)
+
+### Bug fixes
+* [MODORGSTOR-189] (https://folio-org.atlassian.net/browse/MODORGSTOR-189) - Sunflower CSP - RMB Logging release - RMB 35.4.2 Vertx 4.5.23
+
+
 ## 4.9.1 - Released (Sunflower R1 2025 Bug fix)
 The primary focus of the release was to implement migration script for populating missed fields for the Integration details.
 
