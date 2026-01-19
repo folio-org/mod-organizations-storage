@@ -26,11 +26,11 @@
 
     <!--Dependency Properties-->
     <raml-module-builder.version>36.0.0-SNAPSHOT</raml-module-builder.version>
-    <spring.version>7.0.1</spring.version>
-    <vertx.version>5.0.5</vertx.version>
-    <log4j.version>2.25.2</log4j.version>
-    <aspectj.version>1.9.25</aspectj.version>
-    <jackson-bom.version>2.20.1</jackson-bom.version>
+    <spring.version>7.0.3</spring.version>
+    <vertx.version>5.0.7</vertx.version>
+    <log4j.version>2.25.3</log4j.version>
+    <aspectj.version>1.9.25.1</aspectj.version>
+    <jackson-bom.version>2.21.0</jackson-bom.version>
     <kafkaclients.version>4.1.1</kafkaclients.version>
 
     <!--Folio dependencies properties-->
@@ -51,7 +51,7 @@
     <copy-rename-maven-plugin.version>1.0.1</copy-rename-maven-plugin.version>
 
     <!--Test Scope dependencies-->
-    <junit.jupiter.version>6.0.1</junit.jupiter.version>
+    <junit.jupiter.version>6.0.2</junit.jupiter.version>
     <rest-assured.version>5.5.6</rest-assured.version>
 
     <argLine />
