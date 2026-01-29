@@ -2,6 +2,7 @@ package org.folio.rest.impl;
 
 import static io.restassured.RestAssured.given;
 import static org.folio.rest.RestVerticle.OKAPI_HEADER_TENANT;
+import static org.folio.rest.RestVerticle.OKAPI_HEADER_TOKEN;
 import static org.folio.rest.impl.StorageTestSuite.initSpringContext;
 import static org.folio.rest.impl.StorageTestSuite.storageUrl;
 import static org.folio.rest.utils.TenantApiTestUtil.USER_ID_HEADER;
@@ -20,6 +21,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.specification.RequestSpecification;
 import org.apache.commons.io.IOUtils;
 import org.folio.config.ApplicationConfig;
 import org.folio.rest.persist.PgUtil;
@@ -45,9 +48,10 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public abstract class TestBase {
 
-  static final String NON_EXISTED_ID = "bad500aa-aaaa-500a-aaaa-aaaaaaaaaaaa";
-  private static final String TENANT_NAME = "diku";
-  static final Header TENANT_HEADER = new Header(OKAPI_HEADER_TENANT, TENANT_NAME);
+  public static final String NON_EXISTED_ID = "bad500aa-aaaa-500a-aaaa-aaaaaaaaaaaa";
+  public static final String TENANT_NAME = "diku";
+  public static final Header TENANT_HEADER = new Header(OKAPI_HEADER_TENANT, TENANT_NAME);
+  public static final Header X_OKAPI_TOKEN = new Header(OKAPI_HEADER_TOKEN, "eyJhbGciOiJIUzI1NiJ9");
 
   private static boolean invokeStorageTestSuiteAfter = false;
   private static PostgresClient pgClient;
@@ -88,6 +92,15 @@ public abstract class TestBase {
     }
   }
 
+  RequestSpecification commonRequestSpec(){
+    return new RequestSpecBuilder().
+      addHeader(TENANT_HEADER.getName(), TENANT_HEADER.getValue()).
+      addHeader(USER_ID_HEADER.getName(), USER_ID_HEADER.getValue()).
+      addHeader(X_OKAPI_TOKEN.getName(), X_OKAPI_TOKEN.getValue()).
+      setContentType(ContentType.JSON).
+      build();
+  }
+
   void verifyCollectionQuantity(String endpoint, int quantity, Header tenantHeader) {
     log.info("verifyCollectionQuantity:: Endpoint: {}, expected quantity: {}", endpoint, quantity);
     getData(endpoint, tenantHeader)
@@ -97,7 +110,7 @@ public abstract class TestBase {
       .body("totalRecords", equalTo(quantity));
   }
 
-  void verifyCollectionQuantity(String endpoint, int quantity) throws MalformedURLException {
+  void verifyCollectionQuantity(String endpoint, int quantity) {
     // Verify that there are no existing  records
     verifyCollectionQuantity(endpoint, quantity,TENANT_HEADER);
   }
@@ -119,7 +132,7 @@ public abstract class TestBase {
       .statusCode(404);
   }
 
-  Response getDataById(String endpoint, String id) throws MalformedURLException {
+  Response getDataById(String endpoint, String id) {
     return given()
       .pathParam("id", id)
       .header(TENANT_HEADER)
@@ -127,7 +140,7 @@ public abstract class TestBase {
       .get(storageUrl(endpoint));
   }
 
-  Response postData(String endpoint, String input) throws MalformedURLException {
+  Response postData(String endpoint, String input) {
     return given()
       .header(TENANT_HEADER)
       .accept(ContentType.JSON)
@@ -136,7 +149,7 @@ public abstract class TestBase {
       .post(storageUrl(endpoint));
   }
 
-  Response postDataWithUserId(String endpoint, String input) throws MalformedURLException {
+  Response postDataWithUserId(String endpoint, String input) {
     return given()
       .header(TENANT_HEADER)
       .header(USER_ID_HEADER)
@@ -146,15 +159,7 @@ public abstract class TestBase {
       .post(storageUrl(endpoint));
   }
 
-  String createEntity(String endpoint, String entity) throws MalformedURLException {
-    return postData(endpoint, entity)
-      .then().log().ifValidationFails()
-      .statusCode(201)
-      .extract()
-      .path("id");
-  }
-
-  Response putData(String endpoint, String id, String input) throws MalformedURLException {
+  Response putData(String endpoint, String id, String input) {
     return given()
       .pathParam("id", id)
       .header(TENANT_HEADER)
@@ -173,7 +178,7 @@ public abstract class TestBase {
     return deleteData(endpoint, id, TENANT_HEADER);
   }
 
-  Response deleteData(String endpoint, String id, Header tenantHeader) throws MalformedURLException {
+  Response deleteData(String endpoint, String id, Header tenantHeader) {
     return given()
       .pathParam("id", id)
       .header(tenantHeader)
@@ -181,14 +186,13 @@ public abstract class TestBase {
       .delete(storageUrl(endpoint));
   }
 
-
-  void testEntityEdit(String endpoint, String entitySample, String id) throws MalformedURLException {
+  void testEntityEdit(String endpoint, String entitySample, String id) {
     putData(endpoint, id, entitySample)
       .then().log().ifValidationFails()
       .statusCode(204);
   }
 
-  void testFetchingUpdatedEntity(String id, TestEntities subObject) throws MalformedURLException {
+  void testFetchingUpdatedEntity(String id, TestEntities subObject) {
     String existedValue = getDataById(subObject.getEndpointWithId(), id)
       .then()
       .statusCode(200).log().ifValidationFails()
@@ -204,7 +208,7 @@ public abstract class TestBase {
       .statusCode(400);
   }
 
-  void testEntitySuccessfullyFetched(String endpoint, String id) throws MalformedURLException {
+  void testEntitySuccessfullyFetched(String endpoint, String id) {
     getDataById(endpoint, id)
       .then().log().ifValidationFails()
       .statusCode(200)

@@ -15,6 +15,7 @@ import org.folio.spring.SpringContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class AuditOutboxAPI implements OrganizationsStorageAuditOutbox {
+
   private static final Logger log = LogManager.getLogger();
 
   @Autowired
@@ -25,8 +26,8 @@ public class AuditOutboxAPI implements OrganizationsStorageAuditOutbox {
   }
 
   @Override
-  public void postOrganizationsStorageAuditOutboxProcess(Map<String, String> okapiHeaders,
-    Handler<AsyncResult<Response>> asyncResultHandler, Context vertxContext) {
+  public void postOrganizationsStorageAuditOutboxProcess(Map<String, String> okapiHeaders, Handler<AsyncResult<Response>> asyncResultHandler,
+                                                         Context vertxContext) {
     auditOutboxService.processOutboxEventLogs(okapiHeaders, vertxContext)
       .onSuccess(res -> asyncResultHandler.handle(Future.succeededFuture(Response.status(Response.Status.OK).build())))
       .onFailure(cause -> {
