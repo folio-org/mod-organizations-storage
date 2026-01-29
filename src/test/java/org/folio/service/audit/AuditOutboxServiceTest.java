@@ -27,7 +27,7 @@ import io.vertx.core.Future;
 
 @CopilotGenerated(model = "Claude Sonnet 4.5")
 @ExtendWith(MockitoExtension.class)
-public class AuditOutboxServiceTest {
+class AuditOutboxServiceTest {
 
   @Mock
   private AuditOutboxEventLogDAO outboxEventLogDAO;
@@ -41,7 +41,6 @@ public class AuditOutboxServiceTest {
   private Conn conn;
   @Mock
   private Context vertxContext;
-
   @InjectMocks
   private AuditOutboxService auditOutboxService;
 
@@ -58,7 +57,7 @@ public class AuditOutboxServiceTest {
   void processOutboxEventLogs_handlesEmptyLogsGracefully() {
     when(outboxEventLogDAO.getEventLogs(any(), any())).thenReturn(Future.succeededFuture(List.of()));
 
-    Future<Integer> result = auditOutboxService.processOutboxEventLogs(okapiHeaders);
+    var result = auditOutboxService.processOutboxEventLogs(okapiHeaders);
 
     assertTrue(result.succeeded());
     assertEquals(0, result.result());
@@ -66,7 +65,7 @@ public class AuditOutboxServiceTest {
 
   @Test
   void processOutboxEventLogs_sendsEventsAndDeletesLogs() {
-    OutboxEventLog eventLog = new OutboxEventLog()
+    var eventLog = new OutboxEventLog()
       .withEventId("eventId")
       .withEntityType(OutboxEventLog.EntityType.ORGANIZATION)
       .withAction("Create")
@@ -75,7 +74,7 @@ public class AuditOutboxServiceTest {
     when(outboxEventLogDAO.deleteEventLogs(any(), any(), any())).thenReturn(Future.succeededFuture(1));
     when(producer.sendOrganizationEvent(any(), any(), any())).thenReturn(Future.succeededFuture());
 
-    Future<Integer> result = auditOutboxService.processOutboxEventLogs(okapiHeaders);
+    var result = auditOutboxService.processOutboxEventLogs(okapiHeaders);
 
     assertTrue(result.succeeded());
     assertEquals(1, result.result());
@@ -83,7 +82,7 @@ public class AuditOutboxServiceTest {
 
   @Test
   void processOutboxEventLogs_handlesProducerFailure() {
-    OutboxEventLog eventLog = new OutboxEventLog()
+    var eventLog = new OutboxEventLog()
       .withEventId("eventId")
       .withEntityType(OutboxEventLog.EntityType.ORGANIZATION)
       .withAction("Create")
@@ -91,7 +90,7 @@ public class AuditOutboxServiceTest {
     when(outboxEventLogDAO.getEventLogs(any(), any())).thenReturn(Future.succeededFuture(List.of(eventLog)));
     when(producer.sendOrganizationEvent(any(), any(), any())).thenReturn(Future.failedFuture(new RuntimeException("Producer error")));
 
-    Future<Integer> result = auditOutboxService.processOutboxEventLogs(okapiHeaders);
+    var result = auditOutboxService.processOutboxEventLogs(okapiHeaders);
 
     // Wait for future to complete
     while (!result.isComplete()) {
@@ -109,14 +108,14 @@ public class AuditOutboxServiceTest {
 
   @Test
   void processOutboxEventLogs_handlesInvalidEntityType() {
-    OutboxEventLog eventLog = new OutboxEventLog()
+    var eventLog = new OutboxEventLog()
       .withEventId("eventId")
       .withEntityType(null)
       .withAction("Create")
       .withPayload("{\"id\":\"org-123\"}");
     when(outboxEventLogDAO.getEventLogs(any(), any())).thenReturn(Future.succeededFuture(List.of(eventLog)));
 
-    Future<Integer> result = auditOutboxService.processOutboxEventLogs(okapiHeaders);
+    var result = auditOutboxService.processOutboxEventLogs(okapiHeaders);
 
     assertTrue(result.succeeded());
     assertEquals(0, result.result());
@@ -124,7 +123,7 @@ public class AuditOutboxServiceTest {
 
   @Test
   void processOutboxEventLogs_handlesMissingMetadata() {
-    OutboxEventLog eventLog = new OutboxEventLog()
+    var eventLog = new OutboxEventLog()
       .withEventId("eventId")
       .withEntityType(OutboxEventLog.EntityType.ORGANIZATION)
       .withAction("Edit")
@@ -132,7 +131,7 @@ public class AuditOutboxServiceTest {
     when(outboxEventLogDAO.getEventLogs(any(), any())).thenReturn(Future.succeededFuture(List.of(eventLog)));
     when(producer.sendOrganizationEvent(any(), any(), any())).thenReturn(Future.failedFuture(new IllegalArgumentException("Metadata is null")));
 
-    Future<Integer> result = auditOutboxService.processOutboxEventLogs(okapiHeaders);
+    var result = auditOutboxService.processOutboxEventLogs(okapiHeaders);
 
     // The event should be skipped gracefully, not throw an exception
     assertTrue(result.succeeded());
@@ -141,12 +140,12 @@ public class AuditOutboxServiceTest {
 
   @Test
   void processOutboxEventLogs_handlesPartialSuccess() {
-    OutboxEventLog eventLog1 = new OutboxEventLog()
+    var eventLog1 = new OutboxEventLog()
       .withEventId("eventId1")
       .withEntityType(OutboxEventLog.EntityType.ORGANIZATION)
       .withAction("Create")
       .withPayload("{\"id\":\"org-123\",\"name\":\"Test Org 1\"}");
-    OutboxEventLog eventLog2 = new OutboxEventLog()
+    var eventLog2 = new OutboxEventLog()
       .withEventId("eventId2")
       .withEntityType(OutboxEventLog.EntityType.ORGANIZATION)
       .withAction("Create")
@@ -158,7 +157,7 @@ public class AuditOutboxServiceTest {
       .thenReturn(Future.failedFuture(new RuntimeException("Failed")));
     when(outboxEventLogDAO.deleteEventLogs(any(), any(), any())).thenReturn(Future.succeededFuture(1));
 
-    Future<Integer> result = auditOutboxService.processOutboxEventLogs(okapiHeaders);
+    var result = auditOutboxService.processOutboxEventLogs(okapiHeaders);
 
     // Wait for future to complete
     while (!result.isComplete()) {

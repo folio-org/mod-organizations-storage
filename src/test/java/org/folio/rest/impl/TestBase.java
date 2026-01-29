@@ -122,11 +122,11 @@ public abstract class TestBase {
       .get(storageUrl(endpoint));
   }
 
-  Response getData(String endpoint) throws MalformedURLException {
+  Response getData(String endpoint) {
     return getData(endpoint, TENANT_HEADER);
   }
 
-  void testVerifyEntityDeletion(String endpoint, String id) throws MalformedURLException {
+  void testVerifyEntityDeletion(String endpoint, String id) {
     getDataById(endpoint, id)
       .then()
       .statusCode(404);
