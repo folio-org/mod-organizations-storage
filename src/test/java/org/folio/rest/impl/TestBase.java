@@ -9,9 +9,7 @@ import static org.folio.rest.utils.TenantApiTestUtil.USER_ID_HEADER;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Objects;
@@ -57,7 +55,7 @@ public abstract class TestBase {
   private static PostgresClient pgClient;
 
   @BeforeAll
-  public static void testBaseBeforeClass() throws InterruptedException, ExecutionException, TimeoutException, IOException {
+  public static void testBaseBeforeClass() throws InterruptedException, ExecutionException, TimeoutException {
     Vertx vertx = StorageTestSuite.getVertx();
     if (vertx == null) {
       invokeStorageTestSuiteAfter = true;
@@ -168,13 +166,13 @@ public abstract class TestBase {
       .put(storageUrl(endpoint));
   }
 
-  void deleteDataSuccess(String endpoint, String id) throws MalformedURLException {
+  void deleteDataSuccess(String endpoint, String id) {
     deleteData(endpoint, id)
       .then().log().ifValidationFails()
       .statusCode(204);
   }
 
-  Response deleteData(String endpoint, String id) throws MalformedURLException {
+  Response deleteData(String endpoint, String id) {
     return deleteData(endpoint, id, TENANT_HEADER);
   }
 
@@ -203,7 +201,7 @@ public abstract class TestBase {
     assertEquals(existedValue, subObject.getUpdatedFieldValue());
   }
 
-  void testInvalidCQLQuery(String endpoint) throws MalformedURLException {
+  void testInvalidCQLQuery(String endpoint) {
     getData(endpoint).then().log().ifValidationFails()
       .statusCode(400);
   }
@@ -224,7 +222,6 @@ public abstract class TestBase {
       } else {
         assertEquals(sampleObject.getValue(fieldName).toString(), extracted.getValue(fieldName).toString());
       }
-
     }
   }
 
