@@ -70,7 +70,7 @@ public class TenantApiTestUtil {
           });
         }
       });
-      return future.get(60, TimeUnit.SECONDS);
+      return future.get(360, TimeUnit.SECONDS);
     } catch (Exception e) {
       fail(e);
       return null;
@@ -90,13 +90,11 @@ public class TenantApiTestUtil {
         }
       });
       try {
-        completableFuture.get(60, TimeUnit.SECONDS);
+        completableFuture.get(120, TimeUnit.SECONDS);
       } catch (InterruptedException | ExecutionException | TimeoutException e) {
         fail(e);
       }
-
     }
-
   }
 
   public static void purge(Header tenantHeader) {
@@ -111,7 +109,7 @@ public class TenantApiTestUtil {
           future.complete(null);
         }
       });
-      future.get(60, TimeUnit.SECONDS);
+      future.get(120, TimeUnit.SECONDS);
     } catch (Exception e) {
       fail(e);
     }

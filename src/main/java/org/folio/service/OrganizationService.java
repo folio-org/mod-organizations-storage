@@ -38,7 +38,7 @@ public class OrganizationService {
         .compose(id -> auditOutboxService.saveOrganizationOutboxLog(conn, organization, OrganizationAuditEvent.Action.CREATE, headers)))
       .onSuccess(s -> {
         log.info("createOrganization:: Successfully created a new organization by id: {}", organization.getId());
-        auditOutboxService.processOutboxEventLogs(headers, vertxContext);
+        auditOutboxService.processOutboxEventLogs(headers);
         var endpoint = ORGANIZATION_PREFIX.getValue() + "/" + organization.getId();
         asyncResultHandler.handle(buildResponseWithLocation(headers.get(OKAPI_URL.getValue()), endpoint, organization));
       })
@@ -59,7 +59,7 @@ public class OrganizationService {
         .compose(organizationId -> auditOutboxService.saveOrganizationOutboxLog(conn, organization, OrganizationAuditEvent.Action.EDIT, headers)))
       .onSuccess(s -> {
         log.info("updateOrganization:: Successfully updated organization with id: {}", id);
-        auditOutboxService.processOutboxEventLogs(headers, vertxContext);
+        auditOutboxService.processOutboxEventLogs(headers);
         asyncResultHandler.handle(buildNoContentResponse());
       })
       .onFailure(f -> {
