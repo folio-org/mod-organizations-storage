@@ -7,7 +7,7 @@ import org.folio.rest.jaxrs.model.Organization;
 import org.folio.rest.jaxrs.model.OrganizationType;
 
 public enum TestEntities {
-  CATEGORY("/organizations-storage/categories", Category.class, "category.sample", "value", "AccountingServices", 4, true),
+  CATEGORY("/organizations-storage/categories", Category.class, "category.sample", "value", "AccountingServices", 5, true),
   CONTACT("/organizations-storage/contacts", Contact.class, "contact.sample", "notes", "ABC123", 13, false),
   PRIVILEGED_CONTACT("/organizations-storage/privileged-contacts", Contact.class, "contact.sample", "notes", "ABC123", 2, false),
   INTERFACE("/organizations-storage/interfaces", Interface.class, "interface.sample", "name", "Test Portal", 13, false),
