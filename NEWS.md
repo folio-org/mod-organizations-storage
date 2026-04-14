@@ -1,4 +1,29 @@
-## 5.0.0 - Unreleased
+## 5.0.0 - Released (Trillium R1 2025)
+The primary focus of this release was to upgrade to Vert.x 5.0, improve locking mechanism and update libraries of dependent acquisition modules.
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v4.9.0...v5.0.0)
+
+### Stories
+* [MODORGSTOR-198](https://folio-org.atlassian.net/browse/MODORGSTOR-198) - Remove account for the Mosaic organization
+* [MODORGSTOR-197](https://folio-org.atlassian.net/browse/MODORGSTOR-197) - ECS - Create reference organizations for each tenant
+* [MODORGSTOR-196](https://folio-org.atlassian.net/browse/MODORGSTOR-196) - Migration: Remove categories that are not UUIDs
+* [MODORGSTOR-193](https://folio-org.atlassian.net/browse/MODORGSTOR-193) - Update GitHub Workflows for Maven
+* [MODORGSTOR-190](https://folio-org.atlassian.net/browse/MODORGSTOR-190) - Replace internal_lock table with a FOR UPDATE SKIP LOCKED
+* [MODORGSTOR-186](https://folio-org.atlassian.net/browse/MODORGSTOR-186) - Remove migration script that touches mod-configuration for newer versions
+* [MODORGSTOR-183](https://folio-org.atlassian.net/browse/MODORGSTOR-183) - Upgrade module to Vert.x 5.0
+* [MODORGSTOR-179](https://folio-org.atlassian.net/browse/MODORGSTOR-179) - Setup dependabot for your module
+* [MODORGSTOR-178](https://folio-org.atlassian.net/browse/MODORGSTOR-178) - Removed unused tables and APIs
+
+### Dependencies
+* Bump `raml-module-builder` from `35.4.0` to `36.0.0`
+* Bump `vertx` from `4.5.13` to `5.0.8`
+* Bump `spring` from `6.2.3` to `7.0.6`
+* Bump `kafka-clients` from `3.6.1` to `4.2.0`
+* Bump `jackson-bom` from `2.18.2` to `2.21.1`
+* Bump `log4j` from `2.24.3` to `2.25.3`
+* Bump `junit-jupiter` from `5.12.0` to `6.0.3`
+* Bump `rest-assured` from `5.5.1` to `6.0.0`
+* Bump `folio-kafka-wrapper` from `3.3.0` to `3.3.2`
 
 ## 4.9.0 - Released (Sunflower R1 2025)
 The primary focus of the release was to implement kafka events and update libraries of dependent acquisition modules.
