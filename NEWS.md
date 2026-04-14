@@ -4,16 +4,15 @@ The primary focus of this release was to upgrade to Vert.x 5.0, improve locking 
 [Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v4.9.0...v5.0.0)
 
 ### Stories
+* [MODORGSTOR-198](https://folio-org.atlassian.net/browse/MODORGSTOR-198) - Remove account for the Mosaic organization
+* [MODORGSTOR-197](https://folio-org.atlassian.net/browse/MODORGSTOR-197) - ECS - Create reference organizations for each tenant
+* [MODORGSTOR-196](https://folio-org.atlassian.net/browse/MODORGSTOR-196) - Migration: Remove categories that are not UUIDs
 * [MODORGSTOR-193](https://folio-org.atlassian.net/browse/MODORGSTOR-193) - Update GitHub Workflows for Maven
 * [MODORGSTOR-190](https://folio-org.atlassian.net/browse/MODORGSTOR-190) - Replace internal_lock table with a FOR UPDATE SKIP LOCKED
 * [MODORGSTOR-186](https://folio-org.atlassian.net/browse/MODORGSTOR-186) - Remove migration script that touches mod-configuration for newer versions
 * [MODORGSTOR-183](https://folio-org.atlassian.net/browse/MODORGSTOR-183) - Upgrade module to Vert.x 5.0
-* [MODORGSTOR-181](https://folio-org.atlassian.net/browse/MODORGSTOR-181) - Implement POST /organizations-storage/audit-outbox/process
 * [MODORGSTOR-179](https://folio-org.atlassian.net/browse/MODORGSTOR-179) - Setup dependabot for your module
 * [MODORGSTOR-178](https://folio-org.atlassian.net/browse/MODORGSTOR-178) - Removed unused tables and APIs
-* [MODORG-84](https://folio-org.atlassian.net/browse/MODORG-84) - ECS - Create reference organizations for each tenant
-* [MODORG-34](https://folio-org.atlassian.net/browse/MODORG-34) - Migration: Remove categories that are not UUIDs
-* [MODMO-28](https://folio-org.atlassian.net/browse/MODMO-28) - Remove account for the Mosaic organization
 
 ### Dependencies
 * Bump `raml-module-builder` from `35.4.0` to `36.0.0`
