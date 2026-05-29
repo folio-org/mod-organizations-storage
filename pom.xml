@@ -27,15 +27,14 @@
     <!--Dependency Properties-->
     <raml-module-builder.version>36.0.0</raml-module-builder.version>
     <spring.version>7.0.6</spring.version>
-    <vertx.version>5.0.8</vertx.version>
+    <vertx.version>5.0.12</vertx.version>
     <log4j.version>2.25.3</log4j.version>
     <aspectj.version>1.9.25.1</aspectj.version>
     <jackson-bom.version>2.21.1</jackson-bom.version>
-    <kafkaclients.version>4.2.0</kafkaclients.version>
 
     <!--Folio dependencies properties-->
     <folio-module-descriptor-validator.version>1.0.1</folio-module-descriptor-validator.version>
-    <folio-kafka-wrapper.version>3.3.2</folio-kafka-wrapper.version>
+    <folio-kafka-wrapper.version>4.1.0-SNAPSHOT</folio-kafka-wrapper.version>
     <folio-di-support.version>3.0.0</folio-di-support.version>
 
     <!--Maven plugin properties-->
@@ -144,11 +143,6 @@
       <groupId>io.vertx</groupId>
       <artifactId>vertx-kafka-client</artifactId>
       <version>${vertx.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.kafka</groupId>
-      <artifactId>kafka-clients</artifactId>
-      <version>${kafkaclients.version}</version>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
