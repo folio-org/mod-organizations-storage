@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import io.vertx.core.json.jackson.DatabindCodec;
 import org.apache.commons.collections4.CollectionUtils;
 import org.folio.dao.audit.AuditOutboxEventLogDAO;
+import org.folio.dbschema.ObjectMapperTool;
 import org.folio.rest.jaxrs.model.Organization;
 import org.folio.rest.jaxrs.model.OrganizationAuditEvent;
 import org.folio.rest.jaxrs.model.OutboxEventLog;
@@ -59,11 +61,31 @@ public class AuditOutboxService {
     return eventLogs.stream().map(eventLog ->
       switch (eventLog.getEntityType()) {
         case ORGANIZATION -> {
-          var organization = Json.decodeValue(eventLog.getPayload(), Organization.class);
+          var wrapper = decodePayload(eventLog.getPayload(), Organization.class);
           var action = OrganizationAuditEvent.Action.fromValue(eventLog.getAction());
-          yield producer.sendOrganizationEvent(organization, action, okapiHeaders);
+          yield producer.sendOrganizationEvent(wrapper.getEntity(), wrapper.getOriginalEntity(), action, okapiHeaders);
         }
       }).toList();
+  }
+
+  /**
+   * Decode an outbox payload into a wrapper. Falls back to decoding the payload as a bare entity
+   * for backwards compatibility with rows written before the wrapper format was introduced.
+   */
+  <T> AuditEntityWrapper<T> decodePayload(String payload, Class<T> entityClass) {
+    var mapper = DatabindCodec.mapper();
+    try {
+      var wrapperType = mapper.getTypeFactory().constructParametricType(AuditEntityWrapper.class, entityClass);
+      AuditEntityWrapper<T> wrapper = mapper.readValue(payload, wrapperType);
+      if (wrapper.getEntity() != null) {
+        return wrapper;
+      }
+    } catch (Exception ignored) {
+      // fall through to legacy decoding
+    }
+    log.warn("decodePayload:: Falling back to legacy (bare-entity) outbox payload decoding");
+    T entity = Json.decodeValue(payload, entityClass);
+    return AuditEntityWrapper.of(entity, null);
   }
 
   /**
@@ -76,16 +98,29 @@ public class AuditOutboxService {
    * @return future with saved outbox log id in the same transaction
    */
   public Future<Void> saveOrganizationOutboxLog(Conn conn, Organization entity, OrganizationAuditEvent.Action action, Map<String, String> okapiHeaders) {
-    return saveOutboxLog(conn, okapiHeaders, action.value(), EntityType.ORGANIZATION, entity.getId(), entity);
+    return saveOrganizationOutboxLog(conn, entity, null, action, okapiHeaders);
   }
 
-  private Future<Void> saveOutboxLog(Conn conn, Map<String, String> okapiHeaders, String action, EntityType entityType, String entityId, Object entity) {
+  /**
+   * Saves organization outbox log capturing the pre-edit state.
+   *
+   * @param conn         connection in transaction
+   * @param entity       the organization (post-edit state)
+   * @param original     the organization before the edit; null for Create
+   * @param action       the event action
+   * @param okapiHeaders okapi headers
+   */
+  public Future<Void> saveOrganizationOutboxLog(Conn conn, Organization entity, Organization original, OrganizationAuditEvent.Action action, Map<String, String> okapiHeaders) {
+    return saveOutboxLog(conn, okapiHeaders, action.value(), EntityType.ORGANIZATION, entity.getId(), AuditEntityWrapper.of(entity, original));
+  }
+
+  private Future<Void> saveOutboxLog(Conn conn, Map<String, String> okapiHeaders, String action, EntityType entityType, String entityId, AuditEntityWrapper<?> wrapper) {
     log.debug("saveOutboxLog:: Saving outbox log for {} with id: {}", entityType, entityId);
     var eventLog = new OutboxEventLog()
       .withEventId(UUID.randomUUID().toString())
       .withAction(action)
       .withEntityType(entityType)
-      .withPayload(Json.encode(entity));
+      .withPayload(Json.encode(wrapper));
     return outboxEventLogDAO.saveEventLog(conn, eventLog, TenantTool.tenantId(okapiHeaders))
       .onSuccess(reply -> log.info("saveOutboxLog:: Outbox log has been saved for {} with id: {}", entityType, entityId))
       .onFailure(e -> log.warn("saveOutboxLog:: Could not save outbox audit log for {} with id: {}", entityType, entityId, e));

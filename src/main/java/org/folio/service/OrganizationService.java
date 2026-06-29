@@ -55,8 +55,9 @@ public class OrganizationService {
       asyncResultHandler.handle(buildBadRequestResponse("Organization id is required"));
     }
     getPgClient(vertxContext, headers)
-      .withTrans(conn -> organizationDAO.updateOrganization(id, organization, conn)
-        .compose(organizationId -> auditOutboxService.saveOrganizationOutboxLog(conn, organization, OrganizationAuditEvent.Action.EDIT, headers)))
+      .withTrans(conn -> organizationDAO.getOrganizationByIdForUpdate(id, conn)
+        .compose(originalOrganization -> organizationDAO.updateOrganization(id, organization, conn)
+          .compose(v -> auditOutboxService.saveOrganizationOutboxLog(conn, organization, originalOrganization, OrganizationAuditEvent.Action.EDIT, headers))))
       .onSuccess(s -> {
         log.info("updateOrganization:: Successfully updated organization with id: {}", id);
         auditOutboxService.processOutboxEventLogs(headers, vertxContext);

@@ -8,6 +8,7 @@ import io.vertx.core.Future;
 public interface OrganizationDAO {
 
   Future<String> createOrganization(Organization organization, Conn conn);
+  Future<Organization> getOrganizationByIdForUpdate(String id, Conn conn);
   Future<Void> updateOrganization(String id, Organization organization, Conn conn);
   Future<Void> deleteOrganization(String id, Conn conn);
 
