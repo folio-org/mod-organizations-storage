@@ -30,20 +30,21 @@ public class AuditEventProducer {
    * Sends event for organization change(Create, Edit) to kafka.
    * OrganizationId is used as partition key to send all events for particular organization to the same partition.
    *
-   * @param organization      the event payload
-   * @param eventAction  the event action
-   * @param okapiHeaders the okapi headers
+   * @param organization         the event payload (post-edit state)
+   * @param originalOrganization the pre-edit organization state; null for Create
+   * @param eventAction          the event action
+   * @param okapiHeaders         the okapi headers
    * @return future with true if sending was success or failed future in another case
    */
-  public Future<Void> sendOrganizationEvent(Organization organization, OrganizationAuditEvent.Action eventAction, Map<String, String> okapiHeaders) {
-    var event = getAuditEvent(organization, eventAction);
+  public Future<Void> sendOrganizationEvent(Organization organization, Organization originalOrganization, OrganizationAuditEvent.Action eventAction, Map<String, String> okapiHeaders) {
+    var event = getAuditEvent(organization, originalOrganization, eventAction);
     log.info("sendOrganizationEvent:: Sending event with id: {} and organizationId: {} to Kafka", event.getId(), organization.getId());
     return sendToKafka(EventTopic.ACQ_ORGANIZATION_CHANGED, event.getOrganizationId(), event, okapiHeaders)
       .onFailure(t -> log.warn("sendOrganizationEvent:: Failed to send event with id: {} and organizationId: {} to Kafka", event.getId(), organization.getId(), t));
   }
 
-  private OrganizationAuditEvent getAuditEvent(Organization organization, OrganizationAuditEvent.Action eventAction) {
-    return new OrganizationAuditEvent()
+  OrganizationAuditEvent getAuditEvent(Organization organization, Organization originalOrganization, OrganizationAuditEvent.Action eventAction) {
+    var event = new OrganizationAuditEvent()
       .withId(UUID.randomUUID().toString())
       .withAction(eventAction)
       .withOrganizationId(organization.getId())
@@ -51,6 +52,10 @@ public class AuditEventProducer {
       .withActionDate(organization.getMetadata().getUpdatedDate())
       .withUserId(organization.getMetadata().getUpdatedByUserId())
       .withOrganizationSnapshot(organization.withMetadata(null));
+    if (originalOrganization != null) {
+      event.setOriginalOrganizationSnapshot(originalOrganization.withMetadata(null));
+    }
+    return event;
   }
 
   private Future<Void> sendToKafka(EventTopic eventTopic, String key, Object eventPayload, Map<String, String> okapiHeaders) {

@@ -1,5 +1,6 @@
 package org.folio.dao.organization;
 
+import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 import static org.folio.rest.utils.ResponseUtils.convertPgExceptionIfNeeded;
 
 import java.util.UUID;
@@ -12,6 +13,7 @@ import org.folio.rest.persist.Conn;
 import org.folio.rest.persist.Criteria.Criterion;
 
 import io.vertx.core.Future;
+import io.vertx.ext.web.handler.HttpException;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -30,6 +32,18 @@ public class OrganizationPostgresDAO implements OrganizationDAO {
       .recover(t -> Future.failedFuture(convertPgExceptionIfNeeded(t, HttpStatus.HTTP_BAD_REQUEST)))
       .onSuccess(s -> log.info("createOrganization:: New organization with id: '{}' successfully created", organization.getId()))
       .onFailure(t -> log.error("Failed to create organization with id: '{}'", organization.getId(), t));
+  }
+
+  @Override
+  public Future<Organization> getOrganizationByIdForUpdate(String id, Conn conn) {
+    return conn.getByIdForUpdate(ORGANIZATION_TABLE, id, Organization.class)
+      .map(organization -> {
+        if (organization == null) {
+          throw new HttpException(NOT_FOUND.getStatusCode(), NOT_FOUND.getReasonPhrase());
+        }
+        return organization;
+      })
+      .onFailure(t -> log.error("getOrganizationByIdForUpdate failed for organization with id '{}'", id, t));
   }
 
   @Override
