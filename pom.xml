@@ -25,8 +25,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!--Dependency Properties-->
-    <raml-module-builder.version>36.0.0</raml-module-builder.version>
-    <spring.version>7.0.8</spring.version>
+    <raml-module-builder.version>36.0.1</raml-module-builder.version>
+    <spring.version>7.0.9</spring.version>
     <vertx.version>5.1.0</vertx.version>
     <log4j.version>2.26.0</log4j.version>
     <aspectj.version>1.9.25.1</aspectj.version>
@@ -51,7 +51,7 @@
 
     <!--Test Scope dependencies-->
     <junit.jupiter.version>6.1.0</junit.jupiter.version>
-    <rest-assured.version>6.0.0</rest-assured.version>
+    <rest-assured.version>6.0.1</rest-assured.version>
 
     <argLine />
   </properties>
