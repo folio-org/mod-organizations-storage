@@ -43,14 +43,14 @@ class AuditEventProducerTest {
   }
 
   @Test
-  void metadataIsStrippedFromBothSnapshots() {
+  void metadataIsRetainedInBothSnapshots() {
     var original = organization("Vendor Old", Organization.Status.ACTIVE);
     var updated = organization("Vendor New", Organization.Status.INACTIVE);
 
     OrganizationAuditEvent event = producer.getAuditEvent(updated, original, OrganizationAuditEvent.Action.EDIT);
 
-    assertNull(event.getOrganizationSnapshot().getMetadata());
-    assertNull(event.getOriginalOrganizationSnapshot().getMetadata());
+    assertEquals(updated.getMetadata(), event.getOrganizationSnapshot().getMetadata());
+    assertEquals(original.getMetadata(), event.getOriginalOrganizationSnapshot().getMetadata());
   }
 
   @Test

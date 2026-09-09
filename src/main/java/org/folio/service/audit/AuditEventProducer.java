@@ -51,9 +51,9 @@ public class AuditEventProducer {
       .withEventDate(new Date())
       .withActionDate(organization.getMetadata().getUpdatedDate())
       .withUserId(organization.getMetadata().getUpdatedByUserId())
-      .withOrganizationSnapshot(organization.withMetadata(null));
+      .withOrganizationSnapshot(organization);
     if (originalOrganization != null) {
-      event.setOriginalOrganizationSnapshot(originalOrganization.withMetadata(null));
+      event.setOriginalOrganizationSnapshot(originalOrganization);
     }
     return event;
   }
