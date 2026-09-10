@@ -9,6 +9,7 @@ import org.folio.kafka.KafkaTopicNameHelper;
 import org.folio.kafka.SimpleKafkaProducerManager;
 import org.folio.kafka.services.KafkaProducerRecordBuilder;
 import org.folio.rest.jaxrs.model.EventTopic;
+import org.folio.rest.jaxrs.model.Metadata;
 import org.folio.rest.jaxrs.model.Organization;
 import org.folio.rest.jaxrs.model.OrganizationAuditEvent;
 import org.folio.rest.tools.utils.TenantTool;
@@ -53,9 +54,17 @@ public class AuditEventProducer {
       .withUserId(organization.getMetadata().getUpdatedByUserId())
       .withOrganizationSnapshot(organization);
     if (originalOrganization != null) {
+      restoreCreationMetadata(organization.getMetadata(), originalOrganization.getMetadata());
       event.setOriginalOrganizationSnapshot(originalOrganization);
     }
     return event;
+  }
+
+  private void restoreCreationMetadata(Metadata snapshot, Metadata original) {
+    if (original != null) {
+      snapshot.withCreatedDate(original.getCreatedDate())
+        .withCreatedByUserId(original.getCreatedByUserId());
+    }
   }
 
   private Future<Void> sendToKafka(EventTopic eventTopic, String key, Object eventPayload, Map<String, String> okapiHeaders) {
