@@ -61,11 +61,10 @@ public class AuditEventProducer {
   }
 
   private void restoreCreationMetadata(Metadata snapshot, Metadata original) {
-    if (snapshot == null || original == null) {
-      return;
+    if (original != null) {
+      snapshot.withCreatedDate(original.getCreatedDate())
+        .withCreatedByUserId(original.getCreatedByUserId());
     }
-    snapshot.withCreatedDate(original.getCreatedDate())
-      .withCreatedByUserId(original.getCreatedByUserId());
   }
 
   private Future<Void> sendToKafka(EventTopic eventTopic, String key, Object eventPayload, Map<String, String> okapiHeaders) {
