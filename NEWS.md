@@ -1,3 +1,8 @@
+## WIP (Umbrellaleaf R1 2027)
+
+### Stories
+* [MODORGSTOR-203](https://folio-org.atlassian.net/browse/MODORGSTOR-203) - Upgrade from Java 21 to Java 25
+
 ## 5.0.0 - Released (Trillium R1 2025)
 The primary focus of this release was to upgrade to Vert.x 5.0, improve locking mechanism and update libraries of dependent acquisition modules.
 
