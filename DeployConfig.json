@@ -222,7 +222,7 @@
         "value": null,
         "description": "Environment identifier used as the Kafka topic prefix (module default folio); must match the consumers of the audit topics",
         "type": "CONFIG",
-        "essential": false
+        "essential": true
       },
       {
         "name": "loadReference",
