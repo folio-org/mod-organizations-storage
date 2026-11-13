@@ -148,20 +148,6 @@
         "essential": false
       },
       {
-        "name": "DB_HOST_READER_ASYNC",
-        "value": null,
-        "description": "Optional asynchronous read replica host for reads that tolerate replication lag",
-        "type": "DB",
-        "essential": false
-      },
-      {
-        "name": "DB_PORT_READER_ASYNC",
-        "value": null,
-        "description": "Port of the asynchronous read replica",
-        "type": "DB",
-        "essential": false
-      },
-      {
         "name": "DB_SERVER_PEM",
         "value": null,
         "description": "PEM-encoded server certificate; when set, RMB connects to PostgreSQL over TLS",
