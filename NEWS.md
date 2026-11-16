@@ -1,4 +1,12 @@
-## 5.0.0 - Released (Trillium R1 2025)
+## 5.0.1 - Released (Trillium R1 2026 Bug Fix)
+The primary focus of this release was to add DeployConfig.json file.
+
+[Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v5.0.0...v5.0.1)
+
+### Stories
+* [MODORGSTOR-202](https://folio-org.atlassian.net/browse/MODORGSTOR-202) - Add DeployConfig.json to mod-organizations-storage (ADR-0013 Configuration Management)
+
+## 5.0.0 - Released (Trillium R1 2026)
 The primary focus of this release was to upgrade to Vert.x 5.0, improve locking mechanism and update libraries of dependent acquisition modules.
 
 [Full Changelog](https://github.com/folio-org/mod-organizations-storage/compare/v4.9.0...v5.0.0)
