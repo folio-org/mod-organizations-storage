@@ -1,0 +1,314 @@
+{
+  "description": "mod-organizations-storage configuration template. Default values are calibrated against a reference bugfest environment (tebfcon-mod-organizations-storage revision 15, image 5.0.0); see ADR-0013 (Module configuration management) for the governance model behind this file. mod-organizations-storage is an RMB storage module: it owns the organizations PostgreSQL schema and publishes organization audit events to Kafka through a transactional outbox. Resource values and JVM limits must be adjusted to the target host capacity.",
+  "moduleDefaults": {
+    "resources": [
+      {
+        "name": "cpu",
+        "value": "64",
+        "description": "CPU request/limit for the mod-organizations-storage container"
+      },
+      {
+        "name": "memory",
+        "value": "1024",
+        "description": "Memory hard limit for the mod-organizations-storage container in MiB"
+      },
+      {
+        "name": "memoryReservation",
+        "value": "896",
+        "description": "Memory reservation (soft limit) for the mod-organizations-storage container in MiB"
+      }
+    ],
+    "java": [
+      {
+        "name": "xmx",
+        "value": "620m",
+        "description": "Maximum Java heap size. Value taken from bugfest"
+      },
+      {
+        "name": "MaxMetaspaceSize",
+        "value": "128m",
+        "description": "Maximum Java metaspace size. Value taken from bugfest"
+      },
+      {
+        "name": "MetaspaceSize",
+        "value": "88m",
+        "description": "Threshold for the first metaspace garbage collection (not a limit). Value taken from bugfest"
+      }
+    ],
+    "deployment": {
+      "isHaSupported": true,
+      "replicasRecommendedCount": 2,
+      "description": "mod-organizations-storage keeps no in-memory state, and the audit outbox is drained with SELECT ... FOR UPDATE SKIP LOCKED, so replicas can run side by side without double-publishing events."
+    },
+    "kong": {
+      "timeouts": {
+        "connect": "60s",
+        "send": "60s",
+        "read": "60s"
+      },
+      "description": "Default Kong proxy timeouts are sufficient for single-record CRUD and paged CQL searches over organizations and related reference data."
+    },
+    "EnvVars": [
+      {
+        "name": "DB_HOST",
+        "value": null,
+        "description": "PostgreSQL host; without it RMB cannot open the tenant schema",
+        "type": "DB",
+        "essential": true
+      },
+      {
+        "name": "DB_PORT",
+        "value": "5432",
+        "description": "PostgreSQL port",
+        "type": "DB",
+        "essential": true
+      },
+      {
+        "name": "DB_USERNAME",
+        "value": null,
+        "description": "PostgreSQL user (sourced from the secret store)",
+        "type": "DB",
+        "essential": true
+      },
+      {
+        "name": "DB_PASSWORD",
+        "value": null,
+        "description": "PostgreSQL password (sourced from the secret store)",
+        "type": "DB",
+        "essential": true
+      },
+      {
+        "name": "DB_DATABASE",
+        "value": null,
+        "description": "PostgreSQL database name",
+        "type": "DB",
+        "essential": true
+      },
+      {
+        "name": "DB_MAXPOOLSIZE",
+        "value": "20",
+        "description": "Maximum connections per tenant pool. Value taken from bugfest; RMB default is 4",
+        "type": "DB",
+        "essential": false
+      },
+      {
+        "name": "DB_MAXSHAREDPOOLSIZE",
+        "value": null,
+        "description": "When set, RMB uses one connection pool of this size shared by all tenants instead of per-tenant pools",
+        "type": "DB",
+        "essential": false
+      },
+      {
+        "name": "DB_CONNECTIONRELEASEDELAY",
+        "value": "60000",
+        "description": "Idle time in milliseconds after which a pooled connection is closed (RMB default; 0 keeps connections open)",
+        "type": "DB",
+        "essential": false
+      },
+      {
+        "name": "DB_MAX_LIFETIME",
+        "value": "1800000",
+        "description": "Maximum lifetime in milliseconds of a pooled connection (RMB default)",
+        "type": "DB",
+        "essential": false
+      },
+      {
+        "name": "DB_RECONNECTATTEMPTS",
+        "value": "0",
+        "description": "Number of reconnect attempts when a database connection cannot be established (Vert.x default 0)",
+        "type": "DB",
+        "essential": false
+      },
+      {
+        "name": "DB_RECONNECTINTERVAL",
+        "value": "1000",
+        "description": "Interval in milliseconds between database reconnect attempts (Vert.x default)",
+        "type": "DB",
+        "essential": false
+      },
+      {
+        "name": "DB_EXPLAIN_QUERY_THRESHOLD",
+        "value": "300000",
+        "description": "Queries slower than this many milliseconds are logged with their plan. Value taken from bugfest; RMB default is 1000",
+        "type": "DB",
+        "essential": false
+      },
+      {
+        "name": "DB_HOST_READER",
+        "value": null,
+        "description": "Optional read-only replica host; when set, RMB routes read queries to it",
+        "type": "DB",
+        "essential": false
+      },
+      {
+        "name": "DB_PORT_READER",
+        "value": null,
+        "description": "Port of the read-only replica; defaults to DB_PORT",
+        "type": "DB",
+        "essential": false
+      },
+      {
+        "name": "DB_SERVER_PEM",
+        "value": null,
+        "description": "PEM-encoded server certificate; when set, RMB connects to PostgreSQL over TLS",
+        "type": "DB",
+        "essential": false
+      },
+      {
+        "name": "DB_ALLOW_SUPPRESS_OPTIMISTIC_LOCKING",
+        "value": null,
+        "description": "Timestamp until which clients may bypass optimistic locking (used for data migrations); unset means never",
+        "type": "DB",
+        "essential": false
+      },
+      {
+        "name": "KAFKA_HOST",
+        "value": null,
+        "description": "Kafka broker host for organization audit events",
+        "type": "KAFKA",
+        "essential": true
+      },
+      {
+        "name": "KAFKA_PORT",
+        "value": "9092",
+        "description": "Kafka broker port",
+        "type": "KAFKA",
+        "essential": true
+      },
+      {
+        "name": "REPLICATION_FACTOR",
+        "value": "1",
+        "description": "Replication factor passed to the Kafka configuration (module default; not set on bugfest)",
+        "type": "KAFKA",
+        "essential": false
+      },
+      {
+        "name": "MAX_REQUEST_SIZE",
+        "value": "1048576",
+        "description": "Maximum Kafka producer request size in bytes (module default)",
+        "type": "KAFKA",
+        "essential": false
+      },
+      {
+        "name": "KAFKA_PRODUCER_TENANT_COLLECTION",
+        "value": "ALL",
+        "description": "When set, audit events go to shared tenant-collection topics with this qualifier instead of per-tenant topics. Value taken from bugfest",
+        "type": "KAFKA",
+        "essential": false
+      },
+      {
+        "name": "OKAPI_URL",
+        "value": null,
+        "description": "Okapi URL carried in the Kafka configuration (module default http://okapi:9130); not set on Eureka deployments",
+        "type": "CONFIG",
+        "essential": false
+      },
+      {
+        "name": "ENV",
+        "value": null,
+        "description": "Environment identifier used as the Kafka topic prefix (module default folio); must match the consumers of the audit topics",
+        "type": "CONFIG",
+        "essential": true
+      },
+      {
+        "name": "loadReference",
+        "value": false,
+        "description": "Forces loading of reference data on tenant init regardless of the tenant parameter (env name is lowerCamelCase in code)",
+        "type": "FUNCTIONAL",
+        "essential": false
+      },
+      {
+        "name": "loadSample",
+        "value": false,
+        "description": "Forces loading of sample data on tenant init regardless of the tenant parameter (env name is lowerCamelCase in code)",
+        "type": "FUNCTIONAL",
+        "essential": false
+      },
+      {
+        "name": "JAVA_OPTIONS",
+        "value": "-Dhttp.port=8082",
+        "description": "JVM options for the module process. -Dhttp.port=8082 moves RMB off its default port 8081, which the Eureka sidecar uses; it must match the sidecar's MODULE_URL. Heap sizing comes from the java block.",
+        "type": "CONFIG",
+        "essential": false
+      },
+      {
+        "name": "LOG4J_CONFIGURATION_FILE",
+        "value": null,
+        "description": "Location of an external Log4j2 configuration overriding the bundled log4j2.properties; the bundled log4j2-json.properties can be selected for JSON logs",
+        "type": "CONFIG",
+        "essential": false
+      }
+    ]
+  },
+  "sidecarDefaults": {
+    "resources": [
+      {
+        "name": "cpu",
+        "value": "64",
+        "description": "CPU request/limit for the sidecar container"
+      },
+      {
+        "name": "memory",
+        "value": "1024",
+        "description": "Memory hard limit for the sidecar container in MiB"
+      },
+      {
+        "name": "memoryReservation",
+        "value": "512",
+        "description": "Memory reservation (soft limit) for the sidecar container in MiB"
+      }
+    ],
+    "java": [
+      {
+        "name": "xms",
+        "value": "128m",
+        "description": "Initial Java heap size"
+      },
+      {
+        "name": "xmx",
+        "value": "256m",
+        "description": "Maximum Java heap size"
+      },
+      {
+        "name": "MaxMetaspaceSize",
+        "value": "96m",
+        "description": "Maximum Java metaspace size"
+      },
+      {
+        "name": "UseZGC",
+        "value": "true",
+        "description": "Use the ZGC low-pause collector"
+      }
+    ],
+    "EnvVars": [
+      {
+        "name": "ENV",
+        "value": null,
+        "description": "Deployment environment identifier; must match the other modules and sidecars of the deployment",
+        "type": "CONFIG",
+        "essential": true
+      },
+      {
+        "name": "MODULE_NAME",
+        "value": "mod-organizations-storage",
+        "description": "Name of the backend module the sidecar fronts",
+        "type": "CONFIG",
+        "essential": true
+      },
+      {
+        "name": "MODULE_URL",
+        "value": null,
+        "description": "Internal URL (host:port) at which the mod-organizations-storage container is reachable from its sidecar",
+        "type": "CONFIG",
+        "essential": true
+      },
+      {
+        "name": "MODULE_VERSION",
+        "value": null,
+        "description": "Version of the mod-organizations-storage module deployed alongside this sidecar",
+        "type": "CONFIG",
+        "essential": true
+      }
+    ]
+  }
+}
